@@ -1,0 +1,10 @@
+<view class="page-camera-photo" wx:if="{{info.videoUrl}}">
+  <video class="video" show-center-play-btn show-fullscreen-btn="{{false}}" autoplay src="{{info.videoUrl}}"></video>
+  <cover-image src="https://qiniu.icaodong.com/xcx/video/return.png?v=1.0.0" class="navigate-back" catchtap="handleTap"></cover-image>
+  <cover-view class="btn-wrap" wx:if="{{!showCouponPopup}}">
+    <cover-view class="btn" catchtap="onShowCouponPopup">领取优惠券</cover-view>
+    <cover-view class="btn" catchtap="goCameraPhotoDetail">与{{info.starName}}合照</cover-view>
+<!--    <navigator class="btn" url="/pages/camera-photo-detail/camera-photo-detail" hover-class="none">与王力宏合照</navigator>-->
+  </cover-view>
+  <coupon-popup getType="{{4}}" activityId="{{info.id}}" couponIds="{{info.couponList}}" show="{{showCouponPopup}}" bindclose="onClose" />
+</view>

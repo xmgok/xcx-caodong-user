@@ -1,0 +1,55 @@
+<view class="container">
+  <search-with-service
+    value="{{ keyword }}"
+    placeholder="搜索商品编号或关键字"
+    bindconfirm="handleSearchConfirm" />
+
+  <view class="sort-wrap">
+    <view
+      wx:for="{{ sortList }}"
+      wx:key="index"
+      bindtap="sortChange"
+      data-index="{{ index }}"
+      class="btn-filter {{ sort === item.down ? 'active': '' }}">
+      {{ item.label }}
+      <block wx:if="{{ !!item.up }}">
+        <text class="icon icon-paixu1 {{ sort === item.down ? 'active': '' }}"></text>
+        <text class="icon icon-paixu2 {{ sort === item.up ? 'active': '' }}"></text>
+      </block>
+    </view>
+  </view>
+
+  <view class="main-content">
+    <view class="history-search" wx:if="{{showHistory}}">
+      <block wx:if="{{history.length}}">
+        <view class="title">历史搜索
+          <text class="icon icon-trash" bindtap="handleDeleteHistory"></text>
+        </view>
+        <view class="tag-list">
+          <text
+            bindtap="bindTagTap"
+            data-value="{{item}}"
+            class="tag-item"
+            wx:for="{{history}}"
+            wx:key="index">{{item}}</text>
+        </view>
+      </block>
+      <view wx:else class="ui-divider">
+        <text class="line"></text>暂无搜索历史<text class="line"></text>
+      </view>
+    </view>
+
+    <block wx:if="{{!showHistory}}">
+      <love-list
+        wx:if="{{userType == 'staff'}}"
+        list="{{goodsList}}"
+        bind:product-select="productSelect"
+        show-divider="{{reachBottom}}"></love-list>
+      <goods-list wx:if="{{userType == 'customer'}}" list="{{goodsList}}" labelsList ="{{labelsList}}" show-divider="{{reachBottom}}"></goods-list>
+      <component-loading wx:if="{{!reachBottom}}"></component-loading>
+    </block>
+  </view>
+
+  <!--获取手机号-->
+  <component-phone-auth2 isPlaceholder="{{true}}" location="bottom"></component-phone-auth2>
+</view>

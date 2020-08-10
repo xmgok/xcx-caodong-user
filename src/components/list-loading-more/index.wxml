@@ -1,0 +1,27 @@
+<view>
+  <view class="g-no-data custom-class" wx:if="{{result.totalCount <= 0}}">
+    <view class="g-no-data-icon icon {{icon}}" style="{{iconStyle}}" wx:if="{{icon}}"></view>
+    <view class="g-no-data-text" wx:if="{{noDataDesc}}">{{noDataDesc}}</view>
+    <view class="g-no-data-text">
+      <slot></slot>
+    </view>
+    <view class="g-no-data-btn" wx:if="{{noDataBtnText}}" data-url="{{noDataBtnUrl}}" bindtap="goLink">
+      {{noDataBtnText}}
+    </view>
+    <slot name="btn"></slot>
+  </view>
+  <block wx:elif="{{result.pageNum >= result.totalPage}}">
+    <view class="g-loading-over" wx:if="{{noMoreDataDesc}}">
+      <view class="_line"></view>
+      <view>{{noMoreDataDesc}}</view>
+      <view class="_line"></view>
+    </view>
+  </block>
+  <view class="g-loading" wx:else>
+    <view class="view"></view>
+    <view class="view"></view>
+    <view class="view"></view>
+    <view class="view"></view>
+    <view class="view"></view>
+  </view>
+</view>

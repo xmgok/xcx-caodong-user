@@ -1,0 +1,33 @@
+<!--企业注册和审核-->
+<view class="page-enterprise-status">
+  <view class="status-wrap" wx:if="{{status != -1}}">
+    <text class="tb icon {{ status < 3 ? 'icon-check-circle' : 'icon-times-circle'}}"></text>
+    <view class="text-status">{{statusJson[status].text1}}</view>
+
+    <view class="other-wrap2">
+      <view class="other-wrap">
+        <view class="text1-wrap">
+          <view>
+            <view class="text1" wx:for="{{statusJson[status].text2}}" wx:key="index">{{item}}</view>
+          </view>
+        </view>
+
+        <view class="domain">
+          <block wx:if="{{status != 1}}">
+            <view class="domain-text">草动管理后台地址：{{domain}}</view>
+            <view class="domain-btn" bindtap="copy">复制</view>
+          </block>
+          <block wx:else>
+            <view class="domain-text" style="text-align: center;">预计1-3个工作日完成审核，请耐心等待</view>
+          </block>
+        </view>
+
+      </view>
+    </view>
+
+  </view>
+
+  <navigator class="go-index" url="/pages/index/index" hover-class="none" open-type="switchTab">返回首页</navigator>
+
+  <component-copyright />
+</view>

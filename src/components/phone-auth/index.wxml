@@ -1,0 +1,11 @@
+<!--获取手机号-->
+<view class="get-mobile" wx:if="{{isShow}}">
+  <view class="con">
+    <view class="title">授权手机号码，获取会员权益</view>
+    <view class="btn-wrap">
+      <view wx:if="{{isShowCancel}}" bindtap="cancel" class="btn cancel">取消</view>
+      <view wx:if="{{isBindGetPhoneNumber}}" class="btn">允许</view>
+      <button wx:else class="btn" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">允许</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<!--优惠券-->
+<van-popup
+  show="{{ showCouponSelector }}"
+  bind:close="selectorClose"
+  data-name="showCouponSelector"
+  position="bottom"
+  custom-class="pop-selector coupon-selector">
+  <view class="popup-header">
+    <view class="title">领取优惠券</view>
+    <view class="btn-close-wrap" bindtap="selectorClose" data-name="showCouponSelector">
+      <text class="icon icon-times btn-close"></text>
+    </view>
+  </view>
+  <view class="popup-content">
+    <block wx:if="{{couponList.length}}">
+      <component-coupon-item wx:for="{{couponList}}" wx:key="couponId" item="{{item}}"></component-coupon-item>
+    </block>
+    <view class="no-data" wx:if="{{ couponList.length <= 0}}">
+      <view class="icon-wrap">
+        <text class="icon icon-coupon"/>
+      </view>
+      还木有优惠券哦~
+    </view>
+  </view>
+</van-popup>

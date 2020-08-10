@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="g-tab" wx:if="{{showTab}}">
+    <view class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}" wx:for="{{tabList}}" wx:key="index"
+          data-index="{{index}}" bindtap="switchTab">{{item}}
+    </view>
+  </view>
+  <view class="list-wrap" wx:if="{{dataList.length}}">
+    <navigator wx:for="{{dataList}}" wx:key="index" open-type="navigate"
+               url="/pages/activity-confirm/activity-confirm?id={{item.id}}" hover-class="none" class="list">
+      <view class="g-task-tag">
+        {{item._beginTimeFormat.month}}.{{item._beginTimeFormat.date}}
+        {{item._beginTimeFormat.hours}}:{{item._beginTimeFormat.minutes}}
+        至
+        {{item._endTimeFormat.month}}.{{item._endTimeFormat.date}}
+        {{item._endTimeFormat.hours}}:{{item._endTimeFormat.minutes}}
+      </view>
+      <view class="name">{{item.name}}</view>
+      <view class="line"></view>
+      <view class="footer">
+        <view class="left"></view>
+        <view class="right">
+          <view class="g-btn">立即参与</view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <list-loading-more result="{{result}}"></list-loading-more>
+</view>

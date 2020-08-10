@@ -1,0 +1,45 @@
+<view class="awesome-bottom">
+  <view class="page">
+    <view class="g-tab" wx:if="{{showTab}}">
+      <view class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}" wx:for="{{tabList}}" wx:key="index"
+            data-index="{{index}}" bindtap="switchTab">{{item}}
+      </view>
+    </view>
+    <view class="list-wrap">
+      <view class="goods-card {{tabIndex==1?'ok':''}}" wx:for="{{dataList}}" wx:key="index">
+        <view class="card-body">
+          <image lazy-load src="{{item.productImg}}" mode="aspectFill"
+                 class="avatar"></image>
+          <view class="right-content">
+            <view class="title">{{item.productName}}</view>
+            <block wx:if="{{tabIndex==1}}">
+              <view class="star-icon">
+                <block wx:for="{{5}}" wx:for-item="item2" wx:key="index">
+                  <view class="icon icon-pingjiawuxing item {{item.star>item2?'active':''}}"></view>
+                </block>
+              </view>
+              <view class="small">{{item.content}}</view>
+            </block>
+            <block wx:if="{{tabIndex==0}}">
+              <view class="small">{{item.specContent}}</view>
+              <view class="price">￥{{item.price}}</view>
+            </block>
+          </view>
+        </view>
+        <view class="card-footer">
+          <navigator wx:if="{{tabIndex==0}}"
+                     url="/pages-subpackages/comment/pages/comment/comment?productId={{item.productId}}&orderCode={{item.orderCode}}&specId={{item.specId}}"
+                     hover-class="none" class="ui-btn-plain danger" catchtap>去评价
+          </navigator>
+          <navigator wx:if="{{tabIndex==1}}"
+                     url="/pages-subpackages/comment/pages/comment-detail-my/comment-detail-my?id={{item.id}}"
+                     hover-class="none" class="ui-btn-plain" catchtap>查看评价
+          </navigator>
+        </view>
+      </view>
+    </view>
+    <list-loading-more result="{{result}}" noMoreDataDesc="" icon="icon-pingjia"
+                       noDataDesc="暂时没有相关评价哦~"></list-loading-more>
+  </view>
+</view>
+<component-copyright/>

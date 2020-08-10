@@ -1,0 +1,21 @@
+<block wx:if="{{ type === 'data' }}">
+  <view class="ui-no-data" wx:if="{{text}}">{{text}}</view>
+  <view class="ui-loading" wx:else><view class="dot"></view><view class="dot"></view><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+</block>
+<view
+  wx:else
+  class="jz-loading custom-class"
+  style="width: {{ size }}; height: {{ size }}"
+>
+  <view
+    class="jz-loading__spinner jz-loading__spinner--{{ type }}"
+    style="color: {{ color }};"
+  >
+    <view
+      wx:if="{{ type === 'spinner' }}"
+      wx:for="item in 12"
+      wx:key="index"
+      class="jz-loading__dot"
+    />
+  </view>
+</view>

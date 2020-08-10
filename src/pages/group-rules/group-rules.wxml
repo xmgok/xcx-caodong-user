@@ -1,0 +1,37 @@
+<view class="page-group-rules">
+  <!--<view class="title">
+    <view class="g-flex-between" bindtap="returnPrevPage">
+      <view class="icon icon-angle-left"></view>
+      <view>返回</view>
+    </view>
+  </view>
+  <view class="title mt10">
+    <view>拼团规则</view>
+  </view>-->
+  <!--
+  activePrice (number, optional): 拼团价 ,
+  activeRule (string, optional): 活动规则 ,
+  endTime (string, optional): 活动结束时间 ,
+  groupNumber (integer, optional): 成团人数 ,
+  isLimitNum (integer, optional): 是否限制购买数量 0否 1是 ,
+  isLimitStock (integer, optional): 是否限量库存 0否 1是 ,
+  limitNum (integer, optional): 限制购买数量 ,
+  limitStock (integer, optional): 库存限量 ,
+  productCode (string, optional): 商品编码 ,
+  productId (integer, optional): 商品ID ,
+  productImg (string, optional): 商品图片 ,
+  productName (string, optional): 商品名称 ,
+  productPrice (number, optional): 商品售价 ,
+  startTime (string, optional): 活动开始时间 ,
+  storeList (Array[设置门店model], optional): 许可门店列表 ,
+  title (string, optional): 拼团标题 ,
+  validHour (integer, optional): 成团时效(小时)
+  -->
+  <view class="content mt10">
+    <view class="item">1、 用户参与拼团活动，开团成为团长，并邀请好友参团，在成团有效时间内组满成团人数，即可拼团成功，商家将会发货；</view>
+    <view class="item">2、 成团有效时间内未组满成团人数，则拼团失败，系统自动取消订单并全额退款，已支付金额将会原路退回付款账户；</view>
+    <view class="item">3、 成团有效时间，指拼团允许邀请好友参团的时间，可在拼团活动详情页查看；</view>
+    <view class="item">4、 消费者可在“我的”，查看自己的拼团订单；</view>
+    <view class="item" wx:if="{{resData.isLimitNum==1}}">5. 本拼团活动每个消费者限购{{resData.limitNum}}件。</view>
+  </view>
+</view>

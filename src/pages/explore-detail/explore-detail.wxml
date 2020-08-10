@@ -1,0 +1,66 @@
+<view class="page-explore-detail {{infoData.type > 1 ? 'isVideo' : ''}} {{iPhoneX?'active':''}}" wx:if="{{infoData.productId}}">
+  <video class="video" src="{{videoUrl}}" wx:if="{{infoData.type > 1}}" autoplay objectFit="contain" show-fullscreen-btn="{{showFullscreenBtn}}"></video>
+  <scroll-view class="info-wrap" scroll-y="true">
+    <view class="goods-img-wrap" wx:if="{{infoData.type <=1}}">
+      <view class="multi-tag" wx:if="{{imgUrl.length > 1}}"><text class="icon icon-picture-multi"></text>{{imgUrl.length}}</view>
+      <image class="goods-img" mode="widthFix" src="{{imgUrl[0]}}" bindtap="previewImage"></image>
+    </view>
+    <view class="goods-info-wrap">
+      <view class="user-wrap">
+        <image lazy-load class="img" mode="aspectFill" src="{{infoData.headUrl ? infoData.headUrl : 'https://qiniu.icaodong.com/xcx/common/default-header.png?v=1.0.0'}}"></image>
+        <view class="name">{{infoData.userName}}</view>
+        <view class="time">{{infoData.createTime}} 上传</view>
+      </view>
+      <view class="good-info">
+        <view class="title">{{infoData.name}}</view>
+        <view class="item">{{infoData.details}}</view>
+      </view>
+    </view>
+
+    <view class="hd-title">
+      <view class="title">相关商品</view>
+    </view>
+
+    <navigator class="product-info" url="/pages/product/product?id={{productInfo.id}}" hover-class="none">
+      <image lazy-load class="img" mode="aspectFill" src="{{productInfo.imgUrl}}"></image>
+      <view class="info">
+        <view class="title">{{productInfo.name}}</view>
+        <view class="text">{{productInfo.details}}</view>
+        <view class="price">￥<text>{{productInfo._price[0]}}</text>.{{productInfo._price[1]}}</view>
+      </view>
+    </navigator>
+
+    <block wx:if="{{materialList.length > 0}}">
+      <view class="hd-title">
+        <view class="title">相关推荐</view>
+        <navigator class="more" url="/pages/material-list/material-list?productId={{infoData.productId}}" hover-class="none">查看全部<text class="icon icon-angle-right"></text></navigator>
+      </view>
+      <view class="xxx">
+        <component-material-list listData="{{materialList}}" getEnd="{{getEnd}}"></component-material-list>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="fixed-bottom {{iPhoneX?'active':''}}">
+    <view class="sm-btn" bindtap="report"><view class="icon icon-exclamation-triangle-o"></view><view>报错</view></view>
+    <view wx:if="{{userType == 'staff'}}" class="sm-btn" bindtap="saveImg"><view class="icon icon-dowload"></view><view>保存</view></view>
+    <view wx:if="{{userType == 'staff'}}" class="go-btn" bindtap="goChooseImg">转发</view>
+    <view wx:if="{{userType == 'customer'}}" class="go-btn" bindtap="bindPurchase">立即购买</view>
+  </view>
+
+  <goods-purchase
+    wx:if="{{ productId }}"
+    show="{{ showPurchase }}"
+    id="{{ productId }}"
+    addToCart="{{true}}"
+    bind:selected="goodsPurchaseSelected" />
+</view>
+<component-share
+  show="{{showShare}}"
+  imgList="{{imgUrl}}"
+  checkIdList="{{id}}"
+  productId="{{infoData.productId}}" />
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

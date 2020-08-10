@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="search-wrap">
+    <jz-search
+      focus
+      clearable
+      show-action="{{showHistory}}"
+      value="{{ keyword }}"
+      placeholder-style="color:#96989c"
+      placeholder="搜索商品编号或关键字"
+      bindconfirm="handleSearchConfirm"
+      bindcancel="handleSearchCancel"
+      style="width: 100%">
+    </jz-search>
+  </view>
+
+  <view class="main-content">
+    <view class="history-search" wx:if="{{showHistory}}">
+      <block wx:if="{{history.length}}">
+        <view class="title">历史搜索
+          <text class="icon icon-trash" bindtap="handleDeleteHistory"></text>
+        </view>
+        <view class="tag-list">
+          <text
+            bindtap="bindTagTap"
+            data-value="{{item}}"
+            class="tag-item"
+            wx:for="{{history}}"
+            wx:key="*this">{{item}}</text>
+        </view>
+      </block>
+      <view wx:else class="ui-divider">
+        <text class="line"></text>暂无搜索历史<text class="line"></text>
+      </view>
+    </view>
+  </view>
+</view>

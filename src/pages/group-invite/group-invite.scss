@@ -1,0 +1,206 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+page {
+  background-color: #ffffff;
+}
+
+.page-group-invite {
+  margin: 15px 10px;
+
+  .goods-card {
+    box-sizing: border-box;
+    height: 203px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px 10px;
+    background-color: white;
+
+    .card-header {
+      display: flex;
+      color: $text-primary;
+
+      .avatar {
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .header-right {
+        flex: 1;
+      }
+
+      .nickname {
+        margin-top: 2px;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+    }
+
+    .card-content {
+      padding: 28px 10px 20px;
+      display: flex;
+
+      .avatar {
+        width: 105px;
+        height: 105px;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      .right-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5px 0;
+        color: $text-primary;
+
+        .title {
+          font-size: 15px;
+          @include ellipsis2(2, 18)
+        }
+
+        .price-wrap {
+          font-weight: bold;
+          font-size: 14px;
+
+          .price {
+            font-size: 20px;
+          }
+        }
+
+        .price-del {
+          margin-left: 6px;
+          color: $text-info;
+          font-size: 12px;
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+
+  .countdown-wrap {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: $text-primary;
+    font-size: 12px;
+    text-align: center;
+
+    .bold {
+      font-size: 15px;
+      font-weight: bold;
+      color: $red;
+    }
+  }
+
+  .member-list {
+    text-align: center;
+    white-space: nowrap;
+    overflow-x: auto;
+    margin-top: 15px;
+
+    .item,
+    .btn-add-wrap {
+      vertical-align: middle;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 0 6px;
+    }
+
+    .item {
+      position: relative;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    .btn-add-wrap {
+      background-color: white;
+      //border: 0.5px solid $border-color;
+    }
+
+    .btn-add {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+
+      .icon {
+        color: $gray-light;
+        font-size: 40px;
+      }
+    }
+
+    .group {
+      position: absolute;
+      top: 0;
+      right: -4px;
+      height: 9px;
+      line-height: 9px;
+      font-size: 9px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: $primary;
+      padding: 1px 4px;
+      border-radius: 0 75px 75px 75px;
+    }
+  }
+
+  .btn-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .btn-submit {
+      &:first-child {
+        border: 1px solid #ddd;
+        background: #ffffff;
+        color: #333333;
+      }
+
+      width: 160px;
+    }
+  }
+
+  .btn-submit {
+    margin: 45px auto 0;
+    width: 315px;
+    height: 37px;
+    line-height: 37px;
+    font-size: 16px;
+    color: $btn-primary-color;
+    background-color: $btn-primary-bg;
+    border-radius: 19px;
+    text-align: center;
+    padding: 0;
+
+    &.disabled {
+      background-color: $btn-disabled-bg;
+    }
+  }
+
+  .rule-link {
+    margin-top: 120px;
+    font-size: 15px;
+    color: $text-secondary;
+    text-align: center;
+  }
+}
+
+.over {
+  text-align: center;
+  height: 18px;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba($gray-dark, 1);
+  line-height: 18px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

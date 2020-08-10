@@ -1,0 +1,107 @@
+<!--
+1 代金券
+2 瓜分券
+3 折扣券
+4 包邮券
+5 兑换券
+-->
+<view class="{{item.disabledExplain||(item.useType&&item.useType!=1)?'g-coupon-can-not-use':''}}" catchtap="goToDetail">
+  <view class="g-coupon-item type{{item.type}}">
+    <view class="left">
+      <view class="price" wx:if="{{item.type==3}}">
+        <text class="big">{{item._price_big}}</text>
+        <block wx:if="{{item._price_small}}">
+          <text>.</text>
+          <text>{{item._price_small}}</text>
+        </block>
+        <text>折</text>
+      </view>
+      <view class="price" wx:elif="{{item.type==4}}">
+        <text class="big">包邮</text>
+      </view>
+      <view class="price" wx:else>
+        <text>￥</text>
+        <text class="big">{{item._price_big}}</text>
+        <text>.{{item._price_small}}</text>
+      </view>
+      <view class="mt" wx:if="{{item.type != 5}}">
+        <view wx:if="{{item.usePrice && item.usePrice !== '0.00'}}">满{{item.usePrice}}可用</view>
+        <view wx:else>无门槛</view>
+      </view>
+    </view>
+    <view class="right">
+      <view class="title">
+        <text class="mark" wx:if="{{item.type==1}}">代金券</text>
+        <text class="mark" wx:if="{{item.type==2}}">代金券</text>
+        <text class="mark" wx:if="{{item.type==3}}">折扣券</text>
+        <text class="mark" wx:if="{{item.type==4}}">包邮券</text>
+        <text class="mark" wx:if="{{item.type==5}}">兑换券</text>
+        {{item.type==2?'瓜分券-':''}}{{item.name}}
+      </view>
+      <view class="bottom">
+        <view class="times">
+          <block wx:if="{{btnType=='use'}}">
+            <view class="time">{{item.beginTime}} - {{item.endTime}}</view>
+          </block>
+          <block wx:else>
+            <view class="time" wx:if="{{ item.useTime === 1 }}">{{item.beginTime}} - {{item.endTime}}</view>
+            <view class="time" wx:if="{{ item.useTime === 2 }}">领取后{{item.laterDay}}日内有效</view>
+          </block>
+          <!--<view class="tip" wx:if="{{0}}">即将过期</view>-->
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{hasBtn}}">
+      <view class="btn-wrap" wx:if="{{btnType=='coupon-bag'}}">
+        <view class="btn" wx:if="{{item.number}}">{{item.number}}张</view>
+        <view class="btn inactive" wx:else>已领完</view>
+      </view>
+      <view class="btn-wrap" wx:if="{{btnType=='get'}}" catchtap="goToGet">
+        <view class="btn inactive" wx:if="{{item.isGet == 2}}">已领完</view>
+        <view class="btn inactive" wx:elif="{{item.isGet == 1}}">已领取</view>
+        <view class="btn" wx:else>
+          <text wx:if="{{item.integralStatus}}">去兑换</text>
+          <text wx:else>领取</text>
+        </view>
+      </view>
+      <view class="btn-wrap" wx:if="{{btnType=='send'}}" catchtap="goToSend">
+        <view class="btn {{!item.isShare?'inactive':''}}">去发券</view>
+      </view>
+      <view class="btn-wrap" wx:if="{{btnType=='use'}}">
+        <block wx:if="{{item.useType}}">
+          <block wx:if="{{item.useType == 1}}">
+            <view class="btn" wx:if="{{item.type==5}}" catchtap="goExchange">去兑换</view>
+            <view class="btn" wx:else catchtap="goToUse">去使用</view>
+          </block>
+          <view class="btn inactive" wx:elif="{{item.useType == 2}}">已使用</view>
+          <view class="btn inactive" wx:elif="{{item.useType == 3}}">已过期</view>
+        </block>
+        <block wx:else>
+          <view class="btn" wx:if="{{item.type==5}}" catchtap="goExchange">去兑换</view>
+          <view class="btn" wx:else catchtap="goToUse">去使用</view>
+        </block>
+      </view>
+      <view class="btn-wrap btn-wrap_select" wx:if="{{btnType==='select'}}">
+        <view class="btn-select">
+          <text wx:if="{{item.isChoose}}" class="icon icon-checkbox-checked"></text>
+          <text wx:else class="icon icon-checkbox"></text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view wx:if="{{item.disabledExplain}}" class="explain">{{item.disabledExplain}}</view>
+</view>
+
+<!--优惠券海报-->
+<component-share
+  bindclose="closeShareCoupons"
+  wx:if="{{showShareCoupons}}"
+  show="{{showShareCoupons}}"
+  activeType="coupon"
+  activeData="{{item}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved" />

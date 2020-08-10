@@ -1,0 +1,1 @@
+<web-view src="https://open.wowkai.cn/person?accountId={{accountId}}"></web-view>

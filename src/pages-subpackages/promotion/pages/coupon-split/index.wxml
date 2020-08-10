@@ -1,0 +1,232 @@
+<view class="page {{ resData.status==3 ? 'finished': '' }}">
+  <view class="header">
+    <image wx:if="{{ resData.status==3 }}" class="header-bg"
+           src="https://qiniu.icaodong.com/xcx/common/coupon-split-bg1.png?v=1.0.0" mode="aspectFill" />
+    <image wx:else class="header-bg" src="https://qiniu.icaodong.com/xcx/common/coupon-split-bg2.png?v=1.0.0"
+           mode="aspectFill" />
+
+    <view class="header-content">
+      <view class="title">邀好友 瓜分红包</view>
+      <view wx:if="{{ resData.status==3 }}" class="finished-text">活动结束</view>
+      <block wx:else>
+        <view class="price-wrap">
+          <view class="currency">￥</view>
+          <view class="price">{{ resData.price }}</view>
+        </view>
+        <view class="msg">成功邀请{{ resData.distNum-1 }}位好友可得</view>
+      </block>
+    </view>
+
+    <!--<view class="barrage">
+      <view class="barrage-item">
+        <image class="avatar" src="https://qiniu.icaodong.com/xcx/index/fans.png?v=1.0.0" mode="aspectFill" />
+        <view class="content">王猫猫获得50元红包</view>
+      </view>
+    </view>-->
+  </view>
+
+  <view class="content">
+    <view wx:if="{{ resData.status==3 }}" class="btn-disabled">活动已结束</view>
+    <view wx:if="{{ resData.status==0 }}" class="btn-active" bindtap="create">
+      <view class="btn-active-text">立即领取</view>
+      <image src="https://qiniu.icaodong.com/xcx/common/coupon-split-btn-active.png?v=1.0.0" mode="widthFix"
+             class="btn-active-bg" />
+    </view>
+
+    <view class="invite-wrap" wx:if="{{(options.userid || options.empid) && resData.status==1 && !resData.isSelf}}">
+      <view class="invite-msg">
+        <image class="avatar" src="{{userInfo.headUrl}}" mode="aspectFill" />
+        <view class="content">
+          <text class="name">{{userInfo.nickName}}</text>
+          邀请您瓜分红包
+        </view>
+      </view>
+    </view>
+
+    <view class="split-condition">
+      <view class="title-wrap"
+            wx:if="{{ resData.status==1 || resData.status==2 || resData.status==4 || resData.status==5 }}">
+        <image class="title-prefix" src="https://qiniu.icaodong.com/xcx/common/coupon-split-title-prefix.png?v=1.0.0"
+               mode="aspectFill" />
+        <view class="title">瓜分情况</view>
+        <image class="title-suffix" src="https://qiniu.icaodong.com/xcx/common/coupon-split-title-prefix.png?v=1.0.0"
+               mode="aspectFill" />
+      </view>
+
+      <view class="content-box">
+        <!--瓜分中-->
+        <block wx:if="{{ resData.status==1 || resData.status==2 || resData.status==4 }}">
+          <view class="surplus" wx:if="{{resData.status==1}}">还差
+            <text class="count">{{resData.shortNum}}</text>
+            位好友，可瓜分
+          </view>
+          <view class="surplus disabled" wx:if="{{resData.status==2}}">抱歉，好友数不足，瓜分优惠券失败</view>
+          <view class="surplus disabled" wx:if="{{resData.status==4}}">您来晚了，优惠券已瓜分完毕</view>
+
+          <scroll-view
+            scroll-x
+            class="avatar-list">
+            <view class="item" wx:for="{{ resData.recordList }}" wx:key="id">
+              <image class="avatar" src="{{item.headImg}}" mode="aspectFill" />
+            </view>
+            <view class="item" wx:for="{{ resData.distNum - resData.recordList.length }}" wx:key="item">
+              <view class="btn-add">
+                <text class="icon icon-plus-circle"></text>
+              </view>
+            </view>
+          </scroll-view>
+
+          <view class="btn-invite" wx:if="{{resData.status==1 && resData.isSelf}}" data-item="{{resData}}"
+                bindtap="onShareCouponsSplit">邀请好友
+          </view>
+          <view class="btn-invite" wx:if="{{resData.status==1 && !resData.isSelf}}" bindtap="join">立即参与瓜分红包</view>
+          <view class="btn-invite" wx:if="{{resData.status==2 || resData.status==4}}" bindtap="reCreate">瓜分新红包</view>
+
+          <view class="remaining-time" wx:if="{{resData.status==1}}">
+            <view class="time">
+              {{resData.remainingSecondsFormat.dayMergeToHours}}:{{resData.remainingSecondsFormat.minutes}}:{{resData.remainingSecondsFormat.seconds}}
+            </view>
+            <view>后结束，快邀请好友吧～</view>
+          </view>
+          <view class="remaining-time disabled" wx:if="{{resData.status==2 || resData.status==4}}">
+            您可重新邀请{{resData.distNum-1}}位好友，瓜分{{resData.price}}元红包
+          </view>
+        </block>
+
+        <!--已瓜分-->
+        <block wx:if="{{ resData.status==5 }}">
+          <view class="sub-title-wrap">
+            <image class="title-prefix reset"
+                   src="https://qiniu.icaodong.com/xcx/common/coupon-split-title-prefix2-1.png?v=1.0.0"
+                   mode="aspectFill" />
+            <view class="title">成功获得优惠券</view>
+            <image class="title-suffix reset"
+                   src="https://qiniu.icaodong.com/xcx/common/coupon-split-title-prefix2-1.png?v=1.0.0"
+                   mode="aspectFill" />
+          </view>
+
+          <view class="coupon-wrap">
+            <view class="coupon">
+              <view class="coupon-left">
+                <view class="price-wrap">
+                  <view class="currency">￥</view>
+                  <view class="price">{{resData._myPrice}}</view>
+                </view>
+                <view wx:if="{{resData.usePrice && resData.usePrice!== '0.00'}}">满{{resData.usePrice}}可用</view>
+                <view wx:else>无门槛</view>
+              </view>
+              <view class="coupon-right">
+                <view class="coupon-title">{{resData.name}}</view>
+                <view class="coupon-time" wx:if="{{ resData.useTime === 1 }}">
+                  {{resData._beginTime}}-{{resData._endTime}}
+                </view>
+                <view class="coupon-time" wx:if="{{ resData.useTime === 2 }}">领取后{{resData.laterDay}}日内有效</view>
+              </view>
+            </view>
+
+            <view class="btn-wrap">
+              <view class="btn-use" bindtap="goToUse">立即使用</view>
+              <view class="btn-share" bindtap="reCreate">瓜分新红包</view>
+            </view>
+
+            <view class="text-secondary">优惠券已放至您账户中，您可以在“我的优惠券”查看</view>
+          </view>
+        </block>
+      </view>
+
+      <!--已瓜分-->
+      <block wx:if="{{ resData.status==5 }}">
+        <view class="content-box luck-friends">
+          <view class="sub-title-wrap">
+            <image class="title-prefix reset"
+                   src="https://qiniu.icaodong.com/xcx/common/coupon-split-title-prefix2-1.png?v=1.0.0"
+                   mode="aspectFill" />
+            <view class="title">好友手气</view>
+            <image class="title-suffix reset"
+                   src="https://qiniu.icaodong.com/xcx/common/coupon-split-title-prefix2-1.png?v=1.0.0"
+                   mode="aspectFill" />
+          </view>
+
+          <scroll-view
+            scroll-y
+            class="user-list">
+            <view class="user-item" wx:for="{{ resData.recordList }}" wx:key="id">
+              <image class="avatar" src="{{item.headImg}}" mode="aspectFill" />
+              <view class="right-content">
+                <view class="name-wrap">
+                  <view class="nickname">{{item.nickname}}</view>
+                  <view class="count">{{item.price}}元</view>
+                </view>
+                <view class="footer">
+                  <view class="time">{{item.updateTime}}</view>
+                  <view class="best" wx:if="{{item.isBest}}">
+                    <image class="tag" src="https://qiniu.icaodong.com/xcx/common/coupon-split-best-user.png?v=1.0.0"
+                           mode="aspectFill" />
+                    手气最佳
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </block>
+    </view>
+
+    <view class="rule-wrap">
+      <view class="title-wrap">
+        <image class="title-prefix" src="https://qiniu.icaodong.com/xcx/common/coupon-split-title-prefix.png?v=1.0.0"
+               mode="aspectFill" />
+        <view class="title">活动规则</view>
+        <image class="title-suffix" src="https://qiniu.icaodong.com/xcx/common/coupon-split-title-prefix.png?v=1.0.0"
+               mode="aspectFill" />
+      </view>
+
+      <view class="rule">
+        1.活动有效期：{{resData._issueTime}}至{{resData._issueEndTime}}
+      </view>
+      <view class="rule">
+        <block wx:if="{{resData.receiveRule==0}}">2.每位用户不限参与次数</block>
+        <block wx:else>2.每位用户限参与{{resData.receiveTotal}}次</block>
+        ，每次瓜分红包成功后才能再次参与相同活动
+      </view>
+    </view>
+  </view>
+
+  <jz-popup
+    show="{{ invitePopupVisible }}"
+    position="center"
+    custom-class="invite-popup"
+    z-index="101">
+    <view class="content">
+      <image class="invite-bg" src="https://qiniu.icaodong.com/xcx/common/coupon-split-invite.png?v=1.0.0"
+             mode="aspectFill" />
+      <view class="text-content">
+        <view class="title">您已成功获得一个红包</view>
+        <view class="msg">还差{{ splitData.shortNum }}人即可瓜分</view>
+        <view class="price-wrap">
+          <view class="currency">￥</view>
+          <view class="price">{{resData.price}}</view>
+        </view>
+      </view>
+      <view class="btn-o0" data-item="{{resData}}" bindtap="onShareCouponsSplit"></view>
+      <view class="btn-wrap">
+        <view class="icon icon-times btn-close" bindtap="popupHide"></view>
+      </view>
+    </view>
+  </jz-popup>
+</view>
+
+<!--优惠券海报-->
+<component-share
+  bindclose="closeShareCoupons"
+  wx:if="{{showShareCoupons}}"
+  show="{{showShareCoupons}}"
+  activeType="other"
+  activePrice="{{activePrice}}"
+  otherText="券的"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved" />

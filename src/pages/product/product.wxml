@@ -1,0 +1,461 @@
+<view class="container" wx:if="{{product}}">
+  <!-- <navigator url="/pages/cart/cart" open-type="switchTab" class="cart1">
+    <text class="icon icon-cart"></text>
+  </navigator> -->
+  <view class="swiper-wrap" wx:if="{{product.materialMainList.length}}">
+    <swiper
+      class="swiper"
+      indicator-dots="{{false}}"
+      autoplay="{{true}}"
+      interval="{{5000}}"
+      duration="{{300}}"
+      bindchange="onSwiperChange">
+      <block wx:for="{{product.materialMainList}}" wx:key="id">
+        <swiper-item>
+          <image lazy-load src="{{item.imgUrl}}" mode="aspectFit" class="slide-image" bindtap="previewImage" data-index="{{index}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="badge">
+      {{currentNum}}
+      <text class="small">/{{product.materialMainList.length}}</text>
+    </view>
+  </view>
+  <!-- 秒杀价 -->
+  <view class="skill-info" wx:if="{{seckillDetail.status == 3}}">
+    <view class="skill-l">
+      <view class="tit">秒杀价</view>
+      <view class="content">
+        <view class="new-price">
+          <text class="sign">¥</text>
+          <text class="price-integer" style="font-size:26px">{{seckillDetail.activePriceInteger}}</text>
+          <text class="price-decimal" style="font-size:12px">{{seckillDetail.activePriceDecimal}}</text>
+           <text class="old-price">市场价¥{{seckillDetail.productPrice}}</text>
+        </view>
+
+      </view>
+    </view>
+    <view class="skill-r">
+      <view class="tit">距结束还剩</view>
+      <view class="time-warp">
+        <view class="h-warp">
+          <text class="h">{{seckillSecondsFormat.dayMergeToHours}}</text>
+          <text class="sign">:</text>
+        </view>
+        <view class="m-warp">
+          <text class="m">{{seckillSecondsFormat.minutes}}</text>
+          <text class="sign">:</text>
+        </view>
+        <view class="s-warp">
+          <text class="s">{{seckillSecondsFormat.seconds}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="product-info">
+    <view class="ui-price-wrap flex-v-center" wx:if="{{activeType=='group'}}">
+      <view>
+        <text class="currency">¥</text>
+        <text class="price-integer">{{groupDetail.activePriceInteger}}</text>
+        <text class="price-decimal">{{groupDetail.activePriceDecimal}}</text>
+        <text class="price-del">¥{{product.price}}</text>
+        <text class="finishNum">已拼{{groupDetail.finishNum}}件</text>
+      </view>
+    </view>
+    <view class="ui-price-wrap" wx:else>
+      <component-mark isVip="{{product.isVip}}" />
+      <text class="currency">¥</text>
+      <text class="price-integer">{{product.priceInteger}}</text>
+      <text class="price-decimal">{{product.priceDecimal}}</text>
+      <text class="price-del">¥{{product.prePrice}}</text>
+      <!-- 分销员才有此按钮。砍了 -->
+      <!-- <view wx:if="{{isSeller}}" class="seller-btn" bindtap="onShare">转发</view> -->
+    </view>
+    <!-- data-text="{{product.name}} - {{product.details}}" bindlongpress="copy" -->
+    <view class="skill-herald" wx:if="{{seckillDetail.status == 1}}">
+      <view class="tit">秒杀预告</view>
+      <view class="content">{{seckillDetail.startTime}}开始抢购  秒杀价￥{{seckillDetail.activePrice}}</view>
+    </view>
+    <view class="skill-herald" wx:if="{{seckillDetail.status == 2}}">
+      <view class="tit">秒杀预告</view>
+      <view class="content" wx:if="{{seckillDetail.countDown24h}}">
+        距开始还剩 {{seckillSecondsFormat2.hours}}:{{seckillSecondsFormat2.minutes}}:{{seckillSecondsFormat2.seconds}}   秒杀价￥{{seckillDetail.activePrice}}
+      </view>
+    </view>
+    <view class="copy-wrap">
+      <text class="title-wrap" selectable>
+        <text class="title">{{product.name}}</text>
+        <text class="sub-title">{{product.details}}</text>
+      </text>
+      <view class="btn-share" bindtap="onShare">
+        <text class="icon icon-zhuanfa1"></text>
+        分享
+      </view>
+    </view>
+    <!-- 秒杀提示 -->
+    <view class="skill-info1" wx:if="{{seckillDetail.status == 3}}">
+      <view class="tit">温馨提示</view>
+      <view class="content">秒杀商品请在5分钟内完成支付，否则订单将被取消</view>
+    </view>
+  </view>
+  <view class="coupons" wx:if="{{showCoupon}}">
+    <view class="field-item" bindtap="getCoupons">
+      <text class="label">领券</text>
+      <view class="field-body2">
+        <view class="item" wx:for="{{couponList}}" wx:key="id">
+          <text>{{item.useDesc}}</text>
+        </view>
+      </view>
+      <text class="icon icon-angle-right"></text>
+    </view>
+  </view>
+  <view class="discount" bindtap="showPromotions" wx:if="{{promotions.rules.length && seckillDetail.status!=3 }}">
+    <text class="label">促销</text>
+    <view class="field-body3">
+      <view class="item" wx:for="{{promotions.rules}}" wx:key="index">
+        <text class="pre">{{item.activityName}}</text>
+        <text>{{item.activityRules}}</text>
+      </view>
+    </view>
+    <text class="icon icon-angle-right"></text>
+  </view>
+  <view class="list" wx:if="{{groupDetail.list.length && userType == 'customer'}}">
+    <view class="list-header">
+      <view class="g-flex-center">
+        <component-mark type="group"></component-mark>
+        <view class="text">
+          <text>{{groupDetail.groupNum}}</text>
+          <text>人正在拼团，可直接参与</text>
+        </view>
+      </view>
+      <view class="status g-flex-center" bindtap="showAllGroup">
+        <view>查看全部</view>
+        <view class="look-all-icon icon icon-angle-right"></view>
+      </view>
+    </view>
+    <view
+      class="list-body"
+    >
+      <view
+        class="item item_reset"
+        wx:for="{{groupDetail.list}}"
+        wx:key="index"
+      >
+        <view class="g-header">
+          <image lazy-load class="g-header-img" mode="aspectFill" src="{{item.headImg}}"></image>
+          <view>
+            <view class="g-header-text">{{item.nickname}}</view>
+            <view class="g-header-time">
+              <view class="g-header-time">
+                还差
+                <text class="g-c-red">{{item.shortNum}}</text>
+                人成团，剩{{item.remainingSecondsFormat.dayMergeToHours}}:{{item.remainingSecondsFormat.minutes}}:{{item.remainingSecondsFormat.seconds}}结束
+              </view>
+            </view>
+          </view>
+          <view class="g-header-right-top">
+            <view class="g-btn g-btn_go-group" data-record-id="{{item.id}}" data-type="groupJoinBuy" bindtap="submit">
+              去参团
+            </view>
+          </view>
+          <!-- <button
+            class="g-header-right-top reset-btn"
+            data-record-id="{{item.id}}"
+            open-type="share"
+          >
+            <view class="g-btn g-btn_go-group">邀请好友</view>
+          </button> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="field-wrap">
+    <!-- <view class="field-item" data-type="buy" bindtap="submit">
+      <text class="label">已选</text>
+      <view class="field-body" wx:if="{{chooseSpec}}">{{chooseNum}}件；{{chooseSpec.specContent}}</view>
+      <view class="field-body" wx:else>1件；{{product.specificationList[0].specContent}}</view>
+      <text class="icon icon-angle-right"></text>
+    </view> -->
+    <view class="field-item" bindtap="addressPicker" wx:if="{{!activeType}}">
+      <text class="label">地址</text>
+      <view class="field-body" wx:if="{{currentAddress}}">
+        {{currentAddress.province}} {{currentAddress.city}}
+        {{currentAddress.area}} {{currentAddress.address}}
+      </view>
+      <view class="field-body" wx:else>请添加收货地址</view>
+      <text class="icon icon-angle-right"></text>
+    </view>
+  </view>
+  <view class="material-wrap">
+    <view class="header comment-title">
+      <view class="title">
+        <view>商品评价</view>
+        <view class="small">({{commentDetail.totalCount}})</view>
+      </view>
+      <navigator url="/pages-subpackages/comment/pages/comment-detail-goods/comment-detail-goods?productId={{product.parentId}}" hover-class="none" class="link">
+        查看全部
+        <text class="icon icon-angle-right ml5"></text>
+      </navigator>
+    </view>
+    <view class="comment" wx:if="{{commentDetail.dataList.length}}">
+      <view class="bg" wx:for="{{commentDetail.dataList}}" wx:key="index" wx:for-item="resData">
+        <view class="header">
+          <image mode="aspectFill" src="{{resData.headUrl}}" class="left"></image>
+          <view class="right">
+            <view class="star">
+              <view class="star-text">{{resData.nickName}}</view>
+              <view class="star-icon">
+                <view wx:for="{{5}}" wx:key="index" data-index="{{index}}" bindtap="starClick"
+                      class="icon icon-pingjiawuxing item {{resData.star>index?'active':''}}"></view>
+              </view>
+            </view>
+            <view class="time">{{resData.createTime}}</view>
+          </view>
+        </view>
+        <view class="content">{{resData.content}}</view>
+        <view class="images" wx:if="{{resData.imgCount>0}}">
+          <image wx:for="{{resData.imgUrlArr}}" wx:key="index" data-index="{{index}}"
+                 data-images="{{resData.imgUrlArr}}" bindtap="previewImage2" mode="aspectFill" src="{{item}}"
+                 class="item"></image>
+        </view>
+        <view class="comment-spec">{{resData.specContent}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="material-wrap">
+    <view class="header">
+      <text class="title">相关素材</text>
+      <navigator url="/pages/material-list/material-list?productId={{product.id}}" hover-class="none" class="link">
+        查看全部
+        <text class="icon icon-angle-right ml5"></text>
+      </navigator>
+    </view>
+    <view class="content" wx:if="{{product.materialnotMainList.length > 0}}">
+      <scroll-view scroll-x class="scroll-view">
+        <image lazy-load
+               wx:for="{{product.materialnotMainList}}"
+               wx:key="id"
+               src="{{item.imgUrl}}"
+               mode="aspectFill"
+               class="item"></image>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="detail-wrap">
+    <view class="header">
+      <text class="title">图文详情</text>
+    </view>
+    <view class="content">
+      <image wx:for="{{product.detailImages}}" wx:key="*this" src="{{item}}" mode="widthFix" class="item"></image>
+    </view>
+  </view>
+  <view class="fixed-bottom {{iPhoneX?'iPhoneXpb':''}}">
+    <view class="btn-group">
+      <navigator url="/pages/index/index" open-type="switchTab" hover-class="none" class="icon-wrap">
+        <text class="icon icon-home-new"></text>
+        <view class="title">首页</view>
+      </navigator>
+      <view class="icon-wrap ui-contact-wrap">
+        <text class="icon icon-service"></text>
+        <view class="title">客服</view>
+        <button class="button" open-type="contact">进入客服会话</button>
+      </view>
+      <navigator url="/pages/cart/cart" open-type="switchTab" hover-class="none" class="icon-wrap">
+        <text class="icon icon-empty-cart"></text>
+        <view class="title">购物车</view>
+        <view class="count" wx:if="{{ cartNum }}">{{ cartNum }}</view>
+      </navigator>
+    </view>
+    <!-- 普通商品 -->
+    <block wx:if="{{!activeType || (activeType == 'seckill' && seckillDetail.status!=3)}}">
+      <!-- 商品没下架 -->
+      <block wx:if="{{goodsStatus!='0'}}">
+        <block wx:if="{{product.type === 1}}">
+          <!-- 商品有库存 -->
+          <view class="submit-wrap" wx:if="{{ product.inventory > 0 }}">
+            <view class="btn-cart" data-type="cart" bindtap="submit">加购物车</view>
+            <block wx:if="{{userType == 'staff'}}">
+              <view class="btn-submit" bindtap="onShare">转发</view>
+            </block>
+            <block wx:if="{{userType == 'customer'}}">
+              <view class="btn-submit" data-type="buy" bindtap="submit">立即购买</view>
+            </block>
+          </view>
+          <!-- 商品无库存 -->
+          <view wx:else class="btn-submit disabled g-radius1000">补货中</view>
+        </block>
+        <view class="btn-submit disabled g-radius1000" wx:else>本商品暂不支持购买</view>
+      </block>
+      <!-- 商品已下架 -->
+      <block wx:else>
+        <view class="btn-submit disabled">已下架</view>
+      </block>
+    </block>
+    <!-- 拼团商品 - 无下架状态 -->
+    <block wx:if="{{activeType == 'group'}}">
+      <!-- 商品有库存且是拼团活动商品 -->
+      <view class="submit-wrap" wx:if="{{ product.inventory > 0 && activeType=='group' }}">
+        <!-- 员工端的话，拼团会直接重定向到/pages/group-product-staff/group-product-staff -->
+        <!-- <block wx:if="{{userType == 'staff'}}">
+          <view class="btn-submit" bindtap="onShare">转发</view>
+        </block> -->
+        <block wx:if="{{userType == 'customer'}}">
+          <!-- 已结束 -->
+          <block wx:if="{{groupDetail.status == 3}}">
+            <view class="btn-submit disabled">活动已结束</view>
+          </block>
+          <!-- 未开始 -->
+          <block wx:elif="{{groupDetail.status == 1}}">
+            <view class="btn-submit btn-column disabled">
+              <view class="small">
+                {{groupDetail._startTimeFormat.month}}月{{groupDetail._startTimeFormat.date}}号
+                {{groupDetail._startTimeFormat.hours}}:{{groupDetail._startTimeFormat.minutes}}:{{groupDetail._startTimeFormat.seconds}}开始
+              </view>
+            </view>
+          </block>
+          <!-- 进行中 -->
+          <block wx:else>
+            <view class="btn-cart btn-column btn-column_alone-buy" data-type="groupAloneBuy" bindtap="submit">
+              <view class="big">¥{{product.price}}</view>
+              <view class="small">单独购买</view>
+            </view>
+            <!-- 没授权头像 -->
+            <block wx:if="{{!isAuth}}">
+              <button open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" class="btn-submit btn-column" data-type="groupOpenBuy">
+                <view class="big">¥{{groupDetail.activePrice}}</view>
+                <view class="small">我要开团</view>
+              </button>
+            </block>
+            <!-- 授权了头像 -->
+            <block wx:else>
+              <view class="btn-submit btn-column" data-type="groupOpenBuy" bindtap="submit">
+                <view class="big">¥{{groupDetail.activePrice}}</view>
+                <view class="small">我要开团</view>
+              </view>
+            </block>
+          </block>
+        </block>
+      </view>
+      <!-- 商品无库存 -->
+      <view wx:else class="btn-submit disabled g-radius1000">补货中</view>
+    </block>
+    <!-- 秒杀商品 - 无下架状态 -->
+    <block wx:if="{{activeType == 'seckill' && seckillDetail.status==3}}">
+      <view class="submit-wrap" wx:if="{{seckillDetail.inventoryStatus == 1}}">
+        <view class="btn-submit" data-type="seckill" bindtap="submit">立即抢购</view>
+      </view>
+      <!-- 商品无库存 -->
+      <view wx:else class="btn-submit disabled g-radius1000">已抢光</view>
+    </block>
+  </view>
+  <!-- 收货地址列表 -->
+  <jz-popup bindclose="closeAddressPopup" show="{{ showAddressPicker }}" position="bottom" z-index="101" custom-class="address-popup">
+    <view class="header">
+      <view class="title">收货地址</view>
+      <text class="icon icon-times btn-close" bindtap="closeAddressPopup"></text>
+    </view>
+    <view class="content">
+      <jz-radio-group
+        wx:if="{{addressList.length}}"
+        value="{{currentAddressId}}"
+        bind:change="onAddressChange">
+        <view class="ui-card address-card mb10" wx:for="{{addressList}}" wx:key="id">
+          <view class="card-body df" bindtap="onAddressSelect" data-id="{{item.id}}">
+            <view class="icon-wrap">
+              <jz-radio name="{{item.id}}" />
+            </view>
+            <view class="address-content">
+              <view class="header">
+                <text class="name">{{item.name}}</text>
+                <text class="mobile">{{item.phone}}</text>
+                <text class="badge" wx:if="{{item.isDefault === 1}}">默认</text>
+              </view>
+              <view class="address">{{item.province}}{{item.city}}{{item.area}}</view>
+            </view>
+            <view class="icon-edit-wrap" catchtap="toEditAddress" data-id="{{item.id}}">
+              <text class="icon icon-edit"></text>
+            </view>
+          </view>
+        </view>
+      </jz-radio-group>
+      <view class="tc" wx:else>
+        <view class="empty-icon-warp">
+          <text class="icon icon-map-marker"></text>
+        </view>
+        <view class="empty-msg">暂时还没有收货地址哦~</view>
+      </view>
+    </view>
+    <view class="footer">
+      <navigator url="/pages/address-add/address-add" hover-class="none">
+        <view class="ui-btn-submit">添加新地址</view>
+      </navigator>
+    </view>
+  </jz-popup>
+  <van-popup bindclose="hideAllGroup" show="{{ isShowAllGroup }}" position="bottom" custom-class="g-ovv">
+    <view class="all-jl">
+      <view class="all-jl-title">
+        正在拼团
+        <view class="_close icon icon-times" bindtap="hideAllGroup"></view>
+      </view>
+      <scroll-view class="list all-jl-content" scroll-y="true" bindscrolltolower="bindScrollToLowerGroup">
+        <view class="list-body">
+          <view
+            class="item item_reset"
+            wx:for="{{list}}"
+            wx:key="index"
+          >
+            <view class="g-header">
+              <image lazy-load class="g-header-img" mode="aspectFill" src="{{item.headImg}}"></image>
+              <view>
+                <view class="g-header-text">{{item.nickname}}</view>
+                <view class="g-header-time">
+                  还差
+                  <text class="g-c-red">{{item.shortNum}}</text>
+                  人成团，剩{{item.remainingSecondsFormat.dayMergeToHours}}:{{item.remainingSecondsFormat.minutes}}:{{item.remainingSecondsFormat.seconds}}结束
+                </view>
+              </view>
+              <view class="g-header-right-top">
+                <view class="g-btn g-btn_go-group" data-record-id="{{item.id}}" data-type="groupJoinBuy" bindtap="submit">
+                  去参团
+                </view>
+              </view>
+              <!-- <button
+                class="g-header-right-top reset-btn"
+                data-record-id="{{item.id}}"
+                open-type="share"
+              >
+                <view class="g-btn g-btn_go-group">邀请好友</view>
+              </button> -->
+            </view>
+          </view>
+          <list-loading-more result="{{result}}"></list-loading-more>
+        </view>
+      </scroll-view>
+    </view>
+  </van-popup>
+  <component-share
+    activeId="{{activeId}}" activeType="{{activeType}}" activePrice="{{activePrice}}"
+    show="{{showShare}}" imgList="{{imgList}}"
+    checkIdList="{{checkIdList}}" price-switch="{{true}}"
+    productId="{{product.id}}" bindsaved="saved"
+  />
+  <goods-purchase
+    wx:if="{{showPurchase}}" show="{{showPurchase}}" id="{{product.id}}"
+    buyType="{{purchaseType}}" activeId="{{activeId}}" activeType="{{activeType}}"
+    recordId="{{recordId}}" addToCart="{{true}}"
+    bind:selected="goodsPurchaseSelected" bind:close="goodsPurchaseClose"
+  />
+  <coupon-popup
+    wx:if="{{ids}}" type="{{type}}" ids="{{ids}}" productCode="{{productCode}}" show="{{showCouponPopup}}"
+  />
+  <sales-promotion-popup
+    wx:if="{{promotions}}" datas="{{promotions}}" show="{{showPromotionsPopup}}"
+  />
+</view>
+<view wx:if="{{!product}}" style="margin-top: 50%">
+  <jz-loading></jz-loading>
+</view>
+<!-- 获取手机号 -->
+<component-phone-auth2></component-phone-auth2>
+<!-- 此行务必放在最底部，是用来兼容iphoneX的 -->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

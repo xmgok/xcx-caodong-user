@@ -1,0 +1,9 @@
+{
+  "backgroundColor": "#000000",
+  "navigationBarTitleText": "",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "goods-purchase": "/components/goods-purchase/goods-purchase",
+    "component-share": "/components/share/share"
+  }
+}

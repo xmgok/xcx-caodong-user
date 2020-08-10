@@ -1,0 +1,129 @@
+@import "../../styles/mixin";
+
+.page-upload-img {
+  padding-bottom: rpx2(60);
+
+  .fixed-bottom {
+    z-index: 55;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: rpx2(6) rpx2(15);
+    box-sizing: border-box;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    background: #f4f4f4;
+    .item-btn {
+      -webkit-box-flex: 1;
+      text-align: center;
+      line-height: rpx2(38);
+      background: white;
+      font-size: rpx2(16);
+      font-weight: bold;
+      &:first-child {
+        border-radius:rpx2(100) 0 0 rpx2(100);
+        border: rpx(1) solid $gray-light;
+        border-right: 0;
+      }
+      &:last-child {
+        border-radius:0 rpx2(100) rpx2(100) 0;
+        border: rpx(1) solid $gray-light;
+        border-left: 0;
+      }
+      &.dis {
+        background: $btn-disabled-bg;
+        border-color: $btn-disabled-bg;
+        color: white;
+      }
+      &.active {
+        background: $btn-primary-bg;
+        border-color: $btn-primary-bg;
+        color: $btn-primary-color;
+      }
+    }
+  }
+
+  .goods-info {
+    background: white;
+    padding: rpx2(15);
+    border-bottom: rpx(1) solid $white-smoke;
+    .title {
+      padding-bottom: rpx2(8);
+      font-size: rpx2(16);
+      font-weight: bold;
+    }
+    .other {
+      color: $text-secondary;
+    }
+  }
+
+  .hd-img {
+    background: white;
+    padding: 0 rpx2(15);
+    .hd-title {
+      font-size: rpx2(18);
+      line-height: rpx2(55);
+      padding-top: rpx2(5);
+      font-weight: bold;
+    }
+    .upload-img-wrap {
+      font-size: 0;
+      margin-right: rpx2(-15);
+      padding-bottom: rpx2(5);
+      .item-wrap {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: rpx2(10);
+        margin-bottom: rpx2(10);
+        border-radius: rpx2(3);
+        overflow: hidden;
+        .img {
+          width: rpx2(108);
+          height: rpx2(108);
+        }
+        .del {
+          position: absolute;
+          right: rpx2(5);
+          top: rpx2(5);
+          font-size: rpx2(18);
+          color: $red;
+          border-radius: 50%;
+        }
+        &.upload-btn {
+          background: $white-smoke;
+          width: rpx2(108);
+          height: rpx2(108);
+          text-align: center;
+          line-height: rpx2(108);
+          .camera {
+            font-size: rpx2(36);
+            color: $text-secondary;
+          }
+        }
+      }
+    }
+    .show-list {
+      border-top: rpx(1) solid $white-smoke;
+      display: -webkit-box;
+      -webkit-box-align: center;
+      .show-item {
+        color: $text-secondary;
+        -webkit-box-flex: 1;
+        width: 1%;
+        line-height: rpx2(44);
+        text {
+          &:first-child {
+            padding-right: rpx2(10);
+            font-size: rpx2(14);
+          }
+          &.active {
+            color: $red;
+          }
+        }
+      }
+    }
+  }
+}
+

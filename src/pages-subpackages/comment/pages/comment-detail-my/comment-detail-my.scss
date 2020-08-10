@@ -1,0 +1,114 @@
+@import "../../../../styles/config";
+
+
+page {
+  height: 100%;
+}
+
+.awesome-bottom {
+  min-height: 100%;
+  box-sizing: border-box;
+  padding-bottom: $copyright-height*1px;
+  margin-bottom: -$copyright-height*1px;
+}
+
+.page {
+  background: #ffffff;
+  padding-bottom: 20px;
+}
+
+.header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .left {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    margin-right: 10px;
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .star-icon {
+      display: flex;
+      align-items: center;
+      margin-top: 7px;
+    }
+
+    .star-text {
+      height: 14px;
+      font-size: 14px;
+      color: $text-primary;
+      line-height: 14px;
+    }
+
+    .item {
+      font-size: 14px;
+      margin-right: 10px;
+      color: $gray-light;
+
+      &.active {
+        color: #f49017;
+      }
+    }
+
+    .time {
+      font-size: 12px;
+      color: $text-secondary;
+      line-height: 12px;
+    }
+  }
+}
+
+.content {
+  padding: 0 15px;
+  margin: 15px 0;
+  font-size: 14px;
+  color: $text-primary;
+  line-height: 20px;
+}
+
+.images {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 7px;
+
+  .item {
+    width: 100px;
+    height: 100px;
+    margin: 0 0 18px 18px;
+    border-radius: 6px;
+  }
+}
+
+.comment-goods {
+  margin: 0 10px;
+  background: white;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  .left {
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+
+  .right {
+    width: 250px;
+    font-size: 15px;
+    color: $text-primary;
+    @include ellipsis2(2, 21);
+  }
+}

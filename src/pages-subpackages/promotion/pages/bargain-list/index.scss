@@ -1,0 +1,318 @@
+@import "../../../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+page {
+  background: #ffffff;
+}
+
+.bargain {
+  .h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding: 0 10px;
+
+    .h2-text {
+      height: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      color: rgba(39, 38, 54, 1);
+      line-height: 25px;
+    }
+
+    .h2-more {
+      height: 20px;
+      font-size: 14px;
+      color: rgba(150, 152, 156, 1);
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .more {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .head {
+    width: 100%;
+    background: white;
+    font-size: rpx2(18);
+    height: rpx2(60);
+    line-height: rpx2(60);
+    text-align: center;
+  }
+
+  .list {
+    white-space: nowrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &.one {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .item {
+        margin: 0;
+
+        &:last-of-type {
+          margin: 0;
+        }
+      }
+    }
+
+    .item {
+      display: inline-block;
+      width: 325px;
+      height: 162px;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      margin-left: 10px;
+
+      .header {
+        height: 42px;
+        background: linear-gradient(135deg, rgba(255, 240, 215, 1) 0%, rgba(245, 223, 188, 1) 100%);
+        border-radius: 8px 8px 0 0;
+        font-size: 12px;
+        color: rgba(151, 125, 84, 1);
+        line-height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        .left {
+          display: flex;
+          align-items: center;
+        }
+
+        .time-wrap {
+          display: flex;
+          align-items: center;
+        }
+
+        .time {
+          margin-left: 6px;
+          width: 21px;
+          height: 17px;
+          background: rgba(39, 38, 54, 1);
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: bold;
+          color: rgba(255, 255, 255, 1);
+          line-height: 17px;
+          text-align: center;
+        }
+
+        .time-mark {
+          margin-left: 6px;
+        }
+      }
+
+      .body {
+        display: inline-flex;
+        padding: 15px 10px;
+      }
+
+      &:last-of-type {
+        margin-right: 10px;
+      }
+
+      .img {
+        width: 90px;
+        height: 90px;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      .content {
+        width: 202px;
+
+        .title {
+          padding-top: 2px;
+          padding-bottom: 12px;
+          height: 20px;
+          font-size: 14px;
+          color: rgba(39, 38, 54, 1);
+          line-height: 20px;
+          display: flex;
+          align-items: center;
+
+          .red {
+            color: $primary-bargain;
+          }
+        }
+
+        .scroll-wrap {
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+
+          .scroll-progress {
+            width: 125px;
+            height: 6px;
+            background: rgba(255, 86, 56, 0.1);
+            border-radius: 6px;
+            position: relative;
+
+            .scroll-bar {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 50%;
+              height: 6px;
+              background: $primary-bargain;
+              border-radius: 6px;
+            }
+          }
+
+          .scroll-text {
+            height: 14px;
+            font-size: 10px;
+            color: rgba(150, 152, 156, 1);
+            line-height: 14px;
+            margin-left: 10px;
+          }
+        }
+
+        .btn-wrap {
+          display: flex;
+          align-items: center;
+
+          .btn-left {
+            width: 80px;
+            height: 28px;
+            border-radius: 14px;
+            border: 1px solid $primary-bargain;
+            font-size: 13px;
+            font-weight: bold;
+            color: $primary-bargain;
+            line-height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.inactive {
+              border-color: $white-smoke;
+              background: $white-smoke;
+              color: $gray-dark;
+            }
+          }
+
+          .btn-right {
+            margin-left: 10px;
+            width: 80px;
+            height: 28px;
+            background: $primary-bargain;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 1);
+            line-height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+
+  .goods {
+    .item {
+      display: flex;
+      padding: 0 15px;
+
+      &:last-of-type {
+        .content {
+          border-bottom: none;
+        }
+      }
+
+      .img {
+        width: 120px;
+        height: 120px;
+        margin-right: 10px;
+        border-radius: 4px;
+      }
+
+      .content {
+        width: 215px;
+        margin-left: 10px;
+        padding-bottom: 20px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+
+        .title {
+          width: 215px;
+          height: 44px;
+          font-size: 16px;
+          color: rgba(39, 38, 54, 1);
+          line-height: 22px;
+          @include ellipsis2(2, 22);
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
+        .join {
+          width: 90px;
+          height: 16px;
+          background: rgba(0, 0, 0, 0.06);
+          border-radius: 8px;
+          font-size: 11px;
+          color: rgba(150, 152, 156, 1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 22px;
+        }
+
+        .join-icon {
+          margin-right: 4px;
+          width: 4px;
+          height: 4px;
+          background: $primary-bargain;
+          box-shadow: 0 0 4px 0 rgba(255, 86, 56, 0.3);
+          border-radius: 50%;
+        }
+
+
+        .price-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .g-price {
+            font-size: 12px;
+            color: $primary-bargain;
+            display: flex;
+            align-items: flex-end;
+          }
+        }
+
+        .my-btn {
+          width: 80px;
+          height: 28px;
+          background: $primary-bargain;
+          border-radius: 14px;
+          font-size: 13px;
+          font-weight: bold;
+          color: rgba(255, 255, 255, 1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.inactive {
+            background: #cccccc;
+          }
+        }
+      }
+    }
+  }
+}

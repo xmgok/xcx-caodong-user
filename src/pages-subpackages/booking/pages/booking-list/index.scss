@@ -1,0 +1,245 @@
+@import "../../../../styles/config";
+
+.page {
+  margin-bottom: 18px;
+}
+.g-tab.g-tab_style2 {
+  white-space: nowrap;
+  height: 44px;
+
+  .g-tab-item {
+    display: inline-block;
+    min-width: 22%;
+    margin: 0;
+  }
+}
+.page-booking-list {
+  .switch{
+  }
+  .list-wrap {}
+
+  .list {
+    background: $white;
+    border-radius: 12px;
+    margin: 10px;
+    padding: 0 15px;
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      padding: 12px 0;
+
+      .title-l {
+        color: $black;
+        font-size: 16px;
+      }
+
+      .title-r {
+        font-size: 13px;
+
+        &.active {
+          color: $red;
+        }
+      }
+
+    }
+
+    .item-bottom {
+      border-bottom: 1px solid rgba($white-smoke, 0.6);
+      border-top: 1px solid rgba($white-smoke, 0.6);
+      padding: 12px 0;
+      display: flex;
+      flex-direction: column;
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        line-height: 28px;
+
+        .tit {
+          color: $gray-dark;
+          font-size: 14px;
+          margin-right: 15px;
+          width: 56px;
+        }
+
+        .info {
+          font-size: 14px;
+          color: $black-light;
+          width: 254px;
+          // overflow: hidden;
+          // text-overflow: ellipsis;
+          // white-space: nowrap;
+        }
+      }
+
+    }
+
+    .btns {
+      // padding-left: 170px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .btns-l{
+
+      }
+      .btns-r{
+        display: flex;
+        align-items: center;
+      }
+      .cancelBk,
+      .bkCode,
+      .bkCode-active {
+        width: 80px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        border-radius: 14px;
+        border: 1px solid $black;
+        font-size: 13px;
+        box-sizing: border-box;
+        color: $black;
+        margin: 10px 0;
+      }
+
+      .bkCode {
+        margin-left: 10px;
+
+      }
+
+      .bkCode-active {
+        border: transparent;
+        color: $white;
+        background: rgba(255, 86, 56, 1);
+      }
+
+    }
+  }
+  .take-code {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.6);
+
+    &.inactive {
+      .code-text {
+        color: #bfbfbf;
+      }
+
+      .item .content {
+        color: #bfbfbf;
+      }
+
+      .item .label {
+        color: #bfbfbf;
+      }
+
+      .qr {
+        opacity: 0.4;
+      }
+    }
+
+    .body {
+      border-radius: 20px 20px 0 0;
+      width: 320px;
+      box-sizing: border-box;
+      padding: 40px 0 30px;
+      background: #ffffff;
+    }
+
+    .footer {
+      border-radius: 0 0 20px 20px;
+      width: 320px;
+      background: #f7f8fa;
+      box-sizing: border-box;
+      padding: 8px 28px 20px;
+    }
+
+    .qr {
+      width: 255px;
+      height: 255px;
+      margin: 0 auto;
+    }
+
+    .coupon-bg {
+      width: 320px;
+      height: 22px;
+    }
+
+    .code {
+      height: 22px;
+      font-size: 16px;
+      font-weight: bold;
+      color: $black-light;
+      line-height: 22px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .item {
+      padding: 0 rpx2(15) rpx2(5);
+      font-size: rpx2(14);
+      display: flex;
+
+      .label {
+        width: rpx2(70);
+      }
+
+      .content {
+        flex: 1;
+        color: $text-secondary;
+        max-height: 80px;
+        overflow: auto;
+      }
+    }
+
+    .close-wrap {
+      width: rpx2(34);
+      height: rpx2(34);
+      text-align: center;
+      line-height: rpx2(34);
+      margin: 10px auto 0;
+      color: white;
+      border: rpx2(2) solid white;
+      border-radius: 100%;
+      font-size: rpx2(16);
+      font-weight: bold;
+    }
+  }
+
+}
+
+.footers {
+  position: fixed;
+  bottom: 6px;
+  width: 100%;
+  height: 38px;
+  box-sizing: border-box;
+  background: transparent;
+  position: fixed;
+  // z-index: 500;
+
+  .submit {
+    width: 345px;
+    height: 38px;
+    line-height: 38px;
+    background: $red;
+    margin: 0 auto;
+    border-radius: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: $white;
+  }
+
+}

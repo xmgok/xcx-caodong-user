@@ -1,0 +1,22 @@
+<view class="page">
+  <!--引入模板-->
+  <import src="/wxParse/wxParse.wxml" />
+  <!--这里data中article为bindName-->
+  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</view>
+<view class="btn-wrap">
+  <view bindtap="onShareCoupons" class="g-btn">转发</view>
+</view>
+
+<!--分享海报-->
+<component-share
+  bindclose="close"
+  wx:if="{{showShareCoupons}}"
+  show="{{showShareCoupons}}"
+  activeType="other"
+  otherText="文章"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved" />

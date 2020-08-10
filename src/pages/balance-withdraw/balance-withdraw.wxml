@@ -1,0 +1,45 @@
+<view>
+  <view class="header">
+    提现到
+    <text class="ml40">微信钱包</text>
+  </view>
+  <view class="content">
+    <view class="title">提现金额
+      <!--<text class="text-gray">（每笔收取手续费1%）</text>-->
+    </view>
+    <view class="money">
+      <view class="_symbol">￥</view>
+      <input
+        type="digit"
+        class="_big"
+        bindinput="onInput"
+        data-name="amount"
+        value="{{amount}}"/>
+    </view>
+    <view class="valid-msg {{moneyValid.success ? '' : 'error'}}" wx:if="{{ amount }}">{{moneyValid.text}}</view>
+    <view class="withdraw-tip">
+      <text class="text-gray">提现金额不能少于{{minAmount}}元，本次最多可提现{{maxAmount}}元，冻结金额{{frozenAmount}}，</text>
+      <text class="text-light-blue" bindtap="setAllMoney">全部提现</text>
+    </view>
+    <view class="btn-submit {{!moneyValid.success || submitting ? 'disabled': ''}}" bindtap="onWithdrawal">提现</view>
+  </view>
+
+  <navigator
+    class="balance-detail"
+    hover-class="none"
+    url="/pages/balance-withdraw-record/balance-withdraw-record">
+    余额明细
+    <text class="icon icon-shuangjiantou"></text>
+  </navigator>
+
+  <!--<view
+    class="withdraw-explain"
+    data-method="navigateTo"
+    data-url="/pages/balance-withdraw-explain/balance-withdraw-explain"
+    bindtap="goLink">
+    <text class="icon icon-failure"></text>
+    提现说明
+  </view>-->
+
+  <copyright/>
+</view>

@@ -1,0 +1,47 @@
+<!-- 客户下单 -->
+<view class="page-message-detail3">
+  <view class="info-warp">
+    <!-- 客户待支付 -->
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <view class="item" bindtap="goOrderDetail" data-order-code="{{item.content.orderCode}}" data-id="{{item.id}}" data-status="{{item.status}}">
+        <view class="item-t" >
+          <view class="title">{{txtOBJ[item.subType]}}</view>
+          <view class="item-t-r">
+            <view class="time">{{item.sendTime}}</view>
+            <!-- status 0未读 1已读 -->
+            <view class="point" wx:if="{{item.status == 0 }}"></view>
+          </view>
+        </view>
+        <view class="item-b">
+          <view class="imgs">
+            <image class="image" src="{{item.content.imgUrl}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
+          </view>
+          <view class="item-b-r">
+            <view class="code">客户昵称：{{item.content.userName}}</view>
+            <view class="code mt5" wx:if="{{item.subType == 1 || item.subType == 2}}">
+              订单号：{{item.content.orderCode}}
+            </view>
+            <view class="code mt5" wx:if="{{item.subType == 3 || item.subType == 4}}">
+              退款商品：{{item.content.cancelPro}}
+            </view>
+            <view class="monery-warp">
+              <view class="txt" wx:if="{{item.subType == 1 || item.subType == 2}}">
+                订单金额：¥{{item.content.orderMonery}}
+              </view>
+              <view class="txt" wx:if="{{item.subType == 3 || item.subType == 4}}">
+                退款金额：¥{{item.content.cancelMonery}}
+              </view>
+              <view class="txt ml5" wx:if="{{item.subType == 2}}">
+                预计佣金：¥{{item.content.predictMonery}}
+              </view>
+              <view class="txt ml5" wx:if="{{item.subType == 4}}">
+                扣减佣金：¥{{item.content.fewMonery}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result}}" icon="icon-xiaofeizhewode-yuyue" noDataDesc="暂时还没有消息哦~"></list-loading-more>

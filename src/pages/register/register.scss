@@ -1,0 +1,90 @@
+@import "../../styles/mixin";
+
+page {
+  background: white;
+}
+
+.page-register {
+  padding-top: 60px;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  box-sizing: border-box;
+
+  .tip {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: rpx2(20);
+    box-sizing: border-box;
+    font-size: rpx2(14);
+    padding-left: rpx2(15);
+    line-height: rpx2(24);
+    text {
+      color: $red;
+    }
+  }
+
+  .form {
+    box-sizing: border-box;
+    padding: rpx2(15);
+    width: 100%;
+    .hd-item {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: rpx2(25);
+      border-bottom: rpx(1) solid $border-color;
+      line-height: rpx2(38);
+      height: rpx2(38);
+      font-size: rpx2(18);
+      display: -webkit-box;
+      -webkit-box-align: center;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      input {
+        box-sizing: border-box;
+        -webkit-box-flex: 1;
+      }
+      .code {
+        width: rpx2(90);
+        height: rpx2(28);
+      }
+      .get-msg-code {
+        background: $gray-light;
+        border-radius: rpx2(100);
+        line-height: rpx2(28);
+        font-size: rpx2(14);
+        color: white;
+        padding: 0 rpx2(10);
+        min-width: rpx2(90);
+        box-sizing: border-box;
+        text-align: center;
+        &.active {
+          background: $primary;
+        }
+      }
+    }
+    .save {
+      margin-top: rpx2(60);
+      background: $btn-disabled-bg;
+      border-radius: $btn-border-radius;
+      line-height: rpx2(45);
+      height: rpx2(45);
+      text-align: center;
+      color: $btn-primary-color;
+      font-size: rpx2(18);
+      font-weight: bold;
+      &.active {
+        background: $btn-primary-bg;
+      }
+    }
+    .eye1 {
+      color: $gray;
+    }
+  }
+
+}
+

@@ -1,0 +1,26 @@
+<!--优惠券-->
+<popup
+  show="{{ show }}"
+  position="bottom"
+  bindclose="onPurchaseClose"
+  custom-class="coupon-popup-order">
+  <text class="icon icon-times btn-close" bindtap="onPurchaseClose"></text>
+  <view class="coupon-container2">
+    <view class="header">优惠券</view>
+    <view class="not-use" bindtap="notUse">
+      <view>不使用优惠券</view>
+      <view class="not-btns">
+        <text wx:if="{{checkedNot}}" class="icon icon-checkbox-checked"></text>
+        <text wx:else class="icon icon-checkbox"></text>
+      </view>
+    </view>
+    <view class="list-wrap" wx:if="{{list.length}}">
+      <component-coupon-item wx:for="{{list}}" wx:key="couponId" item="{{item}}" btnType="select" binddetail="goToUse"></component-coupon-item>
+    </view>
+    <view class="empty" wx:else>
+      <image class="img" src="https://qiniu.icaodong.com/xcx/common/empty-coupon.png?v=1.0.0"></image>
+      <view>暂时没有优惠券哦~</view>
+    </view>
+  </view>
+</popup>
+

@@ -1,0 +1,29 @@
+<!-- 任务通知 -->
+<view class="page-message-detail1">
+  <view class="info-warp">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <view class="item" bindtap="goDetails" data-id="{{item.id}}" data-status="{{item.status}}" data-sub-type="{{item.subType}}" data-title="{{item.content.title}}" data-content="{{item.content.content}}" data-sendTime="{{item.sendTime}}">
+        <view class="item-t">
+          <view class="title">公司通知</view>
+          <view class="item-t-r">
+            <view class="time">{{item.sendTime}}</view>
+            <!-- status 0未读 1已读 -->
+            <view class="point" wx:if="{{item.status == 0}}"></view>
+          </view>
+        </view>
+        <view class="item-b">
+          <view class="imgs" wx:if="{{item.content.imgUrl}}">
+            <image class="image" src="{{item.content.imgUrl}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
+          </view>
+          <view class="item-b-r">
+            <view class="active-title {{ item.content.imgUrl ? '_have_img':'_not_img'}}">
+              官方通知：{{item.content.title}}
+            </view>
+            <view class="active-content {{ item.content.imgUrl ? 'have_content':'not_content'}}" >{{item.content.content}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result}}" icon="icon-xiaofeizhewode-yuyue" noDataDesc="暂时还没有通知哦~"></list-loading-more>

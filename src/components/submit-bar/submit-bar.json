@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "jz-button": "../button/button",
+    "form-id": "/components/form-id/form-id"
+  }
+}

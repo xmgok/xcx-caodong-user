@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "goods-purchase": "/components/goods-purchase/goods-purchase",
+    "component-share": "/components/share/share"
+  }
+}

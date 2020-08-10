@@ -1,0 +1,229 @@
+<view class="page-staff-home_new">
+  <components-custom-qr bindcanvas2img="staffGetHomeCustomQr"></components-custom-qr>
+  <view class="header-wrap">
+    <navigator class="head" url="/pages/my/my" hover-class="none" open-type="switchTab">
+      <image lazy-load class="head" mode="aspectFill" src="{{staffInfo.headUrl}}"></image>
+    </navigator>
+    <navigator class="content" url="/pages/my/my" hover-class="none" open-type="switchTab">
+      <view class="nickname">
+        <view class="text">{{staffInfo.name || staffInfo.userName || staffInfo.nickName}}</view>
+        <view class="mark">{{jobType==1?'店长':'普通导购'}}</view>
+      </view>
+      <view class="store-name">{{staffInfo.storeName}}</view>
+    </navigator>
+    <navigator class="setting icon icon-gear" url="/pages/setting/setting" hover-class="none"></navigator>
+  </view>
+  <view class="module module1">
+    <view class="h"></view>
+    <view class="wrap">
+      <view class="item" bindtap="staffShowHomeQr">
+        <iconfont name="qr-code" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-wdewm.png?v=1.0.0"></image> -->
+        <view class="item-text">我的二维码</view>
+      </view>
+      <navigator class="item" url="/pages/coupon-send/index" hover-class="none">
+        <iconfont name="coupon" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-yhq.png?v=1.0.0"></image> -->
+        <view class="item-text">优惠券</view>
+      </navigator>
+      <navigator class="item" url="/pages/write-off/index" hover-class="none">
+        <iconfont name="scan" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-ztsm.png?v=1.0.0"></image> -->
+        <view class="item-text">自提扫码</view>
+      </navigator>
+      <navigator class="item" url="/pages/valet-order/index" hover-class="none">
+        <iconfont name="shopping-cart" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-dkxd.png?v=1.0.0"></image> -->
+        <view class="item-text">代客下单</view>
+      </navigator>
+      <navigator class="item" url="/pages/search/search?title=商品中心&keyword=" hover-class="none">
+        <iconfont name="product" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-spzx.png?v=1.0.0"></image> -->
+        <view class="item-text">商品中心</view>
+      </navigator>
+      <navigator class="item" url="/pages/explore/explore" hover-class="none" open-type="switchTab">
+        <iconfont name="material" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-sczx.png?v=1.0.0"></image> -->
+        <view class="item-text">素材中心</view>
+      </navigator>
+      <navigator class="item" url="/pages/article-list/index" hover-class="none">
+        <iconfont name="article" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-wz.png?v=1.0.0"></image> -->
+        <view class="item-text">文章中心</view>
+      </navigator>
+      <navigator class="item" url="/pages-subpackages/promotion/pages/center/index" hover-class="none">
+        <iconfont name="huodongzhongxin" color="{{['#000000', primaryColor]}}" size="33" class="item-icon" />
+        <view class="item-text">活动中心</view>
+      </navigator>
+      <!-- <navigator class="item" url="/pages/group-list/group-list" hover-class="none">
+        <iconfont name="group" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <view class="item-text">拼团活动</view>
+      </navigator> -->
+      <navigator class="item" url="/pages/task-my/task-my" hover-class="none">
+        <iconfont name="task" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-rwzx.png?v=1.0.0"></image> -->
+        <view class="item-text">任务中心</view>
+        <view class="point" wx:if="{{markInfo.newTaskCount > 0}}"></view>
+      </navigator>
+      <block wx:if="{{staffSellerData.visible&&staffSellerData.dtype==2}}">
+        <navigator class="item" url="/pages-subpackages/seller/pages/seller-customer-staff/index" hover-class="none">
+          <iconfont name="distribution" color="{{[primaryColor, '#000000']}}" size="33" class="item-icon" />
+          <!-- <image lazy-load class="item-icon" mode="aspectFill"
+                 src="https://qiniu.icaodong.com/xcx/common/staff-wdfx.png?v=1.0.0"></image> -->
+          <view class="item-text">我的分销</view>
+        </navigator>
+      </block>
+      <block wx:else>
+        <view class="item inactive" bindtap="staffMoreEntryHint" data-type="employee" url="/pages-subpackages/seller/pages/seller-customer-staff/index" hover-class="none">
+          <iconfont name="distribution" color="{{[primaryColor, primaryColor]}}" size="33" class="item-icon" />
+          <!-- <image lazy-load class="item-icon" mode="aspectFill"
+                 src="https://qiniu.icaodong.com/xcx/common/staff-wdfx_grey.png?v=1.0.0"></image> -->
+          <view class="item-text">我的分销</view>
+        </view>
+      </block>
+      <navigator class="item" url="/pages-subpackages/cus/pages/cus-m/index" hover-class="none">
+        <iconfont name="member" color="{{['#000000', primaryColor]}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-khgl2.png?v=1.0.0"></image> -->
+        <view class="item-text">客户管理</view>
+      </navigator>
+      <navigator class="item" url="/pages/order-list/order-list?type=extract" hover-class="none">
+        <iconfont name="order" color="{{['#000000', primaryColor]}}" size="33" class="item-icon" />
+        <!-- <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://qiniu.icaodong.com/xcx/common/staff-khdd.png?v=1.0.0"></image> -->
+        <view class="item-text">客户订单</view>
+      </navigator>
+      <!-- 主分支 - 注释直播相关业务 - 在master-live分支放开直播相关业务 -->
+      <!--<navigator class="item" url="/pages-subpackages/live/pages/live-list2/index" hover-class="none">
+        <iconfont name="caodongzhibo" color="{{['#000000', primaryColor]}}" size="33" class="item-icon" />
+        <view class="item-text">草动直播</view>
+      </navigator>-->
+      <navigator class="item" url="/pages-subpackages/message/pages/list/index" hover-class="none">
+        <iconfont name="wodexiaoxi" color="{{['#000000', primaryColor]}}" size="33" class="item-icon" />
+        <view class="item-text">我的消息</view>
+        <view class="point" wx:if="{{markInfo.newUserMessageCount > 0}}"></view>
+      </navigator>
+      <navigator class="item" url="/pages/extract-index/extract-index" hover-class="none">
+        <iconfont name="achievement" color="{{['#000000', primaryColor]}}" size="33" class="item-icon" />
+        <view class="item-text">我的佣金</view>
+      </navigator>
+      <navigator class="item" url="/pages-subpackages/booking/pages/booking-list-staff/index" hover-class="none">
+        <iconfont name="yuyue" color="{{['#000000', primaryColor]}}" size="33" class="item-icon" />
+        <view class="item-text">预约单</view>
+      </navigator>
+      <!-- <navigator class="item" url="/pages/fans/fans" hover-class="none">
+        <iconfont name="fans" color="{{['#000000', primaryColor]}}" size="33" class="item-icon" />
+        <view class="item-text">吸粉活动</view>
+      </navigator> -->
+    </view>
+  </view>
+  <view class="module module2" wx:if="{{staffSellerData.visible&&staffSellerData.dtype==2}}">
+    <view class="h"></view>
+    <view class="title-wrap">
+      <view class="title">我的分销</view>
+      <button open-type="share" data-active-type="employee" class="btn">邀请分销</button>
+    </view>
+    <view class="wrap">
+      <view class="item">
+        <view class="text">成功邀请的分销</view>
+        <view class="num">{{staffSelleLog.totalCount}}</view>
+      </view>
+      <view class="item">
+        <view class="text">今日发送邀请</view>
+        <view class="num">{{staffSelleLog.count}}</view>
+      </view>
+      <view class="item">
+        <view class="text">今日成功邀请</view>
+        <view class="num">{{staffSelleLog.cpcount}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="module module3">
+    <view class="h"></view>
+    <navigator class="title-wrap" url="/pages/order-list/order-list?type=extract" hover-class="none">
+      <view class="title">客户订单</view>
+      <view class="title-icon icon icon-angle-right"></view>
+    </navigator>
+    <view class="wrap">
+      <view class="item">
+        <view class="num">{{staffOrder.count}}</view>
+        <view class="line"></view>
+        <view class="text">今日订单数</view>
+      </view>
+      <view class="item">
+        <view class="num">{{staffOrder.amount}}</view>
+        <view class="line"></view>
+        <view class="text">今日订单金额</view>
+      </view>
+      <view class="item">
+        <view class="num">{{staffOrder.meanAmount}}</view>
+        <view class="line"></view>
+        <view class="text">今日客单价</view>
+      </view>
+    </view>
+  </view>
+  <view class="module module4">
+    <view class="h"></view>
+    <view class="title-wrap">
+      <view class="title">用户运营</view>
+    </view>
+    <view class="round">
+      <view class="header">
+        <image lazy-load class="head" mode="aspectFill" src="{{staffPotentialCustomers.headUrl}}"></image>
+        <view class="text" wx:if="{{staffPotentialCustomers.name}}">
+          {{staffPotentialCustomers.name}} {{staffPotentialCustomers.browseTime}} 浏览了你的商品
+        </view>
+      </view>
+      <view class="body">
+        <view class="head-wrap">
+          <image lazy-load class="head" mode="aspectFill" wx:for="{{staffPotentialCustomers.list}}" wx:key="index" src="{{item.headUrl}}"></image>
+        </view>
+        <navigator class="text-wrap" url="/pages-subpackages/cus/pages/cus-m/index" hover-class="none">
+          <view class="text">共 {{staffPotentialCustomers.number}} 位潜在客户</view>
+          <view class="my-icon icon icon-angle-right"></view>
+        </navigator>
+      </view>
+    </view>
+    <view class="wrap">
+      <view class="item">
+        <view class="text">今日转发数</view>
+        <view class="num">{{staffAchievement.transfer}}</view>
+      </view>
+      <view class="item">
+        <view class="text">今日进店数</view>
+        <view class="num">{{staffAchievement.enter}}</view>
+      </view>
+      <view class="item">
+        <view class="text">今日新客数</view>
+        <view class="num">{{staffAchievement.customer}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="module module5" hidden="{{isHideModule5}}">
+    <view class="h"></view>
+    <view class="title-wrap">
+      <view class="title">活动业绩</view>
+    </view>
+    <canvas style="width: 350px; height: 200px;margin: 0 auto;" class="canvas" canvas-id="ringCanvas"></canvas>
+  </view>
+  <jz-popup
+    bindclose="staffHideHomeQr"
+    show="{{ isShowHomeQr }}" position="bottom" custom-class="reset-popup" z-index="101">
+    <view class="staff-qr home-qr">
+      <view class="close icon icon-times" bindtap="staffHideHomeQr"></view>
+      <image
+        style="width: {{staffHomeCustomQrWidth*2}}rpx; height: {{staffHomeCustomQrHeight*2}}rpx;"
+        class="home-qr-img" mode="aspectFill" src="{{staffHomeCustomQr}}"
+      ></image>
+      <view class="g-btn" bindtap="staffDownLoadHomeQr">下载店铺首页二维码</view>
+    </view>
+  </jz-popup>
+</view>

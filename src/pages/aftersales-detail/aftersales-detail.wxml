@@ -1,0 +1,184 @@
+<view class="page-aftersales-detail">
+  <view class="header">
+    <text class="icon icon-{{ type === 1 ? 'refund' : 'return' }} status"></text>
+    <view class="content">
+      <view class="title">{{ _checkStatus }}</view>
+      <view class="sub-title">{{ createTime }}</view>
+    </view>
+    <view class="link">
+      <navigator url="/pages/aftersales-record/aftersales-record?orderCode={{ orderCode }}&returnCode={{ returnCode }}" hover-class="none">
+        <text>协商记录</text>
+        <text class="icon icon-angle-right"></text>
+      </navigator>
+    </view>
+  </view>
+  <view class="sub-header">
+    <view
+      class="reject-reason"
+      wx:if="{{ checkStatus === 3 || checkStatus === 7 }}"
+    >
+      <text class="dot"></text>
+      <view class="title">拒绝原因：{{ rejectReason || '' }}</view>
+      <view class="sub-title">您可以修改退款申请，重新申请退款</view>
+    </view>
+    <view class="reject-reason reject-reason--reset" wx:elif="{{currentStatusDesc}}">
+      <text class="dot"></text>
+      <view class="title">{{checkStatusDesc}}：{{currentStatusDesc}}</view>
+    </view>
+
+    <view class="btn-container">
+      <!--'退款申请中，等待商家处理', '退款已取消', '已结束', '待审核', '审核中', '退款中', '已退款'-->
+      <!--申请中-->
+      <block wx:if="{{ returnStatus === 1 || returnStatus === 4 || returnStatus === 5 }}"><!--宋帆让加4和5-->
+        <!--<navigator
+          url="/pages/aftersales-apply/aftersales-apply?id={{ id }}&orderCode={{ orderCode }}&amount={{ realAmount }}&type={{ type }}"
+          hover-class="none">
+          <view class="ui-btn-plain danger">修改申请</view>
+        </navigator>-->
+        <view class="ui-btn-plain ml10" bindtap="cancel">撤销申请</view>
+      </block>
+      <!--订单非结束 & 已取消-->
+      <block wx:elif="{{ orderStatus !== 6 && returnStatus === 2 }}">
+        <navigator
+          url="/pages/aftersales-apply/aftersales-apply?orderCode={{ orderCode }}&specId={{ specId }}&number={{ returnNumber }}&type={{ type }}&id={{ id }}"
+          hover-class="none">
+          <view class="ui-btn-plain danger">{{ checkStatus === 3 || checkStatus === 7 ? '修改申请' : '申请售后'}}</view>
+        </navigator>
+      </block>
+      <!--已结束-->
+      <block wx:elif="{{ returnStatus === 3 }}">
+        <block wx:if="{{ checkStatus === 3 || checkStatus === 7 }}"> <!--审核未通过-->
+          <navigator
+            url="/pages/aftersales-apply/aftersales-apply?orderCode={{ orderCode }}&specId={{ specId }}&number={{ returnNumber }}&type={{ type }}&id={{ id }}"
+            hover-class="none">
+            <view class="ui-btn-plain danger">{{ checkStatus === 3 || checkStatus === 7 ? '修改申请' : '申请售后'}}</view>
+          </navigator>
+        </block>
+      </block>
+      <!--待审核-->
+      <!--审核中-->
+      <!--退款中-->
+      <!--已退款-->
+    </view>
+  </view>
+
+  <!--checkStatus （审核状态：1申请中，2已取消，3申请未通过，4申请通过，等待寄回，5已寄回，等待审核 6审核通过，等待退款 7审核未通过 8已退款）-->
+  <view
+    class="return-address"
+    wx:if="{{ type === 2 && checkStatus === 4 }}"
+  >
+    <view class="ui-field-group">
+      <view class="field-item">
+        <view class="label">寄回地址：</view>
+        <view class="field-body">
+          <view class="contact-info">
+            <text>{{ _returnAddress[1] }}</text>
+            <text>{{ _returnAddress[2] }}</text>
+          </view>
+          <view class="address">{{ _returnAddress[0] }}</view>
+        </view>
+      </view>
+      <view class="field-item">
+        <view class="label">物流公司</view>
+        <view class="field-body selector" bindtap="openLogisticsPicker">
+          <view class="g-flex g-alc g-jce">
+            <view class="{{ logisticsSelected ? 'selected': '' }}">
+              {{ logisticsSelected ? logisticsSelected.label: '请选择物流公司' }}
+            </view>
+            <view class="icon icon-angle-right"></view>
+          </view>
+        </view>
+      </view>
+      <view class="field-item">
+        <view class="label">物流单号</view>
+        <view class="field-body">
+          <input
+            value="{{ expressCode }}"
+            data-name="expressCode"
+            data-hanzi="false"
+            bindinput="bindInput"
+            class="field-input"
+            placeholder="请输入物流单号"
+          />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="product-card">
+    <view class="header">
+      <view class="order-no">订单编号：{{ orderCode }}</view>
+      <!--<view class="date">{{ orderCreateTime }}</view>-->
+    </view>
+    <view class="content">
+      <image lazy-load class="avatar" src="{{ imgUrl }}" mode="aspectFit" />
+      <view class="product-info">
+        <view class="title">{{ productName }}</view>
+        <view class="spec">{{ specContent }}</view>
+        <view class="price-wrap">
+          <text>￥{{ price }}</text>
+          <text class="quantity">x{{ returnNumber }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="aftersales-detail">
+    <view class="item">
+      <text class="grey">售后类型：</text>
+      <text>{{ type === 1 ? '退款' : '退货退款' }}</text>
+    </view>
+    <view class="item">
+      <text class="grey">退款原因：</text>
+      <text>{{ _reason }}</text>
+    </view>
+    <view class="item">
+      <text class="grey">退款金额：</text>
+      <text>￥{{ realAmount }}</text>
+    </view>
+    <view class="item">
+      <text class="grey">退还积分：</text>
+      <text>{{ integral || 0 }}积分</text>
+    </view>
+    <view class="item">
+      <text class="grey">申请时间：</text>
+      <text>{{ createTime }}</text>
+    </view>
+    <view class="item">
+      <text class="grey">售后单号：</text>
+      <text>{{ returnCode }}</text>
+    </view>
+    <view class="item">
+      <text class="grey">退款说明：</text>
+      <text>{{ explain || '无' }}</text>
+    </view>
+    <view class="item df">
+      <text class="label grey">图片描述：</text>
+      <view class="item-right">
+        <block wx:if="{{ _evidencePic.length > 0 }}">
+          <image
+            lazy-load
+            wx:for="{{ _evidencePic }}"
+            wx:key="*this"
+            mode="aspectFill"
+            class="img"
+            src="{{ item }}"
+          />
+        </block>
+        <text wx:else>无</text>
+      </view>
+    </view>
+  </view>
+
+  <!--仅需填写寄回地址时显示-->
+  <view class="footer" wx:if="{{ type === 2 && checkStatus === 4 }}">
+    <view class="ui-btn-submit {{ (!logisticsSelected || !expressCode) ? 'disabled': '' }}" bindtap="userCheck">提交
+    </view>
+  </view>
+
+  <jz-popup-radio-picker
+    title="物流公司"
+    show="{{ showLogisticsPicker }}"
+    list="{{ logisticsList }}"
+    bind:submit="onLogisticsSubmit" />
+</view>

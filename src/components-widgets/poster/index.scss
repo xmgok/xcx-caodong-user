@@ -1,0 +1,15 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.poster {
+  position: relative;
+
+  .item {
+    position: absolute;
+    z-index: 2;
+  }
+
+  .img {
+    width: 100%;
+  }
+}

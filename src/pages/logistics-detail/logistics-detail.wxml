@@ -1,0 +1,41 @@
+<view class="page-logistics-detail-new">
+  <view class="module" wx:for="{{parcelList}}" wx:key="index">
+    <view class="title g-flex-between">
+      <view class="text">包裹{{index+1}}</view>
+      <view class="small">{{item.companyName}}：{{item.expressCode}}</view>
+    </view>
+    <view class="img-wrap g-flex-between" bindtap="showHide" data-item="{{item}}" data-index="{{index}}">
+      <view class="img-scroll">
+        <view
+          class="img-item"
+          wx:for="{{item.imgs}}"
+          wx:for-item="item2"
+          wx:key="index">
+          <image class="img" lazy-load mode="aspectFill"
+                 src="{{item2}}"></image>
+          <!--<view class="text">x1</view>-->
+        </view>
+      </view>
+      <view class="img-more">
+        <view class="text">共{{item.number}}件商品</view>
+        <view class="icon {{item.isShow?'icon-angle-up':'icon-angle-down'}}"></view>
+      </view>
+    </view>
+    <view class="detail-wrap" wx:if="{{item.isShow}}">
+      <view
+        style="text-align: center;"
+        wx:if="{{!item.expressDetail || !item.expressDetail.length}}">
+        暂无轨迹信息
+      </view>
+      <view
+        class="li"
+        wx:for="{{item.expressDetail}}"
+        wx:for-item="item3"
+        wx:for-index="index2"
+        wx:key="index2">
+        <view class="text">{{item3.context}}</view>
+        <view class="text time">{{item3.time}}</view>
+      </view>
+    </view>
+  </view>
+</view>

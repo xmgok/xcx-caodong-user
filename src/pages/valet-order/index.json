@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "代客下单",
+  "usingComponents": {
+    "goods-purchase": "/components/goods-purchase/goods-purchase",
+    "list-loading-more": "/components/list-loading-more/index",
+    "jz-search": "/components/search/search"
+  }
+}

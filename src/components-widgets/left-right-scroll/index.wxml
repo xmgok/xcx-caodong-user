@@ -1,0 +1,16 @@
+<!--轮播图-->
+<view class="left-right-scroll-wrap" wx:if="{{result.list.length}}">
+  <scroll-view
+    scroll-x="{{true}}" class="wrap"
+  >
+    <block wx:for="{{result.list}}" wx:key="index">
+      <image
+        style="width:{{item._width}}rpx;height:{{result.height}}rpx"
+        bindtap="goLink" data-url="{{item.linkUrl}}"
+        src="{{item.imgUrl}}" mode="aspectFit"
+        data-index="{{index}}" data-item="{{item}}"
+        class="item" bindload="load"
+      />
+    </block>
+  </scroll-view>
+</view>

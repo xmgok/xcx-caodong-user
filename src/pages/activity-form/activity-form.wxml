@@ -1,0 +1,48 @@
+<view class="page-activity-form">
+  <view class="tip">请提交相关信息参与活动哦～</view>
+  <view class="form">
+    <block wx:if="{{isFill > 0}}">
+      <view class="hd-item">
+        <input placeholder-class="placeholder" placeholder="姓名" value="{{form.name}}" data-type="name" bindinput="bindInput" />
+      </view>
+
+      <view class="hd-item">
+        <input placeholder-class="placeholder" placeholder="手机号码" value="{{form.mobile}}" disabled />
+        <view wx:if="{{isBindGetPhoneNumber}}" class="get-msg-code active">获取手机号码</view>
+        <button wx:else class="get-msg-code active" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">获取手机号码</button>
+      </view>
+    </block>
+
+    <view class="hd-item" wx:if="{{fillExtend.address}}">
+      <input placeholder-class="placeholder" placeholder="收货地址" value="{{form.receiverAddress}}" disabled />
+      <view class="get-msg-code active" bindtap="getAddress">获取收货地址</view>
+    </view>
+
+    <view class="hd-item" wx:if="{{fillExtend.IDCard}}">
+      <input placeholder-class="placeholder" placeholder="身份证" value="{{form.idcardNo}}" data-type="idcardNo" bindinput="bindInput" />
+    </view>
+
+    <picker
+      class="hd-item"
+      style="display: block"
+      wx:if="{{fillExtend.awardStore}}"
+      bindchange="bindPickerChange"
+      value="{{storeIndex}}"
+      range="{{storeList}}"
+      range-key="name">
+      <!--HACK: picker上无法使用flex-->
+      <view style="display: flex">
+        <view class="title active" wx:if="{{form.prizeStoreName}}">{{form.prizeStoreName}}</view>
+        <view class="title" wx:else>选择门店</view>
+        <view class="icon icon-angle-right"></view>
+      </view>
+    </picker>
+
+    <view class="hd-item" wx:if="{{fillExtend.custom}}">
+      <input placeholder-class="placeholder" placeholder="{{fillExtend.customTitle}}" data-type="customInfo" value="{{form.customInfo}}" bindinput="bindInput" />
+    </view>
+
+    <view class="save active" bindtap="onSave">确定</view>
+  </view>
+
+</view>

@@ -1,0 +1,57 @@
+<view class="container">
+  <view class="header" wx:if="{{isImage}}">{{currentNum}}/{{goods.materialList.length}}</view>
+
+  <view class="swiper-wrap" wx:if="{{isImage}}">
+    <swiper class="swiper" bindchange="bindChange" current="{{current}}">
+      <swiper-item wx:for="{{goods.materialList}}" wx:key="index">
+        <image lazy-load src="{{item.imgUrl}}" mode="aspectFill" class="slide-image"/>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="video-wrap" wx:if="{{!isImage}}">
+    <image class="image" lazy-load src="{{goods.materialList[0]}}" mode="aspectFill" class="slide-image"/>
+  </view>
+
+  <view class="footer">
+    <view class="description">{{goods.name}}</view>
+  </view>
+
+  <view class="sidebar">
+    <image lazy-load src="{{goods.materialList.imgUrl}}" alt="logo" class="logo" />
+    <view class="customer-service ui-contact-wrap"><text class="icon icon-service"></text> 客服<button class="button" open-type="contact">进入客服会话</button></view>
+    <view class="nav-menu">
+      <view class="menu-item" bindtap="goShare" wx:if="{{userType == 'staff'}}">
+        <view class="icon icon-external-link"></view>
+        <view class="title">转发</view>
+      </view>
+      <view class="menu-item" bindtap="bindPurchase"  wx:if="{{userType == 'customer'}}">
+        <view class="icon icon-shopping-cart"></view>
+        <view class="title">购买</view>
+      </view>
+      <navigator
+        url="/pages/material-list/material-list?productId={{goods.id}}"
+        hover-class="none"
+        class="menu-item">
+        <view class="icon icon-picture-multi"></view>
+        <view class="title">素材</view>
+      </navigator>
+      <view class="menu-item" bindtap="bindReport">
+        <view class="icon icon-exclamation-triangle"></view>
+        <view class="title">报错</view>
+      </view>
+    </view>
+  </view>
+
+  <goods-purchase
+    wx:if="{{ goods.id }}"
+    show="{{ showPurchase }}"
+    id="{{ goods.id }}"
+    bind:selected="goodsPurchaseSelected" />
+</view>
+<component-share
+  wx:if="{{showShare}}"
+  bindclose="close"
+  show="{{showShare}}"
+  imgList="{{shareImgUrl}}"
+  checkIdList="{{shareImgId}}"
+  productId="{{goods.id}}" />

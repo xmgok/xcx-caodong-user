@@ -1,0 +1,5 @@
+<view class="store-name" wx:if="{{storeName}}" bindtap="goDetail">
+  <iconfont name="mendian" color="{{['#000000', primaryColor]}}" size="20" class="item-icon" />
+  <view class="text">{{storeName}}</view>
+  <view class="switch-store icon icon-angle-right"></view>
+</view>

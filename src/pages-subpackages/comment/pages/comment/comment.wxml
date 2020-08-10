@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="header">
+    <image mode="aspectFill" src="{{resData.imgUrl}}" class="left"></image>
+    <view class="right">
+      <view wx:for="{{5}}" wx:key="index" data-index="{{index}}" bindtap="starClick" class="icon icon-pingjiawuxing item {{form.star>index?'active':''}}"></view>
+    </view>
+  </view>
+
+  <view class="bf">
+    <view class="p10">
+      <view class="hairline">
+        <textarea maxlength="500" bindinput="onInput" data-name="content" class="textarea" placeholder="宝贝满足您的期待吗？跟大家分享一下吧～"></textarea>
+        <view class="num">{{form.content.length}}/500</view>
+      </view>
+    </view>
+    <view class="plr10">
+      <view class="title">图片描述 ({{upload.list.length}}/9)</view>
+    </view>
+    <upload result="{{upload}}" bindchange="change"></upload>
+    <view class="plr10">
+      <view class="noname">
+        <view class="checkbox-icon icon {{checked?'icon-checkbox-checked':'icon-checkbox'}}" bindtap="doCheck"></view>
+        <view bindtap="doCheck">匿名评价</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-btn {{iPhoneX?'iPhoneXb':''}}" bindtap="submit">提交</view>
+</view>
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

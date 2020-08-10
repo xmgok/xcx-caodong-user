@@ -1,0 +1,52 @@
+@import "../../styles/mixin";
+
+page {
+  background: #ffffff;
+}
+
+.search-wrap {
+  display: flex;
+  align-items: center;
+  padding: 0 rpx2(10) rpx2(10);
+  border-bottom: rpx(1) solid $white-smoke;
+}
+
+.main-content {
+  padding: rpx2(20) 0 rpx2(20);
+}
+
+.history-search {
+  margin-bottom: rpx2(20);
+  padding: 0 rpx2(15);
+  @include clearfix();
+
+  .title {
+    font-size: rpx2(14);
+    color: $text-primary;
+    font-weight: bold;
+    margin-bottom: rpx2(20);
+  }
+
+  .icon-trash {
+    float: right;
+    color: $text-secondary;
+    font-weight: normal;
+    font-size: rpx2(16);
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
+
+.tag-list {
+  .tag-item {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: rpx2(15);
+    margin-bottom: rpx2(15);
+    padding: rpx2(8) rpx2(16);
+    background-color: $white-smoke;
+    border-radius: rpx2(8);
+    color: $text-primary;
+    font-size: rpx2(14);
+  }
+}

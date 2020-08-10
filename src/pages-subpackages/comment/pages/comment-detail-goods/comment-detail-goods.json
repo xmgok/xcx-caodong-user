@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "商品评价详情",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

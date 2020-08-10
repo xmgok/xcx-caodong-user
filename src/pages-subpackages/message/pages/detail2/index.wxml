@@ -1,0 +1,28 @@
+<!-- 新增客户 -->
+<view class="page-message-detail2">
+  <view class="info-warp">
+    <!-- 新增客户 -->
+    <view wx:for="{{dataList}}" wx:key="index">
+      <view class="item" catchtap="pointClick" data-id="{{item.id}}" data-status="{{item.status}}">
+        <view class="item-t">
+          <view class="title">新增1名客户</view>
+          <view class="item-t-r">
+            <view class="time">{{item.sendTime}}</view>
+            <!-- status 0未读 1已读 -->
+            <view class="point" wx:if="{{item.status == 0}}"></view>
+          </view>
+        </view>
+        <view class="item-b">
+          <view class="imgs">
+            <image class="image" src="{{item.content.imgUrl || activeImg  }}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
+          </view>
+          <view class="item-b-r">
+            <view class="code">{{item.content.userMobile}}</view>
+            <view class="err">手机号：{{item.content.userMobile}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result}}" icon="icon-xiaofeizhewode-yuyue" noDataDesc="暂时还没有消息哦~"></list-loading-more>

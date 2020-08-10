@@ -1,0 +1,174 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+@import "../../styles/variables";
+
+.share-wrap {
+  background: white;
+
+  .item-wrap {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    padding: 0 rpx2(30);
+    box-sizing: border-box;
+
+    .item {
+      margin: 0;
+      -webkit-box-flex: 1;
+      background: transparent;
+      width: 1%;
+      text-align: center;
+      padding-bottom: rpx2(20);
+      padding-top: rpx2(20);
+
+      .icon-wrap {
+        width: rpx2(40);
+        height: rpx2(40);
+        border-radius: 50%;
+        //background: #45C45D;
+        color: #45c45d;
+        margin: 0 auto;
+        line-height: rpx2(40);
+        font-size: rpx2(40);
+
+        text {
+        }
+      }
+
+      .text {
+        line-height: rpx2(14);
+        color: $text-secondary;
+        padding-top: rpx2(10);
+        font-size: rpx2(12);
+      }
+    }
+  }
+
+  .btn-cancel {
+    border-top: rpx(1) solid $white-smoke;
+    font-weight: bold;
+    font-size: rpx2(16);
+    color: $text-primary;
+    text-align: center;
+    line-height: rpx2(52);
+  }
+}
+
+.poster-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 996;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+  box-sizing: border-box;
+  padding: rpx2(80) 0 0;
+  font-size: rpx2(14);
+
+  .icon-times {
+    position: absolute;
+    //top: rpx2(5);
+    //right: rpx2(5);
+    // 修复-自定义顶部导航栏的话太靠上点不到
+    top: 50px;
+    right: 31.5px;
+    z-index: 2;
+    color: white;
+    padding: rpx2(10);
+    font-size: rpx2(18);
+  }
+
+  .poster-canvas {
+    position: absolute;
+    top: 9999px;
+    left: 6666px;
+    z-index: -1;
+  }
+
+  .tabs {
+    display: flex;
+    background: white;
+    height: rpx2(36);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    .tab-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 rpx2(25);
+      position: relative;
+
+      .line {
+        display: none;
+      }
+
+      &.active {
+        font-size: rpx2(16);
+        font-weight: bold;
+        .line {
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+          display: block;
+          height: 2px;
+          background: $primary;
+          width: 40px;
+          border-radius: 40px 40px 0 0;
+        }
+      }
+    }
+  }
+
+  .swiper-wrap {
+    margin-top: rpx2(10);
+    //background: white;
+    .swiper {
+      height: 400px;
+
+      &.iPad {
+        height: 300px;
+      }
+    }
+
+    .slide-image {
+      width: 90%;
+      height: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .show-price {
+    width: rpx2(240);
+    height: rpx2(36);
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+
+    .wx-switch-input {
+      zoom: 0.8;
+    }
+  }
+
+  .save-btn {
+    width: rpx2(240);
+    height: rpx2(36);
+    margin: 10px auto;
+    background: $btn-primary-bg;
+    border-radius: rpx2(5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*&.blue {
+      background: #5d9ef6;
+      margin-top: rpx2(20);
+    }*/
+  }
+}
+

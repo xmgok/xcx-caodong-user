@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "预约城市",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "list-html": "../../components/wx-index-list/wx-index-list"
+  }
+}

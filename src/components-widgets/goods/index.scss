@@ -1,0 +1,77 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.recommend {
+  .head {
+    width: 100%;
+    background: white;
+    font-size: rpx2(18);
+    height: rpx2(60);
+    line-height: rpx2(60);
+    text-align: center;
+    @include ellipsis1();
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  .list-wrap {
+    padding: rpx2(10) rpx2(15);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: -13px;
+
+    .item {
+      background: white;
+      width: rpx2(166);
+      margin-bottom: rpx2(13);
+      border-radius: rpx2(3);
+
+      &:nth-last-of-type(1), &:nth-last-of-type(2) {
+        //margin-bottom: 0;
+      }
+
+      .img {
+        width: rpx2(166);
+        height: rpx2(166);
+        background: $img-default-bg;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          border-radius: rpx2(3) rpx2(3) 0 0;
+        }
+      }
+
+      .title {
+        padding: rpx2(8) rpx2(12) 0;
+        @include ellipsis2(2);
+        height: 36px;
+      }
+
+      .bottom {
+        height: rpx2(42);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 rpx2(12);
+
+        .price {
+          font-size: rpx2(14);
+          color: $text-price;
+        }
+
+        .num {
+          font-size: rpx2(10);
+          color: $text-secondary;
+        }
+      }
+    }
+  }
+
+  .no-data-now {
+    padding: rpx2(10);
+    text-align: center;
+    background: white;
+  }
+}

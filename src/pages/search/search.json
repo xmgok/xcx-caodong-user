@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "search-with-service": "/components/search-with-service/index",
+    "love-list": "/components/love-list/love-list",
+    "goods-list": "/components/goods-list/goods-list"
+  }
+}

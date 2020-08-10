@@ -1,0 +1,45 @@
+<!--
+因员工个人中心页有canvas，会覆盖掉导航，所以使用cover-view提升层级。
+注意事项：仅支持最外层的cover-view使用fixed。
+-->
+<cover-view wx:if="{{useCoverView}}" class="tab-bar {{iPhoneX?'iPhoneXpb':''}}">
+  <cover-view
+    bindtap="goLink"
+    class="item {{index == tabBarIndex ? 'active' : ''}}"
+    wx:for="{{list}}"
+    wx:key="index"
+    data-url="{{item.pagePath}}">
+    <cover-image
+      class="image"
+      mode="aspectFill"
+      src="{{index == tabBarIndex ? item.selectedIconPath : item.iconPath}}">
+    </cover-image>
+    <cover-view
+      class="text">
+      {{item.text}}
+    </cover-view>
+  </cover-view>
+</cover-view>
+<!--
+后续：
+因使用cover-view会导致员工首页的转发弹窗覆盖不了这个tab-bar。
+所以此处又换回了view。
+-->
+<view wx:else class="tab-bar {{iPhoneX?'iPhoneXpb':''}}">
+  <view
+    bindtap="goLink"
+    class="item {{index == tabBarIndex ? 'active' : ''}}"
+    wx:for="{{list}}"
+    wx:key="index"
+    data-url="{{item.pagePath}}">
+    <image
+      class="image"
+      mode="aspectFill"
+      src="{{index == tabBarIndex ? item.selectedIconPath : item.iconPath}}">
+    </image>
+    <view
+      class="text">
+      {{item.text}}
+    </view>
+  </view>
+</view>

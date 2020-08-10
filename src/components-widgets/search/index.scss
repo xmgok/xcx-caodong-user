@@ -1,0 +1,21 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.search-wrap {
+  background: white;
+  padding: rpx2(10) rpx2(15);
+  .search-box {
+    display: flex;
+    height: rpx2(38);
+    align-items: center;
+    justify-content: center;
+    border-radius: rpx2(2);
+    color: $gray-dark;
+    background: #F7F8FA;
+    .icon {
+      color: #ccc;
+      font-size: rpx2(16);
+      padding: 0 rpx2(8);
+    }
+  }
+}

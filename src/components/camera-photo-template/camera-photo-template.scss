@@ -1,0 +1,54 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+/*@import "/styles/common.scss";*/
+/*@import "/styles/utils.scss";*/
+@import "../../styles/variables";
+
+.camera-photo-template {
+  z-index: 10000;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: rpx2(24) rpx2(24) 0 0;
+  padding-bottom: rpx2(30);
+  padding-top: rpx2(15);
+  .title {
+    line-height: rpx2(22);
+    font-size: rpx2(16);
+    color: white;
+    text-align: center;
+  }
+
+  .close {
+    color: #96989C;
+    padding: rpx2(15);
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .img-wrap {
+    padding: rpx2(20) rpx2(15) 0;
+    display: flex;
+    justify-content: space-between;
+
+    .img {
+      display: block;
+      width: rpx2(110);
+      height: rpx2(110);
+      background: white;
+      border-radius: rpx2(8);
+      position: relative;
+      .tb {
+        position: absolute;
+        right: rpx2(7);
+        top: rpx2(7);
+        color: $red;
+        font-size: rpx2(24);
+      }
+    }
+  }
+}
+

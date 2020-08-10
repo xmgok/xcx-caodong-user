@@ -1,0 +1,27 @@
+@import "../../styles/config";
+
+.page-group-rules {
+
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 40px;
+    background: #ffffff;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .content {
+    font-size: 13px;
+    text-align: justify;
+    padding: 10px;
+    background: #ffffff;
+    line-height: 24px;
+
+    .item {
+      margin-bottom: 10px;
+    }
+  }
+}

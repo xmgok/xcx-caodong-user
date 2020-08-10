@@ -1,0 +1,96 @@
+@import "../../../../styles/config";
+
+.page-message-detail1 {
+  .item {
+    background-color: #fff;
+    padding: 15px;
+    margin: 15px 10px;
+    border-radius: 12px;
+
+    .item-t {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      .title {
+        color: $black-light;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .item-t-r {
+        display: flex;
+        align-items: center;
+
+        .time {
+          color: $gray-dark;
+          font-weight: bold;
+        }
+
+        .point {
+          margin-left: 5px;
+          width: 8px;
+          height: 8px;
+          background: rgba(255, 86, 56, 1);
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .item-b {
+      display: flex;
+      align-items: center;
+
+      .imgs {
+        width: 80px;
+        height: 80px;
+        margin-right: 15px;
+        border-radius:4px;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          border-radius:4px;
+        }
+      }
+
+      .item-b-r {
+        .active-title,.active-title-txt {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-align: start;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          color: $black-light;
+          font-size: 14px;
+
+        }
+        .active-title {
+          width: 230px;
+        }
+        .active-title-txt{
+          width: 325px;
+        }
+
+        .active-time{
+          color: $gray-dark;
+          font-size: 12px;
+          margin-top: 33px;
+        }
+        .active-title-txt{
+        }
+        .active-time-txt{
+          width: 325px;
+          margin-top: 6px;
+          font-size:12px;
+          color: $gray-dark;
+          word-wrap: break-word;
+        }
+      }
+    }
+  }
+}

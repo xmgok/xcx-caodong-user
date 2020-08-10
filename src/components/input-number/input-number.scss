@@ -1,0 +1,83 @@
+@import "../../styles/mixin";
+
+.jz-stepper {
+  font-size: 0;
+
+  &__minus,
+  &__plus,
+  &__input {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #ffffff;
+  }
+
+  &__minus,
+  &__plus {
+    width: rpx2(28);
+    height: rpx2(28);
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: rpx(1) solid $border-color;
+    position: relative;
+    padding: rpx2(5);
+
+    &::before {
+      width: rpx2(10);
+      height: rpx2(2);
+    }
+
+    &::after {
+      width: rpx2(2);
+      height: rpx2(10);
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $black-light;
+      border-radius: rpx2(2);
+    }
+
+    &--disabled {
+      &::before,
+      &::after {
+        background-color: $text-info;
+      }
+    }
+
+    &--disabled:active {
+      background-color: $white-smoke;
+    }
+  }
+
+  &__minus {
+    &::after {
+      display: none;
+    }
+  }
+
+  &__input {
+    font-family: HelveticaNeue;
+    width: rpx2(48);
+    height: rpx2(28);
+    padding: rpx2(1);
+    min-height: 0; // reset wechat default min height
+    border-width: rpx2(1) 0;
+    border-radius: 0;
+    box-sizing: content-box;
+    color: $text-primary;
+    font-size: rpx2(16);
+    text-align: center;
+    -webkit-appearance: none;
+
+    &--disabled {
+      color: $text-info;
+    }
+  }
+}

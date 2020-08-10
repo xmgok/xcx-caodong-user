@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "拼团详情",
+  "usingComponents": {
+    "component-share": "/components/share/share"
+  }
+}

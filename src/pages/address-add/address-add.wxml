@@ -1,0 +1,54 @@
+<view class="page-address-add">
+
+  <view class="form">
+    <view class="item">
+      <view class="item-title">收货人</view>
+      <view class="item-con">
+        <input placeholder-class="default" placeholder="姓名" value="{{form.name}}" data-type="name" bindinput="bindInput" bindblur="bindblur" />
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="item-title">收货手机</view>
+      <view class="item-con">
+        <input placeholder-class="default" placeholder="手机号码" value="{{form.phone}}" data-type="phone" type="number" bindinput="bindInput" bindblur="bindblur" />
+      </view>
+    </view>
+    <view class="item">
+      <view class="item-title">省市区</view>
+      <view class="item-con">
+        <picker class="region" mode="region" bindchange="bindRegionChange" value="{{form.region}}">
+          <view wx:if="{{form.region.length <= 0}}" class="text-gray-dark">请选择</view>
+          <view wx:else class="picker">{{form.region[0]}} {{form.region[1]}} {{form.region[2]}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="item-title">详细地址</view>
+      <view class="item-con">
+        <textarea placeholder-class="default" placeholder="街道，小区，门牌号" value="{{form.address}}" data-type="address" bindinput="bindInput" bindblur="bindblur" />
+      </view>
+    </view>
+
+    <view class="item" wx:if="{{type != 'customer'}}">
+      <view class="item-title">邮编<text class="text-gray-dark">(选填)</text></view>
+      <view class="item-con">
+        <input placeholder-class="default" placeholder="请输入邮编" type="number" value="{{form.postcode}}" data-type="postcode" bindinput="bindInput" />
+      </view>
+    </view>
+
+    <view class="item" wx:if="{{type != 'customer'}}">
+      <view class="item-title">默认地址</view>
+      <view class="item-con">
+        <view class="set-default" bindtap="onSetDefault"><text class="icon {{form.isDefault ? 'active icon-check-circle' : 'icon icon-circle'}}"></text>{{form.isDefault ? '是': '否'}}</view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="fixed-bottom">
+    <view class="save {{canSave ? 'active' : ''}}" bindtap="onSave">保存</view>
+  </view>
+
+</view>

@@ -1,0 +1,11 @@
+<view class="page">
+  <component-chooseTime
+    day="{{chooseTime.day}}"
+    week="{{chooseTime.week}}"
+    time="{{chooseTime.time}}"
+    type="time"
+    timeList="{{timeList}}"
+    bindchangeChooseTime="changeChooseTime"
+  />
+  <view class="g-btn mt20" bindtap="confirm">确定</view>
+</view>

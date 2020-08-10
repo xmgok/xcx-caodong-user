@@ -1,0 +1,58 @@
+<view class="container">
+  <view class="line-height-placeholder" id="line-height-placeholder">一行</view>
+
+  <!--消费者端-->
+  <view class="goods-list-user">
+    <view
+      wx:for="{{listData}}"
+      wx:key="productId"
+      class="goods-item">
+      <navigator url="/pages/product/product?id={{item.id}}" hover-class="none">
+        <image src="{{item.imgUrl}}" mode="aspectFill" class="goods-image img-default-bg" lazy-load></image>
+      </navigator>
+
+      <view class="right-content">
+        <navigator url="/pages/product/product?id={{item.id}}" hover-class="none">
+          <view class="title">{{item.name}}</view>
+          <view class="sub-title">{{item.details}}</view>
+
+          <scroll-view scroll-x
+               class="ui-mark-warp">
+              <view class="{{ typeObj[labelsList.type] }}"  wx:for="{{item.labels}}" wx:for-item="labelsList" wx:for-index="labelsListIndex" wx:key="labelsListIndex"
+                >{{labelsList.name}}</view>
+          </scroll-view>
+        </navigator>
+
+        <view class="footer">
+          <view class="ui-price-wrap">
+            <component-mark isVip="{{item.isVip}}"/>
+            <text class="currency">¥</text>
+            <text class="price-integer">{{item.priceInteger}}</text>
+            <text class="price-decimal">{{item.priceDecimal}}</text>
+            <text class="price-del">¥{{item.prePrice}}</text>
+          </view>
+          <view
+            wx:if="{{ item.inventory > 0 }}"
+            class="btn-buy"
+            bindtap="bindPurchase"
+            data-index="{{index}}">购买</view>
+          <view wx:else class="btn-buy disabled" data-index="{{index}}">补货中</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="ui-divider" wx:if="{{showDivider}}">
+    <text class="line"></text>{{list.length > 0 ? '已经到底啦' : '暂无数据'}}<text class="line"></text>
+  </view>
+
+  <goods-purchase
+    wx:if="{{ productId }}"
+    show="{{ show }}"
+    id="{{ productId }}"
+    addToCart="{{true}}"
+    bind:selected="goodsPurchaseSelected"
+    bind:close="onPurchaseClose" />
+</view>
+
+

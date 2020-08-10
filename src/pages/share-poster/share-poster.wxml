@@ -1,0 +1,37 @@
+<view class="page-share-poster">
+  <block wx:if="{{!isVideo}}">
+    <canvas canvas-id="posterCanvas" class="poster-canvas" style="width:345px; height: {{ posterHeight }}px"></canvas>
+    <picker class="tab" bindchange="bindTypeIndexChange" value="{{typeIndex}}" range="{{typeList}}">
+      <view class="picker">{{typeList[typeIndex]}}<text class="icon icon-angle-down"></text></view>
+    </picker>
+  </block>
+
+  <image class="img dn" mode="aspectFill" src="{{shareUrl}}"></image>
+  <view class="swiper-wrap2">
+    <swiper class="swiper" bindchange="changeSwiper">
+      <swiper-item wx:for="{{imgList}}" wx:key="index">
+        <image wx:if="{{typeIndex <= 0}}" class="img-item" mode="aspectFit" src="{{item}}"></image>
+        <view class="swiper-wrap" wx:else>
+          <image class="img-item2" mode="aspectFit" src="{{item}}"></image>
+          <view class="info">
+            <view class="text-wrap">
+              <view class="title">{{productInfo.name}}</view>
+              <view class="price"><text>￥</text>{{productInfo.price}}</view>
+            </view>
+            <view class="img-wrap">
+              <image class="img" mode="aspectFill" src="{{shareUrl}}" bindload="bindImageLoad"></image>
+              <view>长按查看商品详情</view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="fixed-bottom">
+    <view class="swiper-dots">
+      <view class="dots-item {{index == current ? 'active' : ''}}" wx:for="{{imgList}}" wx:key="index"></view>
+    </view>
+    <button class="item-btn" bindtap="download">保存到相册</button>
+  </view>
+</view>

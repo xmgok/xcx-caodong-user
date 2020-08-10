@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "look-more": "/components/look-more/look-more"
+  }
+}

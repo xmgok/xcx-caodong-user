@@ -1,0 +1,577 @@
+@import "../../../../styles/config";
+
+page {
+  background: $white-smoke;
+}
+
+.page {
+  .header {
+    padding: 30px 15px 40px;
+    background: linear-gradient(153deg, #4f4e66 0%, $black-light 100%);
+
+    .head-wrap {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+
+      .head {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+
+      .content {
+        flex: 1;
+      }
+
+      .nickname-wrap {
+        display: flex;
+        align-items: center;
+      }
+
+      .nickname {
+        max-width: 140px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        @include ellipsis1();
+      }
+
+      .sex {
+        margin-left: 8px;
+      }
+
+      .fire1 {
+        margin-left: 6px;
+        width: 8px;
+        height: 14px;
+      }
+
+      .fire2 {
+        margin-left: 6px;
+        width: 11px;
+        height: 14px;
+      }
+
+      .vip {
+        margin-left: 6px;
+      }
+
+      .mobile {
+        margin-top: 3px;
+        height: 20px;
+        font-size: 14px;
+        color: $text-secondary;
+        line-height: 20px;
+      }
+    }
+
+    .row-wrap {
+      .row {
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+      }
+
+      .title {
+        margin-right: 20px;
+        width: 56px;
+        height: 20px;
+        font-size: 14px;
+        color: #ffffff;
+        line-height: 20px;
+      }
+
+      .desc {
+        font-size: 14px;
+        color: $text-secondary;
+        line-height: 20px;
+      }
+
+      .emp {
+        display: flex;
+        align-items: center;
+
+        .head {
+          width: 24px;
+          height: 24px;
+          margin-right: 6px;
+          border-radius: 50%;
+        }
+      }
+
+      .label-wrap {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+
+        .tag-list {
+          width: 220px;
+          height: 24px;
+          white-space: nowrap;
+          margin-right: 10px;
+
+          .tag-item {
+            display: inline-block;
+            vertical-align: middle;
+            height: 24px;
+            line-height: 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            background-color: #f7f8fa;
+            padding: 0 10px;
+            color: $text-primary;
+            margin-right: 5px;
+            @include ellipsis1();
+
+            &.disabled {
+              color: $text-secondary;
+            }
+          }
+        }
+
+        .label-add {
+          width: 24px;
+          height: 24px;
+          background: #f7f8fa;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    .vip-icon {
+      height: 16px;
+      line-height: 16px;
+      background: linear-gradient(153deg, #f4ead2 0%, #e6d1a6 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+    }
+  }
+
+  .reset-popup {
+    overflow: hidden !important;
+    background: none !important;
+  }
+
+  .select-label {
+    background: #ffffff;
+    padding: 30px 20px 17px;
+    border-radius: 24px 24px 0 0;
+    position: relative;
+
+    .btn-close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      padding: 10px;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      color: $text-primary;
+      line-height: 22px;
+      margin-bottom: 30px;
+
+      &.title_label {
+        margin-bottom: 15px;
+      }
+    }
+
+    .input {
+      width: 100%;
+      border-bottom: 1px solid $border-color;
+      margin-bottom: 30px;
+    }
+
+    .scroll-wrap {
+      max-height: 200px;
+      overflow-x: hidden;
+    }
+
+    .label-wrap {
+      //margin-bottom: 37px;
+      //max-height: 200px;
+      //overflow-x: hidden;
+      display: flex;
+      flex-wrap: wrap;
+
+      .label {
+        width: 100px;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        background: $white-smoke;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        margin: 0 17px 15px 0;
+        box-sizing: border-box;
+        font-size: 14px;
+        color: $text-primary;
+        @include ellipsis1();
+
+        &:nth-of-type(3n) {
+          margin-right: 0;
+        }
+
+        &.active {
+          border-color: $tag-border-color;
+          background-color: $tag-bg;
+        }
+      }
+    }
+
+    .btn-wrap {
+      padding-top: 10px;
+
+      .g-btn {
+        height: 37px;
+
+        &:first-of-type {
+          margin-right: 11px;
+        }
+      }
+    }
+  }
+
+  .radius {
+    background: $white-smoke;
+    border-radius: 24px 24px 0 0;
+    height: 22px;
+    margin-top: -22px;
+  }
+
+  .g-tab {
+    background: $white-smoke;
+  }
+
+  .body {
+    width: 375px;
+    background: $white-smoke;
+    border-radius: 24px 24px 0 0;
+    overflow: hidden;
+
+    .order-content, .goods-content, .mark-content {
+      padding: 0 15px;
+
+      .h2 {
+        margin-top: 10px;
+        width: 316px;
+        height: 17px;
+        font-size: 12px;
+        color: $text-secondary;
+        line-height: 17px;
+        display: flex;
+        align-items: center;
+
+        .item {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .order-content {
+      .list-wrap {
+      }
+
+      .list {
+        padding: 15px;
+        margin-top: 14px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-sizing: border-box;
+
+        .head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .text {
+            height: 18px;
+            font-size: 13px;
+            color: $text-primary;
+            line-height: 18px;
+          }
+
+          .status {
+            height: 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: $text-secondary;
+            line-height: 18px;
+
+            &.active {
+              color: $red;
+            }
+          }
+        }
+
+        .list-body {
+          margin-top: 15px;
+          margin-bottom: 15px;
+          background: $white-smoke;
+          border-radius: 8px;
+          box-sizing: border-box;
+          padding: 10px;
+
+          .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+
+            .title {
+              width: 180px;
+              height: 21px;
+              font-size: 15px;
+              font-weight: bold;
+              color: $text-primary;
+              line-height: 21px;
+              margin-right: 30px;
+              @include ellipsis1();
+            }
+
+            .right {
+              flex: 1;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+
+            .num {
+              width: 12px;
+              height: 17px;
+              font-size: 12px;
+              font-weight: bold;
+              color: $text-secondary;
+              line-height: 17px;
+            }
+
+            .price {
+              width: 52px;
+              height: 17px;
+              font-size: 12px;
+              font-weight: bold;
+              color: $text-secondary;
+              line-height: 17px;
+            }
+          }
+        }
+
+        .footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .text {
+            height: 18px;
+            font-size: 13px;
+            color: $text-secondary;
+            line-height: 18px;
+          }
+
+          .price {
+            height: 18px;
+            font-size: 13px;
+            color: $text-primary;
+            line-height: 18px;
+
+            .g-price {
+              margin: 0;
+              align-items: flex-end;
+              color: $text-primary;
+            }
+          }
+        }
+      }
+    }
+
+    .goods-content {
+      .list-wrap {
+      }
+
+      .list {
+        padding: 15px;
+        margin-top: 14px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-sizing: border-box;
+
+        .list-body {
+          display: flex;
+          justify-content: space-between;
+
+          .head {
+            width: 90px;
+            min-width: 90px;
+            height: 90px;
+          }
+
+          .content {
+            flex: 1;
+            margin-left: 10px;
+
+            .title {
+              margin-top: 5px;
+              width: 225px;
+              height: 44px;
+              font-size: 15px;
+              font-weight: bold;
+              color: $text-primary;
+              @include ellipsis2(2, 22)
+            }
+
+            .price-wrap {
+              margin-top: 21px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .price {
+                font-size: 14px;
+                color: $text-primary;
+              }
+
+              .num {
+                font-size: 12px;
+                color: $text-secondary;
+              }
+
+              .red {
+                color: $red;
+              }
+            }
+          }
+        }
+
+        .footer {
+          margin-top: 14px;
+          border-top: 1px solid $border-color;
+          padding-top: 10px;
+          font-size: 12px;
+          color: $text-secondary;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .icon {
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+
+    .mark-content {
+      padding: 0 20px 0 30px;
+
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .search {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 25px;
+          font-size: 18px;
+          font-weight: bold;
+          color: $text-primary;
+          line-height: 25px;
+        }
+
+        .desc {
+          height: 18px;
+          font-size: 13px;
+          color: $text-secondary;
+          line-height: 18px;
+        }
+      }
+
+      .list {
+        padding-left: 25px;
+        padding-bottom: 25px;
+        position: relative;
+
+        &:last-of-type .line {
+          display: none;
+        }
+
+        .time {
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 18px;
+          font-size: 13px;
+          color: $text-secondary;
+          line-height: 18px;
+        }
+
+        .line {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1px;
+          height: 100%;
+          background: $gray-light;
+        }
+
+        .icon {
+          width: 18px;
+          height: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: #74B4AC;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateX(-50%);
+          color: #ffffff;
+          font-size: 18px;
+
+          &.active {
+            background: #E36060;
+          }
+        }
+
+        .text {
+          height: 22px;
+          font-size: 16px;
+          color: $text-primary;
+          line-height: 1;
+          width: 260px;
+          @include ellipsis1();
+        }
+
+        .desc {
+          height: 17px;
+          font-size: 12px;
+          color: $text-secondary;
+          line-height: 17px;
+          margin-top: 2px;
+          display: flex;
+          .store-name {
+            flex: 1;
+            @include ellipsis1();
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,323 @@
+@import "../../styles/mixin";
+
+.page-order-list {
+  width: 100%;
+
+  .tab-wrap {
+    background: white;
+    position: sticky;
+    top: 0;
+    display: -webkit-box;
+    line-height: rpx2(44);
+    //border-bottom: rpx(1) solid $gray-light;
+    .item {
+      //width: 1%;
+      -webkit-box-flex: 1;
+      margin: 0 rpx2(10);
+      text-align: center;
+      position: relative;
+      font-size: rpx2(14);
+      border-bottom: rpx2(2) solid white;
+
+      &.active {
+        font-size: rpx2(16);
+        font-weight: bold;
+        border-color: $tab-border-color;
+        //&:before {
+        //  content: ' ';
+        //  position: absolute;
+        //  left: rpx2(15);
+        //  bottom: 0;
+        //  width: 100%;
+        //  height: rpx2(2);
+        //  background: $primary;
+        //}
+      }
+    }
+
+  }
+
+  .no-data {
+    .icon-wrap {
+      width: rpx2(155);
+      height: rpx2(155);
+      margin: rpx2(150) auto 0;
+      line-height: rpx2(155);
+      text-align: center;
+      background: #e6e6e6;
+      border-radius: 50%;
+      font-size: rpx2(80);
+      color: white;
+    }
+  }
+
+  .list-wrap {
+    padding: rpx2(10);
+  }
+
+  .goods-item {
+    overflow: hidden;
+    background: white;
+    border-radius: rpx2(8);
+    line-height: rpx2(34);
+    box-shadow: 0 0 rpx2(4) rgba(0, 0, 0, 0.1);
+    margin-bottom: rpx2(10);
+
+    .status-wrap {
+      display: -webkit-box;
+      -webkit-box-pack: justify;
+      border-bottom: rpx(1) solid $white-smoke;
+      padding: 0 rpx2(10);
+
+      .order-num {
+      }
+
+      .status-text {
+        color: $red;
+        font-weight: bold;
+      }
+    }
+
+    .order-footer {
+      display: flex;
+
+      .return-type {
+        display: flex;
+        align-items: center;
+        padding-left: rpx2(10);
+        font-size: rpx2(13);
+
+        .icon {
+          margin-right: rpx2(5);
+          font-size: rpx2(16);
+          color: $red;
+        }
+      }
+    }
+
+    .price-wrap {
+      flex: 1;
+      text-align: right;
+      padding: 0 rpx2(10);
+
+      text {
+        font-weight: bold;
+
+        .t1 {
+          font-size: rpx2(18);
+        }
+      }
+    }
+
+    .btn-wrap {
+      border-top: rpx(1) solid $white-smoke;
+      padding: rpx2(10) 0;
+      margin: 0 rpx2(10);
+      display: -webkit-box;
+      -webkit-box-pack: end;
+
+      .btn-item {
+        padding: 0 rpx2(14);
+        border: rpx(1) solid $primary;
+        border-radius: rpx2(14);
+        color: $primary;
+        line-height: rpx2(28);
+        margin-left: rpx2(10);
+
+        &.btn-item2 {
+          background: white;
+          color: $text-primary;
+          border-color: $black-light;
+        }
+      }
+    }
+
+    .goods-info-wrap {
+      display: -webkit-box;
+      -webkit-box-align: center;
+      border-bottom: rpx(1) solid $white-smoke;
+      margin: 0 rpx2(10);
+      padding: rpx2(10) 0;
+      line-height: normal;
+
+      .img {
+        width: rpx2(70);
+        height: rpx2(70);
+        border-radius: rpx2(3);
+      }
+
+      .text-wrap {
+        -webkit-box-flex: 1;
+        box-sizing: border-box;
+        padding-left: rpx2(10);
+      }
+
+      .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        //display:-webkit-box;
+        //-webkit-box-orient:vertical;
+        //-webkit-line-clamp:1;
+        font-size: rpx2(14);
+        font-weight: bold;
+      }
+
+      .gift {
+        display: inline-block;
+        width: rpx2(30);
+        height: rpx2(14);
+        background: #b1cb6d;
+        border-radius: rpx2(4);
+        color: white;
+        font-size: rpx2(10);
+        text-align: center;
+        line-height: rpx2(14);
+        margin: rpx2(5) rpx2(10) rpx2(10) 0;
+
+        &.coupon5 {
+          background: #7b8cb7;
+        }
+      }
+
+      .tags {
+        padding: rpx2(8) 0;
+        color: white;
+        min-height: rpx2(14);
+        font-size: rpx2(10);
+
+        .tag {
+          height: rpx2(14);
+          line-height: rpx2(14);
+          display: inline-block;
+          padding: 0 rpx2(5);
+          margin-right: rpx2(6);
+          border-radius: rpx2(8) rpx2(3);
+          // 自提
+          &.tag1 {
+            background: #65C4AA;
+          }
+
+          // 拼团
+          &.tag2 {
+            background: #D4A71E;
+          }
+
+          // 接龙
+          &.tag3 {
+            background: #7B8CB7;
+          }
+        }
+      }
+
+      .info {
+        display: -webkit-box;
+        -webkit-box-pack: justify;
+        color: $text-secondary;
+
+        .info-return {
+          margin-left: 40px;
+          font-size: 12px;
+          color: $yellow;
+          line-height: 17px;
+        }
+      }
+
+      .return-status {
+        margin-left: rpx2(40);
+        color: $yellow;
+        font-size: rpx2(12);
+      }
+    }
+
+    &.goods-item--after-sale {
+      .status-wrap {
+        .status-text {
+          font-weight: normal;
+          display: flex;
+          align-items: center;
+          color: $text-primary;
+
+          .my-icon {
+            color: $primary;
+            font-size: 22px;
+            margin-right: 4px;
+          }
+        }
+      }
+
+      .goods-info-wrap {
+        border-bottom: none;
+
+        .img {
+          width: 90px;
+          height: 90px;
+        }
+      }
+
+      .after-status {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        height: 40px;
+        background: rgba(247, 248, 250, 1);
+        border-radius: 8px;
+        margin: 0 10px 10px;
+
+        &__left {
+          width: 80px;
+          font-size: 13px;
+          color: $text-primary;
+          text-align: right;
+        }
+
+        &__right {
+          margin-left: 11px;
+          flex: 1;
+          font-size: 13px;
+          color: rgba(150, 152, 156, 1);
+          line-height: 18px;
+          @include ellipsis2(1, 18);
+        }
+
+        &__highlight {
+          color: $primary;
+        }
+      }
+
+      .spec {
+        font-size: 12px;
+        color: $text-secondary;
+        line-height: 12px;
+        margin-top: 6px;
+      }
+
+      .money {
+        font-size: 14px;
+        line-height: 14px;
+        color: rgba(39, 38, 54, 1);
+        margin-top: 33px;
+        font-weight: bold;
+      }
+    }
+
+    .goods-all-price {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 10px;
+      font-size: 13px;
+      color: #272636;
+
+      .big {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+
+  }
+
+}
+

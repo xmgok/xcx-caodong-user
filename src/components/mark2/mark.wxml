@@ -1,0 +1,4 @@
+<view wx:if="{{isVip!='0'}}" class="g-vip">
+  <view wx:if="{{isVip=='1'}}">会员价</view>
+  <view wx:if="{{isVip=='2'}}">一口价</view>
+</view>

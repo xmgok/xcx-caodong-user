@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "活动中心",
+  "usingComponents": {
+    "goods-purchase" : "/components/goods-purchase/goods-purchase",
+    "list-loading-more": "/components/list-loading-more/index",
+    "component-share": "/components/share/share"
+  }
+}

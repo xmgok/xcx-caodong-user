@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="edit" wx:if="{{isShowEdit}}">
+    <input class="input" type="text" placeholder="添加标签" value="{{options.item.name}}" bindinput="bindinput" />
+    <view class="g-flex btn-wrap">
+      <view class="g-btn g-btn_hollow" bindtap="labelDel">删除标签</view>
+      <view class="g-btn" bindtap="labelUpdate">保存</view>
+    </view>
+  </view>
+  <view class="title">
+    <view class="text">相关客户</view>
+    <view class="desc">(共{{totalCount}}人)</view>
+  </view>
+  <view class="list-wrap">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <image
+        lazy-load class="head" mode="aspectFill"
+        src="{{item.headUrl}}"></image>
+      <view class="content">
+        <view class="nickname-wrap">
+          <view class="left">
+            <view class="nickname">{{item.name}}</view>
+            <view wx:if="{{item.gender!=0}}"
+                  class="sex g-sex-icon {{item.gender==1?'man':''}} icon icon-{{item.gender==1?'nan':'nv'}}"></view>
+          </view>
+          <!--<view class="right">
+            <view class="icon icon-map-marker-fill"></view>
+            <view class="address">浦东新区</view>
+          </view>-->
+        </view>
+        <scroll-view scroll-x class="label-wrap">
+          <block wx:for="{{item.labels}}">
+            <view class="label" wx:key="index">{{item}}</view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result}}"></list-loading-more>

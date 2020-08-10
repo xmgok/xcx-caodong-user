@@ -1,0 +1,102 @@
+<view class="page-order-detail">
+
+  <view class="hd-block">
+    <view class="order-status-wrap">
+      <view class="satus">
+        <view class="tb icon {{statusIcon}}"></view>
+        <view class="text-wrap">
+          <view class="text">{{statusText}}</view>
+          <view class="tip">{{statusTip}}</view>
+        </view>
+      </view>
+      <view class="address-wrap">
+        <view class="title">收货地址：</view>
+        <view class="detail">
+          <view class="name"><text>{{orderInfo.receiverName}} {{orderInfo.receiverPhone}}</text></view>
+          <view class="addr">{{orderInfo.receiverAddress}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <view class="order-detail-wrap">
+
+      <view class="store-info" style="display: none;">
+        <image mode="aspectFill" src="https://qmfx-s39210.s3.fy.shopex.cn/gpic/20160722/49900ccfd2a45537cd22f52e2f82d122.jpg"></image>
+        <view class="store-name">URBAN REVIVO</view>
+      </view>
+
+      <view class="goods-info-wrap">
+        <image class="img" mode="aspectFill" src="{{orderInfo.productImg}}"></image>
+        <view class="text-wrap">
+          <view class="title">{{orderInfo.productName}}</view>
+          <view class="specifications">
+            {{orderInfo.specName}}
+            <block wx:if="{{orderInfo.canApplyAfterSale || _returnStatus}}">; x{{orderInfo.productNum}}</block>
+          </view>
+          <view class="info">
+            <view class="price">￥{{orderInfo.productPrice}}</view>
+            <view class="num">
+              <navigator
+                wx:if="{{orderInfo.canApplyAfterSale}}"
+                url="/pages/aftersales-apply/aftersales-apply?orderCode={{orderCode}}&amount={{orderInfo.orderAmount}}&type={{orderInfo.expressCode ? 2 : 1}}"
+                hover-class="none">
+                <view class="ui-btn-plain danger">申请售后</view>
+              </navigator>
+              <!--<block wx:else>{{orderInfo._returnStatus}}</block>-->
+              <block wx:else>
+                {{ orderInfo._returnStatus }}
+                <text wx:if="{{_returnStatus}}" class="return-status">{{_returnStatus}}</text>
+                <block wx:else>x{{orderInfo.productNum}}</block>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="num-wrap">
+        <view class="text-item">
+          <view class="title">商品总额：</view>
+          <view class="con">￥{{orderInfo.orderAmount}}</view>
+        </view>
+        <view class="text-item">
+          <view class="title">运　　费：</view>
+          <view class="con">+￥{{orderInfo.expressAmount}}</view>
+        </view>
+        <view class="text-item">
+          <view class="title">优惠抵扣：</view>
+          <view class="con">-￥{{orderInfo.discountAmount}}</view>
+        </view>
+      </view>
+
+      <view class="total-price">合计<text>￥{{orderInfo.orderAmount}}</text></view>
+
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <view class="order-other">
+      <view class="item"><text>订单编号：</text>{{orderInfo.orderCode}}</view>
+      <view class="item"><text>下单时间：</text>{{orderInfo.createTime}}</view>
+      <view class="item"><text>支付方式：</text>微信支付</view>
+    </view>
+  </view>
+
+  <block wx:if="{{type != 'extract'}}">
+    <view class="fixed-bottom" wx:if="{{status!=2}}">
+      <navigator
+        class="btn-item"
+        wx:if="{{orderInfo.expressCode && orderInfo.isTake != 1}}"
+        url="/pages/logistics-detail/logistics-detail?orderCode={{orderCode}}"
+        hover-class="none">查看物流</navigator>
+      <view class="btn-item" wx:if="{{status == 4 || status == 5}}" bindtap="deleteOrder">删除订单</view>
+      <view class="btn-item btn-item2" wx:if="{{status == 3}}" bindtap="delivery">确认收货</view>
+      <block wx:if="{{status == 1}}">
+        <view class="btn-item" bindtap="cancelOrder">取消订单</view>
+        <view class="btn-item btn-item2" bindtap="pay">确认付款</view>
+      </block>
+    </view>
+  </block>
+
+</view>

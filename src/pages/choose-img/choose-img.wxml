@@ -1,0 +1,29 @@
+<view class="page-choose-img">
+
+  <view class="goods-info">
+    <view class="title">{{productInfo.name}}</view>
+    <!--<view class="other">尺码:S/M/L/XL；款式:白色V领针织外套开衫；货号:WG29 R9DF2000；优雅个性，针织质感面料，穿着舒适</view>-->
+    <view class="other">货号:{{productInfo.productCode}}；{{productInfo.details}}</view>
+  </view>
+
+  <view class="hd-img">
+    <view class="hd-title">商品素材</view>
+
+    <view class="upload-img-wrap">
+      <view class="item-wrap" wx:for="{{imgList}}" wx:key="index" data-index="{{index}}" bindtap="previewImage">
+        <image lazy-load class="img" mode="aspectFill" src="{{item}}"></image>
+        <text class="del icon icon-minus-circle" catchtap="delImg" data-index="{{index}}"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="fixed-bottom" wx:if="{{userType == 'staff'}}">
+    <view class="item-btn" bindtap="onShare">转发</view>
+  </view>
+
+</view>
+<component-share
+  show="{{showShare}}"
+  imgList="{{imgList}}"
+  checkIdList="{{checkIdList}}"
+  productId="{{productId}}" />

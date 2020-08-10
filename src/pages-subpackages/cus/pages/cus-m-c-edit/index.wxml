@@ -1,0 +1,9 @@
+<view class="page-setting-edit">
+
+  <input wx:if="{{type=='nickName'}}" maxlength="20" placeholder-class="text-gray-dark" placeholder="请输入昵称" value="{{value}}" bindinput="bindInput" />
+  <input wx:if="{{type=='mobile'}}" maxlength="11" placeholder-class="text-gray-dark" placeholder="请输入手机号" value="{{value}}" type="number" bindinput="bindInput" />
+  <input wx:if="{{type=='remark'}}" maxlength="20" placeholder-class="text-gray-dark" placeholder="请输入备注" value="{{value}}" bindinput="bindInput" />
+
+  <view class="save {{canSave ? 'active' : ''}}" bindtap="onSave">保存</view>
+
+</view>

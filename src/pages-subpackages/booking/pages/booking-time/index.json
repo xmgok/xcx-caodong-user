@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "预约时间",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "component-chooseTime": "../../components/chooseTime/chooseTime"
+  }
+}

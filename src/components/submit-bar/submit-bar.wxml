@@ -1,0 +1,30 @@
+<view class="jz-submit-bar custom-class">
+  <slot name="top" />
+
+  <view wx:if="{{ tip }}" class="jz-submit-bar__tip">
+    {{ tipStr }}<slot name="tip" />
+  </view>
+
+  <view class="jz-submit-bar__bar bar-class">
+    <slot />
+    <view class="jz-submit-bar__text">
+      <block wx:if="{{ hasPrice }}">
+        <text>{{ label || '待支付' }}</text>
+        <text class="jz-submit-bar__price price-class"> {{ currency }}<text class="jz-submit-bar__price-integer">{{ priceInteger }}</text>{{ priceDecimal }}</text>
+        <!-- <text class="jz-submit-bar__receiver receiver-class">(共{{ receiverNumber }}个收件人)</text> -->
+      </block>
+    </view>
+    <jz-button
+      round
+      size="large"
+      type="{{ buttonType }}"
+      loading="{{ loading }}"
+      disabled="{{ disabled }}"
+      class="jz-submit-bar__button"
+      custom-class="button-class">
+      {{ loading ? '' : buttonText }}
+
+      <button class="btn-hidden" bindtap="onSubmit" hover-class="none"></button>
+    </jz-button>
+  </view>
+</view>

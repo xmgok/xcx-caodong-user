@@ -1,0 +1,463 @@
+@import "../../styles/mixin";
+
+.page-cart {
+  padding-bottom: rpx2(80);
+  overflow: hidden;
+
+  .store {
+    height: rpx2(45);
+    line-height: 1;
+    padding: 0 rpx2(10);
+    margin-bottom: rpx2(10);
+    background: white;
+    font-size: rpx2(14);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .store-name {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .store-name-icon {
+      margin-right: rpx2(5);
+    }
+
+    .store-get-giveaway {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .store-get-giveaway-icon {
+      margin-left: 10px;
+    }
+  }
+
+  .slide {
+    background: white;
+    margin-bottom: rpx2(10);
+    padding-bottom: rpx2(15);
+
+    &.slide-disabled {
+      margin: 0;
+    }
+
+    &.slide_reset {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  .active-title {
+    height: rpx2(44);
+    margin-left: rpx2(10);
+    padding-right: rpx2(10);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: rpx2(16);
+    font-weight: bold;
+    background: white;
+    border-bottom: 0.5px solid $white-smoke;
+
+    .left {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .tag {
+      display: inline-block;
+      height: rpx2(14);
+      line-height: rpx2(14);
+      background: $primary;
+      border-radius: rpx2(4);
+      margin-right: rpx2(8);
+      padding: 0 rpx2(5);
+      color: white;
+      font-size: rpx2(10);
+      font-weight: bold;
+    }
+
+    .text-content {
+      flex: 1;
+      margin-right: rpx2(20);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .get-giveaway {
+      font-size: rpx2(14);
+      font-weight: normal;
+    }
+  }
+
+  .gift {
+    display: flex;
+    align-items: center;
+    margin-top: rpx2(15);
+
+    .image {
+      width: rpx2(70);
+      height: rpx2(70);
+      border-radius: rpx2(3);
+      margin: 0 rpx2(10) 0 rpx2(68);
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: rpx2(70);
+      padding-right: rpx2(10);
+
+      .title {
+        font-size: rpx2(15);
+        @include ellipsis2(1)
+      }
+
+      .tag {
+        width: rpx2(30);
+        height: rpx2(14);
+        color: white;
+        font-size: rpx2(10);
+        background: #b1cb6d;
+        border-radius: rpx2(4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: bold;
+
+        .big {
+          font-size: rpx2(18);
+        }
+
+        .num {
+          font-weight: normal;
+          font-size: rpx2(16);
+        }
+      }
+    }
+  }
+
+  .active-title2 {
+    font-size: rpx2(16);
+    font-weight: bold;
+    background: white;
+    padding: 0 0 0 rpx2(10);
+
+    .text {
+      height: rpx2(44);
+      line-height: rpx2(44);
+      border-bottom: 1px solid $white-smoke;
+    }
+  }
+
+  .goods-item-wrap {
+    padding: rpx2(15) 0 0;
+  }
+
+  .l {
+    height: 100%;
+    width: rpx2(375);
+    display: flex;
+    flex-direction: row;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .r {
+    width: rpx2(75);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    color: #fff;
+  }
+
+  .left-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 0 0 rpx2(10);
+
+    .checkbox-icon {
+      font-size: rpx2(18);
+      margin-right: rpx2(10);
+      color: $gray-light;
+
+      &.icon-checkbox-checked {
+        color: $checkbox-primary-color;
+      }
+
+      &.icon-checkbox-disabled {
+        color: $gray-light;
+      }
+    }
+
+    .goods-info {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+
+      .goods-image {
+        margin-right: rpx2(10);
+        width: rpx2(90);
+        height: rpx2(90);
+        border-radius: rpx2(4);
+        position: relative;
+      }
+
+      .right-content {
+        flex: 1;
+        //display:flex;
+        //flex-direction:column;
+        //justify-content:space-around;
+
+        .title {
+          margin: rpx2(5) 0 rpx2(8);
+          font-size: rpx2(14);
+          @include ellipsis2()
+        }
+
+        .spec {
+          box-sizing: border-box;
+          height: rpx2(18);
+          padding: 0 rpx2(5);
+          color: $text-secondary;
+          background-color: $white-smoke;
+          border-radius: rpx2(3);
+        }
+
+        .ui-price-wrap {
+          flex: 1;
+          color: $text-primary;
+          font-weight: 600;
+        }
+
+        .input-number-wrap {
+          height: rpx2(30);
+          line-height: rpx2(30);
+        }
+
+        .input-number-plus,
+        .input-number-minus {
+          width: rpx2(18);
+          height: rpx2(18);
+        }
+
+        .input-number-input {
+          width: rpx2(40);
+        }
+
+        .bottom {
+          padding-top: rpx2(5);
+        }
+      }
+    }
+
+    &.disabled-slide {
+      .cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 6;
+        width: 100%;
+        height: 100%;
+        background: rgba(#ffffff, .4);
+      }
+
+      .goods-info .spec {
+        background: none;
+      }
+    }
+  }
+
+  .empty {
+    padding: rpx2(80) 0 0 0;
+    text-align: center;
+    font-size: rpx2(17);
+    color: $text-secondary;
+
+    .cart-wrap {
+      display: inline-block;
+      width: rpx2(155);
+      height: rpx2(155);
+      line-height: rpx2(155);
+      font-size: rpx2(90);
+      color: $white-smoke;
+      background: #e6e6e6;
+      margin-bottom: rpx2(30);
+      border-radius: 100%;
+    }
+  }
+
+  .fixed-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: rpx2(50);
+    background: white;
+    display: flex;
+    border-top: 1px solid #ddd;
+
+    .left {
+      flex: 1;
+      padding: 0 rpx2(10);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .select {
+        display: flex;
+        align-items: center;
+      }
+
+      .checkbox-icon {
+        font-size: rpx2(18);
+        margin-right: rpx2(5);
+        color: $text-info;
+
+        &.icon-checkbox-checked {
+          color: $checkbox-primary-color;
+        }
+      }
+
+      .amounts {
+        text-align: right;
+        font-size: rpx2(10);
+        color: $text-secondary;
+
+        .top {
+          color: $text-primary;
+          font-size: rpx2(16);
+          font-weight: bold;
+
+          .price {
+            color: $text-price;
+          }
+        }
+      }
+    }
+
+    .right {
+      background: $red;
+      font-size: rpx2(16);
+      color: white;
+      font-weight: 600;
+      width: rpx2(110);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.disabled {
+        background: #CCC;
+      }
+    }
+  }
+
+}
+
+.cx {
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+
+  .cx-title {
+    font-size: 12px;
+    color: $text-primary;
+    font-weight: bold;
+  }
+
+  .cx-desc {
+    font-size: 12px;
+    color: $text-secondary;
+    margin-left: 10px;
+  }
+}
+
+.gifts-wrap {
+  border-radius: rpx2(8) rpx2(8) 0 0;
+  overflow: hidden;
+  background: #ffffff;
+
+  .gifts {
+    min-height: 400px;
+    padding: 0 10px;
+    position: relative;
+  }
+
+  .gifts-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 14px;
+    background: #fff8f2;
+    border-radius: 7px;
+    font-size: 10px;
+    line-height: 10px;
+    color: $primary;
+    @include ellipsis1();
+  }
+
+  .desc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .gifts-item-text {
+    width: 286px;
+    @include ellipsis1();
+  }
+
+  .gifts-item-icon {
+    margin-left: 6px;
+  }
+
+  .header {
+    height: rpx2(42);
+    line-height: rpx2(42);
+    text-align: center;
+    background: white;
+    font-size: rpx2(16);
+  }
+
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 14px;
+  }
+}

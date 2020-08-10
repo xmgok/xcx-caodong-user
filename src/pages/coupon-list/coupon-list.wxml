@@ -1,0 +1,17 @@
+<view class="page-coupon-list">
+  <view class="g-tab g-tab_style2" wx:if="{{showTab}}">
+    <view
+      class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}"
+      wx:for="{{tabList}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="switchTab"
+      wx:if="{{item}}">
+      <view class="g-tab-item-text">{{item}}</view>
+    </view>
+  </view>
+  <block wx:if="{{dataList.length}}">
+    <component-coupon-item wx:for="{{dataList}}" wx:key="index" item="{{item}}" btnType="use"></component-coupon-item>
+  </block>
+  <list-loading-more result="{{result}}"></list-loading-more>
+</view>

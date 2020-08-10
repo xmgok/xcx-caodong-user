@@ -1,0 +1,28 @@
+<view class="page-message-list">
+  <view class="list-warp mb20">
+    <view wx:for="{{dataList}}" wx:key="index">
+      <view class="list" bindtap="goDatail" data-subType="{{item.subType}}" data-type="{{item.type}}" data-id="{{item.id}}"  data-status="{{item.status}}">
+        <view class="icons-warp">
+          <view class="icon {{ messageIcons[item.type]}}"></view>
+        </view>
+        <view class="hr">
+          <view class="hr-l">
+            <view class="account">{{ messageTxt[item.type]}}</view>
+            <view class="hr-r" data-id="{{item.id}}"  data-status="{{item.status}}">
+              <view class="time">{{item.sendTime}}</view>
+              <!-- status 0未读 1已读 -->
+              <view class="point" wx:if="{{item.status == 0}}"></view>
+            </view>
+          </view>
+          <view class="dynamic">{{item.content.content}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{ dataList.length <= 0 }}" class="empty">
+  <view class="icons">
+    <view class="icon icon-empty-xiaoxi"></view>
+  </view>
+  <view class="txt">暂时没有消息哦~</view>
+</view>

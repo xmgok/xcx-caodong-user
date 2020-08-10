@@ -1,0 +1,175 @@
+<view class="page-order-list">
+  <view class="g-tab g-tab_style2" wx:if="{{showTab}}">
+    <view
+      class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}"
+      wx:for="{{tabList}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="switchTab">
+      <view class="g-tab-item-text">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="list-wrap">
+    <view
+      bindtap="goDetail"
+      wx:if="{{tabIndex != 5}}"
+      class="goods-item"
+      data-index="{{ index }}"
+      data-url="{{ item.redirectUrl }}"
+      hover-class="none"
+      wx:for="{{listData}}"
+      wx:key="index">
+      <view class="status-wrap">
+        <view class="order-num">
+          <text>订单编号：</text>
+          <text selectable>{{item.orderCode}}</text>
+        </view>
+        <view class="status-text">{{item._orderStatus}}</view>
+      </view>
+
+      <view class="goods-info-wrap" wx:for="{{item.productList}}" wx:for-item="value" wx:for-index="keys"
+            wx:key="keys">
+        <image lazy-load class="img" mode="aspectFill" src="{{value.productImg}}"></image>
+        <view class="text-wrap">
+          <view class="title">{{value.productName}}</view>
+          <block wx:if="{{item.orderType==4}}">
+            <view class="tags">
+              <component-mark type="video"></component-mark>
+            </view>
+          </block>
+          <block wx:if="{{item.orderType==3}}">
+            <view class="tags">
+              <component-mark type="group"></component-mark>
+            </view>
+          </block>
+          <block wx:else>
+            <text class="gift coupon5" wx:if="{{value.isGift==2}}">兑换</text>
+            <text class="gift" wx:elif="{{value.isGift==1}}">赠品</text>
+            <view class="tags" wx:else>
+              <view class="tag tag1" wx:if="{{ item.orderStatus == 7 }}">自提</view>
+              <view class="tag tag2" wx:if="{{ item.orderStatus == 8 }}">拼团</view>
+              <view class="tag tag3" wx:if="{{ item.orderStatus == 9 }}">接龙</view>
+            </view>
+          </block>
+
+          <view class="info">
+            <view class="price">￥{{item.isGift? 0 : value.productPrice}}</view>
+            <view class="num g-flex g-flex-between">
+              <view>x{{item.isGift? 1 : value.productNum}}</view>
+              <view wx:if="{{value.statusDesc}}" class="info-return">{{value.statusDesc}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="goods-all-price">
+        <view>共{{item.productNum}}件商品 总计:</view>
+        <view style="font-weight: bold;">￥</view>
+        <view class="big">{{item._price_big}}</view>
+        <view style="font-weight: bold;">.{{item._price_small}}</view>
+      </view>
+
+      <!--orderStatus: 1待付款 2待发货 3已发货 4已完成 5已取消 6已关闭-->
+      <!--returnStatus: 0未申请 1申请中 2已完成-->
+      <!--非提成订单-->
+      <block wx:if="{{type != 'extract'}}">
+        <view
+          class="btn-wrap"
+          wx:if="{{item.expressStatus === 1 || item.orderStatus == 1 || (item.returnStatus !== 1 && item.orderStatus == 3)}}"
+        >
+          <navigator
+            wx:if="{{item._isShowGoComment}}"
+            url="/pages-subpackages/comment/pages/comment-order-goods/comment-order-goods?orderCode={{item.orderCode}}"
+            hover-class="none"
+            class="ui-btn-plain danger" catchtap>去评价
+          </navigator>
+          <view
+            class="btn-item btn-item2"
+            wx:if="{{item.expressStatus === 1 && item.isTake != 1}}"
+            catchtap="goLogistics"
+            data-order-code="{{item.orderCode}}">查看物流
+          </view>
+          <view
+            class="btn-item"
+            wx:if="{{item.orderStatus == 1}}"
+            catchtap="goPayment"
+            data-order-type="{{item.orderType}}"
+            data-order-code="{{item.orderCode}}">确认付款
+          </view>
+          <view
+            class="btn-item"
+            wx:if="{{item.returnStatus != 1 && item.orderStatus == 3 && item.expressStatus == 1}}"
+            catchtap="goCollect"
+            data-order-code="{{item.orderCode}}">确认收货
+          </view>
+          <!-- <block wx:if="{{item.returnStatus !== 1 && (item.orderStatus === 2 || item.orderStatus === 3)}}">
+            <navigator
+              class="btn-item"
+              catchtap="goAfterSalesApply"
+              data-order-code="{{item.orderCode}}"
+              data-amount="{{item.orderAmount}}"
+              data-express-status="{{item.expressStatus}}"
+              hover-class="none">申请售后
+            </navigator>
+          </block> -->
+        </view>
+      </block>
+      <!--提成订单-客户订单-->
+      <block wx:else>
+        <view class="btn-wrap" wx:if="{{item.isDeliver}}">
+          <view
+            catchtap="goSend"
+            data-url="/pages-subpackages/common/pages/send-goods/index?id={{item.orderCode}}"
+            class="btn-item">
+            发货
+          </view>
+        </view>
+      </block>
+    </view>
+    <navigator
+      wx:if="{{tabIndex == 5}}"
+      class="goods-item goods-item--after-sale"
+      url="{{ item.redirectUrl }}"
+      hover-class="none"
+      wx:for="{{listData}}"
+      wx:key="index">
+      <view class="status-wrap">
+        <view class="order-num">售后单号：{{item.returnCode}}</view>
+        <view class="status-text">
+          <text class="my-icon icon icon-{{ item.type === 1 ? 'refund' : 'return' }}"></text>
+          <text>{{ item.type === 1 ? '退款' : '退货退款' }}</text>
+        </view>
+      </view>
+
+      <view class="goods-info-wrap">
+        <image lazy-load class="img" mode="aspectFill" src="{{item.imgUrl}}"></image>
+        <view class="text-wrap">
+          <view class="title">{{item.productName}}</view>
+          <!--<view class="tags">
+            <view class="tag tag1" wx:if="{{ item.orderStatus == 7 }}">自提</view>
+            <view class="tag tag2" wx:if="{{ item.orderStatus == 8 }}">拼团</view>
+            <view class="tag tag3" wx:if="{{ item.orderStatus == 9 }}">接龙</view>
+          </view>-->
+          <view class="spec">{{item.specContent}} x{{item.returnNumber}}</view>
+          <view class="money">退款：{{item.realAmount}}</view>
+        </view>
+      </view>
+      <view class="after-status">
+        <view class="after-status__left">{{item.checkStatusDesc}}</view>
+        <view class="after-status__right">
+          <text>{{item.currentStatusDesc}}</text>
+          <!--<text class="after-status__highlight">2天15时36分</text>-->
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="no-data" wx:if="{{getEnd}}">
+    <view class="icon-wrap" wx:if="{{listData.length <= 0}}">
+      <text class="icon icon-order"></text>
+    </view>
+    <component-loading text="{{listData.length > 0 ? '已经到底啦' : '暂时没有相关订单哦~'}}"></component-loading>
+  </view>
+  <component-loading wx:else></component-loading>
+
+</view>

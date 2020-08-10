@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "客户信息",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "jz-popup": "/components/popup/popup"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "自提核销",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

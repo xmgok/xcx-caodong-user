@@ -1,0 +1,51 @@
+<view class="page-coupon-list">
+  <component-coupon-item item="{{resData}}" hasBtn="{{false}}"></component-coupon-item>
+
+  <view class="content">
+    <view class="h2">使用说明</view>
+    <view class="h3">
+      <view class="big">适用范围</view>
+      <view class="small">仅限{{brandName}}使用</view>
+    </view>
+    <view class="h3">
+      <view class="big">有效期</view>
+      <view class="small">{{resData.beginTime}} - {{resData.endTime}}</view>
+      <!--<view class="small" wx:if="{{ resData.useTime === 1 }}">{{resData.beginTime}} - {{resData.endTime}}</view>
+      <view class="small" wx:if="{{ resData.useTime === 2 }}">领取后{{resData.laterDay}}日内有效</view>-->
+    </view>
+    <view class="h3" wx:if="{{resData.couponCode}}">
+      <view class="big">优惠券码</view>
+      <view class="small">
+        <text selectable>{{resData.couponCode}}</text>
+      </view>
+    </view>
+    <navigator url="/pages/coupon-goods/coupon-goods?id={{resData.id}}&type={{resData.activeGoods}}" hover-class="none" class="h3">
+      <view class="big">适用商品</view>
+      <view class="small g-flex g-flex-between">
+        <view>{{resData.activeGoods==1?'全部商品可用':'部分商品可用'}}</view>
+        <view class="g-flex g-flex-between">
+          <view>查看商品</view>
+          <view class="icon icon-angle-right ml5"></view>
+        </view>
+      </view>
+    </navigator>
+    <view class="h3" wx:if="{{resData.explain}}">
+      <view class="big">使用规则</view>
+      <rich-text class="small" nodes="{{resData.explain}}"></rich-text>
+    </view>
+  </view>
+  <!--<navigator open-type="switchTab" url="/pages/index/index" hover-class="none"
+             class="g-go-home {{iPhoneX?'active':''}}">
+    <view class="g-go-home-icon icon icon-home"></view>
+  </navigator>-->
+  <view class="g-btn {{iPhoneX?'iPhoneXb':''}} {{resData.useType!=1?'inactive':''}}" data-id="{{resData.id}}" data-type="{{resData.activeGoods}}"
+        bindtap="goToUse">
+    {{resData.useType==1?'去使用':''}}
+    {{resData.useType==2?'已使用':''}}
+    {{resData.useType==3?'已过期':''}}
+  </view>
+</view>
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

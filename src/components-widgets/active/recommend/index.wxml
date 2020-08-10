@@ -1,0 +1,20 @@
+<view class="recommend" wx:if="{{recommendList.length}}">
+  <view class="head">- 猜你喜欢 -</view>
+  <block wx:if="{{recommendList.length}}">
+    <view class="list-wrap">
+      <navigator url="/pages/product/product?id={{item.id}}" hover-class="none" class="item" wx:for="{{recommendList}}" wx:key="index">
+        <view class="img">
+          <image class="img-url" lazy-load src="{{item.imgUrl}}" mode="aspectFill" />
+        </view>
+        <view class="title">{{item.name}}</view>
+        <view class="bottom">
+          <view class="price">￥{{item.price}}</view>
+          <view class="num">{{item.sellTotal}}人已买</view>
+        </view>
+        <component-mark2 isVip="{{item.isVip}}"/>
+      </navigator>
+    </view>
+  </block>
+  <look-more wx:if="{{totalCount>10}}" link="/pages/search/search?sort=1"/>
+  <!--<view class="no-data-now" wx:else>~ 暂无数据 ~</view>-->
+</view>

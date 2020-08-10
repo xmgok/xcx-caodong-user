@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="list">
+    <navigator url="/pages/article-detail/index?id={{item.id}}" hover-class="none" class="item" wx:for="{{dataList}}"
+               wx:key="index">
+      <image lazy-load class="img" mode="aspectFill"
+             src="{{item.shareImg}}"></image>
+      <view class="ctx">
+        <view class="title">{{item.title}}</view>
+        <view class="transfer">
+          <view class="text">{{item.number}}人转发</view>
+          <view class="my-icon icon icon-zhuanfa1" data-item="{{item}}" catchtap="onShareCoupons"></view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<list-loading-more result="{{result}}"></list-loading-more>
+
+<!--分享海报-->
+<component-share
+  bindclose="close"
+  wx:if="{{showShareCoupons}}"
+  show="{{showShareCoupons}}"
+  activeType="other"
+  otherText="文章"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved" />

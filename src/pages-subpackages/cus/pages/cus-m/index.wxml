@@ -1,0 +1,328 @@
+<view class="container">
+  <view class="header">
+    <view class="search-wrap">
+      <jz-search
+        clearable
+        value="{{ keyword }}"
+        placeholder-style="color:#96989c"
+        placeholder="搜索客户昵称"
+        bindconfirm="handleSearchConfirm"
+        class="search-input">
+      </jz-search>
+      <view class="btn-filter" bindtap="openFilterPopup">
+        筛选 <text class="icon icon-filter"></text>
+      </view>
+    </view>
+
+    <view class="btn-wrap">
+      <view
+        class="btn-type {{ (!simpleFilterActive.payStatus && !simpleFilterActive.isVip) ? 'active': '' }}"
+        bindtap="selectAll">全部</view>
+      <picker
+        range="{{ payStatusList }}"
+        value="{{ payStatusIdx }}"
+        range-key="label"
+        data-field="payStatus"
+        bindchange="bindPickerChange">
+        <view class="btn-type  {{ simpleFilterActive.payStatus ? 'active': '' }}">
+          {{ payStatusList[payStatusIdx].label || payStatusList[0].label }}
+          <text class="icon icon-arrow-down"></text>
+        </view>
+      </picker>
+      <picker
+        range="{{ isVipList }}"
+        value="{{ isVipIdx }}"
+        range-key="label"
+        data-field="isVip"
+        bindchange="bindPickerChange">
+        <view class="btn-type  {{ simpleFilterActive.isVip ? 'active': '' }}">
+          {{ isVipList[isVipIdx].label || isVipList[0].label }}
+          <text class="icon icon-arrow-down"></text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="filter-wrap">
+      <view
+        wx:for="{{ sortList }}"
+        wx:key="index"
+        bindtap="sortChange"
+        data-index="{{ index }}"
+        class="btn-filter">
+        {{ item.label }}
+        <text class="icon icon-paixu1 {{ item.sortType === 2 ? 'active': '' }}"></text>
+        <text class="icon icon-paixu2 {{ item.sortType === 1 ? 'active': '' }}"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="main-content">
+    <navigator
+      url="/pages-subpackages/cus/pages/cus-m-detail/index?userId={{ item.id }}"
+      class="customer-item"
+      wx:for="{{ listData }}"
+      wx:key="index"
+      hover-class="none">
+      <image class="avatar" src="{{ item.headUrl }}" mode="aspectFill" />
+      <view class="right-content">
+        <view class="title-wrap">
+          <view class="title-left">
+            <view class="nickname">{{ item.name || '--' }}</view>
+            <view wx:if="{{ item.gender === 1 }}" class="g-sex-icon man icon icon-nan"></view>
+            <view wx:elif="{{ item.gender === 2 }}" class="g-sex-icon icon icon-nv"></view>
+            <block wx:if="{{ item.activation >= 11 && item.activation <= 30 }}">
+              <image class="fire1" src="https://qiniu.icaodong.com/xcx/common/cus-m-fire0.png?v=1.0.0" mode="aspectFill"/>
+            </block>
+            <block wx:if="{{ item.activation >= 31 && item.activation <= 40 }}">
+              <image class="fire2" src="https://qiniu.icaodong.com/xcx/common/cus-m-fire1.png?v=1.0.0" mode="aspectFill"/>
+            </block>
+            <view class="user-tag" wx:if="{{ item.forwardNumber > 0 }}">热心客户</view>
+          </view>
+          <text class="time">{{ item.lastTimeFormat || '' }}</text>
+        </view>
+
+        <scroll-view
+          scroll-x
+          wx:if="{{ item.labels.length }}"
+          class="tag-list">
+          <view
+            wx:for="{{ item.labels }}"
+            wx:key="index"
+            class="tag-item">
+            {{ item }}
+          </view>
+        </scroll-view>
+        <view wx:else class="tag-list">
+          <view class="tag-item disabled">暂无标签</view>
+        </view>
+
+        <div class="statistic-row">
+          <view class="stat-col">
+            <view class="count">{{ item.productNumber || 0 }}</view>
+            <view class="title">浏览商品(件)</view>
+          </view>
+          <view class="stat-col">
+            <view class="count">{{ item.browseTime || 0 }}</view>
+            <view class="title">浏览时长</view>
+          </view>
+          <view class="stat-col">
+            <view class="count">{{ item.browseCount || 0 }}</view>
+            <view class="title">浏览次数</view>
+          </view>
+        </div>
+      </view>
+    </navigator>
+
+    <view class="no-data" wx:if="{{getEnd}}">
+      <view class="icon-wrap" wx:if="{{listData.length <= 0}}">
+        <text class="icon icon-yaoqingkehu"></text>
+      </view>
+      <component-loading text="{{listData.length > 0 ? '已经到底啦' : '暂时没有客户哦~'}}"></component-loading>
+    </view>
+    <component-loading wx:else></component-loading>
+  </view>
+</view>
+
+
+<jz-popup
+  show="{{ showFilterPopup }}"
+  position="right"
+  bind:close="onPopupClose"
+  custom-class="filter-popup">
+  <scroll-view scroll-y="{{ true }}" class="filter-popup-container">
+    <view class="filter-popup-main">
+      <view class="filter-block">
+        <view class="filter-label">最近登录</view>
+        <view class="btn-filter-wrap">
+          <view class="space-between mb15">
+            <view
+              wx:for="{{ lastLoginList }}"
+              wx:key="index"
+              class="btn-filter {{ form.lastLogin === item.value ? 'active': '' }}"
+              bindtap="checkFilter"
+              data-field="lastLogin"
+              data-value="{{ item.value }}">{{ item.label }}</view>
+          </view>
+          <view class="space-between mb15">
+            <picker
+              mode="date"
+              bindchange="bindDateChange"
+              data-field="loginStartTime">
+              <view class="btn-filter {{ form.loginStartTime ? 'date-select': 'date' }}">{{ form.loginStartTime || '开始时间' }}</view>
+            </picker>
+            <view class="h-split"> - </view>
+            <picker
+              mode="date"
+              bindchange="bindDateChange"
+              data-field="loginEndTime">
+              <view class="btn-filter {{ form.loginEndTime ? 'date-select': 'date' }}">{{ form.loginEndTime || '结束时间' }}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="filter-block">
+        <view class="filter-label">最近下单</view>
+        <view class="btn-filter-wrap">
+          <view class="space-between mb15">
+            <view
+              wx:for="{{ lastOrderList }}"
+              wx:key="index"
+              class="btn-filter {{ form.lastOrder === item.value ? 'active': '' }}"
+              bindtap="checkFilter"
+              data-field="lastOrder"
+              data-value="{{ item.value }}">{{ item.label }}</view>
+          </view>
+          <view class="space-between mb15">
+            <picker
+              mode="date"
+              bindchange="bindDateChange"
+              data-field="orderStartTime">
+              <view class="btn-filter {{ form.orderStartTime ? 'date-select': 'date' }}">{{ form.orderStartTime || '开始时间' }}</view>
+            </picker>
+            <view class="h-split"> - </view>
+            <picker
+              mode="date"
+              bindchange="bindDateChange"
+              data-field="orderEndTime">
+              <view class="btn-filter {{ form.orderEndTime ? 'date-select': 'date' }}">{{ form.orderEndTime || '结束时间' }}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="filter-block">
+        <view class="filter-label">浏览时长</view>
+        <view class="btn-filter-wrap">
+          <view class="space-between mb15">
+            <view
+              wx:for="{{ browseTimeList }}"
+              wx:key="index"
+              class="btn-filter {{ form.browseTime === item.value ? 'active': '' }}"
+              bindtap="checkFilter"
+              data-field="browseTime"
+              data-value="{{ item.value }}">{{ item.label }}</view>
+          </view>
+          <view class="space-between mb15">
+            <input
+              type="number"
+              value="{{ form.browseTimeStart }}"
+              placeholder="几分钟"
+              placeholder-class="placeholder"
+              bindinput="bindInput"
+              data-name="browseTimeStart"
+              class="btn-filter input {{ form.browseTimeStart ? 'active': '' }}" />
+            <view class="h-split"> - </view>
+            <input
+              type="number"
+              value="{{ form.browseTimeEnd }}"
+              placeholder="几分钟"
+              placeholder-class="placeholder"
+              bindinput="bindInput"
+              data-name="browseTimeEnd"
+              class="btn-filter input {{ form.browseTimeEnd ? 'active': '' }}" />
+          </view>
+        </view>
+      </view>
+
+      <view class="filter-block">
+        <view class="filter-label">浏览次数</view>
+        <view class="btn-filter-wrap">
+          <view class="space-between mb15">
+            <view
+              wx:for="{{ browseCountList }}"
+              wx:key="index"
+              class="btn-filter {{ form.browseCount === item.value ? 'active': '' }}"
+              bindtap="checkFilter"
+              data-field="browseCount"
+              data-value="{{ item.value }}">{{ item.label }}</view>
+          </view>
+          <view class="space-between mb15">
+            <input
+              type="number"
+              value="{{ form.browseCountStart }}"
+              placeholder="几次"
+              placeholder-class="placeholder"
+              bindinput="bindInput"
+              data-name="browseCountStart"
+              class="btn-filter input {{ form.browseCountStart ? 'active': '' }}" />
+            <view class="h-split"> - </view>
+            <input
+              type="number"
+              value="{{ form.browseCountEnd }}"
+              placeholder="几次"
+              placeholder-class="placeholder"
+              bindinput="bindInput"
+              data-name="browseCountEnd"
+              class="btn-filter input {{ form.browseCountEnd ? 'active': '' }}" />
+          </view>
+        </view>
+      </view>
+
+      <view class="filter-block">
+        <view class="filter-label">会员</view>
+        <view class="btn-filter-wrap mb15">
+          <view
+            wx:for="{{ isVipList }}"
+            wx:key="index"
+            class="btn-filter mr15 {{ form.isVip === item.value ? 'active': '' }}"
+            bindtap="checkFilter"
+            data-field="isVip"
+            data-value="{{ item.value }}">{{ item.label }}</view>
+        </view>
+      </view>
+
+      <view class="filter-block">
+        <view class="filter-label">客户生日</view>
+        <view class="btn-filter-wrap mb15">
+          <view
+            wx:for="{{ birthdayList }}"
+            wx:key="index"
+            class="btn-filter mr15 {{ form.birthday === item.value ? 'active': '' }}"
+            bindtap="checkFilter"
+            data-field="birthday"
+            data-value="{{ item.value }}">{{ item.label }}</view>
+        </view>
+      </view>
+
+      <view class="filter-block">
+        <view class="filter-label">
+          客户标签
+          <text class="icon {{ isLabelCollapse ? 'icon-angle-up': 'icon-angle-down' }}" bindtap="labelCollapse"></text>
+        </view>
+        <view class="btn-filter-wrap" wx:if="{{ !isLabelCollapse }}">
+          <view
+            wx:for="{{ tagListChunked }}"
+            wx:key="index"
+            class="{{ item.length === 3 ? 'space-between': '' }} mb15">
+            <view
+              wx:for="{{ item }}"
+              wx:key="index"
+              wx:for-item="subItem"
+              wx:for-index="subIdx"
+              class="btn-filter {{ subItem.active ? 'active': '' }} {{ item.length < 3 ? 'mr15': '' }}"
+              bindtap="checkTag"
+              data-index="{{ index }}"
+              data-sub-index="{{ subIdx }}"
+              data-value="{{ subItem.id }}">{{ subItem.name }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--<view class="filter-popup-footer">
+      <view class="btn btn-reset" bindtap="reset">重置</view>
+      <view class="btn btn-submit" bindtap="submit">确定</view>
+    </view>-->
+
+    <view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>
+  </scroll-view>
+</jz-popup>
+
+<view
+  class="filter-popup-footer {{iPhoneX ? 'iPhoneXpb' : ''}}"
+  style="animation-name: footer-right-{{ showFilterPopup ? 'enter': 'leave' }}"
+  wx:if="{{ showFilterPopup }}">
+  <view class="btn btn-reset" bindtap="reset">重置</view>
+  <view class="btn btn-submit" bindtap="submit">确定</view>
+</view>

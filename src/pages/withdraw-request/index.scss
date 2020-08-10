@@ -1,0 +1,104 @@
+@import "../../styles/config";
+
+.header {
+  background: #fbfbfb;
+  border-radius: 2px 2px 0 0;
+  margin: 24px 10px 0;
+  box-sizing: border-box;
+  padding: 20px;
+  font-size: 14px;
+  color: $text-primary;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .width-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .width {
+    width: 200px;
+    padding-left: 30px;
+    box-sizing: border-box;
+    margin-right: 10px;
+  }
+}
+
+.black {
+  font-size: 14px;
+  font-weight: 400;
+  color: $text-primary;
+  margin-bottom: 10px;
+}
+
+.content {
+  background: #ffffff;
+  padding: 20px;
+  margin: 0 10px 20px 10px;
+}
+
+.money {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+
+  ._symbol {
+    width: 22px;
+    height: 67px;
+    font-size: 36px;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 67px;
+    margin-right: 16px;
+  }
+
+  ._big {
+    flex: 1;
+    width: 100px;
+    height: 67px;
+    font-size: 48px;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 67px;
+  }
+}
+
+.g-btn_reset {
+  margin-top: 30px;
+  width: 278px;
+  height: 48px;
+  background: rgba(11, 192, 98, 1);
+  border-radius: 4px;
+}
+
+.valid-msg {
+  color: $text-secondary;
+  font-size: 12px;
+  margin-bottom: 5px;
+
+  &.error {
+    color: $red;
+  }
+}
+
+.grey {
+  color: $text-secondary;
+}
+
+.blue {
+  color: #4c62a2;
+}
+
+.balance-detail {
+  text-align: center;
+  color: #4c62a2;
+}
+
+.get-all {
+  justify-content: space-between;
+  line-height: 24px;
+  font-size: 13px;
+}

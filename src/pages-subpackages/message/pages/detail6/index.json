@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "账户变动",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

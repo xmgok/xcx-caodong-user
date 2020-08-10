@@ -1,0 +1,51 @@
+<!--
+beginTime (string, optional): 开始时间 ,
+endTime (string, optional): 结束时间 ,
+id (integer, optional): 任务id ,
+isClose (integer, optional): 是否关闭 0否 1是 ,
+name (string, optional): 任务名称 ,
+reward (integer, optional): 奖励金币数 ,
+status (integer, optional): 任务状态 1未开始 2进行中 3已结束 ,
+statusDesc (string, optional): 任务状态描述 ,
+step (integer, optional): 当前进度 ,
+stepNumber (integer, optional): 目标进度 ,
+storeType (integer, optional): 0总部 1分公司 2门店 ,
+type (integer, optional): 任务类型 1吸粉 2转发 3业绩
+-->
+<view class="page">
+  <!--任务已完成 complete-->
+  <view class="new-list-wrap">
+    <view class="new-list {{item.step==item.stepNumber?'complete':''}} {{item.status!=2?'inactive':''}}"
+          wx:for="{{dataList}}" wx:key="index">
+      <image class="head" lazy-load mode="aspectFill" src="{{item._logoUrl}}"></image>
+      <view class="right">
+        <view class="content">
+          <view class="title">{{item.name}}</view>
+          <view class="time">
+            {{item.beginTime}}
+            至
+            {{item.endTime}}
+          </view>
+        </view>
+        <view class="foot">
+          <view data-item="{{item}}"
+                bindtap="goTaskDetail"
+                class="g-btn">
+            {{item._statusDesc}}
+          </view>
+          <view wx:if="{{item.status==2}}">
+            <text>已完成</text>
+            <block wx:if="{{item.type==3}}">
+              <text class="text-danger">{{item._scale}}%</text>
+            </block>
+            <block wx:else>
+              <text class="text-danger">{{item.step}}</text>
+              <text>/{{item.stepNumber}}</text>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <list-loading-more result="{{result}}"></list-loading-more>
+</view>

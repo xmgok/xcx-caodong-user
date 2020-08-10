@@ -1,0 +1,68 @@
+{
+  "name": "wx-community",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/app.js",
+  "scripts": {
+    "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s",
+    "dev": "npm run variables && gulp dev",
+    "build": "gulp build",
+    "es-lint": "gulp es-lint",
+    "title": "node build/create.title.json.js",
+    "variables": "node build/create.variables.js",
+    "create-page": "create-wxapp-page --dir=src --json --indent=2 --style=scss --name",
+    "create-component": "create-wxapp-page --dir=src --json --indent=2 --style=scss --type component --name",
+    "generate-iconfont": "npx iconfont-wechat"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "commitizen": "^4.0.3",
+    "conventional-changelog-cli": "^2.0.31",
+    "create-wxapp-page": "^2.0.9",
+    "del": "^2.2.2",
+    "eslint": "^5.7.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "git-cz": "^3.2.1",
+    "gulp": "^4.0.0",
+    "gulp-batch-replace": "^0.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-imagemin": "^6.1.0",
+    "gulp-json-minify": "^1.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-px2rpx": "^0.2.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
+    "mini-program-iconfont-cli": "^0.3.4",
+    "sass-export": "git://github.com/zhouhuafei-team/sass-export.git#master",
+    "uglify-es": "^3.3.9"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js, !src/components/iconfont/*.js": [
+      "eslint --fix src/**/*.js",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
+  "dependencies": {
+    "miniprogram-slide-view": "0.0.4"
+  }
+}

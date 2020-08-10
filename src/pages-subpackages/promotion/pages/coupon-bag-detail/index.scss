@@ -1,0 +1,159 @@
+@import "../../../../styles/mixin";
+
+page {
+  height: auto;
+  padding-bottom: 60px;
+  background: $white-smoke;
+}
+
+.header {
+  height: 200px;
+  background: url("https://qiniu.icaodong.com/xcx/common/coupon-bag-bg.png") center center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+
+  &__subtitle {
+    margin: 23px auto 14px;
+    text-align: center;
+    width: 168px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    border-radius: 100px;
+    border: 1px solid #fff;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+.item-wrap {
+  margin-top: -50px;
+}
+
+.btn-wrap {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #ffffff;
+}
+
+.dialog-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .dialog {
+    position: relative;
+    z-index: 2;
+    width: 311px;
+    height: 212px;
+
+    .success1 {
+      width: 284px;
+      height: 155px;
+      position: absolute;
+      top: -91px;
+      left: 14px;
+      z-index: 1;
+    }
+
+    .success2 {
+      width: 186px;
+      height: 129px;
+      position: absolute;
+      top: -65px;
+      left: 63px;
+      z-index: 3;
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 16px;
+      box-sizing: border-box;
+      text-align: center;
+
+      .title {
+        height: 28px;
+        line-height: 28px;
+        font-size: 20px;
+        color: rgba(39, 38, 54, 1);
+        padding-top: 58px;
+      }
+
+      .sub-title {
+        font-size: 15px;
+        color: $text-secondary;
+        margin-top: 10px;
+      }
+
+      .content-btn-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+
+        .wh{
+          width: 122px;
+          height: 45px;
+        }
+
+        .btn-left {
+          @extend .wh;
+        }
+
+        .btn-right {
+          @extend .wh;
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .close-wrap {
+      position: absolute;
+      bottom: -64px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: rpx2(34);
+      height: rpx2(34);
+      text-align: center;
+      line-height: rpx2(34);
+      margin: 10px auto 0;
+      color: white;
+      border: rpx2(2) solid white;
+      border-radius: 100%;
+      font-size: rpx2(16);
+      font-weight: bold;
+    }
+  }
+}

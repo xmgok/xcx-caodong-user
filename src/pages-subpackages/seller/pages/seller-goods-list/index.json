@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "推广返佣",
+  "usingComponents": {
+    "component-share": "/components/share/share",
+    "jz-search": "/components/search/search",
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

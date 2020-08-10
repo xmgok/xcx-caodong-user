@@ -1,0 +1,30 @@
+<view class="page-customer-list">
+  <view class="fixed-top">
+    <view class="search-wrap">
+      <text class="icon icon-search"></text>
+      <input placeholder-style="color:#96989C" placeholder="搜索客户昵称或关键字" confirm-type="search" bindconfirm="bindKeyInputConfirm" />
+    </view>
+  </view>
+
+  <view class="fixed-bottom">
+    <navigator class="add-customer" url="/pages/address-add/address-add?type=customer" hover-class="none">新增客户地址</navigator>
+  </view>
+
+  <view class="total-num">共 {{listData.length}} 个客户地址</view>
+
+  <view class="list-wrap">
+    <navigator class="item" url="/pages/address-add/address-add?id={{item.id}}&type=customer" wx:for="{{listData}}" wx:key="index" hover-class="none">
+      <view class="name">{{item.name}} {{item.phone}}</view>
+      <view class="addr">{{item.province}}{{item.city}}{{item.area}} {{item.address}}</view>
+    </navigator>
+  </view>
+
+  <view class="no-data" wx:if="{{getEnd}}">
+    <view class="icon-wrap" wx:if="{{listData.length <= 0}}">
+      <text class="icon icon-empty_kehu"></text>
+    </view>
+    <component-loading text="{{listData.length > 0 ? '已经到底啦' : '暂时没有客户哦~'}}"></component-loading>
+  </view>
+  <component-loading wx:else></component-loading>
+
+</view>

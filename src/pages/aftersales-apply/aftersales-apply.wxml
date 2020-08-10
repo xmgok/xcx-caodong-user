@@ -1,0 +1,114 @@
+<view class="page-aftersales-apply">
+  <view class="comment-goods">
+    <image mode="aspectFill" src="{{resData.imgUrl}}" class="left"></image>
+    <view class="right">
+      <view class="title">{{resData.productName}}</view>
+      <view class="spec">
+        <text>{{resData.specContent}}</text>
+        <text>x{{resData.number}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="header" bindtap="openTypePicker">
+    <block wx:if="{{ type == 1 }}">
+      <text class="icon icon-refund"></text>
+      <view class="content">
+        <view class="title">退款</view>
+        <view class="sub-title">未收到货，或与卖家协商同意前提下</view>
+      </view>
+    </block>
+    <block wx:elif="{{ type == 2 }}">
+      <text class="icon icon-return"></text>
+      <view class="content">
+        <view class="title">退货退款</view>
+        <view class="sub-title">商家已发货(或未确认收货)，需要退货</view>
+      </view>
+    </block>
+    <view class="my-icon icon icon-angle-right"></view>
+  </view>
+
+  <view class="ui-field-group">
+    <view class="field-item">
+      <view class="label">退款原因</view>
+      <view class="field-body selector" bindtap="openReasonPicker">
+        <text class="{{ reasonSelect ? 'selected': '' }}">{{ reasonSelect ? reasonSelect.label: '请选择原因' }}</text><text class="icon icon-angle-right"></text>
+      </view>
+    </view>
+    <view class="field-item">
+      <view class="label">退款数量</view>
+      <view class="field-body refund-num">
+        <input-number max="{{number}}" value="{{applyNumber}}" minus-class="minus-class" plus-class="plus-class" input-class="input-class" bindchange="numberChange" />
+      </view>
+    </view>
+    <view class="field-item">
+      <view class="g-flex1">
+        <view class="g-flex g-flex-between">
+          <view class="label">退款金额</view>
+          <view class="field-body refund-amount">
+            <!--<input bindinput="changeMoney" type="number" style="text-align:right;width:100%" type="text" value="￥ {{amount}}" />-->
+            <view style="text-align:right;width:100%">￥ {{amount}}</view>
+          </view>
+        </view>
+        <view wx:if="{{resData.expressAmount != '0.00'}}" class="field-item__desc">含发货运费¥{{resData.expressAmount}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="ui-field-group">
+    <view class="field-item field-item--flex-start">
+      <view class="label">详细说明</view>
+      <view class="field-body field-body--flex-end">
+        <textarea
+          wx:if="{{isShowTextarea}}"
+          maxlength="200"
+          rows="3"
+          class="field-input textarea-height"
+          value="{{ explain }}"
+          data-name="explain"
+          bindinput="bindInput"
+          placeholder="请补充退款说明"></textarea>
+        <view class="textarea-num">{{explain.length}}/200</view>
+      </view>
+    </view>
+    <view class="field-item no-border">
+      <view class="label">图片描述 ({{ imgList.length }}/3)</view>
+    </view>
+    <view class="img-container">
+      <view class="img-item" wx:for="{{ imgList }}" wx:key="item">
+        <image class="image" lazy-load
+          mode="aspectFit"
+          src="{{ item }}" />
+        <text class="icon icon-minus-circle close" bindtap="removeImage" data-index="{{ index }}"></text>
+      </view>
+      <view wx:if="{{ imgList.length < 3 }}" class="img-uploader" bindtap="uploadImage">
+        <text class="icon icon-camera"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <!--<form-id
+      shown
+      page="aftersales-apply"
+      bind:click="submit">
+      <view bindtap="submit" class="ui-btn-submit {{!reasonSelect?'disabled':''}}">提交申请</view>
+    </form-id>-->
+    <view bindtap="submit" class="ui-btn-submit {{!reasonSelect?'disabled':''}}">提交申请</view>
+  </view>
+
+  <jz-popup-radio-picker
+    selected="{{reasonSelect}}"
+    title="退款原因"
+    show="{{ showReasonPicker }}"
+    list="{{ reasonList }}"
+    bindclose="close"
+    bind:submit="onReasonSubmit" />
+
+  <jz-popup-radio-picker-after-type
+    title="售后类型"
+    show="{{ showTypePicker }}"
+    list="{{ typeList }}"
+    bindclose="close"
+    bind:submit="onTypeSubmit" />
+</view>

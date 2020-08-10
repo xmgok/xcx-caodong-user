@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "领取赠品",
+  "usingComponents": {
+    "goods-purchase" : "/components/goods-purchase/goods-purchase"
+  }
+}

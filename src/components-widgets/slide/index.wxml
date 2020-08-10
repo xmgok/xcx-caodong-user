@@ -1,0 +1,18 @@
+<!--轮播图-->
+<view class="swiper-wrap" wx:if="{{result.list.length}}">
+  <swiper
+    class="swiper"
+    style="height:{{result.height}}rpx"
+    indicator-dots="{{true}}"
+    indicator-color="#7a7b7e"
+    indicator-active-color="#ffffff"
+    autoplay="{{true}}"
+    interval="{{5000}}"
+    duration="{{1000}}">
+    <block wx:for="{{result.list}}" wx:key="index">
+      <swiper-item bindtap="goLink" data-url="{{item.linkUrl}}">
+        <image lazy-load src="{{item.imgUrl}}" mode="aspectFill" class="slide-image img-default-bg"/>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

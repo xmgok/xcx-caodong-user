@@ -1,0 +1,128 @@
+<view class="container">
+  <view class="video-wrap">
+    <video
+      autoplay
+      loop
+      controls="{{ false }}"
+      show-play-btn="{{ false }}"
+      show-center-play-btn="{{ false }}"
+      object-fit="contain"
+      id="video"
+      src="{{ infoData.videoUrl }}"
+      class="video"/>
+  </view>
+
+  <view class="footer">
+    <view
+      class="user-desc"
+      wx:if="{{ !showGoodsSelector && !showCommentSelector && !showCouponSelector && !showMoreActionSelector }}">
+      <!--  <cover-view class="name">@{{ infoData.userName }}</cover-view>-->
+      <view class="title">{{ infoData.videoName }}</view>
+    </view>
+
+    <view class="footer-inner">
+      <view class="input-wrap">
+        <text class="icon icon-edit3"></text>
+        <input
+          class="input"
+          value="{{ comment }}"
+          bindinput="onInput"
+          data-name="comment"
+          bindconfirm="saveComment"
+          cursor-spacing="{{ 13 }}"
+          confirm-type="send"
+          maxlength="{{ 150 }}"
+          placeholder="说点什么吧～"
+          placeholder-class="placeholder"/>
+      </view>
+      <view class="action-wrap">
+        <view class="action-item" bindtap="handleTap" data-type="show-popup:showCommentSelector">
+          <text class="icon icon-message"></text>
+          <text class="num">{{ commentCount }}</text>
+        </view>
+        <view
+          class="action-item"
+          bindtap="like"
+          data-type="video"
+          data-state="{{ infoData.isLike === 1 ? 2 : 1 }}">
+          <view class="icon icon-heart {{ infoData.isLike === 1 ? 'active': '' }}"></view>
+          <view class="num">{{ infoData.likeNum }}</view>
+        </view>
+        <view class="action-item btn-share-wrap" catchtap="handleTap" data-type="share">
+          <button hover-class="none" class="btn-share">
+            <image src="https://qiniu.icaodong.com/xcx/video/share.png?v=1.0.0" class="share"></image>
+          </button>
+        </view>
+        <view class="action-item" catchtap="handleTap" data-type="show-popup:showMoreActionSelector">
+          ∙∙∙
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>
+  </view>
+</view>
+
+<!--TODO-->
+<!--<view
+  class="hover-input {{ keyboardHeight ? '': 'hide' }}"
+  style="bottom: {{ keyboardHeight }}px">
+    <textarea
+      class="comment-input"
+      value="{{ comment }}"
+      bindinput="onInput"
+      data-name="comment"
+      bindconfirm="saveComment"
+      cursor-spacing="{{ 13 }}"
+      maxlength="{{ 150 }}"
+      placeholder="{{ commentTo.commentId ? '@' + commentTo.name : '留下你的精彩评论吧' }}"
+      adjust-position="{{ false }}"
+      placeholder-class="placeholder"/>
+</view>-->
+
+<cover-image
+  src="https://qiniu.icaodong.com/xcx/video/return.png?v=1.0.0"
+  class="navigate-back"
+  catchtap="handleTap"
+  data-type="navigate-back"></cover-image>
+
+<!--注：弹窗时不显示, 避免真机上的层级问题-->
+<cover-view
+  class="toolbar"
+  wx:if="{{ !showGoodsSelector && !showCommentSelector && !showCouponSelector && !showMoreActionSelector }}">
+  <cover-view
+    wx:if="{{ infoData.couponList.length }}"
+    class="btn-item"
+    data-type="show-popup:showCouponSelector"
+    catchtap="handleTap">
+    <cover-image src="https://qiniu.icaodong.com/xcx/video/coupon.png?v=1.0.0" class="icon coupon"></cover-image>
+  </cover-view>
+  <cover-view
+    class="btn-item"
+    data-type="goods"
+    catchtap="handleTap">
+    <cover-image src="https://qiniu.icaodong.com/xcx/video/shopping.png?v=1.0.0" class="icon shopping"></cover-image>
+  </cover-view>
+</cover-view>
+
+<!--↓弹窗↓-->
+<include src="./popup/goods.wxml"></include>
+
+<include src="./popup/goods-detail.wxml"></include>
+
+<include src="./popup/comment.wxml"></include>
+
+<include src="./popup/more-action.wxml"></include>
+
+<include src="./popup/coupon.wxml"></include>
+
+<include src="./popup/visitor.wxml"></include>
+
+<component-share
+  wx:if="{{showShareSelector}}"
+  show="{{showShareSelector}}"
+  imgList="{{imgList}}"
+  shareText="{{shareText}}"
+  shareUrll="{{shareUrl}}"
+  activeType="video"
+  bind:close="shareClosed" />

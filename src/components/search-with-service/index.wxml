@@ -1,0 +1,18 @@
+<view class="search-service custom-class">
+  <jz-search
+    clearable
+    value="{{ value }}"
+    bindinput="onInput"
+    placeholder-style="color:#96989c"
+    placeholder="{{ placeholder }}"
+    bindconfirm="onConfirm"
+    use-action-slot
+    style="width: 100%">
+    <!--客服-->
+    <view slot="action" class="contact-wrap">
+      <text class="icon icon-service"></text>
+      <!--<text class="dot"></text>-->
+      <button class="button" open-type="contact">进入客服会话</button>
+    </view>
+  </jz-search>
+</view>

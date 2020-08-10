@@ -1,0 +1,59 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.popup-radio-picker {
+  background-color: white;
+  overflow: hidden;
+  border-radius: 25px 25px 0 0;
+
+  > .header {
+    font-size: 16px;
+    position: relative;
+    padding: rpx2(12) rpx2(10);
+    text-align: center;
+
+    .title {
+      font-size: rpx2(16);
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      padding: rpx2(10);
+      font-size: rpx2(16);
+      color: $text-secondary;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: right;
+    }
+  }
+
+  > .content {
+    max-height: rpx2(350);
+    overflow-y: scroll;
+    padding: 0 rpx2(15) rpx2(70);
+
+    .list-item {
+      height: rpx2(54);
+      border-bottom: rpx(1) solid rgba($border-color, 0.8);
+    }
+
+    .radio {
+      display: flex;
+      flex-direction: row-reverse;
+      line-height: rpx2(54);
+    }
+
+    .radio-label {
+      flex: 1;
+      line-height: rpx2(54);
+    }
+  }
+
+  .footer {
+    margin-bottom: rpx2(7);
+    text-align: center;
+  }
+}

@@ -1,0 +1,82 @@
+%bg-fff {
+  background-color: #fff;
+}
+
+%flex-v-c {
+  align-items: center;
+}
+
+%flex {
+  display: flex;
+  display: -webkit-flex;
+}
+
+%flex-bt {
+  @extend %flex;
+  justify-content: space-between;
+}
+
+%flex-vc {
+  @extend %flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// rowcenter
+%flex-com-vc {
+  @extend %flex;
+  align-items: center;
+}
+
+%flex-bt-vc {
+  @extend %flex-bt;
+  align-items: center;
+}
+
+%flex-ad {
+  @extend %flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+%flex-ad-vc {
+  @extend %flex-ad;
+  @extend %flex-v-c;
+}
+
+%dly-block {
+  display: block;
+}
+
+%dly-linebk {
+  display: inline-block;
+}
+
+%c-f {
+  color: #fff;
+}
+
+%c-0 {
+  color: #000;
+}
+
+%c-92979b {
+  color: #92979b;
+}
+
+%color-dc1d54 {
+  color: #dc1d54;
+}
+
+%pos-re {
+  position: relative;
+}
+
+%pos-ab {
+  position: absolute;
+}
+
+%bg-f {
+  background: #fff;
+}

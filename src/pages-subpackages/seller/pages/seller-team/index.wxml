@@ -1,0 +1,29 @@
+<view class="page g-page-seller-team">
+  <view class="g-tab" wx:if="{{showTab}}">
+    <view class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}" wx:for="{{tabList}}" wx:key="index"
+          data-index="{{index}}" bindtap="switchTab">{{item}}
+    </view>
+  </view>
+  <view class="list-wrap">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <image class="img"
+             lazy-load mode="aspectFill"
+             src="{{item.headUrl}}"></image>
+      <view class="content">
+        <view class="name">
+          <view>{{item.name}}</view>
+          <!-- active3 -->
+          <view class="tag active{{item.rank}}">{{NUMBER_TO_ZHCN[item.rank]}}级</view>
+        </view>
+        <view class="desc">上级：{{item.pName}}</view>
+        <view class="time">加入时间：{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more
+  result="{{result}}"
+  icon="icon-wodetuandui"
+  noDataDesc="暂时还没有团队，快去邀请吧~">
+  <button open-type="share" class="g-no-data-btn">邀请分销</button>
+</list-loading-more>

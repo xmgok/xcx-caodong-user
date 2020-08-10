@@ -1,0 +1,83 @@
+@import "../../../../styles/mixin";
+
+.page-setting {
+
+  .hd-block {
+    background: white;
+    margin-bottom: rpx2(10);
+  }
+
+  .hd-item {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    border-bottom: rpx(1) solid $white-smoke;
+    margin-left: rpx2(15);
+    line-height: rpx2(50);
+    background: white;
+    border-radius: 0;
+    font-size: rpx2(14);
+    padding: 0 rpx2(15) 0 0;
+
+    .title {
+      font-size: rpx2(16);
+      padding-left: rpx2(5);
+    }
+
+    .con {
+      -webkit-box-flex: 1;
+      text-align: right;
+      color: $text-secondary;
+      padding-right: rpx2(6);
+      font-size: rpx2(14);
+      display: -webkit-box;
+      -webkit-box-pack: end;
+
+      .label-wrap {
+        $w: 76;
+        max-width: ($w*3+8*2)*1px;
+        overflow: hidden;
+        white-space: nowrap;
+
+        .label-item {
+          width: $w*1px;
+          height: 24px;
+          text-align: center;
+          line-height: 24px;
+          background: #F7F8FA;
+          border-radius: 10px;
+          font-size: 14px;
+          color: $black-light;
+          @include ellipsis1();
+          display: inline-block;
+          margin-right: 8px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .tb {
+      color: $text-secondary;
+    }
+  }
+
+  .user-img {
+    width: rpx2(60);
+    height: rpx2(60);
+    border-radius: 50%;
+    margin: rpx2(10) 0;
+    overflow: hidden;
+  }
+
+}
+
+.staff-wrap {
+  display: flex;
+  align-items: center;
+
+  .staff-head {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+}

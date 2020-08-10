@@ -1,0 +1,183 @@
+<view class="page-group-invite">
+  <view class="goods-card">
+    <view
+      class="card-header"
+    >
+      <image src="{{userInfo.headUrl}}" mode="aspectFill" class="avatar"></image>
+      <view class="header-right">
+        <view class="nickname">{{userInfo.nickName}}</view>
+        <view class="desc">我发现一个非常赞的商品，快来一起拼购吧。</view>
+      </view>
+    </view>
+    <navigator
+      class="card-content"
+      open-type="navigate"
+      hover-class="none"
+      url="/pages/group-buying/detail/index?id={{groupInfo.productId}}&activeType=group&activeId={{groupInfo.groupId}}"
+    >
+      <image
+        src="{{groupInfo.productImg}}"
+        mode="aspectFill" class="avatar">
+      </image>
+      <view class="right-content">
+        <view class="title">{{groupInfo.productName}}</view>
+        <view class="price-wrap">
+          拼团价
+          <text class="price">¥{{groupInfo.activePrice}}</text>
+          <text class="price-del">单买￥{{groupInfo.productPrice}}</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <view
+    class="over"
+    wx:if="{{groupInfo.status==2}}"
+  >已成团
+  </view>
+  <view
+    class="over"
+    wx:if="{{groupInfo.status==3}}"
+  >晚了一步，该团已超时取消～
+  </view>
+
+  <view
+    class="countdown-wrap"
+    wx:if="{{groupInfo.status == 1}}"
+  >
+    <text>
+      <text>还差</text>
+      <text class="bold">{{groupInfo.shortNum}}</text>
+      <text>人</text>
+    </text>
+    <text>
+      <text>，还剩</text>
+      <text class="bold">
+        <text>{{groupInfo.remainingSecondsFormat.dayMergeToHours}}</text>
+        <text>:</text>
+        <text>{{groupInfo.remainingSecondsFormat.minutes}}</text>
+        <text>:</text>
+        <text>{{groupInfo.remainingSecondsFormat.seconds}}</text>
+      </text>
+      <text>结束～</text>
+    </text>
+  </view>
+
+  <view class="member-list">
+    <block
+      wx:for="{{groupInfo.list}}"
+      wx:key="index"
+    >
+      <view class="item">
+        <image
+          class="image"
+          mode="aspectFill"
+          src="{{item.headImg}}"
+        ></image>
+        <text
+          class="group"
+          wx:if="{{item.isCaptain==1}}"
+        >团长
+        </text>
+      </view>
+    </block>
+    <block
+      wx:for="{{groupInfo.shortNum}}"
+      wx:key="index"
+    >
+      <view class="btn-add-wrap">
+        <view class="btn-add">
+          <text class="icon icon-plus-circle"></text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!--活动进行中-->
+  <block wx:if="{{groupInfo.status==1}}">
+    <!-- 团长点进来 -->
+    <navigator
+      wx:if="{{groupInfo.isCaptain==1}}"
+      class="btn-submit"
+      open-type="navigate"
+      hover-class="none"
+      url="/pages/group-detail/group-detail?recordId={{recordId}}">查看拼团详情
+    </navigator>
+    <!-- 其他人点进来 -->
+    <block wx:else>
+      <view class="btn-wrap">
+        <navigator
+          class="btn-submit"
+          open-type="navigate"
+          hover-class="none"
+          url="/pages/group-list/group-list">更多拼团
+        </navigator>
+        <!--没参过团-->
+        <block wx:if="{{groupInfo.hasJoin==0}}">
+          <!--没参过团，但是已经创建过订单了，使之去订单详情页继续支付或取消订单。-->
+          <block wx:if="{{groupInfo.orderCode}}">
+            <navigator
+              class="btn-submit"
+              open-type="navigate"
+              hover-class="none"
+              url="/pages/order-detail/order-detail?orderCode={{groupInfo.orderCode}}">立即拼
+            </navigator>
+          </block>
+          <!--没参过团，也没创建过订单-->
+          <block wx:else>
+            <!--进行中且没授权头像-->
+            <button wx:if="{{!isAuth}}" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo"
+                    class="btn-submit" data-type="groupJoinBuy">立即拼
+            </button>
+            <!--进行中且授权了头像-->
+            <view
+              wx:if="{{isAuth}}"
+              class="btn-submit"
+              bindtap="goJoinGroup" data-type="groupJoinBuy">立即拼
+            </view>
+          </block>
+        </block>
+        <!--已参团-->
+        <view wx:if="{{groupInfo.hasJoin==1}}" class="btn-submit disabled">已参团</view>
+      </view>
+    </block>
+  </block>
+  <!--活动已成团-->
+  <navigator
+    wx:if="{{groupInfo.status==2}}"
+    class="btn-submit"
+    url="/pages/group-list/group-list"
+    hover-class="none">
+    查看更多拼团
+  </navigator>
+  <!--活动已超时结束-->
+  <navigator
+    wx:if="{{groupInfo.status==3}}"
+    class="btn-submit"
+    url="/pages/group-list/group-list"
+    hover-class="none">
+    查看更多拼团
+  </navigator>
+
+  <navigator open-type="navigate" hover-class="none" url="/pages/group-rules/group-rules?groupId={{groupInfo.groupId}}"
+             class="rule-link">活动规则>>
+  </navigator>
+
+  <navigator open-type="switchTab" url="/pages/index/index" hover-class="none" class="g-go-home">
+    <view class="g-go-home-icon icon icon-home"></view>
+  </navigator>
+</view>
+<goods-purchase
+  wx:if="{{showPurchase}}"
+  show="{{showPurchase}}"
+  id="{{groupInfo.productId}}"
+  type="1"
+  buyType="groupJoinBuy"
+  activeId="{{groupInfo.groupId}}"
+  activeType="group"
+  recordId="{{groupInfo.id}}"
+  bind:selected="goodsPurchaseSelected"
+  bind:close="goodsPurchaseClose"/>
+
+<!--获取手机号-->
+<component-phone-auth></component-phone-auth>

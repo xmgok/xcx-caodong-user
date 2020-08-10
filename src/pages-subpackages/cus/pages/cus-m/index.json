@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "我的客户",
+  "usingComponents": {
+    "jz-search": "/components/search/search",
+    "list-loading-more": "/components/list-loading-more/index",
+    "jz-popup": "/components/popup/popup"
+  }
+}

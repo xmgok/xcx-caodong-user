@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "活动详情",
+  "navigationStyle": "custom",
+  "pageOrientation": "auto",
+  "disableScroll": true,
+  "usingComponents": {
+    "camera-photo-template": "/components/camera-photo-template/camera-photo-template"
+  }
+}

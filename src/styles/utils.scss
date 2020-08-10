@@ -1,0 +1,70 @@
+@import "mixin";
+
+// 边距、间距
+// 注：$spacers 列表可调整，但不应太长，以避免生成过多冗余类
+$direction: (t: top, r: right, b: bottom, l: left);
+$spacers: 0, 1, 2, 5, 10, 15, 20, 30, 40, 50;
+@include spacing-gen($spacers, $direction);
+
+// Text
+.tc {
+  text-align: center;
+}
+
+.tr {
+  text-align: right;
+}
+
+.fwb {
+  font-weight: bold;
+}
+
+.f13 {
+  font-size: rpx2(13);
+}
+
+.f14 {
+  font-size: rpx2(14);
+}
+
+// Layout
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix {
+  @include clearfix();
+}
+
+.df {
+  display: flex;
+}
+
+.flex-v-center {
+  display: flex;
+  align-items: center
+}
+
+.di {
+  display: inline !important;
+}
+
+.db {
+  display: block !important;
+}
+
+.dib {
+  display: inline-block !important;
+}
+
+.dn {
+  display: none !important;
+}
+
+.bbn{
+  border-bottom: none !important;
+}

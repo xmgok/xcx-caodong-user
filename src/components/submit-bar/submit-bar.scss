@@ -1,0 +1,79 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+.jz-submit-bar {
+  z-index: 100;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  user-select: none;
+
+  &__tip {
+    padding: rpx2(10);
+    color: #f56723;
+    font-size: rpx2(12);
+    line-height: rpx2(18);
+    background-color: #fff7cc;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    height: rpx2(50);
+    background-color: #ffffff;
+    font-size: rpx2(14);
+  }
+
+  &__text {
+    flex: 1;
+    padding-left: rpx2(15);
+    color: $danger;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  &__price {
+    padding-right: rpx2(5);
+    color: $text-price;
+    font-size: rpx2(12);
+    &-integer {
+      margin-left: rpx2(3);
+      font-size: rpx2(20);
+      line-height: rpx2(20);
+    }
+  }
+
+  &__receiver {
+    color: $text-secondary;
+  }
+
+  &__button {
+    button {
+      margin-right: rpx2(10);
+      height: rpx2(37);
+      // line-height: rpx2(37);
+      width: rpx2(110);
+      // 真机上用line-height无法完全垂直居中
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: #ffffff;
+    }
+    color: #ffffff;
+  }
+
+  .btn-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 0;
+    &::after {
+      border: 0;
+    }
+  }
+}

@@ -1,0 +1,264 @@
+@import "../../../../styles/config";
+
+.page {
+  margin-bottom: 18px;
+}
+
+.g-tab.g-tab_style2 {
+  white-space: nowrap;
+  height: 44px;
+
+  .g-tab-item {
+    display: inline-block;
+    min-width: 22%;
+    margin: 0;
+  }
+}
+
+.coupon-popup-order {
+  position: relative;
+  height: 375px;
+  border-radius: 24px 24px 0 0;
+  .header-popup {
+    padding-top: 20px;
+    text-align: center;
+
+    .title {
+      font-size: rpx2(16);
+      color: #272636;
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: rpx2(13);
+      font-size: rpx2(14);
+      color: $text-secondary;
+    }
+
+  }
+
+  .content {
+    padding: 15px 15px 0 15px;
+    margin: 0 15px;
+    margin-top: 20px;
+    background: rgba(247, 248, 250, 1);
+    border-radius: 8px;
+    textarea {
+      font-size: 16px;
+      height: 96px;
+      width: 100%;
+      color: #CCCCCC;
+    }
+  }
+
+  .footer-popup {
+    position: fixed;
+    bottom: 6px;
+    width: 100%;
+    height: 38px;
+    box-sizing: border-box;
+    background: transparent;
+    z-index: 500;
+    text-align: center;
+    .submit {
+      width: 345px;
+      height: 38px;
+      line-height: 38px;
+      margin: 0 auto;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: $white;
+      background-color:$gray;
+      &.active {
+        background: $red;
+      }
+    }
+
+  }
+}
+
+.booking-list-staff {
+  .list-wrap {}
+
+  .list {
+    background: $white;
+    border-radius: 12px;
+    margin: 10px;
+    padding: 0 15px;
+    // padding-bottom: 15px;
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      padding: 12px 0;
+
+      .title-l {
+        display: flex;
+        align-items: center;
+
+        .time {
+          color: $black;
+          font-size: 16px;
+          font-weight: bold;
+          margin-right: 3px;
+        }
+
+        .icon-time {
+          font-size: 16px;
+          color: $black;
+          margin-right: 10px;
+        }
+      }
+
+      .title-r {
+        font-size: 13px;
+
+        &.active {
+          color: $red;
+        }
+      }
+
+    }
+
+    .item-bottom {
+      border-bottom: 1px solid rgba($white-smoke, 0.6);
+      border-top: 1px solid rgba($white-smoke, 0.6);
+      padding: 12px 0;
+      display: flex;
+      flex-direction: column;
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        line-height: 28px;
+
+        .tit {
+          color: $gray-dark;
+          font-size: 14px;
+          margin-right: 15px;
+          width: 56px;
+        }
+
+        .info {
+          font-size: 14px;
+          color: $black-light;
+          width: 254px;
+          // overflow: hidden;
+          // text-overflow: ellipsis;
+          // white-space: nowrap;
+        }
+      }
+
+    }
+
+    .btns {
+      padding: 7px 0;
+
+      .hand-warp {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .hand-l {
+          display: flex;
+          align-items: center;
+
+          .imgs {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            // background-color: pink;
+            margin-right: 5px;
+
+            .image {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+        }
+
+        .hand-r {
+          display: flex;
+          align-items: center;
+
+          .close,
+          .jobs,
+          .sataff,
+          .jobs-active {
+            width: 80px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 14px;
+            border: 1px solid $black;
+            font-size: 13px;
+            box-sizing: border-box;
+            color: $black;
+            margin-left: 10px;
+
+          }
+
+          .sataff {
+            margin-right: 10px;
+          }
+
+          .jobs-active {
+            border: transparent;
+            color: $white;
+            background: rgba(255, 86, 56, 1);
+          }
+        }
+
+
+      }
+
+      .result {
+        background: rgba(247, 248, 250, 1);
+        border-radius: 8px;
+        color: rgba(150, 152, 156, 1);
+        background: rgba(247, 248, 250, 1);
+        padding: 10px;
+        box-sizing: border-box;
+        margin: 7px 0 15px 0;
+      }
+
+    }
+
+  }
+
+}
+
+.footer {
+  position: fixed;
+  bottom: 6px;
+  width: 100%;
+  height: 38px;
+  box-sizing: border-box;
+  background: transparent;
+  position: fixed;
+  z-index: 500;
+
+  .submit {
+    width: 345px;
+    height: 38px;
+    line-height: 38px;
+    background: $red;
+    margin: 0 auto;
+    border-radius: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: $white;
+  }
+
+}

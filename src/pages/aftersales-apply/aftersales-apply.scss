@@ -1,0 +1,165 @@
+@import "../../styles/mixin";
+
+page {
+  padding-bottom: 80px;
+}
+
+.comment-goods {
+  margin-bottom: 10px;
+  background: white;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+
+  .left {
+    width: 70px;
+    height: 70px;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+
+  .right {
+    .title {
+      width: 260px;
+      font-size: 15px;
+      color: $text-primary;
+      height: 42px;
+      @include ellipsis2(2, 21);
+    }
+
+    .spec {
+      font-size: 12px;
+      color: rgba(150, 152, 156, 1);
+      line-height: 12px;
+      margin-top: 8px;
+    }
+  }
+}
+
+.field-item__desc {
+  font-size: 12px;
+  color: rgba(191, 191, 191, 1);
+  line-height: 17px;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.page-aftersales-apply {
+  position: relative;
+  > .header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: rpx2(12) rpx2(15);
+    width: 100%;
+    height: rpx2(58);
+    background-color: white;
+    position: relative;
+    .icon {
+      font-size: rpx2(20);
+      color: $primary;
+    }
+    .content {
+      flex: 1;
+      padding-left: rpx2(15);
+    }
+    .title {
+      margin-bottom: rpx2(6);
+      color: $text-primary;
+      font-size: rpx2(15);
+      line-height: rpx2(15);
+      font-weight: bold;
+    }
+    .sub-title {
+      color: $text-secondary;
+      font-size: rpx2(13);
+      line-height: rpx2(13);
+    }
+    .my-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      color: $text-secondary;
+    }
+  }
+
+  .refund-amount {
+    display: flex;
+    align-items: center;
+  }
+
+  .refund-num {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    input.input-class {
+      width: rpx2(30);
+      margin: 0 rpx2(5);
+    }
+    .minus-class, .plus-class {
+      width: rpx2(20);
+      height: rpx2(20);
+    }
+  }
+
+  .img-container {
+    display: flex;
+    padding-left: rpx2(15);
+    padding-bottom: rpx2(20);
+    .img-item,
+    .img-uploader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: rpx2(80);
+      height: rpx2(80);
+      margin-right: rpx2(20);
+    }
+
+    .img-item {
+      position: relative;
+      background-color: $white-smoke;
+      .image {
+        width: 100%;
+        height: 100%;
+      }
+      .close {
+        position: absolute;
+        top: rpx2(4);
+        right: rpx2(4);
+        font-size: rpx2(18);
+        color: $red;
+      }
+    }
+
+    .img-uploader {
+      color: #d8d8d8;
+      background-color: $white-smoke;
+      font-size: rpx2(32);
+    }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: rpx2(6);
+    width: 100%;
+    margin-bottom: rpx2(7);
+    text-align: center;
+    .ui-btn-submit {
+      background-color: $btn-primary-bg;
+      &.disabled {
+        background: $btn-disabled-bg;
+      }
+    }
+  }
+}
+
+.textarea-height {
+  height: 80px;
+}
+
+.textarea-num {
+  color: $text-secondary;
+}

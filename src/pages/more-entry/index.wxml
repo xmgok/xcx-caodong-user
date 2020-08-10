@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="module">
+    <view class="wrap">
+      <navigator class="item" url="/pages/fans/fans" hover-class="none">
+        <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://www.sbxx.top/static-no-cache/test/zero/img.jpg"></image>
+        <view class="item-text">吸粉活动</view>
+      </navigator>
+      <navigator class="item" url="/pages/group-list-my/group-list-my?type=0" hover-class="none">
+        <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://www.sbxx.top/static-no-cache/test/zero/img.jpg"></image>
+        <view class="item-text">我的拼团</view>
+      </navigator>
+      <navigator class="item" url="/pages/coupon-list/coupon-list" hover-class="none">
+        <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://www.sbxx.top/static-no-cache/test/zero/img.jpg"></image>
+        <view class="item-text">我的优惠券</view>
+      </navigator>
+      <navigator class="item" url="/pages/order-list/order-list?status=0" hover-class="none">
+        <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://www.sbxx.top/static-no-cache/test/zero/img.jpg"></image>
+        <view class="item-text">销售订单</view>
+      </navigator>
+      <navigator class="item" url="/pages/order-list/order-list?status=5" hover-class="none">
+        <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://www.sbxx.top/static-no-cache/test/zero/img.jpg"></image>
+        <view class="item-text">售后订单</view>
+      </navigator>
+      <navigator class="item" url="/pages-subpackages/comment/pages/comment-my/comment-my?type=0" hover-class="none">
+        <image lazy-load class="item-icon" mode="aspectFill"
+               src="https://www.sbxx.top/static-no-cache/test/zero/img.jpg"></image>
+        <view class="item-text">待评价订单</view>
+      </navigator>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,126 @@
+<!--评论-->
+<van-popup
+  show="{{ showCommentSelector }}"
+  bind:close="selectorClose"
+  data-name="showCommentSelector"
+  position="bottom"
+  custom-class="pop-selector comment-selector">
+  <view class="popup-header">
+    <view class="title">{{ commentCount }}条评论</view>
+    <view class="btn-close-wrap" bindtap="selectorClose" data-name="showCommentSelector">
+      <text class="icon icon-times btn-close"></text>
+    </view>
+  </view>
+  <view class="popup-content">
+    <scroll-view
+      class="comment-list"
+      scroll-y="true"
+      bindscrolltolower="bindScrollToBottom">
+      <view
+        class="comment-item"
+        wx:for="{{ commentList }}"
+        wx:key="index">
+        <image
+          class="avatar"
+          mode="aspectFill"
+          src="{{ item.headImg }}"/>
+        <view class="center-content">
+          <view class="title">{{ item.nickname }}</view>
+          <view
+            class="comment-text"
+            data-id="{{ item.id }}"
+            data-name="{{ item.nickname }}"
+            bindtap="commentReply">
+            {{ item.content }}
+            <text class="date">{{ item._time }}</text>
+          </view>
+
+          <view class="inner-comment-list" wx:if="{{ item.comment && item.comment.length }}">
+            <view
+              class="comment-item"
+              wx:for="{{ item.comment }}"
+              wx:for-item="subItem"
+              wx:for-index="subIndex"
+              wx:key="id">
+              <image
+                class="avatar"
+                mode="aspectFill"
+                src="{{ subItem.headImg }}"/>
+              <view class="center-content">
+                <view class="title">{{ subItem.nickname }}</view>
+                <view
+                  class="comment-text"
+                  data-id="{{ item.id }}"
+                  data-parent-id="{{ subItem.id }}"
+                  data-name="{{ subItem.nickname }}"
+                  bindtap="commentReply">
+                  <block wx:if="{{ subItem.parentId }}">
+                    回复 <text class="text-muted">{{ subItem.parentName }}: </text>
+                  </block>
+                  {{ subItem.content }}
+                  <text class="date">{{ subItem._time }}</text>
+                </view>
+              </view>
+              <view
+                class="right-action"
+                bindtap="like"
+                data-parent-index="{{ index }}"
+                data-sub-index="{{ subIndex }}"
+                data-comment-id="{{ subItem.id }}"
+                data-state="{{ subItem.isLike === 1 ? 2 : 1 }}"
+                data-type="reply">
+                <view class="icon icon-heart {{ subItem.isLike === 1 ? 'active': '' }}"></view>
+                <view class="num">{{ subItem.likeNum }}</view>
+              </view>
+            </view>
+            <view
+              class="comment-expand"
+              bindtap="getCommentReply"
+              data-id="{{ item.id }}"
+              wx:if="{{ item.replyNum && !commentReplyPage[item.id].getEnd }}">
+              展开剩余{{ item.replyNum }}条回复
+              <text class="icon icon-arrow-down"></text>
+            </view>
+          </view>
+        </view>
+        <view
+          class="right-action"
+          style="height: 36px"
+          bindtap="like"
+          data-parent-index="{{ index }}"
+          data-comment-id="{{ item.id }}"
+          data-state="{{ item.isLike === 1 ? 2 : 1 }}"
+          data-type="comment">
+          <view class="icon icon-heart {{ item.isLike === 1 ? 'active': '' }}"></view>
+          <view class="num">{{ item.likeNum }}</view>
+        </view>
+      </view>
+
+      <view class="no-data" wx:if="{{commentPage.getEnd}}">
+        <view class="icon-wrap" wx:if="{{commentList.length <= 0}}">
+          <text class="icon icon-message"></text>
+        </view>
+        <component-loading text="{{commentList.length > 0 ? '已经到底啦' : '当前暂无评论'}}"></component-loading>
+      </view>
+      <component-loading wx:else></component-loading>
+
+    </scroll-view>
+
+    <view class="enter-comment">
+      <text class="icon icon-edit3"></text>
+      <input
+        class="input"
+        value="{{ comment }}"
+        bindinput="onInput"
+        data-no-trim="{{ true }}"
+        data-name="comment"
+        bindconfirm="saveComment"
+        cursor-spacing="{{ 13 }}"
+        confirm-type="send"
+        focus="{{ !!commentTo.commentId }}"
+        maxlength="{{ 150 }}"
+        placeholder="{{ commentTo.commentId ? '@' + commentTo.name : '留下你的精彩评论吧' }}"
+        placeholder-style="font-size:14px;color:#999;"/>
+    </view>
+  </view>
+</van-popup>

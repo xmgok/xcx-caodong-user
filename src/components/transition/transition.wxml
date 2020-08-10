@@ -1,0 +1,8 @@
+<view
+  wx:if="{{ inited }}"
+  class="jz-transition custom-class"
+  style="animation-name: jz-{{ name }}-{{ type }}; animation-duration: {{ duration }}ms; {{ display ? '' : 'display: none;' }} {{ customStyle }}"
+  bind:animationend="onAnimationEnd"
+>
+  <slot />
+</view>

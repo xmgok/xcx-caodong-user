@@ -1,0 +1,49 @@
+<view class="choose-wrap">
+  <view wx:if="{{type === 'technician'}}" class="choose-time-select">
+    <view class="choose-customer">
+      <navigator url="/pages/technician/technician?flag=tec" hover-class="none">
+        <text class="name" wx:if="{{technicianData.id==='到店安排'}}">{{ '到店安排技师' }}</text>
+        <block wx:else>
+          <image class="avatar" src="{{technicianData.headimg}}" mode="aspectFill"/>
+          <text class="name">{{ technicianData.name || '请选择' }}</text>
+        </block>
+        <text class="icon icon-arrow-down"></text>
+      </navigator>
+    </view>
+    <view class="choose-t-select">
+      <picker mode="date" value="{{chooseData.day}}" start="{{startDay}}" bindchange="bindDateChange">
+        <!-- <view class="picker">
+          当前选择: {{date}}
+        </view> -->
+        <text class="icon iconcalendar"></text>
+      </picker>
+    </view>
+  </view>
+  <view wx:if="{{type === 'time'}}" class="choose-time-select">
+    <view class="choose-customer">
+      <picker mode="date" value="{{chooseData.day}}" start="{{startDay}}" bindchange="bindDateChange">
+        <view class="">
+          <text class="name">{{ chooseData.yearMouth || '请选择' }}</text>
+          <text class="icon icon-arrow-down"></text>
+        </view>
+      </picker>
+    </view>
+    <!-- <view class="choose-t-select">
+      <picker mode="date" value="{{chooseData.day}}" start="{{startDay}}" bindchange="bindDateChange">
+        <text class="iconfont iconcalendar"></text>
+      </picker>
+
+      </view> -->
+  </view>
+  <view class="choose-day">
+    <view class="item {{item.date == chooseData.day ? 'active' : ''}}" wx:for="{{dayList}}" wx:key="index" bindtap="onChooseDay" data-index="{{index}}">
+      <text>{{item.week}}</text>
+      <text>{{item.day}}</text>
+    </view>
+  </view>
+  <view class="choose-time">
+    <view class="item {{item.isChoosable ? '' : 'item1'}} {{item.time == chooseData.time ? 'item2': ''}}" wx:for="{{timeList}}" wx:key="index" data-index="{{index}}" bindtap="onChooseTime">
+      {{item.time}}
+    </view>
+  </view>
+</view>

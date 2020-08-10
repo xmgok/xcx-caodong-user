@@ -1,0 +1,98 @@
+@import "../../../../styles/config";
+
+page {
+  padding-bottom: 60px;
+}
+
+.header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+
+  .left {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+
+    .item {
+      font-size: 18px;
+      margin-right: 10px;
+      color: $gray-light;
+
+      &.active {
+        color: #f49017;
+      }
+    }
+  }
+
+  margin-bottom: 10px;
+}
+
+.g-btn {
+  position: fixed;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bf {
+  background: #ffffff;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.plr10 {
+  padding: 0 10px;
+}
+
+.num {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  line-height: 1;
+  font-size: 14px;
+  color: $gray-dark;
+}
+
+.textarea {
+  height: 200px;
+  width: 288px;
+}
+
+.title {
+  font-size: 16px;
+  color: $gray-dark;
+  line-height: 1;
+  margin-top: 10px;
+}
+
+.noname {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $text-primary;
+  padding-bottom: 18px;
+}
+
+.checkbox-icon {
+  font-size: rpx2(18);
+  margin-right: rpx2(10);
+  color: $gray-light;
+
+  &.icon-checkbox-checked {
+    color: $checkbox-primary-color;
+  }
+
+  &.icon-checkbox-disabled {
+    color: $gray-light;
+  }
+}

@@ -1,0 +1,122 @@
+@import "../../styles/mixin";
+
+.jz-loading {
+  z-index: 0;
+  font-size: 0;
+  line-height: 0;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  &__spinner {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: jz-rotate 0.8s linear infinite;
+
+    &--spinner {
+      animation-timing-function: steps(12);
+    }
+
+    &--circular {
+      border: 1px solid;
+      border-radius: 100%;
+      border-color: currentColor;
+      border-top-color: transparent;
+    }
+  }
+
+  &__dot {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    &::before {
+      width: rpx2(2);
+      height: 25%;
+      content: ' ';
+      display: block;
+      margin: 0 auto;
+      border-radius: 40%;
+      background-color: currentColor;
+    }
+  }
+}
+
+@mixin generate($n, $i: 1) {
+  @if $i <= $n {
+    .jz-loading__dot:nth-of-type(#{i}) {
+      opacity: 1 - (0.75 / 12) * ($i - 1);
+      transform: rotate($i * 30deg);
+    }
+    @include generate($n, ($i + 1));
+  }
+}
+@include generate(12);
+
+@keyframes jz-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes ui-loading {
+  0% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1);
+  }
+
+  50% {
+    -webkit-transform: scaley(0.4);
+    transform: scaley(0.4);
+  }
+
+  100% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1);
+  }
+}
+
+// type == data
+.ui-loading {
+  font-size: 0;
+  text-align: center;
+  padding: rpx2(30) 0;
+
+  & > .dot {
+    font-size: 0;
+    background-color: $primary;
+    width: rpx2(2);
+    height: rpx2(15);
+    border-radius: rpx2(2);
+    margin: rpx2(2.5);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: inline-block;
+    animation: ui-loading 0.5s 0s infinite cubic-bezier(.85, .25, .37, .85);
+  }
+
+  & > .dot:nth-child(2), & > .dot:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+
+  & > .dot:nth-child(1), & > .dot:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+}
+
+.ui-no-data {
+  text-align: center;
+  padding: rpx2(30) 0;
+  color: $text-secondary;
+}

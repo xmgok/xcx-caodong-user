@@ -1,0 +1,159 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+@import "../../styles/variables";
+/*@import "/styles/common.scss";*/
+
+//page {
+//  padding-bottom: rpx2(20);
+//}
+
+.sales-promotion-popup {
+  border-radius: rpx2(8) rpx2(8) 0 0;
+
+  .header {
+    height: rpx2(42);
+    line-height: rpx2(42);
+    text-align: center;
+    background: white;
+    font-size: rpx2(16);
+  }
+
+  .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: rpx2(13);
+    font-size: rpx2(14);
+    color: $text-secondary;
+  }
+}
+
+.tips {
+  width: 345px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 15px;
+  font-size: 12px;
+  color: $red;
+  background-color: #fff8f2;
+  margin: 15px auto 0;
+  text-align: center;
+}
+
+.content {
+  min-height: rpx2(260);
+  max-height: rpx2(400);
+
+  .rules {
+    .item {
+      margin: 0 rpx2(15);
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      padding: 10px 0;
+      @include border1px($border-color);
+
+      .spec-wrap {
+        width: 100%;
+        font-size: 10px;
+        line-height: 12px;
+        padding-left: 48px;
+        box-sizing: border-box;
+
+        .spec-title {
+          color: #c7c7c7;
+          margin-top: 3px;
+        }
+
+        .spec {
+          margin-top: 3px;
+          color: #a0cfff;
+          white-space: nowrap;
+        }
+
+        .spec-item {
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 10px;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .label {
+        width: rpx2(40);
+        height: rpx2(14);
+        text-align: center;
+        line-height: rpx2(14);
+        background: #fff8f2;
+        border-radius: 100px;
+        font-size: rpx2(10);
+        color: $primary;
+        margin-right: rpx2(8);
+      }
+
+      .body {
+        flex: 1;
+      }
+
+      .icon {
+        color: $text-secondary;
+        font-size: rpx2(12);
+        margin-left: rpx2(10);
+      }
+    }
+  }
+
+  .gifts-wrap {
+    margin-top: 20px;
+
+    .item {
+      margin: 0 rpx2(15);
+      min-height: 54px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+
+      .body {
+        flex: 1;
+        font-size: 14px;
+        color: $text-secondary;
+        line-height: 20px;
+
+        .rule {
+          &::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin: 0 18px;
+            background: $btn-warning-gradient-bg;
+            border-radius: 50%;
+          }
+        }
+
+        .product {
+          display: flex;
+          color: $text-primary;
+          padding-left: 48px;
+          margin-top: 5px;
+
+          .product-name {
+            flex: 1;
+          }
+        }
+      }
+
+      .icon {
+        color: $text-secondary;
+        font-size: rpx2(12);
+        margin-left: rpx2(10);
+      }
+    }
+  }
+}

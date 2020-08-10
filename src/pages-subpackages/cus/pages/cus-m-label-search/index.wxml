@@ -1,0 +1,29 @@
+<view class="page">
+  <view class="search-wrap">
+    <!--
+    showAction="{{true}}"
+    useActionSlot="{{false}}"
+    -->
+    <jz-search
+      clearable
+      value="{{ options.keywords }}"
+      placeholder-style="color:#96989c"
+      placeholder="搜索商品编号或关键字"
+      bindconfirm="handleSearchConfirm"
+      bindcancel="handleSearchCancel"
+      style="width: 100%">
+    </jz-search>
+  </view>
+  <view class="no-data-now" wx:if="{{!dataList.length}}">暂无数据</view>
+  <view class="list-wrap" wx:else>
+    <view class="list">
+      <view class="title">您可能在找</view>
+      <view class="content">
+        <navigator
+          class="item" url="/pages-subpackages/cus/pages/cus-m-label-detail/index?item={{item.itemStr}}" hover-class="none"
+          wx:for="{{dataList}}" wx:key="index"
+        >{{item.name}}</navigator>
+      </view>
+    </view>
+  </view>
+</view>

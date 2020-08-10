@@ -1,0 +1,19 @@
+@import "./styles/mixin";
+/*@import "/styles/icons.scss";*/
+/*@import "/styles/common.scss";*/
+/*@import "/styles/utils.scss";*/
+
+page {
+  color: $text-primary;
+  font-family: "PingFang SC", miui, system-ui, -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 12px;
+  background: #f4f4f4;
+}
+
+image {
+  display: block;
+}
+
+button::after {
+  border: none;
+}

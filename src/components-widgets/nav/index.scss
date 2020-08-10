@@ -1,0 +1,19 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.links {
+  display: flex;
+  background: white;
+  padding: 10px;
+  .item {
+    flex: 1;
+    text-align: center;
+    .img {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      margin-bottom: 5px;
+      border-radius: 50%;
+    }
+  }
+}

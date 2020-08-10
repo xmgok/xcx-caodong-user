@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "直播室",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "mlvb-live-room": "/pages-subpackages/live/components/mlvb-live-room/mlvbliveroomview",
+    "van-popup": "/components/popup/popup",
+    "jz-input-number": "/components/input-number/input-number",
+    "component-share": "/components/share/share",
+    "goods-purchase": "/components/goods-purchase/goods-purchase"
+  }
+}

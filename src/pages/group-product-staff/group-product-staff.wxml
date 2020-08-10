@@ -1,0 +1,79 @@
+<view class="page-group-product-staff">
+  <view class="wrap">
+    <image lazy-load mode="aspectFill" src="{{resData.activeImg}}" class="banner"></image>
+    <view class="title">我的拼团数据</view>
+    <view class="box">
+      <view class="left-box">
+        <view class="_title">
+          已成团
+          <view class="_tag">排名{{resData.empRanking}}</view>
+        </view>
+        <view class="_num">{{resData.empFinishGroupNum}}</view>
+        <view class="_desc">全部门店已成团{{resData.allFinishGroupNum}}</view>
+      </view>
+      <view class="right-box">
+        <view class="_title">正在拼团</view>
+        <view class="_num">{{resData.empGroupNum}}</view>
+        <view class="_desc">全部门店正在拼团{{resData.allGroupNum}}</view>
+      </view>
+    </view>
+    <view class="desc">
+      <text>全部门店，共</text>
+      <text class="highlight">{{result.totalCount}}</text>
+      <text>名导购参与转发</text>
+    </view>
+    <view class="nobody" wx:if="{{!dataList.length}}">暂无导购参与，快抢先转发吧</view>
+    <scroll-view wx:if="{{dataList.length}}" scroll-x bindscrolltolower="bindscrolltolower" class="member-list">
+      <view class="item" wx:for="{{dataList}}" wx:key="index">
+        <image
+          lazy-load
+          class="image"
+          mode="aspectFill"
+          src="{{item.headImg}}"
+        ></image>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<view class="footer">
+  <view class="content">
+    <image lazy-load mode="aspectFill" src="{{resData.productImg}}" class="left"></image>
+    <view class="right">
+      <view class="title">{{resData.productName}}</view>
+      <view class="g-price">
+        <view class="_small">拼团价</view>
+        <view class="_big">￥{{resData.activePrice}}</view>
+        <view class="_del">单买￥{{resData.productPrice}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--已结束-->
+<block wx:if="{{groupDetail.status == 3}}">
+  <view class="g-btn inactive {{iPhoneX?'iPhoneXb':''}}">活动已结束</view>
+</block>
+<!--非已结束-->
+<block wx:else>
+  <!--<button open-type="share" class="g-btn">转发</button>-->
+  <view class="g-btn {{iPhoneX?'iPhoneXb':''}}" bindtap="showShare">转发</view>
+</block>
+
+<component-share
+  productId="{{resData.productId}}"
+  activeId="{{resData.id}}"
+  activeType="group"
+  activePrice="{{resData.activePrice}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}"/>
+
+
+
+
+
+
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

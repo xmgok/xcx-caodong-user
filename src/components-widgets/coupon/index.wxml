@@ -1,0 +1,12 @@
+<view class="coupon" wx:if="{{recommendList.length}}">
+  <block wx:for="{{recommendList}}" wx:key="index">
+    <view class="item">
+      <view class="item-num"><text class="currency">￥</text>{{item.price}}</view>
+      <view class="item-desc" wx:if="{{item.usePrice && item.usePrice !== '0.00'}}">满{{item.usePrice}}可用</view>
+      <view class="item-desc" wx:else>无门槛</view>
+      <view class="icon icon-angle-down"></view>
+      <view class="item-btn" data-item="{{item}}" data-id="{{item.couponId}}" bindtap="goToUse">{{item.integralStatus?'去兑换':'领取'}}</view>
+      <view class="item-title">{{item.name}}</view>
+    </view>
+  </block>
+</view>

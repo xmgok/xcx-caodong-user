@@ -1,0 +1,267 @@
+<view class="page-customer-my" wx:if="{{userType == 'customer'}}">
+  <view class="hd-block">
+    <view class="hd-wrap">
+
+      <view class="user-info">
+        <view class="img">
+          <image class="image" lazy-load wx:if="{{headUrl}}" mode="aspectFill" src="{{headUrl}}"></image>
+          <open-data type="userAvatarUrl" wx:else></open-data>
+        </view>
+        <view class="info">
+          <view class="name-wrap">
+            <view class="name">
+              <block wx:if="{{nickName}}">{{nickName}}</block>
+              <open-data type="userNickName" wx:else></open-data>
+            </view>
+            <navigator class="setting icon icon-gear" url="/pages/setting/setting" hover-class="none"></navigator>
+            <!--<view class="xingzuo" wx:if="{{constellation}}">{{constellation}}</view>-->
+          </view>
+          <view class="address">{{cardLevel}}</view>
+          <!--<view class="address" wx:if="{{storeName}}"><text class="icon icon-address"></text>所属门店：{{storeName}}</view>-->
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <navigator class="hd-title" url="/pages/order-list/order-list?status=0" hover-class="none">
+      <view class="title-text"><text class="icon icon-order"></text>我的订单 </view>
+      <view class="con">全部</view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <view class="hd-wrap">
+      <view class="common-func">
+        <navigator class="item" url="/pages/order-list/order-list?status=1" hover-class="none">
+          <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-1.png?v=1.0.0"></image>
+          <view class="text">待付款</view>
+          <view class="num" wx:if="{{ totalStateNumber.unpaid }}">{{ totalStateNumber.unpaid }}</view>
+        </navigator>
+        <navigator class="item item2" url="/pages/order-list/order-list?status=2" hover-class="none">
+          <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-2.png?v=1.0.0"></image>
+          <view class="text">待发货</view>
+          <view class="num" wx:if="{{ totalStateNumber.undelivered }}">{{ totalStateNumber.undelivered }}</view>
+        </navigator>
+        <navigator class="item" url="/pages/order-list/order-list?status=3" hover-class="none">
+          <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-3.png?v=1.0.0"></image>
+          <view class="text">待收货</view>
+          <view class="num" wx:if="{{ totalStateNumber.delivering }}">{{ totalStateNumber.delivering }}</view>
+        </navigator>
+        <navigator class="item" url="/pages/order-list/order-list?status=7" hover-class="none">
+          <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-6.png?v=1.0.0"></image>
+          <view class="text">待自提</view>
+          <view class="num" wx:if="{{ totalStateNumber.take }}">{{ totalStateNumber.take }}</view>
+        </navigator>
+        <navigator class="item item4" url="/pages-subpackages/comment/pages/comment-my/comment-my?type=0" hover-class="none">
+          <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-4.png?v=1.0.0"></image>
+          <view class="text">待评价</view>
+          <view class="num" wx:if="{{ totalStateNumber.appraise }}">{{ totalStateNumber.appraise }}</view>
+        </navigator>
+        <navigator class="item item4" url="/pages/order-list/order-list?status=5" hover-class="none">
+          <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-5.png?v=1.0.0"></image>
+          <view class="text">售后</view>
+          <view class="num" wx:if="{{ totalStateNumber.returning }}">{{ totalStateNumber.returning }}</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <view class="hd-block hd-block2">
+    <navigator class="hd-title" url="/pages/coupon-list/coupon-list" hover-class="none">
+      <view class="title-text"><text class="icon icon-coupon1"></text>我的优惠券</view>
+      <view class="con">{{couponNum}}张</view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <!--开启了分销才有我的分销-->
+    <view bindtap="mySeller" class="hd-title" data-url="/pages-subpackages/seller/pages/seller-request/index?type=seller" wx:if="{{sellerData.visible&&sellerData.dtype==1}}">
+      <view class="title-text"><text class="icon icon-fenxiao"></text>我的分销</view>
+      <view class="con">分享赚佣金</view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+  </view>
+
+  <view class="hd-block hd-block2">
+    <view class="hd-title" data-url="/pages-subpackages/booking/pages/booking-list/index" bindtap="goBookingDetail">
+      <view class="title-text"><text class="icon icon-xiaofeizhewode-yuyue"></text>我的预约单</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+  </view>
+
+  <view class="hd-block hd-block2">
+    <navigator class="hd-title" url="/pages/group-list-my/group-list-my?type=0" hover-class="none">
+      <view class="title-text"><text class="icon icon-group"></text>我的拼团</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <navigator class="hd-title" url="/pages-subpackages/promotion/pages/bargain-list-my/index" hover-class="none">
+      <view class="title-text"><text class="icon icon-kanjiaempty"></text>我的砍价</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+  </view>
+
+  <view class="hd-block hd-block2">
+    <button wx:if="{{showPhoneLogin}}" class="hd-title" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber2">
+      <view class="title-text">员工登录</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </button>
+    <navigator wx:else class="hd-title" url="/pages/staff-login/login" hover-class="none">
+      <view class="title-text">员工登录</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <view wx:if="{{isBindGetPhoneNumber}}" class="hd-title">
+      <view class="title-text">验证会员手机号</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+    <button wx:else class="hd-title" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">
+      <view class="title-text">验证会员手机号</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </button>
+    <navigator class="hd-title" url="/pages/address-list/address-list" hover-class="none">
+      <!--<view class="title-text"><text class="icon icon-map-marker"></text>地址管理</view>-->
+      <view class="title-text">地址管理</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <navigator class="hd-title" wx:if="{{showRegisterNotice}}" url="/pages/register/register" hover-class="none">
+      <view class="title-text">申请注册</view>
+      <view class="con">现在注册，可拥有专属草动小程序</view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+  </view>
+
+  <component-copyright />
+
+  <!--获取手机号-->
+  <component-phone-auth2 isPlaceholder="{{true}}" location="bottom"></component-phone-auth2>
+</view>
+
+<view class="page-staff-my" wx:elif="{{userType == 'staff'}}">
+  <view class="page-profile">
+
+    <view class="hd-block">
+      <view class="hd-wrap">
+        <view class="user-wrap">
+
+          <view class="user-info">
+            <view class="img">
+              <image class="image" lazy-load wx:if="{{headUrl}}" mode="aspectFill" src="{{headUrl}}"></image>
+              <open-data type="userAvatarUrl" wx:else></open-data>
+            </view>
+            <view class="info">
+              <view class="name-wrap">
+                <view class="name">
+                  <block wx:if="{{name}}">{{name}}</block>
+                  <open-data type="userNickName" wx:else></open-data>
+                </view>
+                <navigator class="setting icon icon-gear" url="/pages/setting/setting" hover-class="none"></navigator>
+                <!--<view class="xingzuo" wx:if="{{constellation}}">{{constellation}}</view>-->
+              </view>
+              <view class="address" wx:if="{{storeName}}">
+                <text class="icon icon-address"></text>
+                所属门店：{{storeName}}
+              </view>
+            </view>
+          </view>
+
+          <view class="num-wrap">
+            <view class="item">
+              <view class="no" style="display: none;">NO.65</view>
+              <view class="line" style="display: none;"></view>
+              <view class="num2">{{countData.transfer}}</view>
+              <view class="text">今日转发数</view>
+            </view>
+            <view class="item">
+              <view class="no" style="display: none;">NO.23</view>
+              <view class="line" style="display: none;"></view>
+              <view class="num2">
+                <text>￥</text>
+                {{countData.amount}}
+              </view>
+              <view class="text">今日成交共 {{countData.quantity}} 笔</view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+    <view class="hd-block">
+      <view class="hd-title">
+        <text class="icon icon-store"></text>
+        销售业绩
+      </view>
+      <view class="hd-wrap">
+        <view class="achievement-wrap">
+          <view style="padding: 20rpx">
+            <canvas canvas-id="lineCanvas" class="line-canvas"></canvas>
+          </view>
+          <!--<view class="num-wrap" style="display: none;">
+            <view class="item">
+              <view class="text1">全店平均</view>
+              <view class="text2">￥18，393.22 /5笔</view>
+            </view>
+            <view class="item active">
+              <view class="text1">全店最高</view>
+              <view class="text2">￥58,393.22 /23笔</view>
+            </view>
+          </view>-->
+        </view>
+      </view>
+    </view>
+
+    <view class="hd-block">
+      <view class="hd-title">
+        <text class="icon icon-function"></text>
+        <text>常用功能</text>
+      </view>
+      <view class="hd-wrap">
+        <view class="common-func">
+          <navigator class="item" url="/pages/extract-index/extract-index" hover-class="none">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/profile/wallet-extract.png?v=1.0.0"></image>
+            <view class="text">我的提成</view>
+          </navigator>
+          <navigator class="item" url="/pages/order-list/order-list?status=0" hover-class="none">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-0.png?v=1.0.0"></image>
+            <view class="text">我的订单</view>
+          </navigator>
+          <navigator class="item" url="/pages/order-list/order-list?status=5" hover-class="none">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-5.png?v=1.0.0"></image>
+            <view class="text">售后</view>
+          </navigator>
+          <navigator class="item" url="/pages-subpackages/comment/pages/comment-my/comment-my?type=0" hover-class="none">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/order/order-status-4.png?v=1.0.0"></image>
+            <view class="text">待评价</view>
+          </navigator>
+          <navigator class="item" url="/pages/coupon-list/coupon-list" hover-class="none">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/profile/coupon.png?v=1.0.0"></image>
+            <view class="text">优惠券</view>
+          </navigator>
+          <navigator class="item" url="/pages/group-list-my/group-list-my?type=0" hover-class="none">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/profile/group.png?v=1.0.0"></image>
+            <view class="text">我的拼团</view>
+          </navigator>
+          <view class="item" bindtap="showMsg">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/profile/dragon.png?v=1.0.0"></image>
+            <view class="text">我的接龙</view>
+          </view>
+          <navigator class="item" url="/pages-subpackages/cus/pages/cus-m/index" hover-class="none">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/profile/empty_kehu.png?v=1.0.0"></image>
+            <view class="text">我的客户</view>
+          </navigator>
+          <!--开启了分销才有邀请导购-->
+          <button class="item" open-type="share" wx:if="{{sellerData.visible&&sellerData.dtype==2}}">
+            <image class="image" lazy-load mode="aspectFit" src="https://qiniu.icaodong.com/xcx/profile/invite-employee.png?v=1.0.0"></image>
+            <view class="text">邀请导购</view>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <component-copyright />
+</view>

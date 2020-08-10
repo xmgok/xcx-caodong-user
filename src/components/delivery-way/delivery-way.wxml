@@ -1,0 +1,21 @@
+<!--优惠券-->
+<popup
+  show="{{ show }}"
+  position="bottom"
+  bindclose="onPurchaseClose"
+  custom-class="delivery-way">
+  <text class="icon icon-times btn-close" bindtap="onPurchaseClose"></text>
+  <view class="coupon-container3">
+    <view class="header">配送方式</view>
+    <view class="lists">
+        <view class="list" wx:for="{{list}}" wx:key="id" data-id="{{item.expressId}}" bindtap="goToUse">
+          <view class="left">{{item.expressName}}</view>
+          <view class="right">
+              <text wx:if="{{item.isChoose}}" class="icon icon-checkbox-checked"></text>
+              <text wx:else class="icon icon-checkbox"></text>
+          </view>
+        </view>
+    </view>
+  </view>
+</popup>
+

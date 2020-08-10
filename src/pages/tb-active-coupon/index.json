@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "优惠券",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "component-share": "/components/share/share"
+  }
+}

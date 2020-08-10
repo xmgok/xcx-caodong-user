@@ -1,0 +1,95 @@
+@import "../../styles/mixin";
+page {
+  background: white;
+}
+.page-enterprise-status {
+
+  .go-index {
+    display: block;
+    border: rpx(1) solid $black-light;
+    border-radius: rpx2(100);
+    line-height: rpx2(45);
+    text-align: center;
+    margin: 0 rpx2(15);
+    font-size: rpx2(16);
+    font-weight: bold;
+    color: $text-primary;
+  }
+
+  .status-wrap {
+    height: rpx2(180);
+    color: white;
+    margin-bottom: rpx2(194);
+    text-align: center;
+    background: $btn-primary-bg;
+    padding-top: rpx2(40);
+    box-sizing: border-box;
+    position: relative;
+
+    .tb {
+      font-size: rpx2(40);
+    }
+    .text-status {
+      font-weight: bold;
+      font-size: rpx2(18);
+      line-height: rpx2(48);
+    }
+
+
+  }
+
+  .other-wrap2 {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: rpx2(153);
+    padding: 0 rpx2(10);
+    box-sizing: border-box;
+  }
+  .other-wrap {
+    background: white;
+    box-shadow:0 0 rpx2(10) 0 rgba(#e83100, 0.1);
+    border-radius: rpx2(8);
+    color: $text-primary;
+
+    .text1-wrap {
+      height: rpx2(100);
+      display: -webkit-box;
+      -webkit-box-align: center;
+      -webkit-box-pack: center;
+      .text1 {
+        font-size: rpx2(16);
+        line-height: rpx2(30);
+      }
+    }
+
+    .domain {
+      margin: 0 rpx2(20);
+      border-top: rpx(1) solid $white-smoke;
+      height: rpx2(60);
+      line-height: rpx2(60);
+      color: $text-secondary;
+      font-size: rpx2(14);
+      display: -webkit-box;
+      -webkit-box-align: center;
+      .domain-text {
+        -webkit-box-flex: 1;
+        text-align: left;
+      }
+      .domain-btn {
+        border: rpx(1) solid $black-light;
+        border-radius: rpx2(100);
+        padding: 0 rpx2(12);
+        line-height: rpx2(20);
+        color: $text-primary;
+        font-size: rpx2(14);
+        font-weight: bold;
+      }
+    }
+
+  }
+
+
+
+}
+

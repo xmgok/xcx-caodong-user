@@ -1,0 +1,108 @@
+<view class="container">
+  <view class="line-height-placeholder" id="line-height-placeholder">一行</view>
+
+  <!--员工端-->
+  <view class="goods-list">
+    <view
+      wx:for="{{listData}}"
+      wx:key="productId"
+      class="goods-item">
+      <navigator url="/pages/product/product?id={{item.id}}" hover-class="none">
+        <image src="{{item.imgUrl}}" mode="aspectFill" class="goods-image img-default-bg"></image>
+      </navigator>
+      <view class="right-content">
+        <navigator url="/pages/product/product?id={{item.id}}" hover-class="none">
+          <view class="title">{{item.name}}</view>
+          <view class="tag-list" wx:if="{{item.tags.length > 0}}">
+            <text
+              wx:for="{{item.tags}}"
+              wx:for-item="tag"
+              wx:for-index="tagIndex"
+              wx:key="tagIndex"
+              class="tag {{ tag === 1 ? 'new' : 'recommend' }}">
+              <text class="icon icon-{{ tag === 1 ? 'bag-new' : 'thumbs-up' }}"></text>{{tag === 1 ? '新品': '推荐'}}</text>
+          </view>
+
+          <view class="goods-detail {{item._unfold ? '' : 'ellipsis'}}" id="goods-spec-{{index}}">{{item.details}}</view>
+
+          <view class="price-container">
+            <view class="ui-price-wrap mb15">
+              <component-mark isVip="{{item.isVip}}"/>
+              <text class="currency">¥</text>
+              <text class="price-integer">{{item.priceInteger}}</text>
+              <text class="price-decimal">{{item.priceDecimal}}</text>
+              <text class="price-del">¥{{item.prePrice}}</text>
+            </view>
+            <view class="commission-wrap" wx:if="{{item.commission}}">
+              <text class="commission-text">佣金: </text>
+              <text class="commission-price">¥{{item.commission}}</text>
+            </view>
+          </view>
+        </navigator>
+
+        <!-- 素材 -->
+        <block wx:if="{{item.materialList.length}}">
+          <view class="img-gallery">
+            <block wx:for="{{item.materialList}}" wx:for-item="img" wx:for-index="imgIdx" wx:key="imgIdx">
+              <block wx:if="{{imgIdx<=1}}">
+                <image
+                  wx:if="{{img.imgUrl}}"
+                  src="{{img.imgUrl}}"
+                  mode="aspectFill"
+                  class="img-item img-default-bg"
+                  bindtap="goGallery"
+                  data-index="{{index}}"
+                  data-img-index="{{imgIdx}}" />
+              </block>
+              <block wx:else>
+                <image
+                  wx:if="{{img.imgUrl && !item._isShowOpen}}"
+                  src="{{img.imgUrl}}"
+                  mode="aspectFill"
+                  class="img-item img-default-bg"
+                  bindtap="goGallery"
+                  data-index="{{index}}"
+                  data-img-index="{{imgIdx}}" />
+              </block>
+            </block>
+            <view class="all-material all-material--active" data-item="{{item}}" data-index="{{index}}" bindtap="open" wx:if="{{item._isShowOpen}}">
+              展开全部 <text class="icon icon-angle-down"></text>
+            </view>
+            <navigator
+              url="/pages/material-list/material-list?productId={{item.id}}"
+              hover-class="none"
+              class="all-material">
+              查看全部 <text class="icon icon-angle-right"></text>
+            </navigator>
+          </view>
+        </block>
+
+        <view class="footer">
+          <view class="ui-contact-wrap"><text class="icon icon-service"></text> 在线客服<button class="button" open-type="contact">进入客服会话</button></view>
+
+          <view class="right-link">
+            <view class="dib" bindtap="onShare" data-index="{{index}}">
+              <text class="icon icon-share-link ml20"></text> 转发
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="ui-divider" wx:if="{{showDivider}}">
+    <text class="line"></text>{{list.length > 0 ? '已经到底啦' : '暂无数据'}}<text class="line"></text>
+  </view>
+
+  <component-share
+    wx:if="{{showShare}}"
+    bindclose="close"
+    show="{{showShare}}"
+    imgList="{{imgList}}"
+    price-switch="{{true}}"
+    checkIdList="{{checkIdList}}"
+    productId="{{productId}}"></component-share>
+</view>
+
+

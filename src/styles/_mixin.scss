@@ -1,0 +1,141 @@
+@charset "utf-8";
+@import "variables";
+
+// 设计稿是375的，需要*2
+@function rpx2($rpx) {
+  //@warn "The rpx2() mixin is deprecated. Use px directly instead.";
+  @return $rpx * 2rpx;
+}
+
+@function rpx($rpx) {
+  //@warn "The rpx() mixin is deprecated. Use px directly instead.";
+  @return $rpx * 1rpx;
+}
+
+@function px945($rpx) {
+  @return $rpx/(945/375) * 1px;
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+// Add ellipsis when text overflow.
+@mixin ellipsis($clamp: 1, $line-height: null, $width: null) {
+  @if $width {
+    max-width: $width;
+  } @else {
+    max-width: 100%;
+  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if $clamp == 1 {
+    word-wrap: normal;
+    white-space: nowrap;
+  } @else if $clamp > 1 {
+    display: -webkit-box;
+    @if $line-height {
+      max-height: $line-height * $clamp;
+      line-height: $line-height;
+    }
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-line-clamp: $clamp;
+    -webkit-box-orient: vertical;
+  }
+}
+
+// 文本溢出省略号
+@mixin ellipsis1() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+// 文本溢出省略号
+@mixin ellipsis2($lineClamp: 1, $lineHeight: 18) {
+  display: -webkit-box;
+  //height: rpx2($lineHeight * $lineClamp);
+  max-height: rpx2($lineHeight * $lineClamp);
+  overflow: hidden;
+  line-height: rpx2($lineHeight);
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+  -webkit-line-clamp: $lineClamp;
+  -webkit-box-orient: vertical;
+}
+
+// 边距、间距工具类生成
+@mixin spacing-gen($spacers, $direction) {
+  @each $prop, $abbrev in (margin: m, padding: p) {
+    // 消除间距，.m0, .p0
+    .#{$abbrev}0 {
+      #{$prop}: 0 !important;
+    }
+
+    @each $size in $spacers {
+      // 不带方向的间距，如 .p1, .p2, .p3 ...; .m1, .m2, .m3 ...
+      .#{$abbrev}#{$size} {
+        #{$prop}: rpx2($size) !important;
+      }
+
+      @each $dir-abbrev, $dir in $direction {
+        // 带方向的间距，如 .pt1, .pr1, .pt2 ...; .mt1, .mr1, .mt2 ...
+        .#{$abbrev}#{$dir-abbrev}#{$size} {
+          #{$prop}-#{$dir}: rpx2($size) !important;
+        }
+      }
+    }
+  }
+}
+
+// 1px边框
+@mixin _hairline-common() {
+  content: ' ';
+  position: absolute;
+  pointer-events: none;
+  box-sizing: border-box;
+  transform-origin: center; /* cover wechat button:after default transforn-origin */
+}
+
+@mixin _hairline($border-color: $border-color) {
+  @include _hairline-common();
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  transform: scale(0.5);
+  border: 0 solid $border-color;
+}
+
+@mixin _hairline-bottom($border-color: $border-color, $left: 0) {
+  @include _hairline-common();
+  top: auto;
+  left: $left;
+  right: 0;
+  bottom: 0;
+  transform: scaleY(0.5);
+  border-bottom: 1px solid $border-color;
+}
+
+@mixin border1px($border-color: $border-color, $dir: bottom) {
+  position: relative;
+  &::after {
+    @include _hairline($border-color);
+    border-#{$dir}-width: 1px;
+  }
+}
+
+@mixin border1px-bottom($border-color: $border-color, $left: 0) {
+  position: relative;
+  &::after {
+    @include _hairline-bottom($border-color, $left);
+  }
+}

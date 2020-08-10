@@ -1,0 +1,10 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "发货",
+  "navigationBarBackgroundColor": "#F2F2F2",
+
+  "usingComponents": {
+    "jz-popup-radio-picker": "/components/popup-radio-picker/popup-radio-picker",
+    "jz-input-number": "/components/input-number/input-number"
+  }
+}

@@ -1,0 +1,62 @@
+<search-with-service
+  value="{{ keyword }}"
+  placeholder="搜索商品编号或关键字"
+  bindconfirm="handleSearchConfirm" />
+
+<view class="goods-list-user">
+  <navigator
+    wx:for="{{dataList}}"
+    wx:key="id"
+    url="/pages/product/product?id={{item.productId}}&activeId={{item.id}}&activeType=group"
+    hover-class="none"
+    class="goods-item">
+    <image src="{{item.productImg}}" mode="aspectFill" class="goods-image img-default-bg" lazy-load></image>
+    <view class="right-content">
+      <view class="title">{{item.productName}}</view>
+      <view class="tag-list">
+        <component-mark type="group"></component-mark>
+      </view>
+      <!--
+      <view class="tag-list" wx:if="{{item.tags.length > 0}}">
+        <component-mark type="group"></component-mark>
+        <text
+          wx:for="{{item.tags}}"
+          wx:key="*this"
+          wx:for-item="tag"
+          class="tag {{ tag === 1 ? 'new' : 'recommend' }}">
+          <text class="icon icon-{{ tag === 1 ? 'bag-new' : 'thumbs-up' }}"></text>
+          <text>{{tag === 1 ? '新品': '推荐'}}</text>
+        </text>
+      </view>
+      -->
+      <view class="desc">{{item.groupNumber}}人团·已拼{{item.finishNum}}件</view>
+      <view class="footer">
+        <view class="ui-price-wrap">
+          <text class="currency">¥</text>
+          <text class="price-integer">{{item.priceInteger}}</text>
+          <text class="price-decimal">{{item.priceDecimal}}</text>
+          <text class="price-del">¥{{item.productPrice}}</text>
+        </view>
+        <!--wx:if="{{ item.inventory > 0 }}"-->
+        <!--<view wx:else class="btn-buy disabled">补货中</view>-->
+
+        <view class="btn-buy" wx:if="{{userType=='customer'}}">立即参与</view>
+        <!--<button data-index="{{index}}" open-type="share" class="btn-buy" wx:if="{{userType=='staff'}}" catchtap>去分享</button>-->
+        <view wx:if="{{userType=='staff'}}" data-index="{{index}}" class="btn-buy" catchtap="showShare">去分享</view>
+      </view>
+    </view>
+  </navigator>
+</view>
+<list-loading-more result="{{result}}"></list-loading-more>
+
+<component-share
+  bindclose="close"
+  wx:if="{{showShare}}"
+  productId="{{resData.productId}}"
+  activeId="{{resData.id}}"
+  activeType="group"
+  activePrice="{{resData.activePrice}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}"/>

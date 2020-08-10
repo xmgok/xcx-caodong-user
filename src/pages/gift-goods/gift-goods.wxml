@@ -1,0 +1,103 @@
+<!--消费者端热销优选-->
+
+<view class="hd-func">
+  <view class="search-wrap">
+    <text class="icon icon-search"></text>
+    <input
+      placeholder-style="color:#96989c"
+      placeholder="搜索商品编号或关键字"
+      confirm-type="search"
+      bindconfirm="bindKeyInputConfirm"
+      bindinput="onInput" />
+  </view>
+</view>
+
+<view class="status" wx:if="{{footerData.showTag&&footerData.discountName}}">
+  <view class="status-title">{{footerData.showTag}}</view>
+  <view class="status-desc">{{footerData.discountName}}</view>
+</view>
+
+<view class="page-coupon-goods">
+  <navigator wx:for="{{list}}" wx:key="index" url="/pages/product/product?id={{item.id}}" hover-class="none"
+             class="card32">
+    <image class="img" src="{{item.imgUrl}}" mode="aspectFill" />
+    <view class="right">
+      <view class="title">{{item.name}}</view>
+      <view class="tip">{{item.details}}</view>
+
+      <scroll-view scroll-x
+                   class="ui-mark-warp">
+        <view class=" {{  typeObj[labelsList.type] }}" wx:for="{{item.labels}}" wx:for-item="labelsList" wx:key="id"
+        >{{labelsList.name}}
+        </view>
+      </scroll-view>
+
+      <view class="coupons">
+        <view class="item" wx:if="{{resData.usePrice && resData.usePrice!== '0.00'}}">满{{resData.usePrice}}可用</view>
+        <view class="item" wx:else>无门槛</view>
+      </view>
+      <view class="bottom">
+        <view>
+          <text class="price">
+            <text>￥</text>
+            <text class="big">{{item._priceInt}}</text>
+            <text>.{{item._priceDec}}</text>
+          </text>
+          <text class="old-price">￥{{item.prePrice}}</text>
+        </view>
+        <view class="btn" data-id="{{item.id}}" catchtap="addToCart">
+          <text class="icon icon-plus"></text>
+        </view>
+      </view>
+    </view>
+  </navigator>
+
+  <!--
+  <view class="empty" wx:else>
+    <image class="img" src="https://qiniu.icaodong.com/xcx/common/empty-coupon.png?v=1.0.0"></image>
+    <view>暂时没有优惠券哦~</view>
+  </view>
+  -->
+</view>
+<list-loading-more result="{{result}}"></list-loading-more>
+
+<!--秦婧婧让去掉这个悬浮的购物车-->
+<!--<navigator class="to-cart" open-type="switchTab" url="/pages/cart/cart" hover-class="none">
+  <text class="icon icon-cart"></text>
+  <view class="num">{{cartNum}}</view>
+</navigator>-->
+
+<view class="footer-wrap">
+  <view class="footer">
+    <view class="left">
+      <view class="top">
+        <text>小计：</text>
+        <text class="red">￥{{footerData.sellAmount}}</text>
+      </view>
+      <view class="bottom">
+        <text>{{footerData.collectText}}</text>
+      </view>
+    </view>
+    <view class="right-wrap active" wx:if="{{footerData.satisfy!=1&&footerData.showGift==1}}">
+      <view class="right right1" bindtap="goGiftPage" data-item="{{footerDataItem}}"
+                 hover-class="none">查看赠品
+      </view>
+      <navigator open-type="switchTab" class="right right2" url="/pages/cart/cart" hover-class="none">去购物车</navigator>
+    </view>
+    <view class="right-wrap active" wx:elif="{{footerData.satisfy==1&&footerData.giftInfo}}">
+      <view class="right right1" bindtap="goGiftPage" data-item="{{footerData.giftInfo}}"
+                 hover-class="none">{{footerData.giftInfo.giftList.length?'更换':'领取'}}赠品
+      </view>
+      <navigator open-type="switchTab" class="right right2" url="/pages/cart/cart" hover-class="none">去购物车</navigator>
+    </view>
+    <view class="right-wrap" wx:else>
+      <navigator open-type="switchTab" class="right right2" url="/pages/cart/cart" hover-class="none">去购物车</navigator>
+    </view>
+  </view>
+</view>
+
+<goods-purchase
+  wx:if="{{productId}}"
+  show="{{showPurchase}}"
+  id="{{productId}}"
+  bind:selected="goodsPurchaseSelected" />

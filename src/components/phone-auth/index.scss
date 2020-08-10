@@ -1,0 +1,51 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.get-mobile {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  z-index: 998;
+
+  .con {
+    width: 80%;
+    background: white;
+    text-align: center;
+    border-radius: rpx2(5);
+    overflow: hidden;
+
+    .title {
+      font-weight: bold;
+      color: #000000;
+      font-size: rpx2(14);
+      padding-top: rpx2(20);
+    }
+
+    .btn-wrap {
+      display: flex;
+      align-items: center;
+    }
+
+    .btn {
+      &.cancel {
+        color: #333;
+      }
+
+      flex: 1;
+      //width: 50%;
+      //max-width: 50%;
+      box-sizing: border-box;
+      margin-top: rpx2(20);
+      color: $success;
+      background: $gray-lighter;
+      line-height: rpx2(40);
+      font-size: rpx2(14);
+    }
+  }
+}

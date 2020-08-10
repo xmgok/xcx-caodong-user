@@ -1,0 +1,69 @@
+@import "../../../../styles/mixin";
+
+page,
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  padding: 0 60px;
+  text-align: center;
+  .title {
+    font-size: 34px;
+    color: #ffffff;
+    line-height: 48px;
+    margin-top: 50px;
+    margin-bottom: 17px;
+  }
+  .time-wrap {
+    font-size: 13px;
+    color: #ffffff;
+  }
+  .time {
+    margin-left: 6px;
+  }
+}
+
+.btn {
+  box-sizing: border-box;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: #ffffff;
+  &-home {
+    border: 1px solid #ffffff;
+  }
+  &-room {
+    background-color: $primary;
+    box-shadow: 0 3px 16px darken($primary, 20%);
+  }
+  &.disabled {
+    background-color: $btn-disabled-bg;
+    border: 1px solid $btn-disabled-border;
+    box-shadow: none;
+    pointer-events: none;
+  }
+  &-wrap {
+    position: fixed;
+    bottom: 100px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+.cover-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

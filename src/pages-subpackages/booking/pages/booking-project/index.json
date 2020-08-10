@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "预约项目",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

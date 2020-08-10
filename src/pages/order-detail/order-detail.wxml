@@ -1,0 +1,229 @@
+<view class="page-order-detail">
+
+  <view class="hd-block">
+    <view class="order-status-wrap">
+      <view class="satus">
+        <view class="tb icon {{statusIcon}}"></view>
+        <view class="text-wrap">
+          <view class="text">{{statusText}}</view>
+          <view class="tip" wx:if="{{orderInfo.isLotOfParcel}}">订单已拆成多个包裹发出，点击“查看物流”</view>
+          <view class="tip" wx:else>{{statusTip}}</view>
+        </view>
+      </view>
+      <view class="address-wrap" wx:if="{{orderInfo.isTake}}">
+        <view class="title">门店地址：</view>
+        <view class="detail">
+          <view class="name">
+            <text>{{orderInfo.receiverName}} {{orderInfo.receiverPhone}}</text>
+          </view>
+          <view class="addr">{{orderInfo.receiverAddress}}</view>
+        </view>
+      </view>
+      <view class="address-wrap" wx:else>
+        <view class="title">收货地址：</view>
+        <view class="detail">
+          <view class="name">
+            <text>{{orderInfo.receiverName}} {{orderInfo.receiverPhone}}</text>
+          </view>
+          <view class="addr">{{orderInfo.receiverAddress}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="hd-block group-wrap" wx:if="{{groupDetail.list.length}}">
+    <view class="header">
+      <view class="flex-1 flex-v-center">
+        <text class="icon icon-group"></text>
+        <text>{{groupDetail.groupNumber}}人团·{{groupDetail.statusName}}</text>
+      </view>
+      <navigator
+        class="link"
+        url="/pages/group-detail/group-detail?recordId={{groupDetail.id}}"
+        hover-class="none">拼团详情
+        <text class="icon icon-angle-right"></text>
+      </navigator>
+    </view>
+    <view class="content is-group">
+      <view
+        class="avatar-wrap"
+        wx:for="{{groupDetail.list}}"
+        wx:key="index">
+        <image lazy-load
+               class="avatar"
+               src="{{item.headImg}}"
+               mode="aspectFill" />
+        <text class="group" wx:if="{{item.isCaptain==1}}">团长</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <view class="order-detail-wrap">
+
+      <view class="store-info" style="display: none;">
+        <image class="image" lazy-load mode="aspectFill"
+               src="https://qmfx-s39210.s3.fy.shopex.cn/gpic/20160722/49900ccfd2a45537cd22f52e2f82d122.jpg"></image>
+        <view class="store-name">URBAN REVIVO</view>
+      </view>
+
+      <navigator class="goods-info-wrap" url="/pages/product/product?id={{item.productId}}" hover-class="none"
+                 wx:for="{{goodsList}}" wx:key="index">
+        <image lazy-load class="img" mode="aspectFill" src="{{item.productImg}}"></image>
+        <view class="text-wrap">
+          <view class="title">{{item.productName}}</view>
+          <view class="specifications" wx:if="{{item.isGift==1}}">
+            <view class="gift">赠品</view>
+          </view>
+          <view class="specifications" wx:if="{{item.isGift==2}}">
+            <view class="gift coupon5">兑换</view>
+          </view>
+          <view class="specifications" wx:else>
+            {{item.specName}}; x{{item.productNum}}
+          </view>
+
+          <view class="info">
+            <view class="price">￥{{item.isGift==1? 0:item.productPrice}}</view>
+            <view class="num">
+              <!--commentStatus 0未确认收货 1未评论 2已评论-->
+              <view class="mr5" wx:if="{{type != 'extract' && item.commentStatus==1}}">
+                <navigator
+                  url="/pages-subpackages/comment/pages/comment/comment?productId={{item.productId}}&orderCode={{orderCode}}&specId={{item.specId}}"
+                  hover-class="none" class="ui-btn-plain danger" catchtap>去评价
+                </navigator>
+              </view>
+              <view
+                wx:if="{{type != 'extract' && item.usableReturnNum && !item.isGift}}"
+                data-url="/pages/aftersales-apply/aftersales-apply?orderCode={{orderCode}}&specId={{item.specId}}&number={{item.usableReturnNum}}&type={{item.defaultReturnType}}"
+                catchtap="goAftersales">
+                <view class="ui-btn-plain">申请售后</view>
+              </view>
+              <block wx:else>
+                <text class="return-status">{{ item.statusDesc }}</text>
+              </block>
+            </view>
+          </view>
+        </view>
+      </navigator>
+
+      <view class="num-wrap">
+        <view class="text-item">
+          <view class="title">商品总额：</view>
+          <view class="con">￥{{orderInfo.productAmount}}</view>
+        </view>
+        <view class="text-item">
+          <view class="title">运　　费：</view>
+          <view class="con">+￥{{orderInfo.expressAmount}}</view>
+        </view>
+        <view class="text-item">
+          <view class="title">优惠券：</view>
+          <view class="con">-￥{{orderInfo.couponAmount}}</view>
+        </view>
+        <view class="text-item">
+          <view class="title">促销立减：</view>
+          <view class="con">-￥{{orderInfo.reduceAmount}}</view>
+        </view>
+        <view class="text-item">
+          <view class="title">优惠抵扣：</view>
+          <view class="con">-￥{{orderInfo.discountAmount}}</view>
+        </view>
+        <view class="text-item">
+          <view class="title">积分抵扣：</view>
+          <view class="con">-￥{{orderInfo.integralAmount}}</view>
+        </view>
+      </view>
+
+      <view class="total-price">合计
+        <text>￥{{orderInfo.orderAmount}}</text>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <view class="order-other">
+      <!--导购带客下单时填写的会员手机号-->
+      <view class="item" wx:if="{{orderInfo.customerMobile}}">
+        <text class="text">会员手机号：</text>
+        <text>{{orderInfo.customerMobile}}</text>
+      </view>
+      <view class="item">
+        <text class="text">订单编号：</text>
+        <text selectable>{{orderInfo.orderCode}}</text>
+      </view>
+      <view class="item">
+        <text class="text">下单时间：</text>
+        <text>{{orderInfo.createTime}}</text>
+      </view>
+      <view class="item">
+        <text class="text">订单备注：</text>
+        <text>{{orderInfo.remark || '无'}}</text>
+      </view>
+      <view class="item">
+        <text class="text">支付方式：</text>
+        <text>微信支付</text>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{type != 'extract'}}">
+    <view class="fixed-bottom {{iPhoneX?'iPhoneXpb':''}}" wx:if="{{status!=2}}">
+      <navigator
+        class="btn-item"
+        wx:if="{{orderInfo.expressCode && orderInfo.isTake != 1}}"
+        url="/pages/logistics-detail/logistics-detail?orderCode={{orderCode}}"
+        hover-class="none">查看物流
+      </navigator>
+      <block wx:if="{{status == 4 || status == 5}}">
+        <view class="btn-item" bindtap="deleteOrder">删除订单</view>
+        <view
+          wx:if="{{ (orderInfo.orderType != 3 && orderInfo.isTake && status == 7) || (orderInfo.orderType == 3 && groupDetail.status == 2 && orderInfo.isTake && status == 7) }}"
+          class="btn-item" bindtap="showTake">提货凭证
+        </view>
+      </block>
+      <view class="btn-item btn-item2" wx:if="{{orderInfo.returnStatus != 1 && orderInfo.orderStatus == 3 && orderInfo.expressStatus == 1}}" bindtap="delivery">确认收货</view>
+      <block wx:if="{{status == 1}}">
+        <view class="btn-item" bindtap="cancelOrder">取消订单</view>
+        <view class="btn-item btn-item2" bindtap="pay">确认付款</view>
+      </block>
+      <!--非拼团订单和之前保持一致。拼团订单，成团之后才有提货凭证-->
+      <view
+        wx:if="{{ (orderInfo.orderType != 3 && orderInfo.isTake && status == 7) || (orderInfo.orderType == 3 && groupDetail.status == 2 && orderInfo.isTake && status == 7) }}"
+        class="btn-item btn-item2" bindtap="showTake">提货凭证
+      </view>
+    </view>
+  </block>
+
+  <view class="take-code {{status == 7?'':'inactive'}}" wx:if="{{showTakeCode}}">
+    <view>
+      <view class="body">
+        <view class="code">
+          <text wx:if="{{status == 7}}">提货码</text>
+          <text wx:else>提货码已使用</text>
+          <text class="code-text">： {{ orderInfo.takeCode }}</text>
+        </view>
+        <image class="qr" lazy-load mode="aspectFill"
+               src="{{takeCodeQr}}"></image>
+      </view>
+      <image class="coupon-bg" lazy-load mode="aspectFill"
+             src="https://qiniu.icaodong.com/xcx/common/write-off-coupon-bg.png?v=1.0.0"></image>
+      <view class="footer">
+        <view class="item">
+          <view class="label">提货门店：</view>
+          <view class="content">{{ orderInfo.receiverName }}</view>
+        </view>
+        <view class="item">
+          <view class="label">提货地址：</view>
+          <view class="content">{{ orderInfo.receiverAddress }}</view>
+        </view>
+      </view>
+      <view class="close-wrap" bindtap="hideTake">
+        <text class="icon icon-times"></text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "component-share": "/components/share/share"
+  }
+}

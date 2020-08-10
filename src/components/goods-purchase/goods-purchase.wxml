@@ -1,0 +1,162 @@
+<popup
+  show="{{ show }}"
+  position="bottom"
+  z-index="{{ zIndex }}"
+  bindclose="onPurchaseClose"
+  custom-class="purchase-popup">
+  <text class="icon icon-times btn-close" bindtap="onPurchaseClose"></text>
+  <view class="goods-container">
+    <view class="header">
+      <image lazy-load src="{{ data._imgUrl }}" mode="aspectFill" class="goods-image"></image>
+      <view class="right-content">
+        <view class="title">{{ data.name }}</view>
+        <view class="ui-price-wrap" wx:if="{{activeType=='bargain'}}">
+          <view>
+            <text class="currency">¥</text>
+            <text class="price-integer">{{ bargainDetail.activePriceInteger }}</text>
+            <text class="price-decimal">{{ bargainDetail.activePriceDecimal }}</text>
+            <text class="price-del">¥{{ data.price }}</text>
+          </view>
+        </view>
+        <view class="ui-price-wrap" wx:elif="{{activeType=='group'}}">
+          <component-mark type="group" />
+          <view>
+            <text class="currency">¥</text>
+            <text class="price-integer">{{ groupDetail.activePriceInteger }}</text>
+            <text class="price-decimal">{{ groupDetail.activePriceDecimal }}</text>
+            <text class="price-del">¥{{ data.price }}</text>
+          </view>
+        </view>
+        <view class="ui-price-wrap" wx:elif="{{data.spec._activeType=='seckill'}}">
+          <component-mark type="seckill" />
+          <view>
+            <text class="currency">¥</text>
+            <text class="price-integer">{{ seckillDetail.activePriceInteger }}</text>
+            <text class="price-decimal">{{ seckillDetail.activePriceDecimal }}</text>
+            <text class="price-del">¥{{ data.price }}</text>
+          </view>
+        </view>
+        <view class="ui-price-wrap" wx:else>
+          <block wx:if="{{isSellPrice}}">
+            <view>
+              <text class="currency">¥</text>
+              <text class="price-integer">{{ data.sellPriceInteger }}</text>
+              <text class="price-decimal">{{ data.sellPriceDecimal }}</text>
+              <text class="price-del">¥{{ data.prePrice }}</text>
+            </view>
+          </block>
+          <block wx:else>
+            <component-mark isVip="{{data.isVip}}" />
+            <view>
+              <text class="currency">¥</text>
+              <text class="price-integer">{{ data.priceInteger }}</text>
+              <text class="price-decimal">{{ data.priceDecimal }}</text>
+              <text class="price-del" wx:if="{{activeType !== 'live'}}">¥{{ data.prePrice }}</text>
+            </view>
+          </block>
+        </view>
+        <view class="goods-no">商品编号：{{ data.productCode }}</view>
+      </view>
+    </view>
+    <view class="content">
+      <view class="row" wx:if="{{false}}">
+        <!--<view class="label pb10">{{ item.label }}</view>-->
+        <view class="row-content" wx:for="{{ data.specificationList }}" wx:key="index">
+          <view class="tags">
+            <view
+              class="item {{ item.active ? 'active' : '' }} {{ item.disabled ? 'disabled' : '' }}"
+              bindtap="onSpecClick"
+              data-parent-index="{{ index }}"
+              data-index="{{ index }}"
+              data-value="{{ item.id }}"
+            >{{ item.specContent }}
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="row">
+        <view wx:for="{{ data.attributeList }}" wx:for-item="itemP" wx:for-index="indexP" wx:key="indexP">
+          <view class="label pb10">{{ itemP.key }}</view>
+          <view class="row-content" wx:for="{{ itemP.value }}" wx:key="index">
+            <view class="tags">
+              <view
+                class="item {{ item.active ? 'active' : '' }} {{ item.disabled ? 'disabled' : '' }}"
+                bindtap="onSpecClick"
+                data-parent-index="{{ indexP }}"
+                data-index="{{ index }}"
+                data-values="{{ item.values }}"
+              >{{ item.values }}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="row">
+        <view class="label">数量</view>
+        <view class="row-content hint-wrap">
+          <input-number
+            value="{{ quantity }}"
+            max="{{ data.inventory }}"
+            bindchange="onQuantityChange"></input-number>
+          <view
+            wx:if="{{data.spec._activeType=='seckill' && seckillDetail.isLimitNum}}"
+            class="hint"
+          >
+            限购{{seckillDetail.limitNum}}件，已买{{seckillDetail.limitNum-seckillDetail.remainNum}}件
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="footer">
+      <!--<view class="btn-column-wrap" wx:if="{{activeType=='group'}}">
+        <view class="btn-column btn-column_alone-buy {{ data.inventory === 0 ? 'disabled': '' }}"
+              data-type="groupAloneBuy" bindtap="submit">
+          <view class="big">¥{{data.price}}</view>
+          <view class="small">单独购买</view>
+        </view>
+        <view wx:if="{{buyType=='groupJoinBuy'}}"
+              class="btn-column btn-column_group-buy {{ data.inventory === 0 ? 'disabled': '' }}"
+              data-type="groupJoinBuy" bindtap="submit">
+          <view class="big">¥{{groupDetail.activePrice}}</view>
+          <view class="small">我要参团</view>
+        </view>
+        <view wx:else class="btn-column btn-column_group-buy {{ data.inventory === 0 ? 'disabled': '' }}"
+              data-type="groupOpenBuy" bindtap="submit">
+          <view class="big">¥{{groupDetail.activePrice}}</view>
+          <view class="small">我要开团</view>
+        </view>
+      </view>-->
+      <view class="btn-column-wrap" wx:if="{{activeType=='group'}}">
+        <form class="form" bindsubmit="submit" report-submit data-type="groupAloneBuy">
+          <button form-type="submit"
+                  class="btn-column btn-column_alone-buy {{ data.inventory === 0 ? 'disabled': '' }}">
+            <view class="big">¥{{data.price}}</view>
+            <view class="small">单独购买</view>
+          </button>
+        </form>
+        <form class="form" wx:if="{{buyType=='groupJoinBuy'}}" bindsubmit="submit" report-submit data-type="groupJoinBuy">
+          <button form-type="submit"
+                  class="btn-column btn-column_group-buy {{ data.inventory === 0 ? 'disabled': '' }}">
+            <view class="big">¥{{groupDetail.activePrice}}</view>
+            <view class="small">我要参团</view>
+          </button>
+        </form>
+        <form class="form" wx:else bindsubmit="submit" report-submit data-type="groupOpenBuy">
+          <button form-type="submit"
+                  class="btn-column btn-column_group-buy {{ data.inventory === 0 ? 'disabled': '' }}">
+            <view class="big">¥{{groupDetail.activePrice}}</view>
+            <view class="small">我要开团</view>
+          </button>
+        </form>
+      </view>
+      <form class="form" wx:else bindsubmit="submit" report-submit data-type="{{buyType}}">
+        <button form-type="submit" hover-class="none" class="ui-btn-submit {{ data.inventory === 0 ? 'disabled': '' }}">
+          确定
+        </button>
+      </form>
+    </view>
+    <!--此行务必放在最底部，是用来兼容iphoneX的-->
+    <view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>
+  </view>
+</popup>

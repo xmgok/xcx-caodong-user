@@ -1,0 +1,71 @@
+<view class="gaveaway-container">
+  <block wx:for="{{dataList}}" wx:key="index">
+    <view class="items {{item.inventory?'':'inactive'}}" wx:if="{{item.inventory}}" data-index="{{index}}" catchtap="doCheck">
+      <view class="icons">
+        <text
+          class="checkbox-icon {{item.inventory?'':'icon-checkbox-disabled'}} icon {{item.checked?'icon-checkbox-checked':'icon-checkbox'}}"></text>
+      </view>
+      <view class="image">
+        <image class="img" mode="aspectFill" src="{{item.imgUrl}}"></image>
+      </view>
+      <view class="goods-message">
+        <view class="title">{{item.name}}</view>
+        <view>
+          <text class="spec"
+                data-id="{{item.id}}"
+                data-index="{{index}}"
+                data-number="{{item.number}}"
+                data-spec-content="{{item.specContent}}"
+                catchtap="changeSpec">
+            <text>{{item.specContent?item.specContent:'请选择规格'}}</text>
+            <text class="spec-icon icon icon-angle-down"></text>
+          </text>
+        </view>
+        <view class="prices">
+          <view>
+            ￥
+            <text class="big">{{item.sellPriceInteger}}</text>
+            {{item.sellPriceDecimal}}
+          </view>
+          <view class="num">x{{item.number}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="items" wx:else>
+      <view class="icons">
+        <text class="checkbox-icon icon icon-checkbox-disabled"></text>
+      </view>
+      <image class="image" mode="aspectFill" src="{{item.imgUrl}}"></image>
+      <view class="goods-message">
+        <view class="title title2">{{item.name}}</view>
+        <view class="prices">
+          <view class="out">商品已兑完</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="btn-wrap {{iPhoneX?'iPhoneXpb':''}}">
+    <view class="money">
+      <view class="money-big">
+        已选：
+        <text class="red">￥{{giftAmount}}</text>
+      </view>
+      <view class="money-small">商品总额不可超过 ¥{{maxAmount}}</view>
+    </view>
+    <view class="btn" catchtap="sure">兑换</view>
+  </view>
+</view>
+<goods-purchase
+  wx:if="{{ productId }}"
+  quantity="{{quantity}}"
+  specContent="{{specContent}}"
+  show="{{ showPurchase }}"
+  id="{{ productId }}"
+  isSellPrice="{{ true }}"
+  isSetStorage="{{ false }}"
+  bind:close="goodsPurchaseClose"
+  bind:selected="goodsPurchaseSelected" />
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

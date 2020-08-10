@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "jz-popup": "../popup/popup",
+    "jz-radio": "/components/radio/radio",
+    "jz-radio-group": "/components/radio-group/radio-group"
+  }
+}
+

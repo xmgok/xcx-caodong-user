@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "拼团邀请",
+  "usingComponents": {
+    "goods-purchase": "/components/goods-purchase/goods-purchase"
+  }
+}

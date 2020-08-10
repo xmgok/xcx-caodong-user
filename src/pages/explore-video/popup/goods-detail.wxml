@@ -1,0 +1,22 @@
+<!--商品详情-->
+<van-popup
+  show="{{ showGoodsDetailSelector }}"
+  bind:close="selectorClose"
+  data-name="showGoodsDetailSelector"
+  position="bottom"
+  custom-class="pop-selector goods-detail-selector">
+  <view class="popup-header">
+    <view class="title">商品详情</view>
+    <view class="btn-close-wrap" bindtap="selectorClose" data-name="showGoodsDetailSelector">
+      <text class="icon icon-times btn-close"></text>
+    </view>
+  </view>
+  <view class="popup-content" wx:if="{{ currentProduct }}">
+    <image
+      wx:for="{{currentProduct.detailImages}}"
+      wx:key="*this"
+      src="{{item}}"
+      mode="widthFix"
+      style="width: 100%; max-width: 100%"></image>
+  </view>
+</van-popup>

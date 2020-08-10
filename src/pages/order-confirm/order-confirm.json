@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "jz-input-number": "/components/input-number/input-number",
+    "jz-loading": "/components/loading/loading",
+    "jz-submit-bar": "/components/submit-bar/submit-bar",
+    "jz-popup": "/components/popup/popup",
+    "jz-radio": "/components/radio/radio",
+    "delivery-way": "/components/delivery-way/delivery-way",
+    "coupon-popup-order": "/components/coupon-popup-order/coupon-popup-order",
+    "jz-radio-group": "/components/radio-group/radio-group"
+  }
+}

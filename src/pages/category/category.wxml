@@ -1,0 +1,55 @@
+<view class="page-category">
+  <!--获取手机号-->
+  <component-phone-auth2 location="bottom"></component-phone-auth2>
+  <view class="search-wrap">
+    <navigator class="search__input-wrap" url="/pages/search-panel/search-panel" hover-class="none">
+      <text class="icon icon-search"></text>
+      <view class="search__input">搜索货号或关键字</view>
+    </navigator>
+    <view class="search__action">
+      <!--客服-->
+      <view slot="action" class="contact-wrap">
+        <text class="icon icon-service"></text>
+        <!--<text class="dot"></text>-->
+        <button open-type="contact">进入客服会话</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-content">
+    <block wx:if="{{categoryList.length > 0}}">
+      <view class="tab-wrap">
+        <view class="item {{index == categoryIndex ? 'active' : ''}}" wx:for="{{categoryList}}" wx:key="index" data-index="{{index}}" bindtap="switchTab">{{item.name}}</view>
+      </view>
+
+      <view class="main">
+        <view class="tab-w"></view>
+
+        <view class="second-wrap">
+          <view class="second" wx:for="{{categoryList[categoryIndex].childList}}" wx:key="index">
+            <navigator class="second-title" url="/pages/search/search?categoryId={{item.id}}&categoryName={{item.name}}" hover-class="none">
+              <view>{{item.name}}</view>
+              <view class="arrow">全部 <text class="icon icon-angle-right"></text></view>
+            </navigator>
+
+            <view class="three-wrap">
+              <navigator class="three-item" url="/pages/search/search?categoryId={{item.id}}&categoryName={{item.name}}" hover-class="none" wx:for="{{item.childList}}" wx:key="index2">
+                <image lazy-load class="three-img" mode="aspectFill" src="{{item.imgUrl}}"></image>
+                <view class="three-text">{{item.name}}</view>
+              </navigator>
+            </view>
+
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="no-data">
+        <view class="icon-wrap">
+          <text class="icon icon-category-o"></text>
+        </view>
+        <component-loading text="暂时还没有分类哦~"></component-loading>
+      </view>
+    </block>
+  </view>
+</view>

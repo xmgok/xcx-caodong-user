@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "我邀请的导购",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

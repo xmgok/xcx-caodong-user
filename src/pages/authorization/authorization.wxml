@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="content-body">
+    <view class="logo-wrap">
+      <image mode="aspectFill" class="logo" src="{{ brandBrief.logoUrl }}"></image>
+      <view class="store-name">{{ brandBrief.name }}</view>
+    </view>
+
+    <view class="tooltip-wrap">
+      <view class="tooltip-title">为了给您提供更好的服务，请授权以下权限</view>
+      <view wx:if="{{type === 'phoneAuth'}}" class="tooltip-content">请允许获得你的手机号</view>
+      <view wx:else class="tooltip-content">请允许获得你的公开信息（昵称、头像等）</view>
+      <view class="tooltip-content">取消之后无法体验部分功能！</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <button wx:if="{{type === 'phoneAuth'}}" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber" class="btn-submit">立即授权</button>
+    <button wx:else open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" lang="zh_CN" class="btn-submit">立即授权</button>
+    <view class="btn-cancel" bindtap="cancel">取消</view>
+  </view>
+</view>

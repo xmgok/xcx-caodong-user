@@ -1,0 +1,59 @@
+<view class="page-customer-detail">
+
+  <view class="hd-block">
+    <view class="hd-wrap">
+      <view class="user-wrap">
+
+        <view class="user-info">
+          <view class="img">
+            <image lazy-load mode="aspectFill" src="{{userImg}}"></image>
+          </view>
+          <view class="info">
+            <view class="name-wrap">
+              <view class="name">{{userName}}</view>
+              <view class="xingzuo">(喜欢购买美妆产品)</view>
+            </view>
+            <view class="address">185 0215 3757</view>
+          </view>
+          <navigator class="setting icon icon-edit" url="/pages/customer-add/customer-add?id=11" hover-class="none"></navigator>
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <view class="hd-title">消费情况</view>
+    <view class="hd-wrap">
+      <view class="achievement-wrap">
+        <view class="num-wrap">
+          <view class="item">
+            <view class="text1">全店平均</view>
+            <view class="text2">￥18，393.22 /5笔</view>
+          </view>
+          <view class="item active">
+            <view class="text1">全店最高</view>
+            <view class="text2">￥58,393.22 /23笔</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <view class="hd-wrap">
+      <navigator class="hd-item" url="/pages/address-list/address-list?id=11&type=customer" hover-class="none">
+        <view class="title">客户地址</view>
+        <view class="con">2个</view>
+        <view class="tb icon icon-angle-right"></view>
+      </navigator>
+
+      <navigator class="hd-item" url="/pages/order-list/order-list?type=extract&type2=customer" hover-class="none">
+        <view class="title">客户订单</view>
+        <view class="con"></view>
+        <view class="tb icon icon-angle-right"></view>
+      </navigator>
+    </view>
+  </view>
+
+</view>

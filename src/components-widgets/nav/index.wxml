@@ -1,0 +1,8 @@
+<view class="links" wx:if="{{result.length}}">
+  <block wx:for="{{result}}" wx:key="index">
+    <view class="item" bindtap="goLink" data-url="{{item.linkUrl}}">
+      <image lazy-load class="img" src="{{item.imgUrl}}" mode="aspectFill" />
+      <view>{{item.name}}</view>
+    </view>
+  </block>
+</view>

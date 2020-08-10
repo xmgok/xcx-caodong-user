@@ -1,0 +1,50 @@
+<view class="wrap">
+  <image class="logo" lazy-load mode="aspectFill" src="{{chooseStore.logoUrl}}"></image>
+  <view class="h2">{{chooseStore.name || '无'}}</view>
+  <view class="mark" wx:if="{{chooseStore.takeStatus==1}}">支持自提</view>
+  <view class="line"></view>
+  <view class="row" bindtap="openLocation" data-item="{{chooseStore}}">
+    <view class="label">门店地址</view>
+    <view class="content">
+      <view>{{chooseStore.address || '无'}}</view>
+      <map
+        wx:if="{{chooseStore.longitude&&chooseStore.latitude}}"
+        longitude="{{chooseStore.longitude}}"
+        latitude="{{chooseStore.latitude}}"
+        scale="14"
+        style="width: 204px; height: 80px; margin-top: 10px;"
+      ></map>
+      <view class="mask"></view>
+    </view>
+    <view class="my-icon icon icon-daohang"></view>
+  </view>
+  <view class="row" bindtap="toCall" data-manager-mobile="{{chooseStore.managerMobile}}">
+    <view class="label">联系电话</view>
+    <view class="content content_border">
+      <view>{{chooseStore.managerMobile || '无'}}</view>
+    </view>
+    <view class="my-icon icon icon-lianxishangjia"></view>
+  </view>
+  <!-- <view class="row" bindtap="toCall" data-manager-mobile="{{chooseStore.empMobile}}">
+    <view class="label">导购电话</view>
+    <view class="content content_border">
+      <view>点我打电话给导购</view>
+    </view>
+    <view class="my-icon icon icon-lianxishangjia"></view>
+  </view> -->
+  <view class="row">
+    <view class="label">服务时间</view>
+    <view class="content">
+      <view>
+        <text wx:if="{{chooseStore._beginWeek&&chooseStore._endWeek}}">周{{chooseStore._beginWeek}}至周{{chooseStore._endWeek}}</text>
+        <text wx:if="{{chooseStore.beginTime&&chooseStore.endTime}}">{{chooseStore.beginTime}}-{{chooseStore.endTime}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="footer" bindtap="toCall" data-manager-mobile="{{chooseStore.empMobile}}" wx:if="{{chooseStore.empMobile}}">
+   <view class="content">
+    <view class="my-icon icon icon-lianxishangjia txt"></view>
+    <view >联系您的专属客服</view>
+   </view>
+  </view>
+</view>

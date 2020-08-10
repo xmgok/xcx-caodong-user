@@ -1,0 +1,80 @@
+<view class="page-booking-list">
+  <scroll-view scroll-x class="g-tab g-tab_style2" wx:if="{{showTab}}">
+    <view class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}" wx:for="{{tabList}}" wx:key="index" data-index="{{index}}" bindtap="switchTab">
+      <view class="g-tab-item-text">{{item}}</view>
+    </view>
+  </scroll-view>
+  <view class="list-wrap">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <navigator url="../booking-detail/index?code={{item.code}}" hover-class="none">
+        <view class="item-top flex flex-bt">
+          <view class="title-l f16">{{item.storeName}}</view>
+          <view class="title-r active f13" wx:if="{{item.status ==1}}">待分配</view>
+          <view class="title-r active f13" wx:if="{{item.status == 2}}">待服务</view>
+          <view class="title-r active f13" wx:if="{{item.status == 3}}">已完成</view>
+          <view class="title-r active f13" wx:if="{{item.status == 4}}">已取消</view>
+          <view class="title-r active f13" wx:if="{{item.status == 5}}">已关闭</view>
+        </view>
+        <view class="item-bottom">
+          <view class="row">
+            <view class="tit">预约项目</view>
+            <view class="info">{{item.serviceName}}</view>
+          </view>
+          <view class="row">
+            <view class="tit">到店时间</view>
+            <view class="info">{{item.arrivalTime}}</view>
+          </view>
+        </view>
+        <view class="btns">
+          <view class="btns-l"></view>
+          <view class="btns-r">
+            <block wx:if="{{item.status == 1|| item.status == 2}}">
+              <view class="cancelBk" catchtap="cancelBk" data-code="{{item.code}}">取消预约</view>
+            </block>
+            <block wx:if="{{item.status == 1|| item.status == 2 || item.status == 3}}">
+              <view class="bkCode  {{item.status == 1 || item.status == 2?'bkCode-active':'bkCode'}}" catchtap="showTake" data-item='{{item}}'>
+                预约码
+              </view>
+            </block>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <!-- 预约码 -->
+  <view class="take-code {{  orderInfo.status == 3?'inactive':''}}" wx:if="{{showTakeCode}}">
+    <view>
+      <view class="body">
+        <view class="code">
+          <text wx:if="{{  orderInfo.status == 3}}">预约码已使用</text>
+          <text wx:else>预约码</text>
+          <text class="code-text">: {{ orderInfo.code }}</text>
+        </view>
+        <image class="qr" lazy-load mode="aspectFill" src="{{takeCodeQr}}"></image>
+      </view>
+      <image class="coupon-bg" lazy-load mode="aspectFill" src="https://qiniu.icaodong.com/xcx/common/write-off-coupon-bg.png?v=1.0.0"></image>
+      <view class="footer">
+        <view class="item">
+          <view class="label">预约门店：</view>
+          <view class="content">{{ orderInfo.storeName }}</view>
+        </view>
+        <view class="item">
+          <view class="label">门店地址：</view>
+          <view class="content">{{ orderInfo.storeAddress }}</view>
+        </view>
+      </view>
+      <view class="close-wrap" bindtap="hideTake">
+        <text class="icon icon-times"></text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="footers {{iPhoneX?'iPhoneXb':''}}">
+  <view class="submit" bindtap="goBooking">我要预约</view>
+</view>
+<list-loading-more result="{{result}}" icon="icon-xiaofeizhewode-yuyue" noDataDesc="暂时还没有相关预约单哦~"></list-loading-more>
+<jz-popup-radio-picker title="取消预约原因" show="{{ showReasonPicker }}" list="{{ bokkingList }}" bind:submit="onReasonSubmit" />
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

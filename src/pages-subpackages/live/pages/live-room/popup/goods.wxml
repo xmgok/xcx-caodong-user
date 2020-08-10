@@ -1,0 +1,174 @@
+<!--商品列表-->
+<van-popup
+  show="{{ showGoodsSelector }}"
+  position="bottom"
+  bind:close="goodsSelectorClose"
+  custom-class="pop-selector goods-selector">
+  <view class="btn-close-wrap" bindtap="handleTap" data-type="hide-popup:showGoodsSelector">
+    <text class="icon icon-times btn-close"></text>
+  </view>
+
+  <scroll-view
+    class="popup-content"
+    scroll-y
+    bindscrolltolower="productScrollLower">
+    <!--置顶商品-->
+    <view
+      class="goods-item"
+      wx:if="{{topProduct}}">
+      <image
+        bindtap="handleTap"
+        data-type="goods-detail"
+        data-product-id="{{ topProduct.productId }}"
+        class="goods-img"
+        mode="aspectFill"
+        src="{{ topProduct.imgUrl }}"></image>
+      <view class="badge stick">推荐</view>
+      <view class="content">
+        <view
+          class="title"
+          bindtap="handleTap"
+          data-type="goods-detail"
+          data-id="{{ topProduct.productId }}"
+          data-spec_id="{{ topProduct.specId }}">
+          {{ topProduct.name }}
+        </view>
+        <view
+          wx:if="{{ role !== 'anchor' }}"
+          class="spec"
+          catchtap="handleTap"
+          data-type="goods-detail"
+          data-index="{{ -1 }}">{{ topProduct.specContent ? topProduct.specContent: '请选择规格' }}</view>
+        <view wx:else class="spec-empty" />
+        <view class="flex-row footer-wrap">
+          <view class="price-wrap">
+            <text class="sm">￥</text>
+            <text class="lg">{{ topProduct._priceInt }}</text>
+            <text class="sm">{{ topProduct._priceDec }}</text>
+          </view>
+
+          <!--主播-->
+          <view
+            wx:if="{{ role === 'anchor' }}"
+            class="btn-stick disabled">已置顶
+          </view>
+          <!--非主播-->
+          <block wx:else>
+            <!--已选规格，可调整数量-->
+            <block wx:if="{{ topProduct.specId }}">
+              <jz-input-number
+                class="input-number-wrap"
+                value="{{ topProduct._quantity }}"
+                min="{{ 0 }}"
+                plus-class="input-number-plus"
+                minus-class="input-number-minus"
+                input-class="input-number-input"
+                data-index="{{ 0 }}"
+                bindchange="onQuantityChangeTop"></jz-input-number>
+            </block>
+            <!--未选规格（index赋值-1标志置顶商品）-->
+            <view
+              class="btn-select-spec"
+              catchtap="handleTap"
+              data-type="goods-detail"
+              data-index="{{ -1 }}"
+              wx:else>
+              <text class="icon icon-plus"></text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <!--商品列表-->
+    <view
+      class="goods-item"
+      wx:for="{{ productList }}"
+      wx:key="index">
+      <image
+        bindtap="handleTap"
+        data-type="goods-detail"
+        data-index="{{ index }}"
+        class="goods-img"
+        mode="aspectFill"
+        src="{{ item.imgUrl }}"></image>
+      <view class="badge">{{ item.orderNo }}</view>
+      <view class="content">
+        <view
+          class="title"
+          bindtap="handleTap"
+          data-type="goods-detail"
+          data-id="{{ item.productId }}"
+          data-spec_id="{{ item.specId }}">
+          {{ item.name }}
+        </view>
+        <view
+          wx:if="{{ role !== 'anchor' }}"
+          class="spec"
+          catchtap="handleTap"
+          data-type="goods-detail"
+          data-index="{{ index }}">{{ item.specContent ? item.specContent: '请选择规格' }}</view>
+        <view wx:else class="spec-empty" />
+        <view class="flex-row footer-wrap">
+          <view class="price-wrap">
+            <text class="sm">￥</text>
+            <text class="lg">{{ item._priceInt }}</text>
+            <text class="sm">{{ item._priceDec }}</text>
+          </view>
+
+          <!--主播-->
+          <view
+            wx:if="{{ role === 'anchor' }}"
+            class="btn-stick"
+            catchtap="handleTap"
+            data-type="stick"
+            data-product-id="{{ item.productId }}"
+            data-index="{{ index }}">置顶
+          </view>
+          <!--非主播-->
+          <block wx:else>
+            <!--已选规格，可调整数量-->
+            <block wx:if="{{ item.specId }}">
+              <jz-input-number
+                class="input-number-wrap"
+                value="{{ item._quantity }}"
+                min="{{ 0 }}"
+                plus-class="input-number-plus"
+                minus-class="input-number-minus"
+                input-class="input-number-input"
+                data-index="{{ index }}"
+                bindchange="onQuantityChange"></jz-input-number>
+            </block>
+            <!--未选规格-->
+            <view
+              class="btn-select-spec"
+              catchtap="handleTap"
+              data-type="goods-detail"
+              data-index="{{ index }}"
+              wx:else>
+              <text class="icon icon-plus"></text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view class="loading-wrap">
+      <block wx:if="{{loadComplete}}">
+        <!--<component-loading text="暂无数据" wx:if="{{productList.length <= 0}}"></component-loading>-->
+        <view wx:if="{{productList.length <= 0}}" class="product-no-data">
+          <view class="icon-wrap">
+            <text class="icon icon-empty-caodongzhibo"></text>
+          </view>
+          <view class="msg-text">暂时还没有直播商品哦～</view>
+        </view>
+        <component-loading text="已经到底啦" wx:else></component-loading>
+      </block>
+      <component-loading wx:else></component-loading>
+    </view>
+  </scroll-view>
+
+  <view class="popup-footer" wx:if="{{ role !== 'anchor' }}">
+    <view class="btn-submit" bindtap="submit">立即购买</view>
+  </view>
+</van-popup>

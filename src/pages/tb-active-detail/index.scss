@@ -1,0 +1,329 @@
+@import "../../styles/config";
+
+@font-face {
+  font-family: 'tb-font';
+  src: url('https://qiniu.icaodong.com/tebu/font.ttf');
+}
+
+@keyframes scaleDraw {
+  0% {
+    transform: scale(1) translateX(-50%);
+  }
+  100% {
+    transform: scale(0.95) translateX(-50%);
+  }
+}
+
+@keyframes scaleDraw2 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes scaleDraw3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+.css-animation {
+  animation: scaleDraw 2s ease-in-out infinite alternate;
+}
+
+.css-animation2 {
+  animation: scaleDraw2 2s ease-in-out infinite alternate;
+}
+
+.css-animation3 {
+  animation: scaleDraw3 2s ease-in-out infinite alternate;
+}
+
+page {
+  width: 100%;
+  height: 100%;
+  font-family: "思源黑体";
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+
+  .bg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .poa {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    .f-btn {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: px945(1052);
+      width: px945(525);
+      height: px945(183);
+
+      &.f-btn_button {
+        z-index: 2;
+        opacity: 0;
+      }
+    }
+
+    .f-btn-bg-wrap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: px945(1044);
+
+      .f-btn-bg {
+        width: px945(773);
+        height: px945(217);
+      }
+
+      .f-btn-bg-text_new {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 14px;
+
+        .top {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .text-desc0 {
+            width: px945(427);
+            height: px945(63);
+          }
+
+          .text {
+            height: px945(58);
+
+            &.text0 {
+              width: px945(47);
+            }
+
+            &.text1 {
+              width: px945(29);
+            }
+
+            &.text2 {
+              width: px945(47);
+            }
+
+            &.text3 {
+              width: px945(42);
+            }
+
+            &.text4 {
+              width: px945(49);
+            }
+
+            &.text5 {
+              width: px945(46);
+            }
+
+            &.text6 {
+              width: px945(47);
+            }
+
+            &.text7 {
+              width: px945(47);
+            }
+
+            &.text8 {
+              width: px945(46);
+            }
+
+            &.text9 {
+              width: px945(46);
+            }
+          }
+
+          .text-desc1 {
+            width: px945(67);
+            height: px945(62);
+          }
+        }
+
+        .text-desc2 {
+          margin: 4px auto 0;
+          width: px945(283);
+          height: px945(62);
+        }
+      }
+
+      .f-btn-bg-text {
+        font-family: 'tb-font';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: px945(60);
+        color: #fff;
+        text-shadow: #000 1px 0 0, #000 0 1px 0, #000 -1px 0 0, #000 0 -1px 0;
+        letter-spacing: 6px;
+        line-height: 1.1;
+        box-sizing: border-box;
+        padding-top: 14px;
+      }
+    }
+
+    .comment-wrap {
+      position: absolute;
+      left: 50%;
+      top: px945(958);
+      transform: translateX(-50%);
+      width: px945(820);
+      height: px945(373);
+
+      .comment-bg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .input {
+        position: absolute;
+        bottom: px945(24);
+        left: px945(46);
+        width: px945(702);
+        height: px945(63);
+        padding-left: 10px;
+        color: #ffffff;
+      }
+
+      .comment {
+        width: px945(652);
+        height: px945(231);
+        position: absolute;
+        left: px945(60);
+        top: px945(40);
+      }
+
+      .comment-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: px945(20);
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        .head {
+          width: px945(40);
+          height: px945(40);
+          margin-right: px945(8);
+          border-radius: 2px;
+        }
+
+        .content {
+          padding: px945(10) px945(20);
+          line-height: 1;
+          font-size: px945(28);
+          border-radius: 100px;
+          background: #f7c6bc;
+          max-width: px945(600);
+          @include ellipsis1();
+        }
+      }
+
+    }
+
+    .comment-btn {
+      width: px945(555);
+      height: px945(121);
+      position: absolute;
+      left: 50%;
+      top: px945(1368);
+      transform: translateX(-50%);
+    }
+
+    .coupon-bg-wrap {
+      color: #ffffff;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: px945(963);
+
+      .coupon-bg {
+        width: px945(615);
+        height: px945(275);
+      }
+
+      .money {
+        font-size: px945(137);
+        position: absolute;
+        left: px945(210);
+        top: px945(4);
+      }
+
+      .desc {
+        line-height: 1.4;
+        font-size: px945(34);
+        position: absolute;
+        top: px945(50);
+        right: -50px;
+      }
+    }
+
+    .share-bg-wrap {
+      color: #ffffff;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: px945(1257);
+
+      .share-bg {
+        width: px945(525);
+        height: px945(245);
+      }
+
+      .share-btn {
+        width: px945(250);
+        height: px945(70);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      .share-arrow {
+        width: px945(96);
+        height: px945(87);
+        position: absolute;
+        right: px945(250+18);
+        bottom: 0;
+      }
+
+      .text {
+        padding-top: 4px;
+        line-height: 1.4;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        font-size: px945(31);
+      }
+
+      .text3 {
+        font-size: px945(21);
+      }
+    }
+  }
+}

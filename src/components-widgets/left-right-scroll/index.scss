@@ -1,0 +1,24 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.left-right-scroll-wrap {
+  position: relative;
+
+  .wrap {
+    white-space: nowrap;
+    overflow-x: auto;
+    font-size: 0;
+  }
+
+  .item {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px 0 10px 10px;
+    height: 100%;
+    border-radius: 10px;
+
+    &:last-of-type {
+      margin-right: 10px;
+    }
+  }
+}

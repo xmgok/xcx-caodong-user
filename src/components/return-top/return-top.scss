@@ -1,0 +1,19 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+
+.return-top {
+  position: fixed;
+  right: rpx2(15);
+  z-index: 666;
+  width: rpx2(44);
+  height: rpx2(44);
+  background: #ffffff;
+  border: rpx2(1) solid $border-color;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-info;
+  font-size: rpx2(20);
+}
+

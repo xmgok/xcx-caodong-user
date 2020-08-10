@@ -1,0 +1,54 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+.g-vip {
+  font-size: 9px;
+  background: #2e2e2e;
+  color: #e6d1a6;
+  padding: 2px 2px 2px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+  vertical-align: middle;
+  line-height: 1;
+  margin-right: 4px;
+  margin-top: -3px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    background: #2e2e2e;
+    transform: translateY(-50%) translateX(50%) rotate(45deg);
+  }
+}
+
+.g-jl {
+  width: 30px;
+  height: 15px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #e2ad6f, #c2773e);
+  border-radius: 7px 2px 7px 2px;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  margin-right: 10px;
+
+  &.g-jl_group {
+    background: #d4a71e;
+  }
+
+  &.g-jl_seckill {
+    background: #d4a71e;
+  }
+
+  &.g-jl_video {
+    background: #d4a71e;
+  }
+}

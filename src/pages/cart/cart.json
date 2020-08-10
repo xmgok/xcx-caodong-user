@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "popup": "/components/popup/popup",
+    "slide-view": "/components/slide-view/slide-view",
+    "swipe-view" : "/components/swipe-view/swipe-view",
+    "check-gaveaway" : "/components/check-gaveaway/check-gaveaway",
+    "goods-purchase" : "/components/goods-purchase/goods-purchase",
+    "jz-input-number": "/components/input-number/input-number"
+  }
+}

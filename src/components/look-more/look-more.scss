@@ -1,0 +1,20 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+/*@import "/styles/common.scss";*/
+/*@import "/styles/utils.scss";*/
+@import "../../styles/variables";
+
+.look-more {
+  //margin: 0 rpx2(15) 20px;
+  //height: rpx2(35);
+  //line-height: rpx2(35);
+  text-align: center;
+  font-size: rpx2(14);
+  color: $gray-dark;
+  //border: 1px solid rgba(#ececec, 1);
+  border-radius: rpx2(2);
+  padding-top: 2px;
+  padding-bottom: 16px;
+  line-height: 1;
+}
+

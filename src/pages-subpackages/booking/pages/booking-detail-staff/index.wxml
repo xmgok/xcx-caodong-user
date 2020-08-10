@@ -1,0 +1,129 @@
+<view class="booking-detail-staff">
+  <view class="tit-warp">
+    <view class="top">
+      <view class="wait-warp">
+        <view class="icon {{iconOBJ[dataInfo.status]}}"></view>
+        <view class="txt">{{txtOBJ[dataInfo.status]}}</view>
+      </view>
+      <view class="close-desc" wx:if="{{dataInfo.status == 5 || dataInfo.status == 4 }}">
+        <view class="txt">
+          <view class="point"></view>
+          <block wx:if="{{dataInfo.status == 5}}">关闭原因：{{dataInfo.closeReason}}</block>
+          <block wx:if="{{dataInfo.status == 4}}">取消原因：{{dataInfo.cancelReason}}</block>
+        </view>
+      </view>
+    </view>
+    <view class="center">
+      <view class="store-warp">
+        <view class="flex store">
+          <view style="font-weight: bold;" class="f14 store-t">到店时间</view>
+          <view class="f14">{{dataInfo.arrivalTime }}</view>
+        </view>
+        <view></view>
+        <view class="line"></view>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="store-warp">
+        <view class="flex store">
+          <view style="font-weight: bold;" class="f14 store-t">备注说明</view>
+          <view class="f14 store-remarks">{{dataInfo.remarks || '无'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="shops">
+    <view class="flex-left">
+      <block>
+        <view class="staff">预约客户</view>
+        <view style="font-size:28rpx;margin-left: 26rpx;">{{dataInfo.userName}}（{{dataInfo.userMobile }}）</view>
+      </block>
+    </view>
+  </view>
+  <view class="shops" wx:if="{{dataInfo.empName ||  dataInfo.curEmpName}}">
+    <view class="flex-left">
+      <block>
+        <view class="staff">{{dataInfo.empName?'接待导购':'所属导购'}}</view>
+        <view class="imgs">
+          <image class="image" src="{{dataInfo.empName? dataInfo.empHeadImg : dataInfo.curEmpHeadImg}}" mode="widthFix" />
+        </view>
+        <view style="font-size:28rpx" wx:if="{{dataInfo.empName}}">{{dataInfo.empName}}（{{dataInfo.empMobile }}）</view>
+        <view style="font-size:28rpx"  wx:if="{{!dataInfo.empName}}">{{dataInfo.curEmpName}}（{{dataInfo.curStoreName}}）</view>
+      </block>
+    </view>
+  </view>
+  <view class="list-warp">
+    <view class="list-title">预约项目</view>
+    <view class="list" wx:for="{{serviceList}}" wx:key="index">
+      <view class="imgs">
+        <image class="image" src="{{item.serviceImg}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
+      </view>
+      <view class="content">
+        <view class="tit">{{item.serviceName}}</view>
+        <view class="price">￥{{item.servicePrice}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="desc-warp">
+    <!-- <view class="row">
+      <view class="tit">备注说明:</view>
+      <view class="info ">{{dataInfo.remarks || '无'}}</view>
+    </view> -->
+    <view class="row" wx:if="{{dataInfo.status == 4}}">
+      <view class="tit">取消原因:</view>
+      <view class="info ">{{dataInfo.cancelReason}}</view>
+    </view>
+    <view class="row">
+      <view class="tit">预约订单:</view>
+      <view class="info ">{{dataInfo.bookingCode}}</view>
+    </view>
+    <view class="row">
+      <view class="tit">下单时间:</view>
+      <view class="info ">{{dataInfo.createTime }}</view>
+    </view>
+    <view class="row" wx:if="{{dataInfo.status == 3}}">
+      <view class="tit">核销时间:</view>
+      <view class="info ">{{dataInfo.completeTime}}</view>
+    </view>
+    <view class="row" wx:if="{{dataInfo.status == 5}}">
+      <view class="tit">关闭时间</view>
+      <view class="info ">{{dataInfo.closeTime }}</view>
+    </view>
+    <view class="row" wx:if="{{dataInfo.status == 4}}">
+      <view class="tit">取消时间</view>
+      <view class="info ">{{dataInfo.cancelTime}}</view>
+    </view>
+  </view>
+</view>
+<!-- 关闭原因弹框 -->
+<popup show="{{ closeShow }}" position="bottom" bindclose="onPurchaseClose" custom-class="coupon-popup-order">
+  <view class="header-popup">
+    <view class="title">是否确认关闭预约单？</view>
+    <text class="icon icon-times btn-close" bindtap="onPurchaseClose"></text>
+  </view>
+  <view class="content">
+    <textarea value="{{memo}}" bindinput="onInput" placeholder="" maxlength="{{-1}}" placeholder-style="color: rgba(247, 248, 250, 1);"></textarea>
+  </view>
+  <view class="footer-popup">
+    <view class="submit {{ memo?'active':'submit' }}" bindtap="closeSubmit">确定</view>
+  </view>
+</popup>
+<view class="footer {{iPhoneX?'iPhoneXpb':''}}" wx:if="{{dataInfo.status == 1 && jobType == 1 || dataInfo.status == 2 }}">
+  <view class="footer-l"></view>
+  <view class="footer-r">
+    <view class="close" bindtap="close" wx:if="{{dataInfo.status == 1 && jobType == 1 || dataInfo.status == 2 && jobType == 1}}">
+      关闭
+    </view>
+    <block wx:if="{{dataInfo.status ==1 && jobType == 1 || dataInfo.status == 2}}">
+      <view class="jobs {{ dataInfo.status == 2 ?'jobs-active':'jobs'}}" bindtap="touch">核销</view>
+    </block>
+    <block wx:if="{{dataInfo.isAllot == 1}}">
+      <view class="sataff {{ dataInfo.status == 1 ?'jobs-active':'sataff'}}" catchtap="taskStaff" >
+        分配导购
+      </view>
+    </block>
+  </view>
+</view>
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

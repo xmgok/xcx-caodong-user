@@ -1,0 +1,67 @@
+<view class="page">
+  <view class="g-tab g-tab_style2" wx:if="{{showTab}}">
+    <view
+      class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}"
+      wx:for="{{tabList}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="switchTab">
+      <view class="g-tab-item-text">{{item}}</view>
+    </view>
+  </view>
+  <block wx:if="{{dataList.length && tabIndex==0}}">
+    <component-coupon-item
+      wx:for="{{dataList}}" wx:key="couponId"
+      item="{{item}}"
+      btnType="send"
+      bindshare="share"
+      bindsaved="saved">
+    </component-coupon-item>
+  </block>
+  <block wx:if="{{tabIndex==1}}">
+    <view
+      class="coupon-item"
+      wx:for="{{dataList}}"
+      wx:key="index"
+      data-index="{{index}}"
+      data-item="{{item}}"
+      bindtap="goDetail"
+    >
+      <view class="left">
+        <view class="price">
+          <text class="big">{{item.total}}</text>
+          <text>张</text>
+        </view>
+      </view>
+      <view class="right">
+        <view class="title">{{item.name}}</view>
+        <view class="bottom">
+          <view class="times">
+            <view class="time">{{item.beginTime}}-{{item.endTime}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="btn-wrap">
+        <view class="btn" catchtap="onShareCoupons" data-item="{{item}}">去发券</view>
+      </view>
+    </view>
+  </block>
+  <list-loading-more
+    result="{{result}}" noMoreDataDesc="" icon="icon-coupon1"
+    noDataDesc="暂时没有优惠券哦~"></list-loading-more>
+</view>
+
+<!--优惠券海报-->
+<component-share
+  bindclose="closeShareCoupons"
+  wx:if="{{showShareCoupons}}"
+  show="{{showShareCoupons}}"
+  activeType="coupon"
+  activeData="{{shareData}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{false}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved2"
+/>

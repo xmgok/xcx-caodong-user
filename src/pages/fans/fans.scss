@@ -1,0 +1,111 @@
+@import "../../styles/config";
+
+page {
+  height: auto;
+}
+
+.page {
+  .list {
+    width: 345px;
+    background: #ffffff;
+    margin: 15px auto 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    padding: 32px 15px 0;
+    box-sizing: border-box;
+    box-shadow: $box-shadow;
+
+    .name {
+      margin-bottom: 12px;
+      width: 315px;
+      font-size: 16px;
+      font-weight: bold;
+      color: $text-primary;
+      @include ellipsis2(2, 22);
+    }
+
+    .step-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .step-text {
+      height: 21px;
+      line-height: 21px;
+      font-size: 15px;
+      font-weight: bold;
+      color: $red;
+    }
+
+    .line {
+      border-bottom: 1px solid $white-smoke;
+      position: absolute;
+      left: 0;
+      bottom: 57px;
+      width: 100%;
+    }
+
+    .footer {
+      margin-top: 18px;
+      height: 57px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .status {
+          height: 22px;
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 22px;
+          color: $red;
+
+          &.inactive {
+            color: $text-primary;
+          }
+        }
+
+        .next {
+          margin-left: 15px;
+          height: 18px;
+          font-size: 13px;
+          color: $gray-dark;
+          line-height: 18px;
+        }
+      }
+
+      .right {
+        .g-btn {
+          width: 80px;
+          height: 28px;
+          font-size: 13px;
+        }
+      }
+    }
+
+    .progress {
+      width: 270px;
+      height: 8px;
+      background: $white-smoke;
+      border-radius: 4px;
+      position: relative;
+
+      .progress-chunk {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        background: $progress-bg;
+        border-radius: inherit;
+      }
+    }
+  }
+}

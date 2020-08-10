@@ -1,0 +1,114 @@
+<view class="page" wx:if="{{resData.status == 1}}">
+  <view class="list" bindtap="toChooseStore" wx:if="{{!chooseStore.name}}">
+    <view class="list__item list__item--reset-padding">
+      <view class="g-flex g-flex-between">
+        <view class="icon icon-plus mr10 list__icon--highlight"></view>
+        <view>请选择服务门店</view>
+      </view>
+      <view class="icon icon-angle-right"></view>
+    </view>
+  </view>
+  <view class="address" bindtap="toChooseStore" wx:else>
+    <view class="address__h2">
+      <view class="address__h2-title">{{chooseStore.name}}</view>
+      <view wx:if="{{resData.type != 1}}" class="address__h2-icon icon icon-angle-right"></view>
+    </view>
+    <view class="address__h3">{{chooseStore.address}}</view>
+    <view class="address__footer">
+      <view class="address__left" catchtap="toCall" data-manager-mobile="{{chooseStore.managerMobile}}">
+        <view class="address__lr-icon icon icon-lianxishangjia"></view>
+        <view>联系商家</view>
+      </view>
+      <view class="address__right" catchtap="openLocation" data-item="{{chooseStore}}">
+        <view class="address__lr-icon icon icon-daohang"></view>
+        <view>地图导航</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="list" bindtap="toChooseProject">
+    <view class="list__item">
+      <view>服务项目</view>
+      <view class="icon icon-angle-right"></view>
+    </view>
+    <block wx:if="{{chooseProject.length}}">
+      <view class="list__goods" wx:for="{{chooseProject}}" wx:key="index">
+        <image
+          lazy-load class="list__goods-img" mode="aspectFill"
+          src="{{item.imgUrl}}"
+        ></image>
+        <view class="list__goods-main">
+          <view class="list__goods-title">{{item.name}}</view>
+          <view class="list__goods-price">￥{{item.price}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="list">
+    <view class="list__item g-flex">
+      <view class="g-flex g-alc g-flex1">
+        <view class="mr20">客户姓名</view>
+        <input
+          placeholder-style="font-weight:normal;" class="g-flex1" type="text" placeholder="请输入预约人姓名"
+          data-form-name="form"
+          data-form-data="{{form}}"
+          data-name="userName"
+          bindinput="onInput"
+        />
+      </view>
+    </view>
+    <view class="list__item g-flex">
+      <view class="g-flex g-alc g-flex1">
+        <view class="mr20">联系方式</view>
+        <input
+          placeholder-style="font-weight:normal;"
+          class="g-flex1"
+          type="number"
+          value="{{form.mobile}}"
+          placeholder="请输入手机号码"
+          data-form-name="form"
+          data-form-data="{{form}}"
+          data-name="mobile"
+          bindinput="onInput"
+        />
+        <button class="list__get-mobile" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">
+          获取手机号
+        </button>
+      </view>
+    </view>
+    <view class="list__item" bindtap="toChooseTime">
+      <view class="g-flex g-flex-between">
+        <view class="mr20">到店时间</view>
+        <view class="input" wx:if="{{chooseTime}}">{{chooseTime.day}} {{chooseTime.time}}</view>
+      </view>
+      <view class="icon icon-angle-right"></view>
+    </view>
+  </view>
+
+  <view class="mark">
+    <view>备注：</view>
+    <input
+      class="g-flex1"
+      type="text"
+      placeholder="在这里可以给商家留言哦～"
+      data-form-name="form"
+      data-form-data="{{form}}"
+      data-name="remarks"
+      bindinput="onInput"
+    />
+  </view>
+
+  <view class="g-btn g-btn--reset {{iPhoneX?'iPhoneXb':''}}" bindtap="confirm">提交</view>
+</view>
+<view wx:else>
+  <view class="no-data">
+    <view class="icon-wrap">
+      <text class="icon icon-xiaofeizhewode-yuyue"></text>
+    </view>
+    <view class="desc">此功能暂未开启~</view>
+  </view>
+</view>
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

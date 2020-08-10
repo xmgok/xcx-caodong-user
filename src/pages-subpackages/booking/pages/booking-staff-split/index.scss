@@ -1,0 +1,108 @@
+@import "../../../../styles/config";
+
+page {
+  padding-bottom: 60px;
+}
+
+.page {
+  margin-bottom: 18px;
+}
+
+.booking-staff-split {
+  .list-wrap {}
+
+  .list {
+    background: $white;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+    padding: 11px 10px 11px 15px;
+    box-sizing: border-box;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .item-l {
+      display: flex;
+      align-items: center;
+
+      .imgs {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        // background-color: pink;
+
+        .image {
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      .name {
+        color: #272636;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 11px;
+      }
+
+      .sign {
+        font-weight: 500;
+        background: rgba(255, 115, 91, 0.1);
+        font-size: 10px;
+        padding: 2px 5px;
+        text-align: center;
+        color: #FF735B;
+        border-radius: 6px;
+      }
+
+    }
+
+    .item-r {
+      .checkbox-icon {
+        font-size: rpx2(18);
+        margin-right: rpx2(10);
+        color: $gray-light;
+        &.icon-checkbox-checked {
+          color: $checkbox-primary-color;
+        }
+
+        &.icon-checkbox-disabled {
+          color: $gray-light;
+        }
+      }
+    }
+
+  }
+
+}
+
+.footer {
+  position: fixed;
+  bottom: 6px;
+  width: 100%;
+  height: 38px;
+  box-sizing: border-box;
+  background: transparent;
+  z-index: 500;
+
+  .submit {
+    width: 345px;
+    height: 38px;
+    line-height: 38px;
+    margin: 0 auto;
+    border-radius: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: $white;
+    background-color:$gray;
+    &.active {
+      background: $red;
+    }
+  }
+
+}

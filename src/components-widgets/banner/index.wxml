@@ -1,0 +1,8 @@
+<view class="poster" wx:if="{{result.imgUrl}}">
+  <view
+    data-url="{{result.linkUrl}}"
+    bindtap="goLink"
+    hover-class="none"
+    class="item"></view>
+  <image lazy-load src="{{result.imgUrl}}" mode="widthFix" class="img"/>
+</view>

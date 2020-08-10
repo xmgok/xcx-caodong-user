@@ -1,0 +1,79 @@
+@import "../../styles/mixin";
+.page-address-add {
+
+  padding: rpx2(10) rpx2(10) rpx2(60);
+  .fixed-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: rpx2(5) rpx2(15);
+    box-sizing: border-box;
+    .save {
+      color: white;
+      line-height: rpx2(40);
+      height: rpx2(40);
+      text-align: center;
+      border-radius: rpx2(20);
+      font-size: rpx2(16);
+      font-weight: bold;
+      background: $btn-disabled-bg;
+      &.active {
+        background: $btn-primary-bg;
+      }
+    }
+  }
+
+  .form {
+    background: white;
+    padding: 0 rpx2(15);
+    border-radius: rpx2(8);
+    .item {
+      display: -webkit-box;
+      -webkit-box-align: start;
+      border-bottom: rpx(1) solid $border-color;
+      font-size: rpx2(14);
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+    .item-title {
+      width: rpx2(85);
+      line-height: rpx2(44);
+    }
+    .item-con {
+      -webkit-box-flex: 1;
+      box-sizing: border-box;
+    }
+    .default {
+      color: $text-secondary;
+    }
+    input {
+      width: 100%;
+      line-height: rpx2(44);
+      height: rpx2(44);
+    }
+    textarea {
+      width: 100%;
+      padding: rpx2(13) 0;
+      //line-height: rpx2(18);
+      height: rpx2(36);
+    }
+    .set-default {
+      line-height: rpx2(44);
+      text {
+        font-size: rpx2(14);
+        padding-right: rpx2(5);
+        color: $gray-light;
+        &.active {
+          color: $red;
+        }
+      }
+    }
+
+    .region {
+      line-height: rpx2(44);
+    }
+  }
+}
+

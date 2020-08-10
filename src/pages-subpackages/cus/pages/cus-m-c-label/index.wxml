@@ -1,0 +1,67 @@
+<view class="page-cus-m-c-label">
+  <view class="page-padding">
+    <view class="title">
+      <view class="h2">我对TA的印象</view>
+      <view class="small">长按标签，可操作删除该标签</view>
+    </view>
+    <view class="my-label-wrap">
+      <view wx:for="{{labelData.my}}" wx:key="index" class="label {{item.active?'active':''}}"
+            data-index="{{index}}"
+            bindlongpress="bindlongpress">
+        <view class="text">{{item.name}}</view>
+        <view data-item="{{item}}" class="close icon icon-times" bindtap="deleteLabel"></view>
+      </view>
+    </view>
+    <block wx:if="{{labelData.others.length}}">
+      <view class="title">
+        <view class="h2">别人对TA的印象</view>
+      </view>
+      <view class="my-label-wrap inactive">
+        <view wx:for="{{labelData.others}}" wx:key="index" class="label active">
+          <view class="text">{{item.name}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="g-btn reset" bindtap="showSelectLabel">添加标签</view>
+
+  <jz-popup
+    show="{{ isShowSelectLabel }}"
+    position="bottom"
+    custom-class="reset-popup"
+    z-index="101">
+    <view class="select-label">
+      <view class="icon icon-times btn-close" bindtap="hideSelectLabel"></view>
+      <view class="title">添加标签</view>
+      <input class="input" value="{{ currentLabel2 }}" data-name="currentLabel2" bindinput="onInput" type="text"
+             placeholder="添加标签" />
+      <view class="scroll-wrap">
+        <view class="title title_label">我的标签</view>
+        <view class="label-wrap">
+          <view
+            wx:for="{{ myLabelList.myLabel }}"
+            wx:key="index"
+            bindtap="tagSelect"
+            data-name="{{ item }}"
+            class="label {{ currentLabelObj[item] === item ? 'active': '' }}">{{ item }}
+          </view>
+        </view>
+        <view class="title title_label">公司标签</view>
+        <view class="label-wrap">
+          <view
+            wx:for="{{ myLabelList.companyLabel }}"
+            wx:key="index"
+            bindtap="tagSelect"
+            data-name="{{ item }}"
+            class="label {{ currentLabelObj[item] === item ? 'active': '' }}">{{ item }}
+          </view>
+        </view>
+      </view>
+      <view class="g-flex btn-wrap">
+        <view class="g-btn g-btn_hollow" bindtap="resetLabel">重置</view>
+        <view class="g-btn" bindtap="saveLabel">确定</view>
+      </view>
+    </view>
+  </jz-popup>
+</view>

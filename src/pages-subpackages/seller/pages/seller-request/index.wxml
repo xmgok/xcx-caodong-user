@@ -1,0 +1,161 @@
+<view class="page">
+  <image class="banner" lazy-load mode="aspectFill" src="https://qiniu.icaodong.com/xcx/common/seller-banner.png?v=1.0.0"></image>
+
+  <!--
+  已递交申请
+  没递交申请
+    无条件
+      需要审核
+      不需要审核
+    有条件
+      没满足条件
+      已满足条件
+  -->
+
+  <!--没开启分销-->
+  <block wx:if="{{sellerData.visible==false}}">
+    <view class="request-result">
+      <view class="icon-item icon-fail icon icon-times"></view>
+      <view class="result">商家没开启分销</view>
+    </view>
+    <navigator open-type="switchTab" hover-class="none" url="/pages/index/index" class="page-btn">
+      返回首页
+    </navigator>
+  </block>
+  <!--开启了分销-->
+  <block wx:else>
+    <!--已是导购：登陆状态-->
+    <block wx:if="{{userType=='staff'}}">
+      <view class="request-result">
+        <view class="icon-item icon-fail icon icon-chenggong"></view>
+        <view class="result">您已是导购</view>
+      </view>
+      <navigator open-type="switchTab" hover-class="none" url="/pages/index/index" class="page-btn">
+        返回首页
+      </navigator>
+    </block>
+    <!--已是导购：非登陆状态-->
+    <block wx:elif="{{userType=='customer'&&isEmployee&&options.type=='employee'}}">
+      <view class="request-result">
+        <view class="icon-item icon-fail icon icon-chenggong"></view>
+        <view class="result">您已是导购</view>
+      </view>
+      <navigator open-type="navigateTo" hover-class="none" url="/pages/staff-login/login" class="page-btn">
+        去登陆
+      </navigator>
+    </block>
+    <!--员工被离职了，重新申请-->
+    <block wx:elif="{{sellerState.id>0 && sellerState.state==1&&!isEmployee&&options.type=='employee'}}">
+      <view class="request-result">
+        <view class="icon-item icon-fail icon icon-times"></view>
+        <view class="result">您已被离职</view>
+      </view>
+      <view class="page-btn" bindtap="goRequest">重新申请</view>
+    </block>
+    <!--非导购：消费者-->
+    <block wx:else>
+      <!--用户递交了申请，申请尚未通过-->
+      <block wx:if="{{sellerState.id>0 && sellerState.state==0}}">
+        <view class="request-result">
+          <view class="icon-item icon-succ icon icon-chenggong"></view>
+          <view class="result">已成功递交申请，请耐心等待审核</view>
+        </view>
+        <navigator open-type="switchTab" hover-class="none" url="/pages/index/index" class="page-btn">
+          继续购物
+        </navigator>
+      </block>
+
+      <!--用户递交了申请，申请被驳回了-->
+      <block wx:if="{{sellerState.id>0 && sellerState.state==3}}">
+        <view class="request-result">
+          <view class="icon-item icon-fail icon icon-times"></view>
+          <view class="result">您的申请已被驳回，请重新申请</view>
+          <view class="reason">{{sellerState.content}}</view>
+        </view>
+        <view class="page-btn" bindtap="goRequest">重新申请</view>
+      </block>
+
+      <!--用户递交了申请，申请被禁用了-->
+      <block wx:if="{{sellerState.id>0 && sellerState.state==2}}">
+        <view class="request-result">
+          <view class="icon-item icon-fail icon icon-times"></view>
+          <view class="result">此账号{{options.type === 'seller'?'分销':'虚拟导购'}}功能处于被禁用中</view>
+        </view>
+        <navigator open-type="switchTab" hover-class="none" url="/pages/index/index" class="page-btn">
+          返回首页
+        </navigator>
+      </block>
+
+      <!--用户尚未递交申请-->
+      <block wx:if="{{sellerState.id<=0}}">
+        <view class="new-wrap">
+          <view class="invite-wrap" wx:if="{{userInfo.headUrl}}">
+            <view class="invite">
+              <image class="avatar" lazy-load mode="aspectFill"
+                     src="{{userInfo.headUrl}}"></image>
+              <view class="nickname">{{userInfo.nickName}}</view>
+              <view class="text">邀请您成为{{options.type === 'seller'?'分销商':'虚拟导购'}}</view>
+            </view>
+          </view>
+          <view class="title">申请说明</view>
+          <!--无条件，不需要审核-->
+          <view class="new-desc" wx:if="{{!sellerData.isNeedCondition && !sellerData.verify}}">
+            欢迎您成为{{options.type === 'seller'?'分销商':'虚拟导购'}}，赶紧开启{{options.type === 'seller'?'分销':'虚拟导购'}}吧！
+          </view>
+          <!--无条件，需要审核-->
+          <view class="new-desc" wx:if="{{!sellerData.isNeedCondition && sellerData.verify}}">
+            通过审核后才能成为{{options.type === 'seller'?'分销商':'虚拟导购'}}，赶紧申请吧！
+          </view>
+          <!--有条件-->
+          <view class="new-desc" wx:if="{{sellerData.isNeedCondition}}">
+            <view>
+              <block wx:if="{{sellerData.minAmount}}">
+                <text>累计消费满</text>
+                <text class="text-danger">{{sellerData.minAmount}}元</text>
+              </block>
+              <text wx:if="{{sellerData.minAmount && sellerData.minOrderNumber}}">且</text>
+              <block wx:if="{{sellerData.minOrderNumber}}">
+                <text>下单</text>
+                <text class="text-danger">{{sellerData.minOrderNumber}}</text>
+                <text>笔</text>
+              </block>
+              <text> ，可申请成为{{options.type === 'seller'?'分销商':'虚拟导购'}}</text>
+            </view>
+            <view>
+              <text>您已消费</text>
+              <text class="text-danger">{{myBuyData.amount}}</text>
+              <text>元</text>
+              <text>，下单</text>
+              <text class="text-danger">{{myBuyData.sum}}</text>
+              <text>笔</text>
+              <!--未满足条件-->
+              <text wx:if="{{!isReachCondition}}">，请继续努力!</text>
+              <!--已满足条件-->
+              <text wx:else>，赶紧开启{{options.type === 'seller'?'分销':'虚拟导购'}}吧！</text>
+            </view>
+          </view>
+        </view>
+        <!--有条件且不满足分销条件-->
+        <navigator
+          open-type="switchTab" hover-class="none" url="/pages/index/index" class="page-btn"
+          wx:if="{{sellerData.isNeedCondition&&!isReachCondition}}">
+          继续购物
+        </navigator>
+        <!--不需要审核--><!--无条件 || 有条件且满足条件-->
+        <navigator
+          bindtap="goRequest"
+          class="page-btn" open-type="switchTab" hover-class="none"
+          data-url="{{options.type === 'seller'?'/pages-subpackages/seller/pages/seller-store-setting/index':'/pages/staff-login/login'}}"
+          wx:if="{{!sellerData.verify && (!sellerData.isNeedCondition || sellerData.isNeedCondition&&isReachCondition)}}">
+          开启{{options.type === 'seller'?'分销':'虚拟导购'}}
+        </navigator>
+        <!--需要审核--><!--无条件 || 有条件且满足条件-->
+        <view
+          class="page-btn" bindtap="goRequest"
+          wx:if="{{sellerData.verify && (!sellerData.isNeedCondition || sellerData.isNeedCondition&&isReachCondition)}}">
+          立即申请
+        </view>
+      </block>
+    </block>
+  </block>
+</view>

@@ -1,0 +1,190 @@
+@import "../../styles/config";
+
+page {
+  background: #ffffff;
+}
+
+.header {
+  margin: 10px;
+  width: 355px;
+  height: 90px;
+  background: #ffffff;
+  box-shadow: $box-shadow;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  .left {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  .right {
+    width: 255px;
+  }
+
+  .right-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $text-primary;
+    font-size: 14px;
+  }
+
+  .right-name {
+    max-width: 72px;
+    height: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    color: $text-primary;
+    line-height: 18px;
+    margin-right: 8px;
+    @include ellipsis1;
+  }
+
+  .right-num {
+    width: 51px;
+    height: 16px;
+    background: $black-light;
+    border-radius: 8px;
+    font-size: 11px;
+    color: white;
+    line-height: 16px;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .step-text {
+    height: 21px;
+    line-height: 21px;
+    font-size: 14px;
+    font-weight: bold;
+    color: $red;
+    text-align: center;
+  }
+
+  .step-text-grey {
+    color: $text-secondary;
+  }
+
+  .progress {
+    margin-top: 13px;
+    width: 255px;
+    height: 8px;
+    background: $white-smoke;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .progress-chunk {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: $progress-bg;
+    border-radius: inherit;
+  }
+}
+
+.h2 {
+  height: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  color: $text-primary;
+  line-height: 25px;
+  margin-top: 15px;
+  padding: 0 15px;
+}
+
+.goods-info-wrap {
+  overflow: hidden;
+  padding: 0 15px;
+  line-height: normal;
+  display: flex;
+  justify-content: space-between;
+
+  &:first-of-type {
+    margin-top: 15px;
+  }
+
+  &.active {
+    .mark {
+      margin-top: 6px;
+    }
+
+    .desc {
+      margin-top: 25px;
+    }
+
+    .info {
+      margin-top: 2px;
+    }
+  }
+
+  .img {
+    width: 120px;
+    height: 120px;
+    border-radius: 3px;
+  }
+
+  .text-wrap {
+    width: 215px;
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .title {
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    @include ellipsis1();
+  }
+
+  .desc {
+    margin-top: 8px;
+    height: 14px;
+    font-size: 14px;
+    color: $text-secondary;
+    line-height: 14px;
+    @include ellipsis1();
+  }
+
+  .info {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .g-btn {
+      width: 80px;
+      font-size: 13px;
+      margin: 0;
+      height: 28px;
+      box-shadow: $btn-primary-box-shadow;
+      border-radius: 14px;
+    }
+
+    .g-price {
+      margin: 0;
+
+      ._big {
+        font-size: 20px;
+      }
+
+    }
+  }
+}
+
+.hairline {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}

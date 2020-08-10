@@ -1,0 +1,29 @@
+<view class="booking-staff-split">
+  <view class="list-wrap">
+    <view
+      class="list" wx:for="{{dataList}}" wx:key="index"
+      data-id="{{item.id}}"
+      data-index="{{index}}"
+      bindtap="doCheck"
+    >
+      <view class="item-l">
+        <view class="imgs">
+          <image class="image" src="{{item.headUrl || activeImg }}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
+        </view>
+        <view class="name">{{item.name}}</view>
+        <view class="sign" wx:if="{{item.isShareEmp == 1}}">归属导购</view>
+      </view>
+      <view class="item-r">
+        <text class="checkbox-icon icon {{item.checked?'icon-checkbox-checked':'icon-checkbox'}}"></text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="footer {{iPhoneX?'iPhoneXb':''}}">
+  <view class="submit active" bindtap="confirm">确定</view>
+</view>
+<list-loading-more result="{{result}}" icon="icon-wodetuandui" noDataDesc="列表为空~"></list-loading-more>
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

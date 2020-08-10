@@ -1,0 +1,219 @@
+<view class="page">
+  <scroll-view scroll-x class="g-tab g-tab_style2" wx:if="{{showTab}}">
+    <view
+      class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}"
+      wx:for="{{tabList}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="switchTab">
+      <view class="g-tab-item-text">{{item}}</view>
+    </view>
+  </scroll-view>
+  <block wx:for="{{dataList}}" wx:key="index">
+    <!--吸粉-->
+    <view class="fans" wx:if="{{tabIndex==0&&dataList.length}}">
+      <view class="item">
+        <image lazy-load class="img" mode="aspectFill"
+               src="{{item.activeImg}}"></image>
+        <view class="content">
+          <view class="title">{{item.name}}</view>
+          <view class="time">活动时间：{{item._beginTime}}-{{item._endTime}}</view>
+        </view>
+        <view class="btn-wrap" catchtap="onShareFans" data-item="{{item}}">
+          <view class="btn">分享</view>
+        </view>
+      </view>
+    </view>
+    <!--拼团-->
+    <view class="group" wx:if="{{tabIndex==1&&dataList.length}}">
+      <view class="goods-list-user">
+        <view
+          url="/pages/product/product?id={{item.productId}}&activeId={{item.id}}&activeType=group"
+          hover-class="none"
+          class="goods-item">
+          <image src="{{item.productImg}}" mode="aspectFill" class="goods-image img-bg-default" lazy-load></image>
+          <view class="right-content">
+            <view class="title">{{item.productName}}</view>
+            <view class="tag-list">
+              <component-mark type="group"></component-mark>
+            </view>
+            <view class="desc">{{item.groupNumber}}人团·已拼{{item.finishNum}}件</view>
+            <view class="footer">
+              <view class="ui-price-wrap">
+                <text class="currency">¥</text>
+                <text class="price-integer">{{item.priceInteger}}</text>
+                <text class="price-decimal">{{item.priceDecimal}}</text>
+                <text class="price-del">¥{{item.productPrice}}</text>
+              </view>
+              <view class="btn-buy" catchtap="onShareGroup" data-item="{{item}}">分享</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--秒杀-->
+    <view class="bargain" wx:if="{{tabIndex==2&&dataList.length}}">
+      <view class="item">
+        <image lazy-load class="img" mode="aspectFill"
+               src="{{item.productImg}}"></image>
+        <view class="content">
+          <view class="title">{{item.productName}}</view>
+          <view class="join">
+            <view class="join-text">已抢{{item.virtualNumber}}件</view>
+          </view>
+          <view class="price-wrap">
+            <view class="g-price">
+              <view class="_small g-mlr2">¥</view>
+              <view class="_big">{{item.priceInteger}}</view>
+              <view class="_small">{{item.priceDecimal}}</view>
+              <view class="_del">¥{{item.productPrice}}</view>
+            </view>
+            <view class="my-btn" catchtap="onShareSeckill" data-item="{{item}}">分享</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--砍价-->
+    <view class="bargain" wx:if="{{tabIndex==3&&dataList.length}}">
+      <view class="item">
+        <image lazy-load class="img" mode="aspectFill"
+               src="{{item.productImg}}"></image>
+        <view class="content">
+          <view class="title">{{item.productName}}</view>
+          <view class="join">
+            <view class="join-text">{{item.joinNum}}人已参与</view>
+          </view>
+          <view class="price-wrap">
+            <view class="g-price">
+              <view class="_small g-mlr2">¥</view>
+              <view class="_big">{{item.priceInteger}}</view>
+              <view class="_small">{{item.priceDecimal}}</view>
+              <view class="_del">¥{{item.productPrice}}</view>
+            </view>
+            <view class="my-btn" catchtap="onShareBargain" data-item="{{item}}">分享</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--瓜分券-->
+    <view class="coupon-split" wx:if="{{tabIndex==4&&dataList.length}}">
+      <view class="item">
+        <view class="tag">{{item.total}}张</view>
+        <view class="img-wrap">
+          <image lazy-load class="img" mode="aspectFit"
+                 src="https://qiniu.icaodong.com/xcx/common/task-coupon-split-bg.png?v=1.0.0"></image>
+          <view class="img-text">￥{{item._price_big}}</view>
+        </view>
+        <view class="content">
+          <view>
+            <view class="title">{{item.name}}</view>
+            <view class="subtitle" wx:if="{{item.distType==1}}">
+              {{item.distNum}}人每人{{item.price}}元
+            </view>
+            <view class="subtitle" wx:if="{{item.distType==2}}">
+              {{item.distNum}}人瓜分{{item.price}}元
+            </view>
+          </view>
+          <view class="time">活动时间：{{item._beginTime}}-{{item._endTime}}</view>
+        </view>
+        <view class="btn-wrap" catchtap="onShareCouponsSplit" data-item="{{item}}">
+          <view class="btn">分享</view>
+        </view>
+      </view>
+    </view>
+    <!--满减送-->
+    <view class="discount" wx:if="{{tabIndex==5&&dataList.length}}">
+      <view class="item">
+        <view class="img-wrap">
+          <image lazy-load class="img" mode="aspectFit"
+                 src="https://qiniu.icaodong.com/xcx/common/discount-bg.png?v=1.0.0"></image>
+          <view class="img-text">{{item.discountName}}</view>
+        </view>
+        <view class="content">
+          <view>
+            <view class="title">{{item.name}}</view>
+            <view class="subtitle">{{item.discountRules}}</view>
+          </view>
+          <view class="time">活动时间：{{item._beginTime}}-{{item._endTime}}</view>
+        </view>
+        <view class="btn-wrap" data-item="{{item}}" bindtap="look">
+          <view class="btn">查看</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<list-loading-more result="{{result}}"></list-loading-more>
+
+<!--吸粉海报-->
+<component-share
+  bindclose="closeShareFans"
+  wx:if="{{showShareFans}}"
+  show="{{showShareFans}}"
+  activeId="{{shareData.id}}"
+  activeType="activity"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  bindsaved="saved"
+/>
+
+<!--拼团海报-->
+<component-share
+  bindclose="closeShareGroup"
+  wx:if="{{showShareGroup}}"
+  show="{{showShareGroup}}"
+  productId="{{shareData.productId}}"
+  activeId="{{shareData.id}}"
+  activeType="group"
+  activePrice="{{shareData.activePrice}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  bindsaved="saved"
+/>
+
+<!--秒杀海报-->
+<component-share
+  bindclose="closeShareSeckill"
+  wx:if="{{showShareSeckill}}"
+  show="{{showShareSeckill}}"
+  productId="{{shareData.productId}}"
+  activeId="{{shareData.id}}"
+  activeType="seckill"
+  activePrice="{{shareData.activePrice}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}" />
+
+<!--砍价海报-->
+<component-share
+  bindclose="closeShareBargain"
+  wx:if="{{showShareBargain}}"
+  show="{{showShareBargain}}"
+  activeType="other"
+  activePrice="{{activePrice}}"
+  otherText="砍价"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved"
+/>
+
+<!--瓜分券海报-->
+<component-share
+  bindclose="closeShareCouponsSplit"
+  wx:if="{{showShareCouponsSplit}}"
+  show="{{showShareCouponsSplit}}"
+  activeType="other"
+  activePrice="{{activePrice}}"
+  otherText="瓜分"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved"
+/>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的优惠券",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

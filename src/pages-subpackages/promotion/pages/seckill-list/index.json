@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "秒杀抢购",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "jz-popup-radio-picker": "/components/popup-radio-picker/popup-radio-picker"
+  }
+}

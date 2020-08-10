@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "预约详情",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "popup": "/components/popup/popup"
+  }
+}

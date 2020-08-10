@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "w-store": "/components-widgets/store/index",
+    "w-search": "/components-widgets/search/index",
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

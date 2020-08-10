@@ -1,0 +1,10 @@
+{
+  "extEnable": true,
+  "extAppid": "wxfa0d734f7133e5b2",
+  "ext": {
+    "domainPath": "https://apidev.icaodong.com/miniapp",
+    "uploadImgPath": "https://up.qbox.me",
+    "appid": "wxfa0d734f7133e5b2",
+    "tenantId": "1"
+  }
+}

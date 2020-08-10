@@ -1,0 +1,5 @@
+<canvas
+  class="my-home-qr"
+  style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+  canvas-id="{{canvasId}}"
+></canvas>

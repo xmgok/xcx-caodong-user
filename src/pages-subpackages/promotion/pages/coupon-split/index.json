@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "瓜分红包",
+  "usingComponents": {
+    "component-share": "/components/share/share",
+    "list-loading-more": "/components/list-loading-more/index",
+    "jz-popup": "/components/popup/popup"
+  }
+}

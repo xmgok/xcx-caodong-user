@@ -1,0 +1,60 @@
+<view class="page">
+  <view class="scan-wrap">
+    <view class="header">
+      <input focus type="text" class="input" value="{{value}}" bindinput="bindinput" placeholder="请扫码或输入核销码" />
+      <view class="my-icon icon icon-saoma" bindtap="scanCode"></view>
+    </view>
+    <view class="footer">
+      <view class="btn1 g-btn {{yzData.code?'g-btn_hollow':''}}" bindtap="yz">验证</view>
+      <view class="btn2 g-btn {{yzData.validateState==0?'':'inactive'}}" bindtap="hx">确认核销</view>
+    </view>
+  </view>
+  <block wx:if="{{yzData.code}}">
+    <view class="title-h2">预约信息</view>
+
+    <view class="list-wrap">
+      <view class="goods-item">
+        <view class="status-wrap">
+          <view class="order-num">预约单号：{{yzData.code}}</view>
+          <view class="status-text">{{yzData.validateState?'已核销':'未核销'}}</view>
+        </view>
+        <view class="booking-item">
+          <view>预约客户</view>
+          <view class="booking-item__desc">{{yzData.userName}}（{{yzData.mobile}}）</view>
+        </view>
+        <view class="booking-item">
+          <view>预约时间</view>
+          <view class="booking-item__desc">{{yzData.enterTime}}</view>
+        </view>
+        <view class="booking-item booking-item--reset">
+          <view class="booking-item__remark">备注说明</view>
+          <view class="booking-item__desc">{{yzData.remarks || '无'}}</view>
+        </view>
+        <view class="booking-item">
+          <view>预约项目</view>
+        </view>
+
+        <view class="goods-info-wrap" wx:for="{{yzData.serviceList}}" wx:key="index">
+          <image lazy-load class="img" mode="aspectFill"
+                 src="{{item.serviceImg}}"></image>
+          <view class="text-wrap">
+            <view class="title">{{item.serviceName}}</view>
+            <view class="info">
+              <view class="price">￥{{item.servicePrice}}</view>
+            </view>
+          </view>
+        </view>
+
+        <view class="order-footer">
+          <view class="price-wrap">
+            <text>共{{yzData.number}}个项目 总计:</text>
+            <text>
+              <text> ￥</text>
+              <text class="t1">{{yzData.amount}}</text>
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

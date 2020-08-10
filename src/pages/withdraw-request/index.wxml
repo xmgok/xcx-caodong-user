@@ -1,0 +1,59 @@
+<view>
+  <view class="header">
+    <view>结算账户</view>
+    <view class="width-wrap">
+      <navigator
+        hover-class="none"
+        url="/pages/withdraw-bank-bind/index?accountId={{ resData.acid }}"
+        wx:if="{{resData.acid}}" class="width">
+        添加银行卡
+      </navigator>
+      <view wx:else class="width">
+        <text>{{resData.bankBranchName}}</text>
+        <text wx:if="{{resData.bankCard}}">({{resData.bankCard}})</text>
+      </view>
+      <view class="icon icon-angle-right"></view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="black">
+      提现金额
+      <!--<text class="grey">（每笔收取手续费1%）</text>-->
+    </view>
+    <view class="money">
+      <view class="_symbol">￥</view>
+      <input
+        type="digit"
+        class="_big"
+        bindinput="onInput"
+        data-form-name="form"
+        data-form-data="{{form}}"
+        data-name="amount"
+        data-type="number"
+        value="{{form.amount}}"
+      />
+    </view>
+    <view class="get-all">
+      <text class="grey">提现金额不能少于{{resData.minWithDraw}}元，本次最多可提现{{resData.avcAmount}}元，</text>
+      <text
+        class="blue"
+        bindtap="getAllMoney"
+      >全部提现
+      </text>
+    </view>
+    <view
+      class="g-btn g-btn_reset"
+      bindtap="submit"
+    >提现
+    </view>
+  </view>
+  <navigator
+    open-type="navigateTo"
+    hover-class="none"
+    url="/pages/withdraw-record/index"
+    class="balance-detail"
+  >
+    <text class="_text">提现明细</text>
+    <text class="_icon icon icon-shuangjiantou"></text>
+  </navigator>
+</view>

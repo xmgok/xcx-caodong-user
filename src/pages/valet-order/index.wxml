@@ -1,0 +1,97 @@
+<view class="page">
+  <view class="header">
+    <view class="search-wrap">
+      <jz-search
+        focus
+        clearable
+        value="{{ search.keyword }}"
+        placeholder-style="color:#96989c"
+        placeholder="搜索商品编号或关键字"
+        bindconfirm="handleSearchConfirm"
+        style="width: 100%">
+      </jz-search>
+    </view>
+  </view>
+  <view class="body">
+    <scroll-view scroll-y class="aside">
+      <view class="item {{item.checked?'active':''}}"
+            wx:for="{{resData}}" wx:key="index"
+            data-index="{{index}}" data-item="{{item}}" data-type="1" catchtap="changeCategory">
+        <view class="item-text">{{item.name}}</view>
+        <view class="content">
+          <block wx:for="{{item.childList}}" wx:key="index">
+            <view class="column {{item.checked?'active':''}}"
+                  data-index="{{index}}" data-item="{{item}}" data-type="2" catchtap="changeCategory">
+              <view class="column-line"></view>
+              <view class="column-text">{{item.name}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="section-wrap">
+      <view class="mask {{isShow?'active':''}}"></view>
+      <scroll-view scroll-y bindscrolltolower="bindscrolltolower" class="section">
+        <view class="three-wrap {{isShow?'active':''}}" wx:if="{{threeData.length}}">
+          <view class="title">
+            <view class="title-text">热销新品</view>
+            <view class="my-icon icon icon-angle-up" catchtap="setToggle"></view>
+          </view>
+          <view class="three">
+            <scroll-view
+              scroll-into-view="id{{idName}}"
+              scroll-with-animation scroll-x
+              class="three-scroll">
+              <block wx:for="{{threeData}}" wx:key="index">
+                <view class="three-item {{item.checked?'active':''}}"
+                      id="id{{item.id}}" data-index="{{index}}" data-item="{{item}}" data-type="3" catchtap="changeCategory">
+                  {{item.name}}
+                </view>
+              </block>
+            </scroll-view>
+            <view class="my-icon icon icon-angle-down" catchtap="setToggle"></view>
+          </view>
+        </view>
+        <view wx:if="{{threeData.length}}" class="h" style="height:{{height}}rpx;"></view>
+        <view class="goods-wrap">
+          <navigator url="/pages/product/product?id={{item.id}}" hover-class="none" class="goods-item" wx:for="{{dataList}}" wx:key="index">
+            <image lazy-load class="img" mode="aspectFill"
+                   src="{{item.imgUrl}}"></image>
+            <view class="content">
+              <view class="name">{{item.name}}</view>
+              <view class="price">
+                <view class="text">￥{{item.price}}</view>
+                <view class="my-icon icon icon-plus" catchtap="submit" data-id="{{item.id}}"></view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+        <list-loading-more result="{{result}}"></list-loading-more>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="left">
+      <view class="top">
+        <text>商品总额：</text>
+        <text class="red">￥{{footerData.preTotalAmount}}</text>
+      </view>
+      <view class="bottom">
+        <text>共</text>
+        <text class="red ml5 mr5">{{footerData.checkNum}}</text>
+        <text>件，已优惠</text>
+        <text class="red ml5">¥{{footerData.subtractAmount}}</text>
+      </view>
+    </view>
+    <navigator open-type="switchTab" class="right" url="/pages/cart/cart" hover-class="none">去购物车</navigator>
+  </view>
+</view>
+
+<goods-purchase
+  wx:if="{{showPurchase}}"
+  show="{{showPurchase}}"
+  id="{{productId}}"
+  buyType="cart"
+  addToCart="{{true}}"
+  bind:selected="goodsPurchaseSelected"
+  bind:close="goodsPurchaseClose" />

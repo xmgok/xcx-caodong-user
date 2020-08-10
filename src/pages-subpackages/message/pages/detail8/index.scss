@@ -1,0 +1,43 @@
+@import "../../../../styles/config";
+
+page {
+  background-color: #fff;
+}
+
+.page-message-detail8 {
+  padding: 15px;
+
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    word-wrap: break-word;
+    width: 345px;
+    color: $black-light;
+  }
+
+  .title-detail {
+    margin-top: 12px;
+    color: $gray-dark;
+    display: flex;
+    align-items: center;
+
+    .txt {
+      font-size: 16px;
+    }
+
+    .date {
+      font-size: 14px;
+      margin-left: 12px;
+    }
+
+  }
+  .list{
+    font-size: 14px;
+    color: $black-light;
+    text-indent:2em;
+    line-height: 1.2em;
+    margin-top: 30px;
+
+  }
+
+}

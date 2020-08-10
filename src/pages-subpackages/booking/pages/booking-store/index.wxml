@@ -1,0 +1,63 @@
+<view class="page-booking-store">
+  <view class="header">
+    <view class="hl" bindtap="toChooseCity">
+      <view class="city">{{search.city || myCity || '请选择'}}</view>
+      <view class="icon icon-angle-down"></view>
+    </view>
+    <view class="hr">
+      <text class="icon icon-search tb"></text>
+      <input
+        type="text"
+        placeholder-style="color:rgba(170,170,170,1);font-weight:normal;"
+        value="{{name}}"
+        placeholder="请输入门店名搜索"
+        confirm-type="search"
+        bindconfirm="bindConfirm"
+        data-form-name="search"
+        data-form-data="{{search}}"
+        data-name="name"
+        bindinput="onInput"
+      />
+    </view>
+  </view>
+  <view class="list-warp">
+    <view
+      class="list"
+      wx:for="{{dataList}}"
+      wx:key="index"
+    >
+      <view
+        data-id="{{item.id}}"
+        data-index="{{index}}"
+        bindtap="doCheck"
+        class="checkboxs left">
+        <text
+          class="checkbox-icon icon {{item.checked?'icon-checkbox-checked':'icon-checkbox'}}"
+        ></text>
+      </view>
+      <view class="right" bindtap="goDetail" data-item="{{item}}">
+        <view class="r-b">
+          <view class="tit">{{item.name}}</view>
+          <view class="cm">距您 {{item.distanceUnit}}</view>
+        </view>
+        <view class="r-t">
+          <view class="t-l">
+            <view class="phone">{{item.managerMobile}}</view>
+            <view class="address">{{item.address}}</view>
+          </view>
+          <!--<view class="t-r" catchtap="openLocation" data-item="{{item}}">
+            <view class="icon icon-daohang"></view>
+          </view>-->
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result}}" noMoreDataDesc=""></list-loading-more>
+<view class="footer {{iPhoneX?'iPhoneXb':''}}">
+  <view class="submit active" bindtap="confirm">确定</view>
+</view>
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

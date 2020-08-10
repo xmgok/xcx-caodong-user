@@ -1,0 +1,41 @@
+<jz-popup
+  bindclose="closePicker"
+  show="{{ show }}"
+  position="bottom"
+  z-index="101"
+  custom-class="popup-radio-picker">
+  <view class="header">
+    <view class="title">{{ title }}</view>
+    <text class="icon icon-times btn-close" bindtap="closePicker"></text>
+  </view>
+  <view class="content">
+    <jz-radio-group
+      wx:if="{{ newList.length }}"
+      value="{{ current }}"
+      bind:change="onChange">
+      <view class="list-item" wx:for="{{ newList }}" wx:key="value">
+        <jz-radio
+          custom-class="radio"
+          label-class="radio-label"
+          name="{{ item.value }}"
+          label-position="left">
+          <view class="desc-wrap">
+            <view wx:if="{{item.value==1}}" class="my-icon icon icon-aftersales"></view>
+            <view wx:if="{{item.value==2}}" class="my-icon icon icon-return"></view>
+            <view class="desc">
+              <view class="desc__title">{{ item.label }}</view>
+              <view class="desc__body" wx:if="{{item.value==1}}">未收到货，或与卖家协商同意前提下</view>
+              <view class="desc__body" wx:if="{{item.value==2}}">商家已发货(或未确认收货)，需要退货</view>
+            </view>
+          </view>
+        </jz-radio>
+      </view>
+    </jz-radio-group>
+    <view class="tc" wx:else>
+      <view class="empty-msg">暂无数据~</view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="ui-btn-submit {{ isDisabled ? 'disabled' : '' }}" bindtap="submit">确定</view>
+  </view>
+</jz-popup>

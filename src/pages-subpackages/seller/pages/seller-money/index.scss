@@ -1,0 +1,96 @@
+@import "../../../../styles/config";
+
+page {
+  background: #ffffff;
+}
+
+.page {
+  .money {
+    height: 172px;
+    background: $black-light;
+    padding: 30px 20px 0;
+    box-sizing: border-box;
+
+    .money-go {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      line-height: 17px;
+      color: $text-secondary;
+
+      .money-desc {
+        margin-right: 5px;
+      }
+    }
+
+    .withdraw {
+      margin-top: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .number {
+        font-size: 30px;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 42px;
+      }
+
+      .btn {
+        width: 92px;
+        height: 30px;
+        background: $btn-warning-gradient-bg;
+        box-shadow: $btn-warning-box-shadow;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+    }
+  }
+
+  .chart {
+    background: #ffffff;
+    border-radius: 24px 24px 0 0;
+    margin-top: -40px;
+    overflow: hidden;
+
+    .title {
+      margin: 20px 15px 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: $text-primary;
+      line-height: 25px;
+      display: flex;
+      align-items: center;
+
+      .grey {
+        color: $text-secondary;
+        margin-left: 6px;
+      }
+    }
+
+    .canvas {
+      margin: 0 auto;
+    }
+
+    .desc {
+      box-sizing: border-box;
+      width: 345px;
+      background: #fbf5ee;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 11px;
+      color: $text-secondary;
+      line-height: 17px;
+      margin: 10px auto 15px;
+    }
+  }
+}
+
+.bgh10 {
+  height: 10px;
+  background: $white-smoke;
+}

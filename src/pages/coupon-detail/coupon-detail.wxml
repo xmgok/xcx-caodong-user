@@ -1,0 +1,79 @@
+<view class="page-coupon-list">
+  <component-coupon-item item="{{resData}}" hasBtn="{{false}}"></component-coupon-item>
+
+  <view class="content">
+    <view class="h2">使用说明</view>
+    <view class="h3">
+      <view class="big">适用范围</view>
+      <view class="small">仅限{{brandName}}使用</view>
+    </view>
+    <view class="h3">
+      <view class="big">有效期</view>
+      <view class="small" wx:if="{{ resData.useTime === 1 }}">{{resData.beginTime}} - {{resData.endTime}}</view>
+      <view class="small" wx:if="{{ resData.useTime === 2 }}">领取后{{resData.laterDay}}日内有效</view>
+    </view>
+    <navigator url="/pages/coupon-goods/coupon-goods?id={{resData.couponId}}&type={{resData.activeGoods}}"
+               hover-class="none" class="h3">
+      <view class="big">适用商品</view>
+      <view class="small g-flex g-flex-between">
+        <view>{{resData.activeGoods==1?'全部商品可用':'部分商品可用'}}</view>
+        <view class="g-flex g-flex-between">
+          <view>查看商品</view>
+          <view class="icon icon-angle-right ml5"></view>
+        </view>
+      </view>
+    </navigator>
+    <view class="h3" wx:if="{{resData.explain}}">
+      <view class="big">使用规则</view>
+      <rich-text class="small" nodes="{{resData.explain}}"></rich-text>
+    </view>
+  </view>
+  <navigator open-type="switchTab" url="/pages/index/index" hover-class="none"
+             class="g-go-home {{iPhoneX?'active':''}}">
+    <view class="g-go-home-icon icon icon-home"></view>
+  </navigator>
+  <view
+    class="g-btn reset-btn {{iPhoneX?'iPhoneXb':''}} {{resData.isGet!=0?'inactive':''}}"
+    bindtap="getCoupon"
+  >
+    <text wx:if="{{resData.isGet==0}}">{{resData.integralStatus?'立即兑换':'立即领取'}}</text>
+    <text wx:if="{{resData.isGet==1}}">已领取</text>
+    <text wx:if="{{resData.isGet==2}}">已领完</text>
+    <text wx:if="{{resData.isGet==3}}">已结束</text>
+  </view>
+</view>
+
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-class="reset-popup"
+  bind:close="onClose"
+>
+  <view class="score">
+    <view class="close icon icon-times" bindtap="bindHide"></view>
+    <view class="header">兑换优惠券</view>
+    <view class="content">
+      <text class="highlight">{{resData.integralNumber}}</text>
+      <text>积分可兑换</text>
+      <text class="highlight">1</text>
+      <text>张优惠券，您当前共</text>
+      <text class="highlight">{{resData.currentIntegral}}</text>
+      <text>积分</text>
+    </view>
+    <!--<view class="exchange-num">兑换数量</view>
+    <jz-input-number
+      class="input-number-wrap"
+      value="{{1}}"
+      max="{{10}}"
+      plus-class="input-number-plus"
+      minus-class="input-number-minus"
+      input-class="input-number-input"
+      bindchange="onChange"
+    ></jz-input-number>-->
+    <view class="g-btn my-mt" bindtap="goToUse">确认兑换</view>
+  </view>
+</van-popup>
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

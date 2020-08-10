@@ -1,0 +1,35 @@
+<view class="date-picker-wrap">
+  <picker mode="date" value="{{date}}" fields="month" start="2018-01" end="{{endDate}}" bindchange="bindDateChange">
+    <text class="date">{{_date}}</text> <text class="icon icon-angle-down"></text>
+    <view class="statistic">
+      <text class="mr10">已提现 ¥{{allAmount}}</text>
+      <text>待审核 ¥{{allVerify}}</text>
+    </view>
+  </picker>
+</view>
+
+<view class="record-list">
+  <view
+    class="item"
+    wx:for="{{list}}"
+    wx:key="index">
+    <view class="title-wrap">
+      <view class="title">{{item.empName}}-微信钱包</view>
+      <view class="amount">{{item.applyAmount}}</view>
+    </view>
+    <view class="date-wrap">
+      <view class="date">{{item.applyTime}}</view>
+      <text class="status">{{STATUS_MAP[item.status]}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="no-data" wx:if="{{ getEnd }}">
+  <view class="icon-wrap" wx:if="{{ list.length <= 0 }}">
+    <text class="icon icon-empty_order"></text>
+  </view>
+  <jz-loading text="{{ list.length > 0 ? '已经到底了' : '暂无记录' }}"></jz-loading>
+</view>
+<jz-loading wx:else />
+
+<copyright />

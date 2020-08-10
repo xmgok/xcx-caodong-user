@@ -1,0 +1,41 @@
+<!--优惠券-->
+<popup
+  show="{{ show }}"
+  position="bottom"
+  bindclose="onPurchaseClose"
+  custom-class="gaveaway-popup">
+  <text class="icon icon-times btn-close" bindtap="onPurchaseClose"></text>
+  <view class="gaveaway-container">
+    <view class="header">领取赠品</view>
+    <view class="items" wx:if="{{goodsData.inventory}}" bindtap="doCheck">
+      <view class="icons" >
+        <text class="checkbox-icon icon {{checked?'icon-checkbox-checked':'icon-checkbox'}}"></text>
+      </view>
+      <image class="image" mode="aspectFill" src="{{goodsData.imgUrl}}"></image>
+      <view class="goods-message">
+        <view class="title">{{goodsData.name}}</view>
+        <view class="prices">
+          <view>￥<text class="big">299</text>.97</view>
+          <view class="num">x1</view>
+        </view>
+      </view>
+    </view>
+    <view class="items" wx:else>
+      <view class="icons">
+        <text class="checkbox-icon icon icon-checkbox-disabled"></text>
+      </view>
+      <image class="image" mode="aspectFill" src="{{goodsData.imgUrl}}"></image>
+      <view class="goods-message">
+        <view class="title title2">{{goodsData.name}}</view>
+        <view class="prices">
+          <view class="out">商品已赠完</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btn-wrap">
+      <view class="sure" bindtap="sure">确定</view>
+    </view>
+  </view>
+</popup>
+

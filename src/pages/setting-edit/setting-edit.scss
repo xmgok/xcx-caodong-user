@@ -1,0 +1,32 @@
+@import "../../styles/mixin";
+
+.page-setting-edit {
+  padding-top: rpx2(10);
+  input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: white;
+    line-height: rpx2(45);
+    height: rpx2(45);
+    padding: 0 rpx2(10);
+    font-size: rpx2(14);
+  }
+
+  .save {
+    margin: rpx2(40) rpx2(15) 0;
+    color: white;
+    line-height: rpx2(40);
+    height: rpx2(40);
+    text-align: center;
+    border-radius: $btn-border-radius;
+    font-size: rpx2(16);
+    font-weight: bold;
+    background: $btn-disabled-bg;
+    &.active {
+      background: $btn-primary-bg;
+    }
+  }
+
+}
+

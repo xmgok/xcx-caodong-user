@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "提现记录",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "jz-popup-radio-picker": "/components/popup-radio-picker/popup-radio-picker",
+    "jz-loading": "/components/loading/loading"
+  }
+}

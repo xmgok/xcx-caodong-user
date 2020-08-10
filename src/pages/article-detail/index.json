@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "文章详情页",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "component-share": "/components/share/share"
+  }
+}

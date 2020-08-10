@@ -1,0 +1,24 @@
+<view class="page-extract-detail">
+
+  <view class="list-wrap">
+    <view class="item" wx:for="{{listData}}" wx:key="index">
+      <view class="line1">
+        <view>订单编号：{{item.orderCode}}</view>
+        <view class="num"><text>{{item.tradeType==1?'+':'-'}}</text> ¥{{item.amount}}</view>
+      </view>
+      <view class="line2">
+        <view>{{item.tradeTime}}</view>
+        <view>销售奖金</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="no-data" wx:if="{{getEnd}}">
+    <view class="icon-wrap" wx:if="{{listData.length <= 0}}">
+      <text class="icon icon-order-yuan"></text>
+    </view>
+    <component-loading text="{{listData.length > 0 ? '已经到底啦' : '暂时没有提成明细哦~'}}"></component-loading>
+  </view>
+  <component-loading wx:if="{{!getEnd && ajax}}"></component-loading>
+
+</view>

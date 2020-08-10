@@ -1,0 +1,19 @@
+@import "../../../../styles/mixin";
+
+.page {
+  .hd-block {
+    overflow: hidden;
+  }
+
+  .hint {
+    text-align: center;
+    width: 345px;
+    height: 30px;
+    line-height: 30px;
+    background: rgba(255, 248, 242, 1);
+    border-radius: 15px;
+    font-size: 12px;
+    color: $red;
+    margin: 10px auto 20px;
+  }
+}

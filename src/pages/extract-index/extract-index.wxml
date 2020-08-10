@@ -1,0 +1,41 @@
+<view class="page-extract-index g-page-seller-my awesome-bottom">
+  <view class="header">
+    <view class="avatar">
+      <view class="head">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view>
+        <view class="nickname">
+          <open-data type="userNickName"></open-data>
+        </view>
+      </view>
+    </view>
+    <view class="money">
+      <view class="money-go">
+        <view class="money-desc">可提现提成(元)</view>
+      </view>
+      <view class="withdraw">
+        <view class="number">{{infos.withdrawAmount}}</view>
+        <navigator wx:if="{{canWithdraw}}" hover-class="none" url="/pages/balance-withdraw/balance-withdraw" class="btn">申请提现</navigator>
+      </view>
+      <view class="desc">
+        <view>总金额 {{infos.allCommission}}</view>
+        <view class="ml">待结算 {{infos.settlementAmount}}</view>
+      </view>
+    </view>
+  </view>
+
+  <navigator class="hd-item" url="/pages/order-list/order-list?type=extract" hover-class="none">
+    <view class="title">提成订单</view>
+    <view class="con">{{infos.allQuantity}}个</view>
+    <view class="tb icon icon-angle-right"></view>
+  </navigator>
+
+  <navigator class="hd-item" url="/pages/extract-detail/extract-detail" hover-class="none">
+    <view class="title">提成明细</view>
+    <view class="con"></view>
+    <view class="tb icon icon-angle-right"></view>
+  </navigator>
+</view>
+
+<component-copyright/>

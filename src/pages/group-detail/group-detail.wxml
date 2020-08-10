@@ -1,0 +1,158 @@
+<!--status (integer, optional): 拼团状态 1拼团中 2拼团成功 3拼团失败-->
+<view class="page-group-checkout-success">
+  <view class="page-header mb10">
+    <view class="msg-wrap">
+      <block wx:if="{{groupInfo.status == 1}}">
+        <text class="icon icon-success"/>
+        恭喜您，{{groupInfo.isCaptain==1 ? '开团': '参团'}}成功
+      </block>
+      <block wx:if="{{groupInfo.status == 2}}">
+        <text class="icon icon-success"/>
+        恭喜，已成团
+      </block>
+      <block wx:if="{{groupInfo.status == 3}}">
+        <text class="icon icon-failure"/>
+        很遗憾，拼团失败
+      </block>
+    </view>
+
+    <view class="countdown-wrap" wx:if="{{groupInfo.status == 1}}">
+      <text>还差</text>
+      <text class="bold">{{groupInfo.shortNum}}</text>
+      <text>人，还剩</text>
+      <text class="bold">
+        <text>{{groupInfo.remainingSecondsFormat.dayMergeToHours}}</text>
+        <text>:</text>
+        <text>{{groupInfo.remainingSecondsFormat.minutes}}</text>
+        <text>:</text>
+        <text>{{groupInfo.remainingSecondsFormat.seconds}}</text>
+      </text>
+      <text>结束～</text>
+    </view>
+    <view class="countdown-wrap" wx:if="{{groupInfo.status == 3}}">
+      规定时间内没有拼够人数，系统将为您自动退款～
+    </view>
+
+    <scroll-view
+      scroll-x="true"
+      bindscroll="scrollToUpper"
+      class="member-list is-group">
+      <view
+        class="avatar-wrap"
+        wx:for="{{groupInfo.list}}"
+        wx:key="index">
+        <image lazy-load
+               class="avatar"
+               src="{{item.headImg}}"
+               mode="aspectFill"/>
+
+        <!--拼团-->
+        <text class="group" wx:if="{{item.isCaptain==1}}">团长</text>
+      </view>
+      <!--拼团邀请-->
+      <view class="avatar-wrap" wx:for="{{groupInfo.shortNum}}" wx:key="index">
+        <view class="avatar btn-add">
+          <text class="icon icon-plus-circle"></text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!--拼团中-->
+    <block wx:if="{{groupInfo.status == 1}}">
+      <!--<button open-type="share" class="btn-submit">邀请好友拼团</button>-->
+      <view class="btn-submit" bindtap="showShare">邀请好友拼团</view>
+    </block>
+    <!--拼团成功-->
+    <block wx:if="{{groupInfo.status == 2}}">
+      <view class="btn-wrap">
+        <navigator
+          class="btn-submit"
+          open-type="navigate"
+          hover-class="none"
+          url="/pages/order-detail/order-detail?orderCode={{groupInfo.orderCode}}">查看订单
+        </navigator>
+        <navigator url="/pages/group-list/group-list" hover-class="none" class="btn-submit">更多拼团</navigator>
+      </view>
+    </block>
+    <!--拼团失败-->
+    <block wx:if="{{groupInfo.status == 3}}">
+      <navigator url="/pages/group-list/group-list" hover-class="none" class="btn-submit">更多拼团</navigator>
+    </block>
+
+    <!--<view wx:else class="g-flex-between status2">
+      <navigator
+        class="g-btn g-btn_hollow blank"
+        url="/pages/order-list/order-list?status=0"
+        hover-class="none">
+        查看订单
+      </navigator>
+      <navigator
+        class="g-btn"
+        url="/pages/group-list/group-list"
+        hover-class="none">
+        更多拼团
+      </navigator>
+    </view>-->
+  </view>
+
+  <view class="goods-card mb10">
+    <view class="card-header">
+      <block>
+        <text class="icon icon-group"/>
+        {{groupInfo.groupNumber}}人团商品
+      </block>
+    </view>
+    <view class="card-body">
+      <image lazy-load src="{{ groupInfo.productImg }}" mode="aspectFill" class="avatar"></image>
+      <view class="right-content">
+        <view class="title">{{ groupInfo.productName }}</view>
+        <component-mark type="group"></component-mark>
+        <view class="price mt10">￥{{ groupInfo.activePrice }}</view>
+      </view>
+    </view>
+  </view>
+
+  <navigator open-type="navigate" hover-class="none" url="/pages/group-rules/group-rules?groupId={{groupInfo.groupId}}"
+             class="navigate-cell mb10">
+    <view class="title">
+      <text class="icon icon-empty_order"></text>
+      拼团规则
+    </view>
+    <view class="g-flex-between">
+      <view class="desc">支付开团并邀请好友参团，人数不足自动退款</view>
+      <view class="icon icon-angle-right"></view>
+    </view>
+  </navigator>
+
+  <view class="recommend">
+    <view class="title">
+      <view>拼购推荐</view>
+      <navigator open-type="navigate" hover-class="none" url="/pages/group-list/group-list" class="title-right">
+        <view>全部</view>
+        <view class="title-right-icon icon icon-angle-right"></view>
+      </navigator>
+    </view>
+    <view class="content">
+      <navigator wx:for="{{list}}" wx:key="id" open-type="navigate" hover-class="none"
+                 url="/pages/product/product?id={{item.productId}}&activeType=group&activeId={{item.id}}" class="item">
+        <image lazy-load mode="aspectFill" class="img" src="{{item.productImg}}"></image>
+        <view class="name">{{item.productName}}</view>
+        <view class="price">
+          <view class="big">￥{{item.activePrice}}</view>
+          <view class="small">{{item.productPrice}}</view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+<!--<view class="btn-submit" bindtap="showShare">邀请好友拼团</view>-->
+
+<component-share
+  productId="{{groupInfo.productId}}"
+  activeId="{{groupInfo.groupId}}"
+  activeType="group"
+  activePrice="{{groupInfo.activePrice}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}"/>

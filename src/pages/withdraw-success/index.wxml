@@ -1,0 +1,25 @@
+<view>
+  <view class="wrap">
+    <view class="icon icon-success"></view>
+    <view class="text">提现到到账账户成功！</view>
+    <view class="money">2394.21</view>
+  </view>
+  <view class="list-label">
+    <view class="_item">
+      <view class="_grey">当前状态</view>
+      <view class="_text">提现已到账</view>
+    </view>
+    <view class="_item">
+      <view class="_grey">提现金额</view>
+      <view class="_text">¥2394.21</view>
+    </view>
+    <!--<view class="_item">
+      <view class="_grey">提现时间</view>
+      <view class="_text">2019-07-21 17:11:14</view>
+    </view>
+    <view class="_item">
+      <view class="_grey">到账时间</view>
+      <view class="_text">2019-07-22 17:11:18</view>
+    </view>-->
+  </view>
+</view>

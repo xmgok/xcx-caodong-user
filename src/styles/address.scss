@@ -1,0 +1,123 @@
+.address-card {
+  display: flex;
+  padding: 0 rpx2(10);
+  .card-body {
+    width: 100%;
+  }
+}
+
+.icon-wrap {
+  width: rpx2(24);
+  display: flex;
+  align-items: center
+}
+
+.address-content {
+  flex: 1;
+  .header {
+    margin-bottom: rpx2(7);
+    .name,
+    .mobile {
+      font-size: rpx2(16);
+      color: $text-primary;
+      font-weight: bold;
+    }
+    .name {
+      margin-right: rpx2(10);
+      font-size: rpx2(15);
+    }
+    .badge {
+      margin-left: rpx2(5);
+      padding: 0 rpx2(4);
+      border: rpx(1) solid $danger;
+      border-radius: rpx2(7);
+      font-size: rpx2(10);
+      color: $danger;
+      vertical-align: rpx2(2);
+    }
+  }
+  .address {
+    font-size: rpx2(13);
+    color: $text-secondary;
+  }
+}
+
+// 地址弹出选择框
+.address-popup {
+  background-color: white;
+
+  > .header {
+    position: relative;
+    padding: rpx2(12) rpx2(10);
+    border-bottom: rpx(1) solid $white-smoke;
+    text-align: center;
+    .title {
+      font-size: rpx2(16);
+    }
+    .btn-close {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      padding: rpx2(10);
+      font-size: rpx2(16);
+      color: $text-secondary;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: right;
+    }
+  }
+
+  > .content {
+    height: rpx2(350);
+    max-height: rpx2(350);
+    overflow-y: scroll;
+    padding: rpx2(10);
+    margin-bottom: rpx2(10);
+    .icon-wrap {
+      width: rpx2(38);
+    }
+    .radio-icon {
+      background-color: red;
+    }
+    .icon-edit-wrap {
+      padding-right: rpx2(10);
+      width: rpx2(50);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .icon-edit {
+      font-size: rpx2(18);
+      color: $text-secondary;
+      text-align: right;
+    }
+
+    .empty-icon-warp {
+      position: relative;
+      margin: rpx2(50) auto rpx2(30);
+      width: rpx2(155);
+      height: rpx2(155);
+      border-radius: 50%;
+      background-color: $white-smoke;
+      .icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+        color: #ffffff;
+        font-size: rpx2(90);
+      }
+    }
+    .empty-msg {
+      font-size: rpx2(17);
+      color: $text-secondary;
+    }
+  }
+
+  .footer {
+    margin-bottom: rpx2(7);
+    text-align: center;
+  }
+}

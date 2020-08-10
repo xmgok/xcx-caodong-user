@@ -1,0 +1,8 @@
+<view class="wrap1" wx:if="{{assembleImg.isShow && assembleList.length}}">
+  <view class="head">- 拼团 -</view>
+  <block wx:if="{{assembleList.length}}">
+    <card2 wx:for="{{assembleList}}" wx:key="index" item="{{item}}"/>
+    <look-more wx:if="{{totalCount>6}}" link="/pages/group-list/group-list"/>
+  </block>
+  <!--<view class="no-data-now" wx:else>~ 暂无数据 ~</view>-->
+</view>

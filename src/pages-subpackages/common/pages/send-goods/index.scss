@@ -1,0 +1,244 @@
+@import "../../../../styles/config";
+
+page {
+  background: $white-smoke;
+}
+
+.page-send-goods {
+  .address-warp {
+    width: 355px;
+    background: $white;
+    border-radius: 12px;
+    color: $black-light;
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 0 10px;
+
+    .top {
+      display: flex;
+
+      .top-item {
+        width: 70px;
+
+      }
+    }
+
+    .address-text {
+      padding-left: 70px;
+      margin-top: 4px;
+      color: $gray-dark;
+      font-size: 13px;
+    }
+  }
+
+  .code-warp {
+    width: 355px;
+    height: 106px;
+    background: $white;
+    border-radius: 12px;
+    margin: 15px 10px 25px 10px;
+
+    .input-code,
+    .input-log {
+      height: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .flex-1 {
+        font-size: 16px;
+        padding-right: 25px;
+        padding-left: 10px;
+      }
+
+      input {
+        height: 52px;
+        line-height: 52px;
+        flex: auto;
+        padding-left: 20px;
+
+      }
+
+    }
+
+    .input-log {
+      border-top: 1px solid $border-color;
+    }
+  }
+
+  .my-title {
+    margin: 0 10px;
+    display: flex;
+    align-items: flex-end;
+
+    .title-l {
+      color: $black-light;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .title-r {
+      color: $text-secondary;
+    }
+  }
+}
+
+.wrap {
+  box-sizing: border-box;
+  position: relative;
+  margin: 10px 10px 30px;
+  background: #ffffff;
+  border-radius: 12px;
+
+  .jz-stepper__input {
+    width: 30px;
+  }
+
+  .footer {
+    padding-bottom: 10px;
+
+    .items {
+      height: 44px;
+      padding: 0;
+      border-top: 1px solid $border-color;
+    }
+  }
+
+  .footer-main {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+    .footer-main1 {
+      font-weight: bold;
+    }
+
+    .footer-main2 {
+      margin-left: 5px;
+      display: flex;
+      align-items: center;
+      color: $text-secondary;
+
+      .highlight {
+        color: $primary;
+        margin: 0 3px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .items {
+    padding: rpx2(15) rpx2(15) rpx2(15) 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .rule-txt {
+      width: 100%;
+      padding-left: 50px;
+      box-sizing: border-box;
+      font-size: 12px;
+      color: $red;
+    }
+
+    &.inactive {
+      .image .img {
+        opacity: 0.4;
+      }
+
+      .title, .prices {
+        color: #96989C;
+      }
+    }
+
+    .icons {
+      padding: rpx2(15);
+      font-size: rpx2(20);
+
+      .icon-checkbox-checked {
+        color: $primary;
+      }
+
+      .icon-checkbox, .icon-checkbox-disabled {
+        color: $gray-light;
+      }
+    }
+
+    .image {
+      width: rpx2(70);
+      height: rpx2(70);
+      border-radius: rpx2(3);
+      margin-right: rpx2(10);
+      overflow: hidden;
+      position: relative;
+
+      .img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .txt {
+        position: absolute;
+        width: 90%;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        border-radius: 100px;
+        height: 12px;
+        line-height: 12px;
+        font-size: 8px;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.4);
+        text-align: center;
+      }
+    }
+
+    .goods-message {
+      flex: 1;
+      min-height: rpx2(70);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .title {
+      font-size: rpx2(15);
+      @include ellipsis2(2);
+
+      &.title2 {
+        color: $text-secondary;
+      }
+    }
+
+    .spec {
+      margin-top: 6px;
+      height: 18px;
+      line-height: 18px;
+      padding: 0 rpx2(5);
+      color: $text-secondary;
+      background-color: $white-smoke;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .spec-icon {
+      margin-left: 6px;
+    }
+
+    .prices {
+      padding-top: rpx2(10);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+
+      .big {
+        font-size: rpx2(18);
+      }
+
+      .num {
+        font-size: rpx2(16);
+      }
+    }
+  }
+}

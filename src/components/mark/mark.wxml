@@ -1,0 +1,11 @@
+<view wx:if="{{text||type||(isVip&&isVip!='0')}}" class="{{isVip!='0'?' g-vip':''}}{{type=='jl'?' g-jl':''}}{{type=='group'?' g-jl g-jl_group':''}}{{type=='seckill'?' g-jl g-jl_seckill':''}}{{type=='video'?' g-jl g-jl_video':''}}">
+  <view wx:if="{{text}}">{{text}}</view>
+  <view wx:else>
+    <view>{{isVip=='1'?'会员价':''}}</view>
+    <view>{{isVip=='2'?'一口价':''}}</view>
+    <view>{{type=='group'?'拼团':''}}</view>
+    <view>{{type=='seckill'?'秒杀':''}}</view>
+    <view>{{type=='jl'?'接龙':''}}</view>
+    <view>{{type=='video'?'视频':''}}</view>
+  </view>
+</view>

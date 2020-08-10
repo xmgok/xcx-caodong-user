@@ -1,0 +1,63 @@
+<view class='container'>
+  <view class="main">
+    <view class="column-wrap">
+      <view
+        class="live-item"
+        wx:for="{{listData}}"
+        wx:key="index"
+        bindtap="onShare"
+        data-room-id="{{item.roomId}}"
+        wx:if="{{index % 2 === 0}}">
+        <image class="poster" mode="widthFix" src="{{item.coverImg}}"></image>
+        <view class="badge {{item._statusCls}}">{{item._liveStatusText}}</view>
+        <view class="info-wrap">
+          <view class="info-inner">
+            <image class="avatar" src="{{item.anchorImg}}"></image>
+            <view class="nickname">{{item.anchorName}}</view>
+            <view class="btn-share">
+              <text class="icon icon-share"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="column-wrap">
+      <view
+        class="live-item"
+        wx:for="{{listData}}"
+        wx:key="index"
+        bindtap="onShare"
+        data-room-id="{{item.roomId}}"
+        wx:if="{{index % 2 === 1}}">
+        <view class="badge {{item._statusCls}}">{{item._liveStatusText}}</view>
+        <image class="poster" mode="widthFix" src="{{item.coverImg}}"></image>
+        <view class="info-wrap">
+          <view class="info-inner">
+            <image class="avatar" src="{{item.anchorImg}}"></image>
+            <view class="nickname">{{item.anchorName}}</view>
+            <view class="btn-share">
+              <text class="icon icon-yaoqinghaoyou"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="no-data" wx:if="{{!listData.length}}">暂无数据</view>
+  <block wx:else>
+    <component-loading wx:if="{{!reachBottom}}"></component-loading>
+  </block>
+</view>
+
+<component-share
+  wx:if="{{showShare}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}"
+  shareText="{{shareText}}"
+  shareUrll="{{shareUrl}}"
+  activeData="{{roomInfo}}"
+  activeType="live"
+  close="posterClosed"
+  saved="posterSaved" />

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "选择素材",
+  "usingComponents": {
+    "component-share": "/components/share/share"
+  }
+}

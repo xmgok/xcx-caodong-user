@@ -1,0 +1,97 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.goods-list-user {
+  padding-left: rpx2(15);
+
+  .goods-item {
+    display: flex;
+    margin-top: rpx2(15);
+    padding-bottom: rpx2(15);
+    background-color: #ffffff;
+    border-bottom: rpx(1) solid $white-smoke;
+
+    &:first-child {
+      margin-top: 0;
+    }
+    &:only-child {
+      border-bottom: none !important;
+    }
+
+    .goods-image {
+      border-radius: rpx2(3);
+      margin-right: rpx2(10);
+      width: rpx2(120);
+      height: rpx2(120);
+    }
+
+    .right-content {
+      flex: 1;
+      padding-right: rpx2(10);
+      .title {
+        margin: rpx2(5) 0;
+        color: $text-primary;
+        font-size: rpx2(16);
+        font-weight: bold;
+        @include ellipsis2(1, 20)
+      }
+      .sub-title {
+        margin-top: rpx2(8);
+        margin-bottom: rpx2(8);
+        color: $text-secondary;
+        font-size: rpx2(14);
+        @include ellipsis2();
+      }
+
+      .tag-list {
+        .tag {
+          padding: 0 rpx2(4);
+          margin-right: rpx2(4);
+          display: inline-block;
+          vertical-align: middle;
+          color: #ffffff;
+          font-size: rpx2(11);
+          background: linear-gradient(180deg, #e2ae70 0%, #c2763d 100%);
+          border-radius: rpx2(8) rpx2(3) rpx2(8) rpx2(3);
+          &.recommend {
+            background: linear-gradient(180deg, #d097ff 0%, #a35eff 100%);
+          }
+          .icon {
+            margin-right: rpx2(4);
+            font-size: rpx2(15);
+            vertical-align: rpx2(-1);
+          }
+        }
+      }
+
+      .footer {
+        margin-top: rpx2(16);
+        color: $text-primary;
+        font-size: rpx2(12);
+        display: flex;
+        .ui-price-wrap {
+          flex: 1;
+          .price-integer {
+            font-size: rpx2(20);
+          }
+          .price-decimal {
+            font-size: rpx2(12);
+          }
+        }
+        .btn-buy {
+          width: rpx2(64);
+          height: rpx2(28);
+          line-height: rpx2(28);
+          color: white;
+          background-color: $btn-primary-bg;
+          border-radius: rpx2(14);
+          text-align: center;
+          font-size: rpx2(14);
+          &.disabled {
+            background-color: $btn-disabled-bg;
+          }
+        }
+      }
+    }
+  }
+}

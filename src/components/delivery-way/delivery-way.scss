@@ -1,0 +1,67 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+@import "../../styles/variables";
+/*@import "/styles/common.scss";*/
+
+.delivery-way {
+  .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: rpx2(13);
+    font-size: rpx2(14);
+    color: $text-secondary;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: right;
+  }
+}
+
+.coupon-container3 {
+  background: $white-smoke;
+
+  .header {
+    height: rpx2(42);
+    line-height: rpx2(42);
+    text-align: center;
+    background: white;
+    font-size: rpx2(16);
+  }
+
+  .lists {
+    min-height: rpx2(240);
+    max-height: rpx2(320);
+    padding: rpx2(15);
+    overflow: auto;
+    background: white;
+    .list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: rpx2(54);
+      box-sizing: border-box;
+      border-bottom: 1px solid $border-color;
+      .right {
+        color: $gray-light;
+        font-size: rpx2(18);
+        .icon-checkbox-checked {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  .empty {
+    min-height: rpx2(300);
+    padding-top: rpx2(40);
+    text-align: center;
+    font-size: rpx2(14);
+    color: $text-secondary;
+    .img {
+      display: inline-block;
+      width: rpx2(120);
+      height: rpx2(120);
+      margin-bottom: rpx2(30);
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import "../../styles/config";
+
+page {
+  background: #ffffff;
+  text-align: center;
+  padding: 0 30px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.wrap {
+  border-bottom: 1px solid #dfdfdf;
+  .icon {
+    margin-top: 32px;
+    font-size: 56px;
+    color: #0dbb06;
+  }
+  .text {
+    height: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 25px;
+    margin-top: 18px;
+    margin-bottom: 20px;
+  }
+  .money {
+    height: 42px;
+    font-size: 30px;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 42px;
+    margin-bottom: 40px;
+  }
+}
+
+.list-label {
+  ._item {
+    margin-top: 28px;
+    display: flex;
+  }
+  ._grey {
+    color: $gray-dark;
+  }
+  ._text {
+    color: $black-light;
+    margin-left: 30px;
+    font-weight: bold;
+  }
+}
+

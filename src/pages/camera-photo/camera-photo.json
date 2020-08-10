@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "活动详情",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "coupon-popup": "/components/coupon-popup/coupon-popup"
+  }
+}

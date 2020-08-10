@@ -1,0 +1,36 @@
+<view class="page g-page-seller-order">
+  <view class="choose">
+    <view class="text">
+      <picker fields="month" mode="date" value="{{endDate}}" start="2019-06" end="{{endDate}}" bindchange="bindChange">
+        <view class="text-title">{{year}}年{{month}}月</view>
+      </picker>
+      <view class="text-icon icon icon-angle-down"></view>
+    </view>
+    <view class="desc">
+      <text>已提现 ¥{{ramount}}</text>
+      <text class="ml">待审核 ¥{{wamount}}</text>
+      <text class="ml">待发放 ¥{{gamount}}</text>
+    </view>
+  </view>
+  <view class="list-wrap">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <view class="item inactive">
+        <view class="line1">
+          <view class="order-num">{{item.accountName}}-{{item.bankBranchName}}({{item.bankCard}})</view>
+          <view class="num">{{item.amount}}</view>
+        </view>
+        <view class="line2">
+          <view>{{item.modTime}}</view>
+          <!--state  申请状态，0 、待审核，1、已发放，2、待发放，3、已驳回，4、提现中-->
+          <view class="status">{{item.state==0?'待审核':''}}</view>
+          <view class="status">{{item.state==2?'待发放':''}}</view>
+          <view class="status">{{item.state==3?'已驳回':''}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more
+  result="{{result}}"
+  icon="icon-order-yuan"
+  noDataDesc="暂时没有提现明细哦~"></list-loading-more>

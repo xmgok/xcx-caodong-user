@@ -1,0 +1,92 @@
+<view class="page-send-goods">
+  <view class="address-warp">
+    <view class="flex top">
+      <view style="font-weight: bold;" class="f14 top-item">收货地址：</view>
+      <view style="font-weight: bold;" class="f14">{{resData.receiverName}} {{resData.receiverPhone}}</view>
+    </view>
+    <view>
+      <view class="f13  address-text">{{resData.receiverAddress}}</view>
+    </view>
+    <view></view>
+  </view>
+  <view class="code-warp">
+    <view class="input-code flex flex-v-c">
+      <input value="{{form.expressCode}}" type="text" placeholder="请扫描或输入快递单号" bindinput="bindInput" />
+      <view class="flex-1 icon icon-saoma" catchtap="scanCode"></view>
+    </view>
+    <view class="input-log flex  flex-v-c" catchtap="showLogistics">
+      <input value="{{form.companyValue}}" type="text" placeholder="自动匹配或选择快递公司" disabled />
+      <view class="flex-1 icon icon-angle-right"></view>
+    </view>
+  </view>
+  <view class="my-title">
+    <view class="title-l f18">发货商品</view>
+    <view class="title-r f14">（支持分批发货，请确认好商品数量）</view>
+  </view>
+  <view class="wrap">
+    <block wx:for="{{dataList}}" wx:key="index">
+      <view class="items {{item.operationalNumber?'':'inactive'}}" wx:if="{{item.operationalNumber}}" data-index="{{index}}"
+            catchtap="doCheck">
+        <view class="icons">
+          <text
+            class="checkbox-icon {{item.operationalNumber?'':'icon-checkbox-disabled'}} icon {{item.checked?'icon-checkbox-checked':'icon-checkbox'}}"></text>
+        </view>
+        <view class="image">
+          <image class="img" mode="aspectFill" src="{{item.imgUrl}}"></image>
+        </view>
+        <view class="goods-message">
+          <view class="title">{{item.productName}}</view>
+          <view>
+            <text class="spec"
+                  data-id="{{item.id}}"
+                  data-index="{{index}}"
+                  data-number="{{item.operationalNumber}}"
+                  data-spec-content="{{item.specName}}"
+                  catchtap="changeSpec">
+              <text>{{item.specName}}</text>
+            </text>
+          </view>
+          <view class="prices">
+            <view>
+              ￥
+              <text class="big">{{item.sellPriceInteger}}</text>
+              {{item.sellPriceDecimal}}
+            </view>
+            <jz-input-number
+              class="input-number-wrap"
+              value="{{item.productNum}}"
+              data-index="{{index}}"
+              data-id="{{item.id}}"
+              data-specid="{{item.specId}}"
+              data-checked="{{item.checked}}"
+              max="{{item.operationalNumber}}"
+              plus-class="input-number-plus"
+              minus-class="input-number-minus"
+              input-class="input-number-input"
+              bindchange="onQuantityChange"></jz-input-number>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="footer">
+      <view class="items" catchtap="selectedAll">
+        <view class="icons">
+          <text
+            class="checkbox-icon icon {{isSelectedAll?'icon-checkbox-checked':'icon-checkbox'}}"></text>
+        </view>
+        <view class="footer-main">
+          <view class="footer-main1">全选</view>
+          <view class="footer-main2">
+            <view>已选</view>
+            <view class="highlight">{{giftNum}}</view>
+            <view>件商品</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="g-btn mb30" catchtap="sure">确认发货</view>
+</view>
+<jz-popup-radio-picker
+  title="物流公司" show="{{ showLogisticsPicker }}" list="{{ logisticsList }}"
+  bind:submit="onLogisticsSubmit" />

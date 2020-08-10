@@ -1,0 +1,15 @@
+<jz-overlay
+  mask
+  show="{{ overlay && show }}"
+  z-index="{{ zIndex }}"
+  custom-style="{{ overlayStyle }}"
+  bind:click="onClickOverlay"
+/>
+  <view
+    wx:if="{{ inited }}"
+    class="custom-class jz-popup {{ position ? 'jz-popup--' + position : '' }}"
+    style="z-index: {{ zIndex }}; animation-name: jz-{{ transition || position }}-{{ type }}; animation-duration: {{ duration }}ms; {{ display ? '' : 'display: none;' }}{{ customStyle }}"
+    bind:animationend="onAnimationEnd"
+  >
+  <slot/>
+</view>

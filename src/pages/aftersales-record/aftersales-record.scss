@@ -1,0 +1,94 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.page-aftersales-record {
+  .record-list {
+    margin-bottom: rpx2(20);
+
+    .record-item {
+      display: flex;
+      margin-bottom: rpx2(10);
+      padding: rpx2(15) rpx2(15) 0 rpx2(15);
+      background-color: white;
+
+      .avatar {
+        min-width: 40px;
+        min-height: 40px;
+        max-height: 40px;
+        color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--1 { // 卖家
+          background: $primary;
+        }
+
+        &--2 { // 买家
+          background: #5889ff;
+        }
+      }
+
+      .content {
+        width: 100%;
+        padding-left: rpx2(10);
+
+        .header {
+          display: flex;
+          height: rpx2(32);
+          line-height: rpx2(32);
+        }
+
+        .username {
+          flex: 1;
+          color: $text-primary;
+          font-size: rpx2(14);
+        }
+
+        .date {
+          color: $text-secondary;
+          font-size: rpx2(12);
+        }
+
+        .status-desc {
+          margin: rpx2(10) 0 rpx2(15);
+          font-size: rpx2(14);
+          font-weight: bold;
+        }
+
+        .detail {
+          background-color: white;
+          margin-top: rpx2(10);
+          padding-bottom: rpx2(15);
+          font-size: rpx2(14);
+          color: $text-secondary;
+
+          .item {
+
+          }
+
+          .item:not(:last-child) {
+            margin-bottom: rpx2(12);
+          }
+
+          .item-right {
+            flex: 1;
+            line-height: 2;
+            vertical-align: text-top;
+
+            .img {
+              display: inline-block;
+              margin-right: rpx2(15);
+              width: rpx2(70);
+              height: rpx2(70);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+
+.main {
+  padding: rpx2(10) rpx2(5);
+  display: -webkit-box;
+  -webkit-box-align: start;
+  .item-main {
+    -webkit-box-flex: 1;
+    width: 1%;
+  }
+  .img-item {
+    box-sizing: border-box;
+    width: rpx2(172);
+    font-size: rpx2(12);
+    margin-right: rpx2(5);
+    margin-left: rpx2(5);
+    margin-bottom: rpx2(10);
+    background: white;
+    border-radius: rpx2(3);
+    overflow: hidden;
+    position: relative;
+    .video-bg {
+      width: rpx2(40);
+      height: rpx2(36);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: rpx2(-20);
+      margin-top: rpx2(-18);
+    }
+    .multi-tag {
+      z-index: 4;
+      position: absolute;
+      left: 0;
+      top: rpx2(10);
+      color: white;
+      min-width: rpx2(42);
+      height:rpx2(20);
+      line-height: rpx2(20);
+      background:#EA8A71;
+      border-radius:0 rpx2(100) rpx2(100) 0;
+      padding-left: rpx2(5);
+      padding-right: rpx2(5);
+      box-sizing: border-box;
+      text {
+        padding-right: rpx2(3);
+      }
+    }
+    .img {
+      display: block;
+      width: 100%;
+    }
+    .title {
+      line-height: rpx2(15);
+      margin: 0 rpx2(10);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display:-webkit-box;
+      -webkit-box-orient:vertical;
+      -webkit-line-clamp:2;
+    }
+    .info {
+      color: $text-secondary;
+      padding: 0 rpx2(10);
+      line-height: rpx2(20);
+      .info-item {
+        padding-bottom: rpx2(10);
+        padding-top: rpx2(10);
+        display: -webkit-box;
+        -webkit-box-align: center;
+        border-bottom: rpx(1) solid $border-color;
+        &:last-child {
+          border-bottom: 0;
+          line-height: rpx2(12);
+        }
+      }
+      .portrait {
+        display: block;
+        width: rpx2(20);
+        height: rpx2(20);
+        border-radius: 50%;
+      }
+      .name {
+        font-size: rpx2(11);
+        -webkit-box-flex: 1;
+        box-sizing: border-box;
+        padding-left: rpx2(5);
+      }
+      .down-num {
+        color: $text-primary;
+        font-weight: bold;
+        text {
+          color: $red;
+          font-weight: normal;
+          padding-right: rpx2(3);
+        }
+      }
+    }
+  }
+}

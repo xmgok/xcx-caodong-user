@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "card2": "/components/card2/card2",
+    "look-more": "/components/look-more/look-more"
+  }
+}

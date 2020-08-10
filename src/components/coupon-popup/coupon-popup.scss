@@ -1,0 +1,138 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+@import "../../styles/variables";
+/*@import "/styles/common.scss";*/
+
+page {
+  padding-bottom: rpx2(20);
+}
+
+.coupon-popup {
+  border-radius: rpx2(8) rpx2(8) 0 0;
+  .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: rpx2(13);
+    font-size: rpx2(14);
+    color: $text-secondary;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: right;
+  }
+}
+
+.coupon-container {
+  overflow: hidden;
+  background: $white-smoke;
+
+  .header {
+    height: rpx2(42);
+    line-height: rpx2(42);
+    text-align: center;
+    background: white;
+    font-size: rpx2(16);
+  }
+
+  .lists {
+    min-height: rpx2(260);
+    max-height: rpx2(400);
+    padding: rpx2(15) rpx2(10);
+    overflow: auto;
+    .list {
+      background: white;
+      display: flex;
+      height: rpx2(100);
+      padding: rpx2(20) 0 rpx2(18);
+      box-sizing: border-box;
+      box-shadow: 0 rpx2(2) rpx2(4) 0 rgba(0,0,0,0.1);
+      border-radius: rpx2(5);
+      margin-bottom: rpx2(15);
+      .left {
+        position: relative;
+        width: rpx2(112);
+        text-align: center;
+        border-right: 1px dashed $border-color;
+        .price {
+          color: $text-price;
+          font-size: rpx2(16);
+          font-weight: bold;
+          line-height: 1;
+          margin-bottom: rpx2(5);
+          .big {
+            font-size: rpx2(36);
+          }
+        }
+
+        &:after,&:before{
+          content: '';
+          width: rpx2(10);
+          height: rpx2(10);
+          border-radius: 100%;
+          background: $white-smoke;
+          position: absolute;
+          right: rpx2(-5.5);
+        }
+        &:after {
+          top: rpx2(-24);
+        }
+        &:before {
+          bottom: rpx2(-23);
+        }
+
+      }
+      .right {
+        flex: 1;
+        padding: rpx2(2) rpx2(10);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .title {
+          font-size: rpx2(14);
+          word-break: break-word;
+          @include ellipsis2(2);
+        }
+        .bottom {
+          display: flex;
+          .times {
+            flex: 1;
+            font-size: rpx2(10);
+            display: flex;
+            align-items: center;
+            color: $text-secondary;
+            .tip {
+              color: $red;
+              padding-left: rpx2(4);
+            }
+          }
+          .btn,.text {
+            width: rpx2(48);
+            height: rpx2(25);
+            text-align: center;
+            line-height: rpx2(25);
+            border-radius: rpx2(14);
+            background: $btn-primary-bg;
+            color: white;
+          }
+          .text {
+            background: #ccc;
+          }
+        }
+      }
+    }
+  }
+
+  .empty {
+    min-height: rpx2(300);
+    padding-top: rpx2(40);
+    text-align: center;
+    font-size: rpx2(14);
+    color: $text-secondary;
+    .img {
+      display: inline-block;
+      width: rpx2(120);
+      height: rpx2(120);
+      margin-bottom: rpx2(30);
+    }
+  }
+}

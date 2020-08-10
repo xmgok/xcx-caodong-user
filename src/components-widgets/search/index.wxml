@@ -1,0 +1,6 @@
+<navigator class="search-wrap" url="/pages/search-panel/search-panel" hover-class="none">
+  <view class="search-box">
+    <text class="icon icon-search"></text>
+    <text>搜索商品编号或关键字</text>
+  </view>
+</navigator>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "评价",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index",
+    "upload": "/components/upload/index"
+  }
+}

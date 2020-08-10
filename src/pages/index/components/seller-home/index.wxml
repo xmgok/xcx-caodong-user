@@ -1,0 +1,21 @@
+<view class="page-seller-home">
+  <!-- 商品列表 -->
+  <view class="recommend" wx:if="{{sellerGoodsList.length}}">
+    <block wx:if="{{sellerGoodsList.length}}">
+      <view class="list-wrap">
+        <navigator
+          url="/pages/product/product?id={{item.id}}" hover-class="none" class="item"
+          wx:for="{{sellerGoodsList}}" wx:key="index">
+          <view class="img">
+            <image lazy-load src="{{item.productImg}}" mode="aspectFill" />
+          </view>
+          <view class="title">{{item.productName}}</view>
+          <view class="bottom">
+            <view class="price">￥{{item.price}}</view>
+          </view>
+        </navigator>
+      </view>
+    </block>
+    <list-loading-more result="{{result}}"></list-loading-more>
+  </view>
+</view>

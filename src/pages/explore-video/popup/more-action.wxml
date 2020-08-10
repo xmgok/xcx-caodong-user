@@ -1,0 +1,32 @@
+<!--更多操作-->
+<van-popup
+  show="{{ showMoreActionSelector }}"
+  bind:close="selectorClose"
+  data-name="showMoreActionSelector"
+  position="bottom"
+  custom-class="pop-selector more-action-selector">
+  <view class="popup-content">
+    <view class="action-list">
+      <view
+        class="action-item"
+        data-type="order"
+        catchtap="handleTap">
+        <view class="icon-wrap">
+          <text class="icon icon-order"></text>
+        </view>
+        <text>订单</text>
+      </view>
+      <view
+        wx:if="{{ isOwner }}"
+        class="action-item"
+        data-type="delete"
+        catchtap="handleTap">
+        <view class="icon-wrap">
+          <text class="icon icon-trash"></text>
+        </view>
+        <text>删除</text>
+      </view>
+    </view>
+    <view class="btn-cancel" bindtap="selectorClose" data-name="showMoreActionSelector">取消</view>
+  </view>
+</van-popup>

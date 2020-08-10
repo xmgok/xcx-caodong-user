@@ -1,0 +1,86 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.coupon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 10px;
+  background: #ffffff;
+  line-height: 1;
+
+  .item {
+    overflow: hidden;
+    width: 112px;
+    height: 150px;
+    background: #ffffff;
+    border-radius: 2px;
+    text-align: center;
+    margin-right: 10px;
+    box-sizing: border-box;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      border-right: 1px dashed $border-color;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  .item-title {
+    margin-top: 4px;
+    font-size: 11px;
+    color: $text-secondary;
+    line-height: 16px;
+    @include ellipsis1();
+  }
+
+  .currency {
+    font-size: 12px;
+  }
+
+  .icon-angle-down {
+    margin: 6px auto;
+    font-size: 12px;
+    color: $text-secondary;
+  }
+
+  .item-num {
+    margin-top: 10px;
+    font-size: 40px;
+    color: $text-primary;
+  }
+
+  .item-desc {
+    margin-top: 10px;
+    font-size: 12px;
+    color: $text-primary;
+    padding: 0 5px;
+    @include ellipsis1();
+  }
+
+  .item-btn {
+    margin: 0 auto;
+    width: 72px;
+    height: 20px;
+    background: $btn-warning-gradient-bg;
+    box-shadow: $btn-warning-box-shadow;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

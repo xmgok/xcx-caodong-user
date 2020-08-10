@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "草动直播",
+  "usingComponents": {
+    "component-share": "/components/share/share"
+  }
+}

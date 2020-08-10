@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "backgroundColor": "#f2f2f2",
+  "usingComponents": {
+    "goods-purchase": "/components/goods-purchase/goods-purchase",
+    "component-share": "/components/share/share",
+    "jz-radio": "/components/radio/radio",
+    "jz-popup": "/components/popup/popup",
+    "coupon-popup": "/components/coupon-popup/coupon-popup",
+    "van-popup": "/components/popup/popup",
+    "sales-promotion-popup": "/components/sales-promotion-popup/sales-promotion-popup",
+    "jz-loading": "/components/loading/loading"
+  }
+}

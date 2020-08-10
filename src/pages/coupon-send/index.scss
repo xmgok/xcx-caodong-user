@@ -1,0 +1,117 @@
+@import "../../styles/config";
+
+page {
+  background: $white-smoke;
+}
+
+.coupon-item {
+  $type1: #ff5638;
+  $type2: $type1;
+  $type3: #d4a71e;
+  $type4: #65c4aa;
+  $type5: #7b8cb7;
+  background: white;
+  display: flex;
+  height: rpx2(100);
+  padding: rpx2(20) 0 rpx2(18);
+  box-sizing: border-box;
+  box-shadow: 0 rpx2(2) rpx2(4) 0 rgba(0, 0, 0, 0.1);
+  border-radius: rpx2(5);
+  margin: 15px 10px;
+
+  .left {
+    position: relative;
+    width: rpx2(112);
+    text-align: center;
+    border-right: 1px dashed $border-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &:after, &:before {
+      content: '';
+      width: rpx2(10);
+      height: rpx2(10);
+      border-radius: 100%;
+      background: $white-smoke;
+      position: absolute;
+      right: rpx2(-5.5);
+    }
+
+    &:after {
+      top: rpx2(-24);
+    }
+
+    &:before {
+      bottom: rpx2(-23);
+    }
+
+    .price {
+      font-size: rpx2(16);
+      font-weight: bold;
+      line-height: 1;
+      color: $type1;
+
+      .big {
+        font-size: rpx2(36);
+        margin-right: 4px;
+      }
+    }
+
+    .mt {
+      margin-top: 5px;
+    }
+  }
+
+  .right {
+    flex: 1;
+    padding: 2px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+      font-size: rpx2(14);
+      word-break: break-word;
+      @include ellipsis2(2);
+    }
+
+    .bottom {
+      display: flex;
+
+      .times {
+        flex: 1;
+        font-size: rpx2(10);
+        display: flex;
+        align-items: center;
+        color: $text-secondary;
+
+        .tip {
+          color: $red;
+          padding-left: rpx2(4);
+        }
+      }
+    }
+  }
+
+  .btn-wrap {
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .btn {
+      width: rpx2(48);
+      height: rpx2(25);
+      text-align: center;
+      line-height: rpx2(25);
+      border-radius: rpx2(14);
+      color: white;
+      background: $type2;
+
+      &.inactive {
+        background: #ccc;
+      }
+    }
+  }
+}

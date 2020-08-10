@@ -1,0 +1,24 @@
+<!--<view class="page-login">
+
+  <view class="form">
+    <view class="hd-item">
+      <input placeholder-style="color:#96989C" placeholder="员工手机号码" maxlength="11" type="number" value="{{form.mobile}}" data-type="mobile" bindinput="bindInput" />
+      <view class="get-msg-code {{timer >= 60 ? 'active' : ''}}" bindtap="getMsgCode">{{timeText}}</view>
+    </view>
+
+    <view class="hd-item">
+      <input placeholder-style="color:#96989C" placeholder="验证码" value="{{form.imgCode}}" data-type="imgCode" bindinput="bindInput" />
+      <image lazy-load class="code" bindtap="changeCodeImg" mode="aspectFill" src="{{codeImg}}"></image>
+    </view>
+
+    <view class="hd-item">
+      <input placeholder-style="color:#96989C" type="number" placeholder="短信验证码" value="{{form.smsCode}}" data-type="smsCode" bindinput="bindInput" />
+    </view>
+
+    <button class="save {{canSave ? 'active' : ''}}" open-type="getUserInfo" bindgetuserinfo="onSave" lang="zh_CN">登录</button>
+  </view>
+
+</view>-->
+
+
+<button class="g-btn emp-auth-login-btn" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">授权手机号一键登录</button>

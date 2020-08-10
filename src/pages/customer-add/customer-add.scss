@@ -1,0 +1,52 @@
+@import "../../styles/mixin";
+page {
+  background: white;
+}
+.page-customer-add {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  box-sizing: border-box;
+  padding-bottom: 20%;
+  .form {
+    box-sizing: border-box;
+    padding: rpx2(15);
+    width: 100%;
+    .text {
+      color: $text-secondary;
+    }
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: rpx2(25);
+      border-bottom: rpx(1) solid $border-color;
+      line-height: rpx2(38);
+      height: rpx2(38);
+      font-size: rpx2(18);
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    .save {
+      margin-top: rpx2(60);
+      background: $btn-disabled-bg;
+      border-radius: $btn-border-radius;
+      line-height: rpx2(45);
+      height: rpx2(45);
+      text-align: center;
+      color: white;
+      font-size: rpx2(18);
+      font-weight: bold;
+      &.active {
+        background: $btn-primary-bg;
+      }
+    }
+  }
+
+}
+

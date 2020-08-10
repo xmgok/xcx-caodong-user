@@ -1,0 +1,32 @@
+<view class="awesome-bottom">
+  <view class="page">
+    <view class="g-tab" wx:if="{{showTab}}">
+      <view class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}" wx:for="{{tabList}}" wx:key="index"
+            data-index="{{index}}" bindtap="switchTab">{{item}}
+      </view>
+    </view>
+    <view class="bg" wx:for="{{dataList}}" wx:key="index" wx:for-item="resData">
+      <view class="header">
+        <image mode="aspectFill" src="{{resData.headUrl}}" class="left"></image>
+        <view class="right">
+          <view class="star">
+            <view class="star-text">{{resData.nickName}}</view>
+            <view class="star-icon">
+              <view wx:for="{{5}}" wx:key="index" data-index="{{index}}" bindtap="starClick"
+                    class="icon icon-pingjiawuxing item {{resData.star>index?'active':''}}"></view>
+            </view>
+          </view>
+          <view class="time">{{resData.createTime}}</view>
+        </view>
+      </view>
+      <view class="content">{{resData.content}}</view>
+      <view class="images" wx:if="{{resData.imgCount>0}}">
+        <image wx:for="{{resData.imgUrlArr}}" wx:key="index" data-index="{{index}}" data-images="{{resData.imgUrlArr}}" bindtap="previewImage" mode="aspectFill" src="{{item}}" class="item"></image>
+      </view>
+      <view class="comment-spec">{{resData.specContent}}</view>
+    </view>
+    <list-loading-more result="{{result}}" noMoreDataDesc="" icon="icon-pingjia"
+                       noDataDesc="暂时没有相关评价哦~"></list-loading-more>
+  </view>
+</view>
+<component-copyright/>

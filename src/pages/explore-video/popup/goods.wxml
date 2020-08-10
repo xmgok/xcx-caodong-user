@@ -1,0 +1,59 @@
+<!--商品列表-->
+<van-popup
+  show="{{ showGoodsSelector }}"
+  bind:close="selectorClose"
+  data-name="showGoodsSelector"
+  position="bottom"
+  custom-class="pop-selector goods-selector">
+  <view class="popup-header">
+    <view class="title">视频商品({{ infoData.productList.length }})</view>
+    <view class="btn-close-wrap" bindtap="selectorClose" data-name="showGoodsSelector">
+      <text class="icon icon-times btn-close"></text>
+    </view>
+  </view>
+  <view class="popup-content">
+    <view
+      class="goods-item"
+      wx:for="{{ infoData.productList }}"
+      wx:key="index">
+      <image
+        bindtap="handleTap"
+        data-type="goods-detail"
+        data-product-id="{{ item.id }}"
+        class="goods-img"
+        mode="aspectFill"
+        src="{{ item.imgUrl }}"></image>
+      <view class="content">
+        <view
+          class="title"
+          bindtap="handleTap"
+          data-type="goods-detail"
+          data-id="{{ item.productId }}"
+          data-spec_id="{{ item.specId }}">
+          {{ item.name }}
+        </view>
+        <view class="sub-title">{{ item.spec }}</view>
+        <view class="flex-row">
+          <view class="price-wrap">
+            <text class="sm">￥</text>
+            <text class="lg">{{ item._priceInt }}</text>
+            <text class="sm">{{ item._priceDec }}</text>
+            <text class="del">￥{{ item.prePrice }}</text>
+          </view>
+          <jz-input-number
+            class="input-number-wrap"
+            value="{{ item._quantity }}"
+            min="{{ 0 }}"
+            plus-class="input-number-plus"
+            minus-class="input-number-minus"
+            input-class="input-number-input"
+            data-index="{{ index }}"
+            bindchange="onQuantityChange"></jz-input-number>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="popup-footer">
+    <view class="btn-submit" bindtap="submit">一键购买</view>
+  </view>
+</van-popup>

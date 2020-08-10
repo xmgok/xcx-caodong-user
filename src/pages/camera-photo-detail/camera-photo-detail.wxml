@@ -1,0 +1,36 @@
+<view class="page-camera-photo-detail {{isHorizontal ? 'is-horizontal' : ''}}" wx:if="{{peopleImgList}}" bindtouchstart="uploadScaleStart" bindtouchmove="uploadScaleMove" bindtouchend="uploadScaleEnd">
+  <camera class="camera" device-position="{{device}}" flash="off"></camera>
+  <cover-image src="https://qiniu.icaodong.com/xcx/video/return.png?v=1.0.0" class="navigate-back" catchtap="handleTap"></cover-image>
+  <cover-view class="zoom-wrap">
+    <cover-view class="btn-device" catchtap="changeDevice">
+      <cover-image src="https://qiniu.icaodong.com/xcx/common/photo-qiehuan.png?v=1.0.0"></cover-image>
+    </cover-view>
+    <cover-view class="btn-device" catchtap="zoomBig">
+      <cover-image src="https://qiniu.icaodong.com/xcx/common/photo-icon-fangda.png?v=1.0.0"></cover-image>
+    </cover-view>
+    <cover-view class="btn-device" catchtap="zoomSmall">
+      <cover-image src="https://qiniu.icaodong.com/xcx/common/photo-icon-suoxiao.png?v=1.0.0"></cover-image>
+    </cover-view>
+  </cover-view>
+  <cover-image wx:if="{{!showMorePeople && peopleImgList[peopleImgIndex].url}}" class="people-img" src="{{peopleImgList[peopleImgIndex].url}}" style="width: {{imgWidth}}px; height: {{imgHeight}}px; left: {{imgLeft}}px; bottom: {{imgBottom}}px"></cover-image>
+  <cover-image wx:if="{{!isHorizontal}}" class="sdff" src="{{product[1]}}"></cover-image>
+  <cover-image wx:if="{{isHorizontal}}" class="sdff" src="{{product[2]}}"></cover-image>
+  <cover-image class="frame" src="{{frame[isHorizontal ? '2' : '1']}}"></cover-image>
+  <cover-view class="func-wrap" wx:if="{{!showMorePeople}}">
+    <cover-view class="btn-item">
+      <cover-image wx:if="{{oldPhoto}}" src="{{oldPhoto}}" class="btn-img" catchtap="previewImage"></cover-image>
+      <cover-view wx:if="{{!oldPhoto}}" class="btn-img"></cover-view>
+      <cover-view class="btn-text">相册</cover-view>
+    </cover-view>
+    <cover-view class="btn-item2" catchtap="openSetting">
+      <cover-view class="btn-item2-child"></cover-view>
+    </cover-view>
+    <cover-view class="btn-item" catchtap="onShowMorePeople">
+      <cover-image wx:if="{{peopleImgList[peopleImgIndex].url}}" src="{{peopleImgList[peopleImgIndex].url}}" class="btn-img"></cover-image>
+      <cover-view class="btn-text">模板</cover-view>
+    </cover-view>
+  </cover-view>
+  <canvas wx:if="{{createCanvasIng}}" style="width:100%; height:100%; position: fixed; left: 0; top: 0; z-index: 1000" canvas-id="myCanvas"></canvas>
+  <camera-photo-template wx:if="{{showMorePeople}}" bindclose="closeMorePeople" imgList="{{peopleImgList}}" iIndex="{{peopleImgIndex}}"></camera-photo-template>
+  <view class="zw"></view>
+</view>

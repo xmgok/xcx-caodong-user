@@ -1,0 +1,28 @@
+<view class="page-address-list">
+
+  <view class="fixed-bottom">
+    <navigator class="add-customer" url="/pages/address-add/address-add" hover-class="none">添加新地址</navigator>
+  </view>
+
+  <view class="list-wrap">
+    <view class="item" wx:for="{{listData}}" wx:key="index">
+      <view class="name">{{item.name}} <text class="mobile">{{item.phone}}</text></view>
+      <view class="addr">{{item.province}}{{item.city}}{{item.area}} {{item.address}}</view>
+      <view class="func">
+        <view class="set-default" bindtap="onSetDefault" data-index="{{index}}"><text class="icon {{item.isDefault ? 'active icon-check-circle' : 'icon icon-circle'}}"></text>设为默认</view>
+        <view class="zw"></view>
+        <navigator class="tb" url="/pages/address-add/address-add?id={{item.id}}" hover-class="none"><text class="icon icon-edit"></text></navigator>
+        <view class="tb" bindtap="onDel" data-index="{{index}}"><text class="icon icon-trash"></text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="no-data" wx:if="{{getEnd}}">
+    <view class="icon-wrap" wx:if="{{listData.length <= 0}}">
+      <text class="icon icon-map-marker"></text>
+    </view>
+    <component-loading text="{{listData.length > 0 ? '已经到底啦' : '暂时还没有收货地址哦~'}}"></component-loading>
+  </view>
+  <component-loading wx:if="{{!getEnd}}"></component-loading>
+
+</view>

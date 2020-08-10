@@ -1,0 +1,43 @@
+<view class="page">
+  <view class="search-wrap">
+    <jz-search
+      clearable
+      value="{{ keyword }}"
+      placeholder-style="color:#96989c"
+      placeholder="搜索标签"
+      bindconfirm="handleSearchConfirm"
+      bindcancel="handleSearchCancel"
+      style="width: 100%">
+    </jz-search>
+  </view>
+  <view class="list-wrap">
+    <view class="list" wx:for="{{resData}}" wx:key="index">
+      <view class="title">{{index}}</view>
+      <view class="content">
+        <navigator
+          class="item" url="/pages-subpackages/cus/pages/cus-m-label-detail/index?item={{item.itemStr}}" hover-class="none"
+          wx:for="{{item}}" wx:key="index"
+        >
+          {{item.name}}
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class="add-btn" bindtap="showSelectLabel">
+    <view class="icon icon-plus"></view>
+  </view>
+  <jz-popup
+    show="{{ isShowSelectLabel }}"
+    position="bottom"
+    custom-class="reset-popup"
+    z-index="101">
+    <view class="select-label">
+      <view class="icon icon-times btn-close" bindtap="hideSelectLabel"></view>
+      <view class="title">添加标签</view>
+      <input
+        class="input" type="text" placeholder="添加标签"
+        data-name="addLabelValue" bindinput="onInput" value="{{addLabelValue}}"/>
+      <view class="g-btn" bindtap="labelAdd">确定</view>
+    </view>
+  </jz-popup>
+</view>

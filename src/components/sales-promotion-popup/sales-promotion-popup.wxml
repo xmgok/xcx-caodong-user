@@ -1,0 +1,58 @@
+<popup
+  show="{{ show }}"
+  position="bottom"
+  bindclose="onPurchaseClose"
+  custom-class="sales-promotion-popup">
+  <view class="header">
+    促销
+    <text class="icon icon-times btn-close" bindtap="onPurchaseClose"></text>
+  </view>
+  <view class="tips" wx:if="{{data.gifts.length}}">赠品请到购物车中领取，赠完即止</view>
+
+  <view class="content">
+    <view class="rules">
+      <view
+        class="item"
+        wx:for="{{datas.rules}}"
+        wx:key="index"
+        bindtap="navigate"
+        data-category="rule"
+        data-id="{{ item.discountId }}"
+        data-type="{{ item.activeGoods }}">
+        <text class="label">{{item.activityName}}</text>
+        <view class="body">{{item.activityRules}}</view>
+        <text class="icon icon-angle-right"></text>
+        <view class="spec-wrap" wx:if="{{item.specNameList.length}}">
+          <view class="spec-title">以下规格参与活动</view>
+          <scroll-view scroll-x class="spec">
+            <view class="spec-item" wx:for="{{item.specNameList}}" wx:key="index">{{item}}</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+
+    <view class="gifts-wrap">
+      <view
+        class="item"
+        wx:for="{{datas.gifts}}"
+        wx:key="index">
+        <view class="body">
+          <view class="rule"><text class="dot"></text> {{item.activityRules}}</view>
+          <view
+            class="product"
+            wx:for="{{item.productList}}"
+            wx:for-item="prod"
+            wx:for-index="index2"
+            wx:key="index2"
+            bindtap="navigate"
+            data-id="{{prod.id}}"
+            data-category="gift">
+            <view class="product-name">{{prod.name}};</view>
+            <text class="icon icon-angle-right"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</popup>
+

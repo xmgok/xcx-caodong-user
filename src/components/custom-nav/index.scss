@@ -1,0 +1,39 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+
+.ui-navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5001;
+  width: 100%;
+  background-color: #ffffff;
+
+  &__status {
+    width: 100%;
+  }
+
+  &__title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .my-icon {
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .title {
+    padding: 0 10px;
+    text-align: center;
+    font-size: 16px;
+
+    &.active {
+      flex: 1;
+    }
+  }
+}

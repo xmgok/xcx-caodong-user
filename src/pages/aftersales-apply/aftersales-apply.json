@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "售后申请",
+  "usingComponents": {
+    "form-id": "/components/form-id/form-id",
+    "input-number": "/components/input-number/input-number",
+    "jz-popup-radio-picker": "/components/popup-radio-picker/popup-radio-picker",
+    "jz-popup-radio-picker-after-type": "/components/popup-radio-picker-after-type/popup-radio-picker"
+  }
+}

@@ -1,0 +1,75 @@
+@import "../../styles/mixin";
+
+page {
+  background-color: $white-smoke;
+}
+
+.date-picker-wrap {
+  box-sizing: border-box;
+  padding: 15px 20px;
+  height: 80px;
+  background-color: #ffffff;
+  @include border1px-bottom(#dfdfdf);
+  .date {
+    color: $text-primary;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 25px;
+    margin-bottom: 4px;
+    margin-right: 6px;
+  }
+  .statistic {
+    color: $text-secondary;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.record-list {
+  background-color: #ffffff;
+  .item {
+    box-sizing: border-box;
+    padding: 18px 15px;
+    height: 82px;
+    @include border1px-bottom($gray-lighter, 15px);
+    .title-wrap {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      color: $text-primary;
+      margin-bottom: 2px;
+      line-height: 22px;
+    }
+    .amount {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .date-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .date {
+        font-size: 13px;
+        line-height: 22px;
+        color: $text-secondary;
+      }
+      .status {
+        color: $red;
+        font-size: 13px;
+      }
+    }
+  }
+}
+.no-data {
+  .icon-wrap {
+    width: 155px;
+    height: 155px;
+    margin: 50px auto 0;
+    line-height: 155px;
+    text-align: center;
+    background: #e6e6e6;
+    border-radius: 50%;
+    font-size: 80px;
+    color: white;
+  }
+}

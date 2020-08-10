@@ -1,0 +1,308 @@
+<view class="container">
+  <!--获取手机号-->
+  <component-phone-auth2 isPlaceholder="{{true}}"></component-phone-auth2>
+
+  <view
+    class="shipping-address ui-card">
+    <div class="card-body">
+      <view class="tabs" wx:if="{{canTake}}">
+        <view class="item {{!isTake? 'active':''}}" data-type="{{0}}" bindtap="changeTake">快递配送</view>
+        <view class="item {{isTake? 'active':''}}" data-type="{{1}}" bindtap="changeTake">门店自提</view>
+      </view>
+      <view bindtap="addressPicker" wx:if="{{!isTake}}">
+        <view class="cont" wx:if="{{currentAddress}}">
+          <view class="icon-wrap flex-v-center">
+            <text class="icon icon-map-marker-fill"></text>
+          </view>
+          <view class="address-content">
+            <view class="header">
+              <text class="name">{{ currentAddress.name }}</text>
+              <text class="mobile">{{ currentAddress.phone }}</text>
+              <text class="badge" wx:if="{{ currentAddress.isDefault === 1 }}">默认</text>
+            </view>
+            <view class="address">
+              {{currentAddress.province}}{{currentAddress.city}}{{currentAddress.area}}{{currentAddress.address}}
+            </view>
+          </view>
+          <text class="icon icon-angle-right flex-v-center"></text>
+        </view>
+
+        <view class="cont" wx:else>
+          <view class="icon-wrap flex-v-center">
+            <text class="icon icon-plus"></text>
+          </view>
+          <view class="address-content">请添加收货地址</view>
+          <text class="icon icon-angle-right flex-v-center"></text>
+        </view>
+      </view>
+      <view class="cont" wx:if="{{isTake}}">
+        <view class="icon-wrap flex-v-center">
+          <text class="icon icon-store2"></text>
+        </view>
+        <view class="address-content">
+          <view class="header">
+            <text class="name">{{ takeName }}</text>
+          </view>
+          <view class="address">{{ takeAddress }}</view>
+        </view>
+      </view>
+    </div>
+  </view>
+
+  <view class="order-detail ui-card">
+    <view class="card-header">
+      <text class="title">商品信息</text>
+    </view>
+    <view class="card-body">
+      <view class="goods-info" wx:for="{{goodsList}}" wx:key="index">
+        <image lazy-load class="goods-image" mode="aspectFill" src="{{item.imgUrl}}"></image>
+        <view class="right-content">
+          <view class="title">{{item.name}}</view>
+          <!--
+          <block wx:if="{{goods.specificationList.length > 1}}">
+            <picker bindchange="bindPickerChange" value="{{specIndex}}" range-key="specContent" range="{{goods.specificationList}}">
+              <text class="spec" bindtap="selectSpec">{{selectedSpec.specContent}} <text class="icon icon-angle-down"></text></text>
+            </picker>
+          </block>
+          <block wx:else>
+            <text class="spec" bindtap="selectSpec">{{item.specContent}}</text>
+          </block>
+          -->
+          <text class="gift coupon5" wx:if="{{item.isGift==2}}">兑换</text>
+          <text class="gift" wx:elif="{{item.isGift==1}}">赠品</text>
+          <text class="spec" wx:else>{{item.specContent}}</text>
+
+          <view class="ui-price-wrap df black">
+            <view class="left">
+              <text class="currency">¥</text>
+              <text class="price-integer">{{item.priceInt}}</text>
+              <text class="price-decimal" wx:if="{{!item.isGift}}">.{{item.priceDec}}</text>
+            </view>
+            <view class="nums">x{{item.num}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!--
+      <view class="shipping-way">
+        <text class="label">商品总额</text>
+        <text class="fr">{{productAmount}}</text>
+      </view>
+      -->
+
+      <block wx:if="{{cartGiftList.length}}">
+        <view class="shipping-way" bindtap="showGift">
+          <view class="label">
+            <text>领赠品</text>
+            <text class="selected">已领{{cartGiftLength}}件</text>
+          </view>
+          <text class="fr">
+            <text>去领取</text>
+            <text class="icon icon-angle-right"></text>
+          </text>
+        </view>
+      </block>
+
+      <!--options.couponCustomerId存在表示是兑换券进入，兑换券进入则不允许切换优惠券-->
+      <block wx:if="{{!options.couponCustomerId}}">
+        <view wx:if="{{conponList.length}}">
+          <view class="shipping-way" bindtap="getCoupons">
+            <view class="label">
+              <text>优惠券</text>
+              <text class="selected" wx:if="{{currentConpon && currentConpon.price}}">已选1张</text>
+            </view>
+            <text class="fr">
+              <block wx:if="{{currentConpon}}">
+                <text wx:if="{{currentConpon.couponCustomerId == -1}}">不使用优惠券</text>
+                <text wx:else>优惠{{currentConpon.price || 0}}元</text>
+                <!--{{currentConpon.type!=5?'优惠':'价值'}}-->
+              </block>
+              <text wx:else>无可用优惠券</text>
+              <text class="icon icon-angle-right"></text>
+            </text>
+          </view>
+        </view>
+        <view wx:else>
+          <view class="shipping-way">
+            <view class="label">
+              <text>优惠券</text>
+            </view>
+            <text class="fr">
+              <text>无可用优惠券</text>
+            </text>
+          </view>
+        </view>
+
+      </block>
+
+      <block wx:if="{{currentConpon.type==5}}">
+        <view class="shipping-way" bindtap="goExchangeGoods" data-item="{{currentConpon}}">
+          <view class="label">
+            <text>兑换商品</text>
+            <text class="selected">已兑{{exchangeAmount}}元</text>
+          </view>
+          <text class="fr">
+            <text>去兑换</text>
+            <text class="icon icon-angle-right"></text>
+          </text>
+        </view>
+      </block>
+
+
+      <view class="shipping-way">
+        <text class="label">优惠立减</text>
+        <text class="fr">{{discountPrice}}</text>
+      </view>
+
+      <view class="shipping-way" bindtap="changeSend" wx:if="{{!isTake}}">
+        <text class="label">配送方式</text>
+        <text class="fr" wx:if="{{!currentFreight.expressName}}">
+          <text>包邮</text>
+        </text>
+        <text class="fr" wx:else>
+          <text>{{currentFreight.expressName}}</text>
+          <text> {{expressPrice}}</text>
+          <text class="icon icon-angle-right"></text>
+        </text>
+      </view>
+
+      <view class="shipping-way" wx:if="{{hasOpenScore&&currentIntegral>0}}">
+        <view class="score-wrap">
+          <view class="score">
+            <view class="label score-label">
+              <view class="score-label-big">积分抵扣</view>
+              <view class="icon icon-tishi1 score-hint" bindtap="showHint"></view>
+              <view class="score-label-small">（共{{currentIntegral}}积分,使用积分须为{{unitIntegral}}的倍数)</view>
+            </view>
+            <view class="score-switch">
+              <switch
+                checked="{{isUseScore}}"
+                class="fr switch-red"
+                bindchange="switchChange"
+                data-name="isUseScore"
+                color="#ff5638"
+              />
+            </view>
+          </view>
+          <view class="score2" wx:if="{{isUseScore}}">
+            <view>使用</view>
+            <view><input type="number" bindblur="scoreBlur" value="{{useIntegral}}" /></view>
+            <text>积分，抵扣</text>
+            <text class="b">{{integralAmount}}</text>
+            <text>元，最多使用({{scoreMax}})积分</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="card-footer">
+      <text class="title pr5">合计</text>
+      <text class="price">¥{{subtotalInt}}.{{subtotalDec}}</text>
+    </view>
+  </view>
+
+  <view class="remark-warp" wx:if="{{userType=='staff'}}">
+    <text class="label">手机:</text>
+    <input
+      type="number"
+      maxlength="11"
+      value="{{customerMobile}}"
+      bindinput="onInput"
+      data-name="customerMobile"
+      placeholder="输入客户注册手机号，以便客户获取积分～"
+      placeholder-style="color:#96989c;font-size:14px" />
+  </view>
+
+  <view class="remark-warp">
+    <text class="label">备注:</text>
+    <input
+      value="{{remark}}"
+      bindchange="onRemarkChange"
+      placeholder="在这里可以给商家留言哦～"
+      placeholder-style="color:#96989c;font-size:14px" />
+  </view>
+
+  <jz-submit-bar
+    custom-class="{{iPhoneX?'bar-active':''}}"
+    bar-class="bar-class"
+    price="{{subtotal}}"
+    button-text="立即支付"
+    receiver-number="{{receiver.length}}"
+    disabled="{{disabled}}"
+    loading="{{submitting}}"
+    bind:submit="onSubmit" />
+</view>
+
+<!--收货地址列表-->
+<jz-popup
+  bindclose="closeAddressPopup"
+  show="{{ showAddressPicker }}"
+  position="bottom"
+  z-index="101"
+  custom-class="address-popup">
+  <view class="header">
+    <view class="title">收货地址</view>
+    <text class="icon icon-times btn-close" bindtap="closeAddressPopup"></text>
+  </view>
+  <view class="content">
+    <jz-radio-group
+      wx:if="{{addressList.length}}"
+      value="{{ currentAddressId }}"
+      bind:change="onAddressChange">
+      <view class="ui-card address-card mb10" wx:for="{{addressList}}" wx:key="id">
+        <view class="card-body df" bindtap="onAddressSelect" data-id="{{ item.id }}">
+          <view class="icon-wrap">
+            <jz-radio name="{{ item.id }}" />
+          </view>
+          <view class="address-content">
+            <view class="header">
+              <text class="name">{{item.name}}</text>
+              <text class="mobile">{{item.phone}}</text>
+              <text class="badge" wx:if="{{ item.isDefault === 1 }}">默认</text>
+            </view>
+            <view class="address">{{item.province}}{{item.city}}{{item.area}}{{item.address}}</view>
+          </view>
+          <view class="icon-edit-wrap" catchtap="toEditAddress" data-id="{{ item.id }}">
+            <text class="icon icon-edit"></text>
+          </view>
+        </view>
+      </view>
+    </jz-radio-group>
+    <view class="tc" wx:else>
+      <view class="empty-icon-warp">
+        <text class="icon icon-map-marker"></text>
+      </view>
+      <view class="empty-msg">暂时还没有收货地址哦~</view>
+    </view>
+  </view>
+  <view class="footer">
+    <navigator url="/pages/address-add/address-add" hover-class="none">
+      <view class="ui-btn-submit">添加新地址</view>
+    </navigator>
+  </view>
+</jz-popup>
+
+<coupon-popup-order bindselected="selectedCoupon" datas="{{conponList}}" show="{{showCouponPopup}}" />
+
+<delivery-way wx:if="{{freightList.length}}" bindselected="selectedDelivery" selectedId="{{expressId}}"
+              datas="{{freightList}}" show="{{showDeliveryPopup}}" />
+
+<jz-popup
+  show="{{ isShowGift }}"
+  position="bottom"
+  bindclose="hideGift"
+  custom-class="gifts-popup">
+  <view class="gifts">
+    <view class="header">领取赠品</view>
+    <view class="close icon icon-times" bindtap="hideGift"></view>
+    <view wx:for="{{cartGiftList}}" wx:key="index" class="gifts-item" data-item="{{item}}" bindtap="goGiftPage">
+      <view class="tag">{{item.showTag}}</view>
+      <view class="desc">
+        <view class="gifts-item-text">{{item.discountName}}</view>
+        <view class="gifts-item-icon icon icon-angle-right"></view>
+      </view>
+    </view>
+  </view>
+</jz-popup>
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

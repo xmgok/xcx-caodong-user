@@ -1,0 +1,49 @@
+<popup
+  show="{{ show }}"
+  position="bottom"
+  bindclose="onClose">
+
+  <view class="share-wrap">
+    <view class="item-wrap">
+      <button wx:if="{{isShowShareButton}}" hover-class="none" class="item" open-type="share" data-type="share" data-active-data="{{activeData}}" data-active-type="{{activeType}}" data-item="{{item}}">
+        <view class="icon-wrap"><text class="icon icon-share_weixin"></text></view>
+        <view class="text">分享{{longTapText[activeType]}}给好友</view>
+      </button>
+      <view
+        class="item"
+        bindtap="goUrl">
+        <view class="icon-wrap"><text class="icon icon-share_pengyouquan"></text></view>
+        <view class="text">保存素材</view>
+      </view>
+    </view>
+    <view class="btn-cancel" bindtap="onClose">取消</view>
+  </view>
+
+</popup>
+
+<view class="poster-wrap" wx:if="{{ showPoster }}">
+  <text class="icon icon-times" catchtap="onClose"></text>
+  <block wx:if="{{!isVideo}}">
+    <canvas canvas-id="posterCanvas" class="poster-canvas" style="width:345px; height: {{ posterHeight }}px"></canvas>
+  </block>
+  <view class="tabs" wx:if="{{typeList.length}}">
+    <view wx:for="{{typeList}}" wx:key="index" class="tab-item {{typeIndex == index ? 'active' : ''}}" data-index="{{index}}" catchtap="changeTab">
+      <view>{{item}}</view>
+      <view class="line"></view>
+    </view>
+  </view>
+  <view class="swiper-wrap" catchtap="taps">
+    <swiper class="swiper {{iPad?'iPad':''}}" next-margin="50px" previous-margin="50px">
+      <block wx:for="{{currentImgList}}" wx:key="index">
+        <swiper-item>
+          <image lazy-load src="{{item}}" mode="aspectFit" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view wx:if="{{priceSwitch&&typeIndex==0}}" class="show-price">
+    <switch checked="{{showPrice}}" bindchange="switchChange" class="wx-switch-input" /> <block wx:if="{{!showPrice}}">不</block>显示价格
+  </view>
+  <view class="save-btn" catchtap="download">保存到相册</view>
+  <!--  <view class="save-btn blue" catchtap="download">保存到相册（不展示价格）</view>-->
+</view>

@@ -1,0 +1,47 @@
+<view class="page-aftersales-record">
+  <view class="record-list">
+    <view class="record-item" wx:for="{{ list }}" wx:key="id">
+      <view class="avatar avatar--{{ item.role }} icon icon-user"></view>
+      <view class="content">
+        <view class="header">
+          <view class="username">{{ item._role }}</view>
+          <view class="date">{{ item.createTime || '' }}</view>
+        </view>
+        <view class="status-desc">{{ item.operateDesc }}</view>
+        <view class="detail">
+          <block wx:if="{{ item.checkStatus === 3 || item.checkStatus === 7 }}">
+            <view class="item">拒绝原因：{{ item.rejectReason }}</view>
+          </block>
+          <block wx:if="{{ item.checkStatus == 5 }}">
+            <view class="item">物流公司：{{ item.expressName }}</view>
+            <view class="item">物流单号：{{ item.expressCode }}</view>
+          </block>
+          <block wx:if="{{ item.returnStatus === 1 }}">
+            <view class="item">售后类型：{{ ['', '退款', '退款退货'][item.type] }}</view>
+            <view class="item">退款原因：{{ item._reason }}</view>
+            <view class="item">退款金额：￥{{ item.amount }}</view>
+            <view class="item">退还积分：{{ item.integral || 0 }}积分</view>
+            <view class="item">申请时间：{{ item.returnCreateTime }}</view>
+            <view class="item">售后单号：{{ item.returnCode }}</view>
+            <view class="item">退款说明：{{ item.explain || '无' }}</view>
+            <view class="item df">
+              <text class="label">图片描述：</text>
+              <view class="item-right">
+                <block wx:if="{{ item._evidencePic.length > 0 }}">
+                  <image lazy-load
+                    wx:for="{{ item._evidencePic }}"
+                    wx:key="*this"
+                    wx:for-item="it"
+                    class="img"
+                    src="{{ it }}"
+                    mode="aspectFill" />
+                </block>
+                <text wx:else>无</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "任务通知",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

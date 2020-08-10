@@ -1,0 +1,26 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.store-name {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  background: #ffffff;
+  .text {
+    max-width: 112px;
+    font-size: 16px;
+    margin-left: 4px;
+    @include ellipsis1();
+  }
+  .switch-store {
+    font-size: 12px;
+    margin-left: 4px;
+    color: $text-secondary;
+    padding-top: 3px;
+  }
+}
+
+.pl5 {
+  padding-left: 5px;
+}

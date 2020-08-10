@@ -1,0 +1,46 @@
+@import "../../styles/mixin";
+
+page {
+  background: $white-smoke;
+}
+
+$disabled-color: $text-info;
+
+.page-coupon-list {
+  .tabs {
+    height: rpx2(44);
+    background: white;
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 6;
+    .item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 rpx2(15);
+      font-size: rpx2(14);
+      border-bottom: rpx2(2) solid white;
+      border-radius: rpx2(2);
+      &.active {
+        font-size: rpx2(16);
+        font-weight: bold;
+        border-color: $primary;
+      }
+    }
+  }
+
+  .empty {
+    padding-top: rpx2(102);
+    text-align: center;
+    font-size: rpx2(17);
+    color: $text-secondary;
+    .img {
+      display: inline-block;
+      width: rpx2(155);
+      height: rpx2(155);
+      margin-bottom: rpx2(30);
+    }
+  }
+}

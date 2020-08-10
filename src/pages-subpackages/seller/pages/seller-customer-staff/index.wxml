@@ -1,0 +1,26 @@
+<view class="page g-page-seller-team">
+  <view class="g-tab" wx:if="{{showTab}}">
+    <view class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}" wx:for="{{tabList}}" wx:key="index"
+          data-index="{{index}}" bindtap="switchTab">{{item}}
+    </view>
+  </view>
+  <view class="list-wrap">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <image class="img"
+             lazy-load mode="aspectFill"
+             src="{{item.headUrl}}"></image>
+      <view class="content">
+        <view class="name">
+          <view>{{item.nickName}}</view>
+        </view>
+        <view class="time">加入时间：{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more
+  result="{{result}}"
+  icon="icon-yaoqingkehu"
+  noDataDesc="暂时还没有分销，快去邀请吧~">
+  <!--<view class="g-no-data-btn">邀请客户</view>-->
+</list-loading-more>

@@ -1,0 +1,96 @@
+<view class="page g-page-seller-store-setting">
+  <view class="hd-block">
+    <view class="hint" wx:if="{{!shopInfoData.logo}}">您的申请已通过审核，请先设置店铺信息</view>
+    <view class="hd-item" bindtap="editUserImg">
+      <view class="title">店铺头像</view>
+      <view class="con">
+        <image lazy-load class="user-img" mode="aspectFill" src="{{form.logo || DEFAULT_AVATAR_URL}}"></image>
+      </view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+    <view class="hd-item">
+      <view class="title">店铺名称</view>
+      <view class="con">
+        <input
+          placeholder-style="color:#96989C"
+          placeholder="为店铺取个好听的名字吧"
+          value="{{form.shopName}}"
+          data-form-name="form"
+          data-form-data="{{form}}"
+          data-name="shopName"
+          bindinput="onInput"/>
+      </view>
+    </view>
+  </view>
+  <!--
+  <view class="h2">佣金结算账户</view>
+  <view class="hd-block">
+    <view class="hd-item">
+      <view class="title">开户名</view>
+      <view class="con">
+        <input
+          placeholder-style="color:#96989C"
+          placeholder="填写开户名"
+          value="{{form.kaihuiming}}"
+          data-form-name="form"
+          data-form-data="{{form}}"
+          data-name="kaihuiming"
+          bindinput="onInput"/>
+      </view>
+    </view>
+    <view class="hd-item">
+      <view class="title">开户银行</view>
+      <view class="con">
+        <picker range-key="name" bindchange="bindBankChange" value="{{bankId}}" range="{{bankList}}">
+          <view class="picker">
+            <view wx:if="{{!form.bankName}}" class="text-gray-dark">选择开户银行</view>
+            <view wx:else>{{form.bankName}}</view>
+          </view>
+        </picker>
+      </view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+    <view class="hd-item">
+      <view class="title">开户省市区</view>
+      <view class="con">
+        <picker class="region" mode="region" bindchange="bindRegionChange" value="{{form.region}}">
+          <view wx:if="{{form.region.length <= 0}}" class="text-gray-dark">选择省市区</view>
+          <view wx:else>{{form.region[0]}} {{form.region[1]}} {{form.region[2]}}</view>
+        </picker>
+      </view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+    <view class="hd-item">
+      <view class="title">支行名称</view>
+      <view class="con">
+        <input
+          placeholder-style="color:#96989C"
+          placeholder="请填写支行名称"
+          value="{{form.zhihangmingcheng}}"
+          data-form-name="form"
+          data-form-data="{{form}}"
+          data-name="zhihangmingcheng"
+          bindinput="onInput"/>
+      </view>
+    </view>
+    <view class="hd-item">
+      <view class="title">卡号</view>
+      <view class="con">
+        <input
+          type="number"
+          placeholder-style="color:#96989C"
+          placeholder="请填写卡号"
+          value="{{form.kahao}}"
+          data-form-name="form"
+          data-form-data="{{form}}"
+          data-name="kahao"
+          bindinput="onInput"/>
+      </view>
+    </view>
+  </view>
+  -->
+  <view class="g-btn fixed {{iPhoneX?'iPhoneXb':''}}" bindtap="submit">保存</view>
+</view>
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

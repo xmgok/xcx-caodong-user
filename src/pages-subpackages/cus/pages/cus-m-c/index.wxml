@@ -1,0 +1,84 @@
+<view class="page-setting">
+
+  <view class="hd-block">
+    <view class="hd-item">
+      <view class="title">客户头像</view>
+      <view class="con">
+        <image lazy-load class="user-img" wx:if="{{resData.headUrl}}" mode="aspectFill"
+               src="{{resData.headUrl}}"></image>
+        <view class="user-img" wx:else>
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+      </view>
+    </view>
+    <view class="hd-item">
+      <view class="title">昵称</view>
+      <view class="con">
+        <block wx:if="{{resData.nickNameBak}}">{{resData.nickNameBak}}</block>
+        <open-data type="userNickName" wx:else></open-data>
+      </view>
+    </view>
+    <navigator class="hd-item"
+               url="/pages-subpackages/cus/pages/cus-m-c-edit/index?type=remark&id={{options.id}}&value={{resData.remark || ''}}"
+               hover-class="none">
+      <view class="title">备注</view>
+      <view class="con">{{resData.remark ? resData.remark : '未设置'}}</view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <picker mode="region" bindchange="bindRegionChange">
+      <view class="hd-item">
+        <view class="title">地区</view>
+        <view class="con">
+          {{resData.country}} {{resData.province}} {{resData.city}} {{resData.area}}
+        </view>
+      </view>
+    </picker>
+    <picker mode="date" value="{{resData.birthday}}" bindchange="bindBirthdayChange">
+      <view class="hd-item">
+        <view class="title">生日</view>
+        <view class="con">{{resData.birthday ? resData.birthday : '未设置'}}</view>
+        <view class="tb icon icon-angle-right"></view>
+      </view>
+    </picker>
+    <view class="hd-item">
+      <view class="title">已绑手机</view>
+      <view class="con">{{resData.mobile}}</view>
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <navigator class="hd-item"
+               url="/pages-subpackages/cus/pages/cus-m-c-label/index?id={{options.id}}"
+               hover-class="none">
+      <view class="title">个性标签</view>
+      <view class="con">
+        <view class="label-wrap">
+          <view class="label-item" wx:for="{{resData.userLabel}}" wx:key="index">
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <!--<view class="hd-item">
+      <view class="title">所属导购</view>
+      <view class="con">
+        <view class="staff-wrap">
+          <image lazy-load class="staff-head" wx:if="{{resData.empHeadUrl}}" mode="aspectFill"
+                 src="{{resData.empHeadUrl}}"></image>
+          <view>{{resData.empNickName}}</view>
+        </view>
+      </view>
+    </view>-->
+  </view>
+
+  <view class="hd-block">
+    <view class="hd-item">
+      <view class="title">注册时间</view>
+      <view class="con">{{resData.createTime}}</view>
+    </view>
+  </view>
+
+  <view style="margin-top: 10px;"></view>
+
+</view>

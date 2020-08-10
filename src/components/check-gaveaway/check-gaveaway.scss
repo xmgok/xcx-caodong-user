@@ -1,0 +1,103 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+@import "../../styles/variables";
+/*@import "/styles/common.scss";*/
+
+//page {
+//  padding-bottom: rpx2(20);
+//}
+
+.gaveaway-popup {
+  border-radius: rpx2(8) rpx2(8) 0 0;
+  .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 6;
+    padding: rpx2(13);
+    font-size: rpx2(14);
+    color: $text-secondary;
+  }
+}
+
+.gaveaway-container {
+  position: relative;
+  min-height: rpx2(260);
+  max-height: rpx2(400);
+  padding-bottom: rpx2(60);
+  box-sizing: border-box;
+  .header {
+    height: rpx2(42);
+    line-height: rpx2(42);
+    text-align: center;
+    background: white;
+    font-size: rpx2(16);
+  }
+  .items {
+    padding: rpx2(15) rpx2(15) rpx2(15) 0;
+    display: flex;
+    align-items: center;
+    .icons {
+      padding: rpx2(15);
+      font-size: rpx2(20);
+      .icon-checkbox-checked {
+        color: $checkbox-primary-color;
+      }
+      .icon-checkbox, .icon-checkbox-disabled {
+        color: $gray-light;
+      }
+    }
+    .image {
+      width: rpx2(70);
+      height: rpx2(70);
+      border-radius: rpx2(3);
+      margin-right: rpx2(10);
+    }
+    .goods-message {
+      flex: 1;
+      min-height: rpx2(70);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .title {
+      font-size: rpx2(15);
+      @include ellipsis2(2);
+      &.title2 {
+        color:$text-secondary;
+      }
+    }
+    .prices {
+      padding-top: rpx2(10);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      .big {
+        font-size: rpx2(18);
+      }
+      .num {
+        font-size: rpx2(16);
+      }
+    }
+  }
+  .btn-wrap {
+    padding: rpx2(6) rpx2(15);
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    .sure {
+      height: rpx2(37);
+      background: $btn-primary-bg;
+      border-radius: $btn-border-radius;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: rpx2(16);
+      font-weight: bold;
+    }
+  }
+}

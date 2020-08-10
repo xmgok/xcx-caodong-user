@@ -1,0 +1,124 @@
+<view class="page">
+  <view class="task3-common-wrap">
+    <view class="my-title">{{resData2.name}}</view>
+    <view class="time">活动时间：{{resData2.beginTime}} 至 {{resData2.endTime}}</view>
+    <view class="left-right">
+      <view class="left">
+        <view class="poa1">我的业绩(元)</view>
+        <view class="poa2">{{resData2.step}}</view>
+        <view class="poa3">目标 {{resData2.stepNumber}}元</view>
+      </view>
+      <view class="right">
+        <view class="poa1">已得金币</view>
+        <view class="poa2">{{resData2.gold}}</view>
+        <view class="poa3">总金币 {{resData2.totalGold}}</view>
+      </view>
+    </view>
+    <view class="hint" wx:if="{{resData2.nextReward}}">
+      <view class="icon icon-shengyin"></view>
+      <view class="black">提示：</view>
+      <view>下级目标</view>
+      <view class="black">{{resData2.nextReward.stepNumber}}</view>
+      <view>元，可得{{resData2.nextReward.reward}}金币</view>
+    </view>
+  </view>
+  <!--<view class="header">
+    <image lazy-load class="left" mode="aspectFill"
+           src="{{userInfo.headUrl}}"></image>
+    <view class="right">
+      <view class="right-header">
+        <view>
+          <text class="right-name">{{userInfo.nickName}}</text>
+          <text class="right-num">排名{{resData2.rank || '&#45;&#45;'}}</text>
+        </view>
+        <view class="step-text">
+          <text>{{resData2.step}}</text>
+          <text class="step-text-grey">/{{resData2.stepNumber}}</text>
+        </view>
+      </view>
+      <view class="right-progress">
+        <view class="progress">
+          <view style="width:{{resData2._scale}}%;" class="progress-chunk"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="task-step">
+    <view class="name">{{resData2.name}}</view>
+    <view class="desc" wx:if="{{resData2.taskDesc}}">{{resData2.taskDesc}}</view>
+    <view class="time">
+      活动时间：
+      {{resData2._beginTimeFormat.month}}.{{resData2._beginTimeFormat.date}}
+      {{resData2._beginTimeFormat.hours}}:{{resData2._beginTimeFormat.minutes}}
+      至
+      {{resData2._endTimeFormat.month}}.{{resData2._endTimeFormat.date}}
+      {{resData2._endTimeFormat.hours}}:{{resData2._endTimeFormat.minutes}}
+    </view>
+    <view class="reward">
+      <view>任务奖励：</view>
+      <view>
+        <view class="reward-item" wx:for="{{resData2.taskReward}}" wx:key="index">
+          <text>{{index+1}}.</text>
+          <text>业绩达到{{item.stepNumber}}元，可获得</text>
+          <text class="text-danger">{{item.reward}}</text>
+          <text>金币；</text>
+        </view>
+      </view>
+    </view>
+  </view>-->
+  <!--活动商品-->
+  <view class="list-wrap">
+    <view class="h2">推荐商品</view>
+    <navigator
+      wx:for="{{resData.dataList}}"
+      wx:key="index"
+      open-type="navigate"
+      hover-class="none"
+      url="{{item._detailUrl}}"
+      class="list">
+      <view class="goods-info-wrap {{item.type=='group'?'active':''}}">
+        <image lazy-load class="img" mode="aspectFill"
+               src="{{item.imgUrl}}"></image>
+        <view class="`text-wrap`">
+          <view class="hairline"></view>
+          <view class="title">{{item.name}}</view>
+          <view class="desc" wx:if="{{item.type=='normal'}}">{{item.details}}</view>
+          <view class="mark" wx:if="{{item.type=='group'}}">
+            <component-mark type="group"></component-mark>
+          </view>
+          <view class="desc" wx:if="{{item.type=='group'}}">{{item.groupNumber}}人团·已拼{{item.finishNum}}件</view>
+          <view class="info">
+            <view class="g-price">
+              <view class="_small">￥</view>
+              <view class="_big">{{item.priceInteger}}</view>
+              <view class="_small">{{item.priceDecimal}}</view>
+              <view class="_del" wx:if="{{item.type=='group'}}">￥{{item.productPrice}}</view>
+            </view>
+            <view wx:if="{{resData2.status==1}}" class="g-btn inactive">未开始</view>
+            <view wx:elif="{{resData2.status==3}}" class="g-btn inactive">已结束</view>
+            <view
+              wx:else
+              class="g-btn"
+              catchtap="showShare"
+              data-active-type="{{item.type!='normal'?item.type:''}}"
+              data-item="{{item}}">
+              去分享
+            </view>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+
+<component-share
+  bindclose="close"
+  wx:if="{{showShare}}"
+  productId="{{shareData.productId}}"
+  activeId="{{shareData.id}}"
+  activeType="{{shareData.activeType}}"
+  activePrice="{{shareData.activePrice}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}" />

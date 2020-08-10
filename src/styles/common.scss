@@ -1,0 +1,1386 @@
+@import "variables";
+@import "mixin";
+
+.text-primary {
+  color: $text-primary;
+}
+
+.text-secondary {
+  color: $text-secondary;
+}
+
+.text-info {
+  color: $text-info;
+}
+
+.text-danger {
+  color: $danger;
+}
+
+.text-gray-dark {
+  color: $gray-dark;
+}
+
+.img-default-bg {
+  background-color: $img-default-bg;
+}
+
+.text-font-weight {
+  font-weight: bold;
+}
+
+.text-font-pf-sem {
+  font-family: "PingFangSC-Semibold";
+}
+
+.ui-divider {
+  position: relative;
+  padding: rpx2(20);
+  font-size: rpx2(12);
+  color: $text-secondary;
+  line-height: rpx2(17);
+  text-align: center;
+
+  .line {
+    display: inline-block;
+    margin: auto rpx2(12);
+    width: rpx2(20);
+    border-bottom: 1px solid $gray-lighter;
+    vertical-align: middle;
+  }
+}
+
+.ui-price-wrap {
+  color: $text-price;
+  font-size: rpx2(12);
+
+  &.black {
+    color: $text-primary;
+  }
+
+  .currency {
+    font-size: rpx2(12);
+  }
+
+  .price-integer {
+    margin-left: rpx2(3);
+    font-size: rpx2(18);
+    //line-height: rpx2(30);
+    font-weight: bold;
+  }
+
+  .price-decimal {
+    font-size: rpx2(14);
+    line-height: rpx2(30);
+    font-weight: bold;
+  }
+
+  .price-del {
+    line-height: 1;
+    margin-left: rpx2(6);
+    color: $text-secondary;
+    text-decoration-line: line-through;
+  }
+}
+
+.ui-card {
+  padding: rpx2(15) rpx2(10);
+  border-radius: rpx2(8);
+  box-shadow: 0 0 rpx2(4) 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+
+  .card-header {
+    padding-bottom: rpx2(15);
+    color: $text-primary;
+    font-size: rpx2(15);
+    border-bottom: rpx(1) solid $border-color;
+
+    .title {
+      font-weight: bold;
+    }
+  }
+
+  .card-body {
+    padding: rpx2(15) 0;
+  }
+
+  .card-footer {
+    @include clearfix();
+    border-top: rpx(1) solid $border-color;
+    padding-top: rpx2(15);
+  }
+}
+
+.ui-btn-submit {
+  display: inline-block;
+  width: rpx2(345);
+  height: rpx2(37);
+  line-height: rpx2(37);
+  text-align: center;
+  background-color: $btn-primary-bg;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: rpx2(16);
+  border-radius: rpx2(100);
+
+  &.disabled {
+    background-color: $btn-disabled-bg;
+  }
+}
+
+.ui-btn-plain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rpx2(80);
+  height: rpx2(28);
+  color: $text-primary;
+  border: rpx(1) solid $text-primary;
+  text-align: center;
+  font-size: rpx2(13);
+  border-radius: rpx2(14);
+
+  &.danger {
+    color: $danger;
+    border-color: $danger;
+  }
+}
+
+.ui-contact-wrap {
+  display: inline-block;
+  position: relative;
+
+  .button {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+.ellipsis {
+  @include ellipsis2();
+}
+
+.ui-field-group {
+  margin-top: rpx2(10);
+  background-color: white;
+
+  .field-item {
+    padding: rpx2(20) 0;
+    margin: 0 rpx2(15);
+    display: flex;
+    align-items: center;
+
+    &.field-item--flex-start {
+      align-items: flex-start;
+    }
+
+    &:not(:only-child) {
+      border-bottom: rpx(1) solid rgba($border-color, 0.8);
+
+      &:last-child {
+        border: none;
+      }
+    }
+
+    &.no-border {
+      border: none;
+    }
+
+    .label {
+      font-size: rpx2(16);
+      color: $text-secondary;
+    }
+
+    .field-body {
+      flex: 1;
+      font-size: rpx2(15);
+      padding-left: rpx2(15);
+
+      &.field-body--flex-end {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      &.selector {
+        font-size: rpx2(15);
+        color: $text-secondary;
+        text-align: right;
+
+        .selected {
+          color: $text-primary;
+        }
+
+        .icon {
+          margin-left: rpx2(8);
+          color: $text-secondary;
+          font-weight: normal;
+        }
+      }
+
+      .field-input {
+        width: 100%;
+        font-size: rpx2(15);
+      }
+    }
+  }
+}
+
+// 布局
+.g-radius1000 {
+  border-radius: 1000px !important;
+}
+
+.g-p10bgf {
+  padding: 10px;
+  background: #ffffff;
+}
+
+.g-flex {
+  display: flex;
+}
+
+.g-alc {
+  align-items: center;
+}
+
+.g-jce {
+  justify-content: flex-end;
+}
+
+.g-jcc {
+  justify-content: center;
+}
+
+.g-jcsb {
+  justify-content: space-between;
+}
+
+.g-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+
+.g-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+
+.g-flex-between_end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+
+.g-flex1 {
+  flex: 1;
+}
+
+.g-ovv {
+  overflow: visible !important;
+}
+
+.g-btn {
+  width: 345px;
+  height: 42px;
+  background: $btn-primary-bg;
+  border-radius: $btn-border-radius;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $btn-primary-color;
+  font-size: 17px;
+  font-weight: 400;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  &.g-btn_hollow {
+    position: relative;
+    background: none;
+    color: $text-primary;
+
+    &:after {
+      position: absolute;
+      content: '';
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      transform: scale(0.5);
+      border: 1px solid $text-primary;
+      border-radius: 2000px;
+    }
+
+    &.blank {
+      border: 1px solid #000000;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &.inactive {
+    background: $btn-disabled-bg;
+  }
+}
+
+.g-header {
+  display: flex;
+  position: relative;
+
+  .g-header-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 14px;
+    border-radius: 50%;
+  }
+
+  .g-header-text {
+    height: 22px;
+    font-size: 16px;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 214px;
+  }
+
+  .g-header-time {
+    height: 18px;
+    font-size: 12px;
+    font-weight: 400;
+    color: $gray-dark;
+    line-height: 18px;
+  }
+
+  .g-header-right-top {
+    font-size: 13px;
+    font-weight: 400;
+    color: $gray-dark;
+    position: absolute;
+    right: 10px;
+    top: 0;
+  }
+
+  .g-header-right-bottom {
+    position: absolute;
+    right: 10px;
+    bottom: 4px;
+  }
+}
+
+.g-mlr2 {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.g-price {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: $text-price;
+  display: flex;
+  align-items: flex-end;
+
+  ._small {
+    font-weight: bold;
+    line-height: 11px;
+  }
+
+  ._big {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 0.8;
+  }
+
+  ._del, ._desc {
+    line-height: 1;
+    font-size: 12px;
+    font-weight: 400;
+    color: $gray-dark;
+    margin-left: 6px;
+    text-decoration: line-through;
+  }
+
+  ._desc {
+    text-decoration: none;
+  }
+}
+
+.g-tab {
+  background: white;
+  position: sticky;
+  top: 0;
+  display: flex;
+  line-height: 44px;
+  z-index: 2;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &.g-tab_style2 {
+    border-bottom: 1px solid $white-smoke;
+
+    .g-tab-item {
+      border-bottom: none;
+      display: flex;
+      justify-content: center;
+
+      &.g-tab-item_active {
+        .g-tab-item-text {
+          display: inline-block;
+          position: relative;
+
+          &::after {
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            content: '';
+            display: block;
+            width: 100%;
+            height: 4px;
+            background: $tab-border-color;
+            border-radius: 500px;
+          }
+        }
+      }
+    }
+  }
+
+  .g-tab-item {
+    width: 0;
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+    border-bottom: 2px solid white;
+
+    &.g-tab-item_active {
+      font-size: 16px;
+      font-weight: bold;
+      border-color: $primary;
+    }
+  }
+}
+
+.g-task-tag {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  padding-left: 24px;
+  height: 20px;
+  line-height: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: $primary;
+  background: rgba($primary, 0.1);
+  border-radius: 0 0 0 100px;
+
+  &.inactive {
+    background: $white-smoke;
+    color: $gray-dark;
+  }
+}
+
+.g-go-home {
+  width: 44px;
+  height: 44px;
+  background: white;
+  box-shadow: $box-shadow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+
+  .g-go-home-icon {
+    font-size: 24px;
+    color: #f45600;
+  }
+}
+
+.get-mobile {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  z-index: 998;
+
+  .con {
+    width: 80%;
+    background: white;
+    text-align: center;
+    border-radius: rpx2(5);
+    overflow: hidden;
+
+    .title {
+      font-weight: bold;
+      color: #000000;
+      font-size: rpx2(14);
+      padding-top: rpx2(20);
+    }
+
+    .btn {
+      margin-top: rpx2(20);
+      color: $success;
+      background: $gray-lighter;
+      line-height: rpx2(40);
+      font-size: rpx2(14);
+    }
+  }
+}
+
+.iPhoneXb {
+  bottom: $iPhoneX-height * 1px !important; // iPhone X 距底差值是68rpx
+}
+
+.iPhoneXh {
+  height: $iPhoneX-height * 1px !important; // iPhone X 距底差值是68rpx
+}
+
+.iPhoneXpb {
+  padding-bottom: $iPhoneX-height * 1px !important; // iPhone X 距底差值是68rpx
+}
+
+.hairline {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    transform: scale(0.5);
+    border-bottom: 1px solid $white-smoke;
+  }
+}
+
+.task-step {
+  background: #ffffff;
+  overflow: hidden;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-bottom: 10px solid $white-smoke;
+
+  .name {
+    font-size: 18px;
+    font-weight: bold;
+    color: $text-primary;
+    margin-bottom: 8px;
+    @include ellipsis2(2, 25);
+  }
+
+  .desc {
+    font-size: 14px;
+    color: $gray-dark;
+    @include ellipsis2(2, 20);
+    margin-bottom: 8px;
+  }
+
+  .time {
+    height: 17px;
+    font-size: 12px;
+    color: $gray-dark;
+    line-height: 17px;
+    margin-bottom: 15px;
+  }
+
+  .reward {
+    margin-top: 15px;
+    display: flex;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+
+  .step-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .step-text {
+    height: 21px;
+    line-height: 21px;
+    font-size: 14px;
+    font-weight: bold;
+    color: $red;
+    flex: 1;
+    text-align: center;
+  }
+
+  .step-text-grey {
+    color: $text-secondary;
+  }
+
+  .progress {
+    width: 255px;
+    height: 8px;
+    background: $white-smoke;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .progress-chunk {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: $progress-bg;
+    border-radius: inherit;
+  }
+}
+
+// 优惠券卡片
+.ui-coupon-card {
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 15px 0;
+  display: flex;
+  background-color: #ffffff;
+  height: 100px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  align-items: center;
+  border-radius: 8px;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: ' ';
+    position: absolute;
+    left: 108px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $white-smoke;
+    z-index: 2;
+  }
+
+  &::before {
+    top: -5px;
+  }
+
+  &::after {
+    bottom: -5px;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  // 修复背景下的缺口无阴影（默认修复白色背景）
+  .gap-top-fix,
+  .gap-bottom-fix {
+    position: absolute;
+    left: 108px;
+    width: 10px;
+    height: 8px;
+    background-color: #ffffff;
+    z-index: 3;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 1px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #ffffff;
+    }
+  }
+
+  .gap-top-fix {
+    top: -10px;
+
+    &::before {
+      bottom: -5px;
+    }
+  }
+
+  .gap-bottom-fix {
+    bottom: -10px;
+
+    &::before {
+      top: -5px;
+    }
+  }
+
+  .left-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 113px;
+    position: relative;
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 70px;
+      border-radius: 140px 140px 0 0;
+      border-right: 1px dashed $border-color;
+    }
+  }
+
+  .right-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 21px 8px 10px;
+  }
+
+  .price-wrap {
+    margin-bottom: 6px;
+    color: $text-price;
+    font-size: 45px;
+    font-weight: 600;
+    height: 45px;
+    line-height: 45px;
+    font-family: PingFangSC-Semibold;
+
+    .currency {
+      font-size: 16px;
+    }
+  }
+
+  .condition {
+    font-size: 12px;
+    color: $text-primary;
+  }
+
+  .info {
+    margin-bottom: 7px;
+    height: 40px;
+    line-height: 20px;
+    overflow: hidden;
+    font-size: 14px;
+    color: $text-primary;
+  }
+
+  .time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $text-secondary;
+    font-size: 10px;
+
+    .soon-expired {
+      margin-left: 4px;
+      color: $red;
+    }
+
+    .state {
+      font-size: 12px;
+      color: $text-secondary;
+    }
+
+    .btn-use,
+    .btn-draw {
+      padding: 0 6px;
+      height: 25px;
+      line-height: 25px;
+      border-radius: 14px;
+      color: $primary;
+      font-size: 12px;
+      border: 1px solid $primary;
+    }
+
+    .btn-draw {
+      color: #ffffff;
+      background-color: $btn-primary-bg;
+    }
+  }
+
+  &.disabled {
+    .price-wrap,
+    .condition,
+    .info,
+    .time {
+      color: $text-info;
+    }
+  }
+}
+
+// 因3个页面都使用到了以下样式，故提取。
+.g-page-seller-order {
+  .choose {
+    position: sticky;
+    left: 0;
+    top: 0;
+    height: 79px;
+    background: #fff;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    border-bottom: 1px solid $border-color;
+
+    .text {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .text-title {
+      color: $text-primary;
+      line-height: 25px;
+      margin-right: 6px;
+    }
+
+    .desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: $gray-dark;
+      line-height: 20px;
+      margin-top: 4px;
+
+      .ml {
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .list-wrap {
+    background: white;
+
+    .list {
+      padding: 12px 15px 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .deep {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: bold;
+      color: white;
+      margin-right: 10px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.active1 {
+        background: #fe6e5f;
+      }
+
+      &.active2 {
+        background: #f49017;
+      }
+
+      &.active3 {
+        background: #7b8cb7;
+      }
+    }
+
+    .item {
+      flex: 1;
+      padding-bottom: 15px;
+      border-bottom: 1px solid $border-color;
+
+      &.inactive {
+        .num {
+          color: $text-primary;
+        }
+      }
+
+      .line1, .line2 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .line1 {
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+
+      .line2 {
+        color: #878787;
+        font-size: 13px;
+      }
+
+      .order-num {
+        width: 210px;
+        height: 22px;
+        font-size: 16px;
+        color: $text-primary;
+        line-height: 22px;
+        @include ellipsis1();
+      }
+
+      .num {
+        height: 18px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #eeb025;
+        line-height: 18px;
+      }
+
+      .status {
+        font-size: 13px;
+        color: $red;
+        line-height: 18px;
+      }
+    }
+  }
+}
+
+
+// 因2个页面都使用到了以下样式，故提取。
+.g-page-seller-team {
+  .list {
+    box-sizing: border-box;
+    width: 345px;
+    height: 80px;
+    background: white;
+    border-radius: 8px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    margin: 15px auto 0;
+
+    .img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    .name {
+      height: 22px;
+      font-size: 16px;
+      font-weight: bold;
+      color: $text-primary;
+      line-height: 22px;
+      display: flex;
+      align-items: center;
+    }
+
+    .tag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8px;
+      width: 32px;
+      height: 14px;
+      line-height: 14px;
+      background: $orange;
+      border-radius: 8px 8px 8px 0;
+      font-size: 10px;
+      font-weight: bold;
+      color: white;
+
+      &.active3 {
+        background: #7b8cb7;
+      }
+    }
+
+    .desc {
+      font-size: 12px;
+      color: $gray-dark;
+      line-height: 17px;
+    }
+
+    .time {
+      font-size: 13px;
+      color: $text-primary;
+      line-height: 18px;
+    }
+  }
+}
+
+// 因2个页面都使用到了以下样式，故提取。
+.g-page-seller-store-setting {
+  .h2 {
+    font-size: 12px;
+    color: $gray-dark;
+    line-height: 12px;
+    margin-left: 20px;
+    margin-top: 18px;
+    margin-bottom: 10px;
+  }
+
+  .hd-block {
+    background: white;
+    margin-bottom: rpx2(10);
+  }
+
+  .hd-item {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    border-bottom: rpx(1) solid $white-smoke;
+    margin-left: rpx2(15);
+    line-height: rpx2(50);
+    background: white;
+    border-radius: 0;
+    font-size: rpx2(14);
+    padding: 0 rpx2(15) 0 0;
+
+    .title {
+      font-size: rpx2(16);
+      padding-left: rpx2(5);
+    }
+
+    .con {
+      -webkit-box-flex: 1;
+      text-align: right;
+      padding-right: rpx2(6);
+      font-size: rpx2(14);
+      display: -webkit-box;
+      -webkit-box-pack: end;
+    }
+
+    .tb {
+      color: $text-secondary;
+    }
+  }
+
+  .user-img {
+    width: rpx2(60);
+    height: rpx2(60);
+    border-radius: 50%;
+    margin: rpx2(10) 0;
+    overflow: hidden;
+  }
+
+  .g-btn.fixed {
+    position: fixed;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+// 因2个页面都使用到了以下样式，故提取。
+.g-page-seller-my {
+  .header {
+    position: relative;
+    margin-bottom: 30px;
+
+    .avatar {
+      padding: 30px 20px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .head {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
+      overflow: hidden;
+    }
+
+    .nickname {
+      font-size: 18px;
+      font-weight: bold;
+      color: $text-primary;
+      line-height: 25px;
+      margin-bottom: 5px;
+    }
+
+    .time {
+      font-size: 12px;
+      color: $gray-dark;
+      line-height: 17px;
+    }
+
+    .money {
+      width: 335px;
+      // 【IMPORTANT】颜色固定
+      background: linear-gradient(312deg, #fe4045 0%, #f81e26 100%);
+      box-shadow: 0 2px 12px 0 rgba($red, 0.3);
+      border-radius: 8px;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      margin: 25px auto 0;
+      color: #ffffff;
+
+      .money-go {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        line-height: 17px;
+
+        .money-desc {
+          margin-right: 5px;
+        }
+      }
+
+      .withdraw {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .number {
+          font-size: 30px;
+          font-weight: bold;
+          line-height: 42px;
+        }
+
+        .btn {
+          width: 92px;
+          height: 30px;
+          background: $btn-primary-color;
+          box-shadow: $btn-primary-box-shadow;
+          border-radius: $btn-border-radius;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
+          color: $btn-primary-bg;
+          line-height: 18px;
+          font-weight: bold;
+        }
+      }
+
+      .desc {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        line-height: 17px;
+
+        .ml {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+// 邀请分销和邀请客户页面都使用到了这个样式
+.g-no-data-btn {
+  margin-top: 60px;
+  width: 235px;
+  height: 45px;
+  background: $btn-primary-bg;
+  border-radius: $btn-border-radius;
+  font-size: 18px;
+  font-weight: bold;
+  color: $btn-primary-color;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 我的客户-性别
+.g-sex-icon {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  background: #ff8a65;
+  border-radius: 6px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.man {
+    background: #4da1ff;
+  }
+}
+
+// 任任务3期
+.task3-common-wrap {
+  padding: 15px;
+  border-bottom: 8px solid $white-smoke;
+  background: #ffffff;
+
+  .my-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: $text-primary;
+    @include ellipsis2(2, 25)
+  }
+
+  .time {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: $gray-dark;
+    line-height: 17px;
+  }
+
+  .left-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .left {
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px 10px 10px 15px;
+    width: 205px;
+    height: 64px;
+    background: $white-smoke;
+    border-radius: 8px;
+  }
+
+  .right {
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px 10px 10px 15px;
+    width: 135px;
+    height: 64px;
+    background: $white-smoke;
+    border-radius: 8px;
+  }
+
+  .poa1 {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    height: 17px;
+    font-size: 12px;
+    color: $gray-dark;
+    line-height: 17px;
+  }
+
+  .poa2 {
+    position: absolute;
+    left: 15px;
+    bottom: 5px;
+    height: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: $text-primary;
+    line-height: 25px;
+  }
+
+  .poa3 {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    height: 17px;
+    font-size: 12px;
+    color: $text-primary;
+    line-height: 17px;
+  }
+
+  .hint {
+    display: flex;
+    align-items: center;
+    height: 17px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    color: $text-secondary;
+    margin-top: 13px;
+
+    .icon {
+      width: 16px;
+      text-align: center;
+      height: 16px;
+      line-height: 16px;
+      background: #ffece8;
+      border-radius: 50%;
+      font-size: 14px;
+      margin-right: 5px;
+      color: $primary-staff;
+    }
+
+    .black {
+      color: $text-primary;
+    }
+  }
+}
+
+.ui-navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5001;
+  width: 100%;
+  background-color: #ffffff;
+
+  &__status {
+    width: 100%;
+  }
+
+  &__title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.ui-mark-warp {
+  margin-right: 20px;
+  white-space: nowrap;
+  width: 200px;
+
+  .ui-mark_coupon, .ui-mark_new, .ui-mark_other {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 10px;
+    font-family: 'PingFangSC';
+    font-weight: 500;
+    color: #ff735b;
+    text-align: center;
+    padding: 2px 6px;
+  }
+
+  .ui-mark_new {
+    background: #91B470;
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 2px 5px;
+  }
+
+  .ui-mark_coupon {
+    background-image: url('https://qiniu.icaodong.com/xcx/common/coupon-bg-actvive.png?v=1.0.0');
+    font-weight: bold;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-left: 4px;
+
+  }
+
+  .ui-mark_other {
+    border: 1px solid #ff735b;
+    border-radius: 6px;
+    margin-left: 4px;
+
+  }
+}

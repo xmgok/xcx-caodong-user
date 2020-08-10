@@ -1,0 +1,141 @@
+@import "../../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.bargain {
+  .head {
+    width: 100%;
+    background: white;
+    font-size: rpx2(18);
+    height: rpx2(60);
+    line-height: rpx2(60);
+    text-align: center;
+  }
+
+  .list {
+    white-space: nowrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &.one {
+      //display: flex;
+      //align-items: center;
+      //justify-content: center;
+      //
+      //.item {
+      //  margin: 0;
+      //
+      //  &:last-of-type {
+      //    margin: 0;
+      //  }
+      //}
+
+      .look-more {
+        padding: 0 14px;
+      }
+    }
+
+    .item {
+      vertical-align: top;
+      display: inline-flex;
+      width: 325px;
+      height: 140px;
+      box-sizing: border-box;
+      padding: 10px;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06);
+      border-radius: 8px;
+      margin-left: 10px;
+
+      //&:last-of-type {
+      //  margin-right: 10px;
+      //}
+
+      .img {
+        width: 120px;
+        height: 120px;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      .content {
+        width: 175px;
+
+        .title {
+          height: 20px;
+          font-size: 14px;
+          color: rgba(39, 38, 54, 1);
+          line-height: 20px;
+          @include ellipsis1();
+          margin: 5px 0;
+        }
+
+        .join {
+          width: 87px;
+          height: 16px;
+          background: rgba(255, 115, 91, 0.1);
+          border-radius: 8px;
+          font-size: 11px;
+          color: rgba(255, 115, 91, 1);
+          line-height: 16px;
+          text-align: center;
+          margin-bottom: 26px;
+        }
+
+        .price-old {
+          height: 12px;
+          font-size: 12px;
+          color: rgba(150, 152, 156, 1);
+          line-height: 12px;
+          text-decoration: line-through;
+        }
+
+        .price {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 3px;
+        }
+
+        .g-price {
+          font-size: 12px;
+          color: $primary-bargain;
+          display: flex;
+          align-items: flex-end;
+
+          ._small {
+            font-weight: bold;
+            line-height: 11px;
+          }
+
+          ._big {
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 0.8;
+          }
+        }
+
+        .my-btn {
+          width: 80px;
+          height: 28px;
+          background: $primary-bargain;
+          border-radius: 14px;
+          font-size: 13px;
+          font-weight: bold;
+          color: rgba(255, 255, 255, 1);
+          line-height: 28px;
+          text-align: center;
+        }
+      }
+    }
+
+    .look-more {
+      vertical-align: top;
+      height: 140px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 20px;
+    }
+  }
+}

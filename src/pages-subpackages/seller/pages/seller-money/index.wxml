@@ -1,0 +1,57 @@
+<view class="page g-page-seller-order">
+  <view class="money">
+    <view class="money-go">
+      <view class="money-desc">可提现佣金(元)</view>
+    </view>
+    <view class="withdraw">
+      <view class="number">{{resData.avcAmount}}</view>
+      <navigator hover-class="none" url="/pages/withdraw-request/index" class="btn">申请提现</navigator>
+    </view>
+  </view>
+  <view class="chart">
+    <view class="title">
+      <view>累计佣金</view>
+      <view class="grey">（{{resData.amount}}元）</view>
+    </view>
+    <canvas style="width: 375px; height: 200px;" class="canvas" canvas-id="ringCanvas"></canvas>
+    <view class="desc">
+      <view>1.累计佣金=可提现佣金+提现中佣金+待入账佣金+已提现佣金</view>
+      <view>2.买家确认收货后{{resData.closeDay}}天，佣金即可提现</view>
+    </view>
+  </view>
+  <view class="bgh10"></view>
+  <view class="choose">
+    <view class="text">
+      <picker fields="month" mode="date" value="{{endDate}}" start="2019-06" end="{{endDate}}" bindchange="bindChange">
+        <view class="text-title">{{year}}年{{month}}月</view>
+      </picker>
+      <view class="text-icon icon icon-angle-down"></view>
+    </view>
+    <view class="desc">
+      <text>佣金收入 ¥{{monthData.income}}</text>
+      <text class="ml">退货退款 ¥{{monthData.expenditure}}</text>
+    </view>
+  </view>
+  <view class="list-wrap">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <!--active1 active2 active3-->
+      <view class="deep active{{item.rank}}">{{NUMBER_TO_ZHCN[item.rank]}}级</view>
+      <!--inactive-->
+      <view class="item {{item.state==2?'inactive':''}}">
+        <view class="line1">
+          <view class="order-num">订单编号：{{item.orderNo}}</view>
+          <!--state  佣金状态：0、待入账、1、已入账，2、退货退款-->
+          <view class="num">{{item.state==2?'-':'+'}}{{item.amount}}</view>
+        </view>
+        <view class="line2">
+          <view>{{item.time}}</view>
+          <view class="status">
+            {{item.state==0?'待入账':''}}
+            {{item.state==2?'退货退款':''}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result}}"></list-loading-more>

@@ -1,0 +1,108 @@
+@import "../../../../styles/config";
+
+page {
+  background: #ffffff;
+}
+
+.search-wrap {
+  display: flex;
+  align-items: center;
+  padding: 0 rpx2(10);
+  //padding: 0 rpx2(10) rpx2(10);
+  //border-bottom: rpx(1) solid $white-smoke;
+}
+
+.g-tab.g-tab_style2 .g-tab-item {
+  min-width: 100px;
+  width: 100px;
+
+  .g-tab-item-text {
+    max-width: 100px;
+    @include ellipsis1();
+  }
+}
+
+.goods-info-wrap {
+  overflow: hidden;
+  padding: 0 15px;
+  line-height: normal;
+  display: flex;
+  justify-content: space-between;
+
+  &:first-of-type {
+    margin-top: 15px;
+  }
+
+  .img {
+    width: 120px;
+    height: 120px;
+    border-radius: 3px;
+  }
+
+  .text-wrap {
+    width: 215px;
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .title {
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    @include ellipsis1();
+  }
+
+  .desc {
+    margin-top: 8px;
+    height: 14px;
+    font-size: 14px;
+    color: $text-secondary;
+    line-height: 14px;
+    @include ellipsis1();
+  }
+
+  .mt {
+    margin-top: 28px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .highlight {
+      color: $red;
+    }
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .g-btn {
+      width: 80px;
+      font-size: 13px;
+      margin: 0;
+      height: 28px;
+      box-shadow: $btn-primary-box-shadow;
+      border-radius: 14px;
+    }
+
+    .g-price {
+      margin: 0;
+
+      ._big {
+        font-size: 20px;
+      }
+
+    }
+  }
+}
+
+.hairline {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}

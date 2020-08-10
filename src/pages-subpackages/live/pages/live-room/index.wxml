@@ -1,0 +1,124 @@
+<view class='page'>
+  <!--视频直播-->
+  <mlvb-live-room
+    id="id_liveroom"
+    wx:if="{{showLiveRoom}}"
+    roomid="{{roomId}}"
+    role="{{role}}"
+    roomname="{{roomName}}"
+    bind:AnchorInfo="onAnchorInfo"
+    bind:RoomEvent="onRoomEvent">
+    <cover-view slot="casterBackButton" class="back-wrap" style='top:{{(headerHeight + statusBarHeight) - 26}}rpx'>
+      <cover-image class='close' src="../../images/back.png" bindtap="onBack"></cover-image>
+    </cover-view>
+
+    <cover-view wx:if="{{isShowBack}}" slot="audienceBackButton" class="back-wrap" style='top:{{(headerHeight + statusBarHeight) - 26}}rpx'>
+      <cover-image class='close' src="../../images/back.png" bindtap="onBack"></cover-image>
+    </cover-view>
+  </mlvb-live-room>
+
+  <!--播主信息-->
+  <view class="anchor-legend" wx:if="{{userInfo}}" style="top:{{headerHeight + statusBarHeight + 80}}rpx">
+    <image src="{{ userInfo.headImg }}" mode="aspectFit" class="avatar"></image>
+    <view class="name">{{ userInfo.name }}</view>
+  </view>
+
+  <!--消息-->
+  <view class="message-wrap" wx:if="{{anchorOnline}}" style="bottom:{{iPhoneX ? (72 + 34) : 72}}px">
+    <view class="message-list">
+      <view wx:if="{{systemMsg}}">
+        <view class="message-item {{ systemMsg.color }}">
+          {{ systemMsg.content }}
+        </view>
+      </view>
+      <scroll-view
+        scroll-y
+        scroll-top="{{scrollTop}}"
+        style="height: 160px">
+        <view wx:for="{{messageList}}" wx:key="index">
+          <view class="message-item">
+            <text class="name" style="color: {{item.color}}">{{item.fromAccountNick}}</text>
+            <text>{{item.content}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!--推送置顶商品消息-->
+    <view class="stick-product" wx:if="{{stickProductMsg}}" catchtap="handleTap" data-type="goods">
+      <image src="{{stickProductMsg.url}}" mode="aspectFill" class="goods-img" />
+      <view class="right-content">
+        <view class="title">{{stickProductMsg.name}}</view>
+        <view class="price">¥{{stickProductMsg.price}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="caster-offline" wx:if="{{!anchorOnline}}">
+    <view class="icon-wrap">
+      <text class="icon icon-empty-caodongzhibo"></text>
+    </view>
+    <view class="msg-text">
+      <view>主播已下线</view>
+      <!--<view>请点击下方按钮预约下次开播</view>-->
+      <view>敬请期待下次精彩</view>
+    </view>
+    <!--<view class="btn-remind" bindtap="handleTap" data-type="remind">开播提醒</view>-->
+  </view>
+
+  <!--底栏-->
+  <view
+    class="footer"
+    wx:if="{{anchorOnline}}">
+    <view class="footer-inner {{role === 'anchor'?'anchor':''}}">
+      <image src="../../images/goods-bag.png" class="goods-bag" catchtap="handleTap" data-type="goods"></image>
+      <view class="input-wrap audience">
+        <text class="icon icon-edit3"></text>
+        <input
+          class="input"
+          value="{{msgContent}}"
+          data-name="comment"
+          bindconfirm="sendMsg"
+          cursor-spacing="{{ 13 }}"
+          confirm-type="send"
+          maxlength="{{ 150 }}"
+          placeholder="{{ role === 'anchor' ? '和粉丝聊点什么？': '和大家聊点什么？' }}"
+          placeholder-class="placeholder"/>
+      </view>
+      <view class="action-wrap">
+        <view class="action-item" catchtap="handleTap" data-type="share">
+          <text class="icon icon-share"></text>
+        </view>
+        <view wx:if="{{ role !== 'anchor'}}" class="action-item" catchtap="handleTap" data-type="order">
+          <text class="icon icon-order-thick"></text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>
+  </view>
+</view>
+
+<goods-purchase
+  wx:if="{{showPurchase}}"
+  show="{{showPurchase}}"
+  z-index="{{ 999999 }}"
+  goodsType="1"
+  activeType="live"
+  extraData="{{currentProduct}}"
+  id="{{currentProduct.productId}}"
+  bind:close="goodsPurchaseClose"
+  bind:selected="goodsPurchaseSelected" />
+
+<!--↓弹窗↓-->
+<include src="./popup/goods.wxml"></include>
+
+<component-share
+  wx:if="{{showShare}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}"
+  shareText="{{shareText}}"
+  shareUrll="{{shareUrl}}"
+  activeData="{{userInfo}}"
+  activeType="live"
+  saved="posterSaved" />

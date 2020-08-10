@@ -1,0 +1,63 @@
+<view class="page-order-list">
+  <view class="tab-wrap" wx:if="{{showTab}}">
+    <view class="item {{tabIndex == index ? 'active' : ''}}" wx:for="{{tabList}}" wx:key="index"
+          data-index="{{index}}" bindtap="switchTab">{{item}}
+    </view>
+  </view>
+
+  <view class="list-wrap">
+    <view
+      class="goods-item"
+      wx:for="{{dataList}}"
+      wx:key="index">
+      <view class="g-flex-between">
+        <view class="status-wrap" wx:if="{{item.status!=1}}">
+          <component-mark type="group"></component-mark>
+          <view class="status-text">{{item.groupNumber}}人团商品</view>
+        </view>
+        <view class="status-wrap" wx:else>
+          <view class="icon icon-time mr5"></view>
+          <view class="status-text">
+            剩余时间：{{item.remainingSecondsFormat.dayMergeToHours}}:{{item.remainingSecondsFormat.minutes}}:{{item.remainingSecondsFormat.seconds}}
+          </view>
+        </view>
+        <view class="right-text" wx:if="{{item.status!=3}}">{{item._statusName}}</view>
+        <view class="right-text right-text2" wx:if="{{item.status==3}}">{{item._statusName}}</view>
+      </view>
+      <view
+        class="goods-info-wrap">
+        <image class="img" mode="aspectFill" src="{{item.productImg}}"></image>
+        <view class="text-wrap">
+          <view class="title">{{item.productName}}</view>
+          <view class="info">
+            <view class="price">{{item.specContent}}</view>
+            <view class="price">x{{item.productNum}}</view>
+          </view>
+          <view class="g-price">
+            <view class="_small g-mlr2">¥</view>
+            <view class="_big">{{item.activePriceInteger}}</view>
+            <view class="_small">{{item.activePriceDecimal}}</view>
+            <view class="_del">¥{{item.productPrice}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="btn-wrap">
+        <navigator url="/pages/order-detail/order-detail?orderCode={{item.orderCode}}" hover-class="none"
+                   class="btn-item btn-item2" wx:if="{{item.status==2}}">查看订单
+        </navigator>
+        <navigator url="/pages/group-detail/group-detail?recordId={{item.recordId}}" hover-class="none"
+                   class="btn-item btn-item2">拼团详情
+        </navigator>
+        <button
+          wx:if="{{item.status==1}}"
+          open-type="share"
+          class="btn-item btn-item3"
+          data-index="{{index}}"
+        >邀请好友
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <list-loading-more result="{{result}}"></list-loading-more>
+</view>

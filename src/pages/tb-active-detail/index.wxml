@@ -1,0 +1,91 @@
+<view class="page">
+  <!--获取手机号-->
+  <component-phone-auth></component-phone-auth>
+  <image wx:if="{{iPhoneX}}" class="bg" src="https://qiniu.icaodong.com/tebu/bg-x.jpg?v=1.0.0" mode="aspectFill" />
+  <image wx:else class="bg" src="https://qiniu.icaodong.com/tebu/bg.jpg" mode="aspectFill" />
+  <view class="poa">
+    <!--没参加活动，则显示点亮按钮-->
+    <form bindsubmit="taphigh" report-submit>
+      <block wx:if="{{ infoData.isLighten==1 }}">
+        <image
+          class="f-btn css-animation"
+          src="https://qiniu.icaodong.com/tebu/f-btn.png?v=1.0.0"
+          mode="aspectFill" />
+        <button class="f-btn f-btn_button" form-type="submit"></button>
+      </block>
+    </form>
+    <!--参加活动瞬间-->
+    <view hidden="{{ !isShowHint }}" class="f-btn-bg-wrap">
+      <image hidden="{{true}}" wx:for="{{10}}" wx:key="index" src="https://qiniu.icaodong.com/tebu/text{{item}}.png"
+             mode="aspectFit" />
+      <image class="f-btn-bg" src="https://qiniu.icaodong.com/tebu/f-btn-bg.png" mode="aspectFill" />
+      <view class="f-btn-bg-text_new">
+        <view class="top">
+          <image class="text-desc0" src="https://qiniu.icaodong.com/tebu/text-desc0.png" mode="aspectFit" />
+          <image class="text text{{item}}" wx:for="{{resData.timeArr}}" wx:key="index"
+                 src="https://qiniu.icaodong.com/tebu/text{{item}}.png" mode="aspectFit" />
+          <image class="text-desc1" src="https://qiniu.icaodong.com/tebu/text-desc1.png?v=1.0.0" mode="aspectFit" />
+        </view>
+        <image class="text-desc2" src="https://qiniu.icaodong.com/tebu/text-desc2.png?v=1.0.0" mode="aspectFit" />
+      </view>
+      <!--<view class="f-btn-bg-text">
+        <view>恭喜您成为第{{resData.time}}位</view>
+        <view>助力粉丝</view>
+      </view>-->
+    </view>
+    <!--留言-->
+    <block wx:if="{{ infoData.isLighten==0&&infoData.isMessage==1 }}">
+      <view class="comment-wrap">
+        <image class="comment-bg" src="https://qiniu.icaodong.com/tebu/comment-bg.png" mode="aspectFill" />
+        <scroll-view
+          scroll-x="{{false}}"
+          scroll-y
+          bindscrolltoupper="bindscrolltoupper"
+          scroll-with-animation
+          scroll-into-view="{{idMark}}"
+          class="comment">
+          <view class="comment-item" wx:for="{{dataList}}" wx:key="index" id="id{{item.id}}">
+            <image class="head" src="{{item.headUrl}}" mode="aspectFill" />
+            <view class="content">{{item.message}}</view>
+          </view>
+        </scroll-view>
+        <input bindinput="bindinput" value="{{inputValue}}" placeholder-style="color:#cfadae;" type="text" class="input"
+               placeholder="我要留言.........." />
+      </view>
+      <image
+        bindtap="bindsubmit"
+        class="comment-btn css-animation"
+        src="https://qiniu.icaodong.com/tebu/comment-btn.png"
+        mode="aspectFill" />
+    </block>
+
+    <block wx:if="{{isShowCoupon}}">
+      <view class="coupon-bg-wrap">
+        <image class="coupon-bg" src="https://qiniu.icaodong.com/tebu/coupon-bg.png" mode="aspectFill" />
+        <view class="money">
+          <view>{{infoData.price}}</view>
+          <view class="desc">
+            <view>鞋品</view>
+            <view>代金券</view>
+          </view>
+        </view>
+      </view>
+      <view class="share-bg-wrap" bindtap="onShare">
+        <image class="share-bg" src="https://qiniu.icaodong.com/tebu/share-bg.png?v=1.0.0" mode="aspectFill" />
+        <image class="share-arrow css-animation3" src="https://qiniu.icaodong.com/tebu/share-arrow.png?v=1.0.0" mode="aspectFill" />
+        <image class="share-btn" src="https://qiniu.icaodong.com/tebu/share-btn.png?v=1.0.0" mode="aspectFill" />
+        <view class="text">
+          <view class="text1">邀请2位好友点亮风火台</view>
+          <view class="text2">抽谢霆锋亲笔签名海报1张</view>
+          <view class="text3">（中奖者将于9月16日首页公布）</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<component-share
+  activeType="tb"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}" />

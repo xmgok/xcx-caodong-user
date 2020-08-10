@@ -1,0 +1,373 @@
+@import "../../../../styles/config";
+@import "../../../../components/popup/popup.scss";
+
+page {
+  background-color: $white-smoke;
+  position: relative;
+}
+
+.search-wrap {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid $white-smoke;
+  background-color: #ffffff;
+  .search-input {
+    flex: 1;
+  }
+  .btn-filter {
+    color: $text-primary;
+    font-size: 14px;
+    padding-left: 12px;
+    font-weight: bold;
+    .icon {
+      font-size: 15px;
+    }
+  }
+}
+
+.btn-wrap {
+  padding: 5px 15px 15px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $white-smoke;
+  .btn-type {
+    width: 102px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    color: $text-primary;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    .icon {
+      font-size: 8px;
+      color: $text-info;
+      position: absolute;
+      right: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &.active {
+      border-color: $tag-border-color;
+      background-color: $tag-bg;
+    }
+  }
+}
+
+.filter-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 11px 18px;
+  font-size: 13px;
+  color: $text-primary;
+  background-color: #ffffff;
+  .btn-filter {
+    .icon {
+      color: $text-info;
+      &.active {
+        color: $primary;
+      }
+      &:last-child {
+        margin-left: -6px;
+      }
+    }
+  }
+}
+
+.main-content {
+  padding: 15px;
+  .customer-item {
+    background-color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    .avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      margin-right: 15px;
+      align-self: flex-start;
+      background-color: #f2f2f2;
+    }
+    .right-content {
+      flex: 1;
+    }
+    .title-wrap {
+      display: flex;
+      width: 100%;
+      margin-bottom: 6px;
+      .nickname {
+        max-width: 100px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 16px;
+        color: $text-primary;
+        font-weight: bold;
+        @include ellipsis1();
+      }
+      .g-sex-icon {
+        margin-left: 8px;
+        font-size: 16px;
+      }
+      .fire1 {
+        margin-left: 6px;
+        width: 8px;
+        height: 14px;
+      }
+      .fire2 {
+        margin-left: 6px;
+        width: 11px;
+        height: 14px;
+      }
+      .mobile {
+        margin-top: 3px;
+        height: 20px;
+        font-size: 14px;
+        color: $text-secondary;
+        line-height: 20px;
+      }
+      .user-tag {
+        width: 52px;
+        height: 16px;
+        line-height: 16px;
+        background: linear-gradient(166deg, #fcf4ed 0%, #f7e5d6 100%);
+        border-radius: 6px;
+        font-size: 10px;
+        color: #a5754a;
+        padding: 0 6px;
+        margin-left: 4px;
+        box-sizing: border-box;
+      }
+      .title-left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+      .time {
+        display: flex;
+        align-items: center;
+        color: $text-secondary;
+        font-size: 12px;
+        min-width: 42px;
+      }
+    }
+
+    .tag-list {
+      margin-bottom: 20px;
+      width: 256px;
+      height: 20px;
+      white-space: nowrap;
+      .tag-item {
+        display: inline-block;
+        height: 18px;
+        line-height: 18px;
+        border-radius:7px;
+        background-color: #f2f2f2;
+        padding: 0 5px;
+        font-size: 11px;
+        color: $text-primary;
+        margin-right: 4px;
+        &.disabled {
+          color: $text-secondary;
+        }
+      }
+    }
+
+    .statistic-row {
+      .stat-col {
+        position: relative;
+        display: inline-block;
+        padding-right: 15px;
+        width: 33.3333333%;
+        box-sizing: border-box;
+        text-align: center;
+        .count {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          font-size: 14px;
+          line-height: 20px;
+          color: $text-primary;
+          margin-bottom: 2px;
+          font-weight: bold;
+          text-align: center;
+        }
+        .title {
+          color: $text-secondary;
+          font-size: 11px;
+          line-height: 16px;
+        }
+        &:not(:first-child) {
+          padding-left: 15px;
+          &::before {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            content: '';
+            width: 1px;
+            height: 14px;
+            background-color: $gray-light;
+          }
+        }
+      }
+    }
+  }
+}
+
+.no-data {
+  .icon-wrap {
+    width: 155px;
+    height: 155px;
+    margin: 100px auto 0;
+    line-height: 155px;
+    text-align: center;
+    background: #e6e6e6;
+    border-radius: 50%;
+    font-size: rpx2(80);
+    color: white;
+  }
+}
+
+.filter-popup {
+  width: 80%;
+  height: 100%;
+  background-color: #ffffff;
+  overflow: hidden;
+  .filter-popup-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+  }
+  .filter-popup-main {
+    padding-bottom: 50px;
+    flex: 1;
+  }
+
+  .filter-block {
+    padding: 15px 20px;
+    .filter-label {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: $text-primary;
+      font-weight: bold;
+      .icon {
+        float: right;
+        font-weight: normal;
+        color: $text-secondary;
+        margin-top: 3px;
+        padding-left: 10px;
+      }
+    }
+    .btn-filter {
+      display: inline-block;
+      min-width: 80px;
+      text-align: center;
+      height: 30px;
+      line-height: 30px;
+      background-color: $white-smoke;
+      border-radius: 12px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      @include ellipsis1();
+      &.date {
+        width: 110px;
+        color: $text-info;
+      }
+      &.input {
+        width: 110px;
+      }
+      &.date-select {
+        width: 110px;
+        color: $text-primary;
+      }
+      &.date-select,
+      &.active {
+        background-color: $tag-bg;
+        border-radius: 12px;
+        border:1px solid $tag-border-color;
+      }
+    }
+  }
+}
+
+// Hack! transform 会改变 fixed 子元素的定位对象，position:fixed 直接降级变成 position:absolute 的表现。
+// fixed 元素被拥有 transform 的属性的父元素包裹着，所以它会相对于这个 transform 的父元素定位。
+.filter-popup-footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  z-index: 999999;
+  box-sizing: border-box;
+  animation-duration: 300ms;
+  .btn {
+    width: 120px;
+    height: 37px;
+    border-radius: 19px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-reset {
+      color: $text-primary;
+      border: 1px solid $black-light;
+    }
+    &-submit {
+      color: #ffffff;
+      background-color: $btn-primary-bg;
+    }
+  }
+}
+
+@keyframes footer-right-enter {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes footer-right-leave {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.h-split {
+  height: 30px;
+  line-height: 30px;
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.placeholder {
+  color: $text-info;
+}

@@ -1,0 +1,3 @@
+<view class="copyright-container custom-class">
+  <view class="support-tip"><text class="icon icon-caodong"></text><text>草动提供技术支持</text></view>
+</view>

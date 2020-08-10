@@ -1,0 +1,236 @@
+<view class="page">
+  <view class="header">
+    <navigator url="/pages-subpackages/cus/pages/cus-m-c/index?id={{detailData.id}}" hover-class="none"
+               class="head-wrap">
+      <image wx:if="{{ detailData.headUrl }}" class="head" src="{{ detailData.headUrl }}" mode="aspectFill" />
+      <view class="content">
+        <view class="nickname-wrap">
+          <view class="nickname">{{ detailData.nickName }}</view>
+          <view wx:if="{{ detailData.gender === 1 }}" class="sex g-sex-icon man icon icon-nan"></view>
+          <view wx:elif="{{ detailData.gender === 2 }}" class="sex g-sex-icon icon icon-nv"></view>
+          <block wx:if="{{ detailData.activation >= 11 && detailData.activation <= 30 }}">
+            <image class="fire1" src="https://qiniu.icaodong.com/xcx/common/cus-m-fire0.png?v=1.0.0"
+                   mode="aspectFill" />
+          </block>
+          <block wx:if="{{ detailData.activation >= 31 && detailData.activation <= 40 }}">
+            <image class="fire2" src="https://qiniu.icaodong.com/xcx/common/cus-m-fire1.png?v=1.0.0"
+                   mode="aspectFill" />
+          </block>
+          <view class="vip vip-icon" wx:if="{{ detailData.cardLevel }}">{{ detailData.cardLevel }}</view>
+        </view>
+        <view class="mobile">{{ detailData.mobile }}</view>
+      </view>
+    </navigator>
+    <view class="row-wrap">
+      <view class="row">
+        <view class="title">基本信息</view>
+        <view class="desc">
+          <block wx:if="{{ detailData.province && detailData.city }}">
+            {{ detailData.province }}{{ detailData.city }}{{ detailData.area }}
+            |
+          </block>
+          {{ detailData.birthday || '--' }}
+        </view>
+      </view>
+      <!--<view class="row">
+        <view class="title">所属导购</view>
+        <view class="desc">
+          <view class="emp">
+            <image class="head" wx:if="{{ detailData.empHeadUrl }}" src="{{ detailData.empHeadUrl }}" mode="aspectFill"/>
+            <view>
+              {{ detailData.empNickName || '&#45;&#45;' }}
+              <block wx:if="{{ detailData.empStoreName }}">（{{ detailData.empStoreName }}）</block></view>
+          </view>
+        </view>
+      </view>-->
+      <view class="row">
+        <view class="title">个性标签</view>
+        <view class="label-wrap">
+          <scroll-view
+            scroll-x
+            class="tag-list">
+            <view
+              wx:for="{{ detailData.userLabel }}"
+              wx:key="index"
+              class="tag-item">
+              {{ item.name }}
+            </view>
+            <view wx:if="{{ !detailData.userLabel.length }}" class="tag-item disabled">暂无标签</view>
+          </scroll-view>
+
+          <view class="label-add" bindtap="showSelectLabel">
+            <view class="icon icon-plus"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="radius"></view>
+
+  <view class="g-tab g-tab_style2" wx:if="{{showTab}}">
+    <view
+      class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}"
+      wx:for="{{tabList}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="switchTab">
+      <view class="g-tab-item-text">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="body">
+    <view wx:if="{{ tabIndex === 0 }}" class="order-content">
+      <view class="h2">
+        <view class="item">消费金额:¥{{ totalTakeOrder.amount || '0.00' }}</view>
+        <view class="item">购买商品:{{ totalTakeOrder.number || 0 }}件</view>
+        <view class="item">客单价:¥{{ totalTakeOrder.meanAmount || 0 }}</view>
+      </view>
+      <view class="list-wrap">
+        <view
+          wx:for="{{ listData }}"
+          wx:key="index"
+          class="list">
+          <view class="head">
+            <view class="text">订单编号：{{ item.orderCode }}</view>
+            <view class="status {{ item.orderStatus === 1 ? 'active': '' }}">{{ item._orderStatus }}</view>
+          </view>
+          <view class="list-body">
+            <view
+              wx:for="{{ item.productList }}"
+              wx:key="index"
+              wx:for-item="prodItem"
+              class="item">
+              <view class="title">{{ prodItem.productName }}</view>
+              <view class="right">
+                <view class="num">x{{ prodItem.productNum }}</view>
+                <view class="price">￥{{ prodItem.productPrice }}</view>
+              </view>
+            </view>
+          </view>
+          <view class="footer">
+            <view class="text">{{ item.beforDesc }}</view>
+            <view class="price g-flex g-flex-between">
+              <view>共{{ item.productList.length }}件 实付金额:</view>
+              <view class="g-price">
+                <view class="_small">￥</view>
+                <view class="_big">{{ item._orderAmountInt }}</view>
+                <view class="_small">.{{ item._orderAmountDec }}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{ tabIndex === 1 }}" class="goods-content">
+      <view class="h2">
+        <view class="item">累计时长:{{ productSummary.browseTime }}</view>
+        <view class="item">浏览次数:{{ productSummary.openNumber }}次</view>
+        <view class="item">浏览商品:{{ productSummary.productNumber }}件</view>
+      </view>
+      <view class="list-wrap">
+        <view
+          wx:for="{{ listData }}"
+          wx:key="index"
+          class="list">
+          <view class="list-body">
+            <image class="head" src="{{ item.imgUrl }}" mode="aspectFill" />
+            <view class="content">
+              <view class="title">{{ item.productName }}</view>
+              <view class="price-wrap">
+                <view class="price">￥{{ item.price }}</view>
+                <view class="num">
+                  <text>下单</text>
+                  <text class="red"> {{ item.buyNumber }}</text>
+                  <text>件</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="footer">
+            <view class="g-flex g-flex-between">
+              <view class="icon icon-liulan"></view>
+              <view>浏览 {{ item.openNumber }}次 | 浏览时长 {{ item.browseTime }}</view>
+            </view>
+            <view>{{ item.lastTime }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{ tabIndex === 2 }}" class="mark-content">
+      <view class="title">
+        <picker
+          fields="day"
+          mode="date"
+          value="{{endDate}}"
+          start="2019-01-01"
+          end="{{endDate}}"
+          bindchange="bindDateChange"
+          class="search">
+          <div class="text">{{month}}月{{date}}日</div>
+          <div class="icon icon-angle-down"></div>
+        </picker>
+        <view class="desc">浏览时长{{ browseTime }}</view>
+      </view>
+      <view class="list-wrap">
+        <view
+          wx:for="{{ listData }}"
+          wx:key="index"
+          class="list">
+          <view class="line"></view>
+          <view class="icon icon-zuji {{ item.sameStore !== 1 ? 'active': '' }}"></view>
+          <view class="time">{{ item.browseTime }}</view>
+          <view class="text">{{ item.label }}</view>
+          <view class="desc">
+            <view class="store-name">
+              {{ item.sameStore === 1 ? '我的门店': item.storeName }}
+              <block wx:if="{{ item.empName }}">({{ item.empName }})</block>
+            </view>
+            <text>浏览{{ item.stepTimeFormat }}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <jz-popup
+    show="{{ isShowSelectLabel }}"
+    position="bottom"
+    custom-class="reset-popup"
+    z-index="101">
+    <view class="select-label">
+      <view class="icon icon-times btn-close" bindtap="hideSelectLabel"></view>
+      <view class="title">添加标签</view>
+      <input class="input" value="{{ currentLabel2 }}" data-name="currentLabel2" bindinput="onInput" type="text"
+             placeholder="添加标签" />
+      <view class="scroll-wrap">
+        <view class="title title_label">我的标签</view>
+        <view class="label-wrap">
+          <view
+            wx:for="{{ myLabelList.myLabel }}"
+            wx:key="index"
+            bindtap="tagSelect"
+            data-name="{{ item }}"
+            class="label {{ currentLabelObj[item] === item ? 'active': '' }}">{{ item }}
+          </view>
+        </view>
+        <view class="title title_label">公司标签</view>
+        <view class="label-wrap">
+          <view
+            wx:for="{{ myLabelList.companyLabel }}"
+            wx:key="index"
+            bindtap="tagSelect"
+            data-name="{{ item }}"
+            class="label {{ currentLabelObj[item] === item ? 'active': '' }}">{{ item }}
+          </view>
+        </view>
+      </view>
+      <view class="g-flex btn-wrap">
+        <view class="g-btn g-btn_hollow" bindtap="resetLabel">重置</view>
+        <view class="g-btn" bindtap="saveLabel">确定</view>
+      </view>
+    </view>
+  </jz-popup>
+</view>
+<list-loading-more result="{{pagination}}"></list-loading-more>

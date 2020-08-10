@@ -1,0 +1,260 @@
+<view class="page-cart">
+  <view class="store">
+    <view class="store-name">
+      <view class="store-name-icon icon icon-store"></view>
+      <view>{{storeName}}</view>
+    </view>
+    <!--<view wx:if="{{cartGiftList.length}}" bindtap="showGift" class="store-get-giveaway">
+      <text>领取赠品</text>
+      <text class="store-get-giveaway-icon icon icon-angle-down"></text>
+    </view>-->
+  </view>
+  <block wx:if="{{ableList.length || disableList.length}}">
+    <view class='slide' wx:for="{{ableList}}" wx:for-item="val" wx:for-index="key" wx:key="key">
+      <view class="active-title" wx:if="{{val.showTag}}">
+        <view class="left">
+          <text class="tag">{{val.showTag}}</text>
+          <text class="text-content">{{val.showText}}</text>
+        </view>
+        <view wx:if="{{val.satisfy&&val.giftInfo}}" bindtap="goGiftPage" data-item="{{val.giftInfo}}"
+              class="get-giveaway">
+          <text>{{val.giftInfo.length?'更换':'领取'}}赠品</text>
+          <text class="icon icon-angle-right"></text>
+        </view>
+      </view>
+
+      <view class="goods-item-wrap" wx:for="{{ val.carts }}" wx:key="index">
+        <view>
+          <movable-area style="height: {{ movableHeight }}; width: 100%;">
+            <movable-view style="height: {{ movableHeight }}; width: 100%;" direction="horizontal">
+              <swipe-view right-width="{{ 75 }}" data-id="{{ item.id }}" data-type="normal" asyncClose="{{ true }}"
+                          bind:close="onSwipeClose">
+                <view class="l">
+                  <view class="left-content">
+                    <text class="checkbox-icon icon {{item.checked?'icon-checkbox-checked':'icon-checkbox'}}"
+                          data-id="{{item.id}}"
+                          data-specid="{{item.specId}}"
+                          data-number="{{item.number}}"
+                          data-checked="{{item.checked}}"
+                          bindtap="doCheck"
+                    ></text>
+                    <view class="goods-info">
+                      <image class="goods-image" mode="aspectFill" src="{{item.imgUrl}}"></image>
+                      <view class="right-content">
+                        <view class="title">{{item.productName}}</view>
+                        <text class="spec"
+                              data-id="{{item.productId}}"
+                              data-specid="{{item.specId}}"
+                              data-cartid="{{item.id}}"
+                              data-checked="{{item.checked}}"
+                              data-number="{{item.number}}"
+                              data-spec-content="{{item.specContent}}"
+                              bindtap="changeSpec"
+                        >
+                          <text>{{item.specContent || '请选择规格'}}</text>
+                          <text class="ml5 icon icon-angle-down"></text>
+                        </text>
+                        <view class="df pt10">
+                          <view class="ui-price-wrap">
+                            <component-mark isVip="{{item.isVip}}" />
+                            <text class="currency">¥</text>
+                            <text class="price-integer">{{item._priceInt}}</text>
+                            <text class="price-decimal">.{{item._priceDec}}</text>
+                          </view>
+                          <jz-input-number
+                            class="input-number-wrap"
+                            value="{{item.number}}"
+                            data-id="{{item.id}}"
+                            data-specid="{{item.specId}}"
+                            data-checked="{{item.checked}}"
+                            max="{{item.inventory}}"
+                            plus-class="input-number-plus"
+                            minus-class="input-number-minus"
+                            input-class="input-number-input"
+                            bindchange="onQuantityChange"></jz-input-number>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view slot="right" class="r">删除</view>
+              </swipe-view>
+            </movable-view>
+          </movable-area>
+          <view class="cx" wx:if="{{item.discountText}}">
+            <view class="cx-title">促销</view>
+            <view class="cx-desc">{{item.discountText}}</view>
+          </view>
+        </view>
+      </view>
+
+      <block wx:if="{{val.giftInfo&&val.giftInfo.giftList&&val.giftInfo.giftList.length}}">
+        <block wx:for="{{val.giftInfo.giftList}}" wx:key="id">
+          <movable-area style="height: {{ item.productName ? movableHeight : 0 }}; width: 100%;">
+            <movable-view style="height: {{ item.productName ? movableHeight : 0 }}; width: 100%;"
+                          direction="horizontal">
+              <swipe-view right-width="{{ 75 }}" data-id="{{item.id}}" data-type="gift" asyncClose="{{true}}"
+                          bind:close="onSwipeClose">
+                <view class="gift" wx:if="{{ item.productName }}">
+                  <image class="image" mode="aspectFill" src="{{ item.imgUrl }}"></image>
+                  <view class="content">
+                    <view class="title">{{ item.productName }}</view>
+                    <view class="tag">赠品</view>
+                    <view class="price">
+                      <view>￥
+                        <text class="big">0.00</text>
+                      </view>
+                      <view class="num">x{{ item.number }}</view>
+                    </view>
+                  </view>
+                </view>
+                <view slot="right" class="r">删除</view>
+              </swipe-view>
+            </movable-view>
+          </movable-area>
+        </block>
+      </block>
+    </view>
+
+    <block wx:if="{{cartGiftList.length}}">
+      <block wx:for="{{cartGiftList}}" wx:key="index">
+        <view wx:if="{{item.type==1&&useGiftType==1}}" class="slide {{item.giftList.length?'':'slide_reset'}}">
+          <view class="active-title" wx:if="{{item.showTag}}">
+            <view class="left">
+              <text class="tag">{{item.showTag}}</text>
+              <text class="text-content">{{item.discountName}}</text>
+            </view>
+            <view bindtap="goGiftPage" class="get-giveaway" data-item="{{item}}">
+              <text>{{item.giftList.length?'更换':'领取'}}赠品</text>
+              <text class="icon icon-angle-right"></text>
+            </view>
+          </view>
+          <block wx:if="{{item.giftList.length}}">
+            <block wx:for="{{item.giftList}}" wx:key="index">
+              <movable-area style="height: {{ item.productName ? movableHeight : 0 }}; width: 100%;">
+                <movable-view style="height: {{ item.productName ? movableHeight : 0 }}; width: 100%;"
+                              direction="horizontal">
+                  <swipe-view right-width="{{ 75 }}" data-id="{{item.id}}" data-type="gift" asyncClose="{{true}}"
+                              bind:close="onSwipeClose">
+                    <view class="gift" wx:if="{{ item.productName }}">
+                      <image class="image" mode="aspectFill" src="{{ item.imgUrl }}"></image>
+                      <view class="content">
+                        <view class="title">{{ item.productName }}</view>
+                        <view class="tag">赠品</view>
+                        <view class="price">
+                          <view>￥
+                            <text class="big">0.00</text>
+                          </view>
+                          <view class="num">x{{ item.number }}</view>
+                        </view>
+                      </view>
+                    </view>
+                    <view slot="right" class="r">删除</view>
+                  </swipe-view>
+                </movable-view>
+              </movable-area>
+            </block>
+          </block>
+        </view>
+      </block>
+    </block>
+
+    <view wx:if="{{disableList.length}}">
+      <view class="active-title2">
+        <view class="text">失效商品</view>
+      </view>
+      <view class='slide slide-disabled'>
+        <view class="goods-item-wrap" wx:for="{{disableList}}" wx:key="index">
+          <view>
+            <movable-area style="height: {{movableHeight}}; width: 100%;">
+              <movable-view style="height: {{movableHeight}}; width: 100%;" direction="horizontal">
+                <swipe-view right-width="{{75}}" data-id="{{item.id}}" data-type="normal" asyncClose="{{true}}"
+                            bind:close="onSwipeClose">
+                  <view class="l">
+                    <view class="left-content disabled-slide">
+                      <text class="checkbox-icon icon icon-checkbox-disabled"></text>
+                      <view class="goods-info">
+                        <view class="img-wrap">
+                          <image class="goods-image" mode="aspectFill" src="{{item.imgUrl}}"></image>
+                          <view class="cover"></view>
+                        </view>
+                        <view class="right-content">
+                          <view class="title">{{item.productName || ''}}</view>
+                          <text class="spec">{{item.specContent || ''}}</text>
+                          <view class="bottom" wx:if="{{item.status}}">库存不足，暂不能购买</view>
+                          <view class="bottom" wx:else>失效商品，暂不能购买</view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                  <view slot="right" class="r">删除</view>
+                </swipe-view>
+              </movable-view>
+            </movable-area>
+            <view class="cx" wx:if="{{item.discountText}}">
+              <view class="cx-title">促销</view>
+              <view class="cx-desc">{{item.discountText}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="fixed-bottom">
+      <view class="left">
+        <view class="select" bindtap="doCheckAll">
+          <text class="checkbox-icon icon {{checkAll?'icon-checkbox-checked':'icon-checkbox'}}"></text>
+          全选
+        </view>
+        <view class="amounts">
+          <view class="top">总计：
+            <text class="price">￥{{totalAmount}}</text>
+          </view>
+          <view class="bottom">商品总额 ￥{{preTotalAmount}}， 立减 ￥{{subtractAmount}}</view>
+        </view>
+      </view>
+      <view class="right" wx:if="{{checkNum}}" bindtap="submit">结算({{checkNum}})</view>
+      <view class="right disabled" wx:else>结算(0)</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="empty">
+      <view class="cart-wrap">
+        <text class="icon icon-empty-cart"></text>
+      </view>
+      <view>购物车空空如也，去逛逛吧～～</view>
+    </view>
+  </block>
+
+</view>
+<check-gaveaway
+  wx:if="{{gaveawayId}}"
+  show="{{showGaveaway}}"
+  bindgaveawaySure="gaveawaySure"
+  bindgaveawayClose="gaveawayClose"
+  ids="{{gaveawayId}}" />
+<goods-purchase
+  wx:if="{{ productId }}"
+  quantity="{{quantity}}"
+  show="{{ showPurchase }}"
+  id="{{ productId }}"
+  bind:close="goodsPurchaseClose"
+  bind:selected="goodsPurchaseSelected" />
+<popup
+  show="{{ isShowGift }}"
+  position="bottom"
+  bindclose="onPurchaseClose"
+  custom-class="gifts-wrap">
+  <view class="gifts">
+    <view class="header">领取赠品</view>
+    <view class="close icon icon-times" bindtap="hideGift"></view>
+    <view wx:for="{{cartGiftList}}" wx:key="index" class="gifts-item" data-item="{{item}}" bindtap="goGiftPage">
+      <view class="tag">{{item.showTag}}</view>
+      <view class="desc">
+        <view class="gifts-item-text">{{item.discountName}}</view>
+        <view class="gifts-item-icon icon icon-angle-right"></view>
+      </view>
+    </view>
+  </view>
+</popup>

@@ -1,0 +1,59 @@
+<view>
+  <view class="header">
+    <view class="header__subtitle">恭喜您获得组合券包</view>
+    <view class="header__title">{{resData.name}}</view>
+  </view>
+  <view class="item-wrap">
+    <component-coupon-item
+      wx:for="{{dataList}}"
+      wx:key="index"
+      item="{{item}}"
+      btnType="coupon-bag"
+    ></component-coupon-item>
+  </view>
+  <view class="btn-wrap {{iPhoneX?'iPhoneXpb':''}}">
+    <view
+      class="g-btn {{resData.isGet!=0?'inactive':''}}"
+      bindtap="onGet"
+    >
+      {{resData.isGet==0?'立即领取':''}}
+      {{resData.isGet==1?'已领取':''}}
+      {{resData.isGet==2?'已领完':''}}
+      {{resData.isGet==3?'已结束':''}}
+    </view>
+  </view>
+</view>
+
+<view class="dialog-wrap" wx:if="{{showDialog}}">
+  <view class="mask"></view>
+  <view class="dialog">
+    <image lazy-load class="success1" mode="aspectFill"
+           src="https://qiniu.icaodong.com/xcx/common/bargain-success1.png?v=1.0.0"></image>
+    <image lazy-load class="success2" mode="aspectFill"
+           src="https://qiniu.icaodong.com/xcx/common/coupon-bag-success.png?v=1.0.0"></image>
+    <view class="content">
+      <view class="title">领取成功</view>
+      <view class="sub-title">请至“我的优惠券”中查看并使用</view>
+      <view class="content-btn-wrap">
+        <navigator
+          class="btn-left g-btn g-btn_hollow"
+          url="/pages/index/index"
+          open-type="switchTab"
+          hover-class="none">回首页
+        </navigator>
+        <navigator
+          class="btn-right g-btn"
+          url="/pages/coupon-list/coupon-list"
+          hover-class="none">去使用
+        </navigator>
+      </view>
+    </view>
+    <view class="close-wrap" bindtap="hideDialog">
+      <text class="icon icon-times"></text>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result}}"></list-loading-more>
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

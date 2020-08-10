@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "视频详情",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "van-popup": "/components/popup/popup",
+    "jz-input-number": "/components/input-number/input-number",
+    "component-share": "/components/share/share"
+  }
+}

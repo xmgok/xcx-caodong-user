@@ -1,0 +1,14 @@
+<view>
+  <view class="ui-navigation-bar">
+    <view class="ui-navigation-bar__status" style="height:{{ statusBarHeight }}px"></view>
+    <view class="ui-navigation-bar__title" style="height:{{titleBarHeight}}px">
+      <view class="my-icon icon icon-home-o" catchtap="returnHome"></view>
+      <!--回退不好做，涉及的面很广-->
+      <!--<view wx:if="{{customNavPrevPage}}" class="my-icon icon icon-angle-left" catchtap="returnPage"></view>-->
+      <!--我用陈松的iPhone测试，发现标题默认也是居中的，所以就没必要判定了吧-->
+      <!--<view class="title {{iPhone?'':'active'}}">{{ name }}</view>-->
+      <view class="title active">{{ name }}</view>
+    </view>
+  </view>
+  <view style="padding-bottom:{{ statusBarHeight + titleBarHeight }}px"></view>
+</view>

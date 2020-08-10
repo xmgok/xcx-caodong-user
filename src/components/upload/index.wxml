@@ -1,0 +1,19 @@
+<view class="g-upload-wrap {{plr0}}">
+  <view wx:for="{{result.list}}" wx:key="index" class="g-upload">
+    <image class="g-upload-img" mode="aspectFill" src="{{item.imgUrl}}"></image>
+    <view
+      class="g-upload-del icon icon-minus-circle"
+      data-item="{{item}}"
+      data-index="{{index}}"
+      bindtap="del"
+    ></view>
+  </view>
+  <view
+    class="g-upload"
+    bindtap="upload"
+    wx:if="{{result.list.length != result.maxLength}}"
+  >
+    <view class="g-upload-icon icon icon-camera"></view>
+    <view wx:if="{{result.maxLength > 0}}" class="g-upload-text">{{result.list.length}}/{{result.maxLength}}</view>
+  </view>
+</view>

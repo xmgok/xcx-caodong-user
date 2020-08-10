@@ -1,0 +1,7 @@
+<view class="camera-photo-template">
+  <view class="title">模板</view>
+  <text class="close icon icon-times" catchtap="close"></text>
+  <view class="img-wrap">
+    <image wx:for="{{imgList}}" wx:key="index" lazy-load class="img" mode="aspectFill" src="{{item.url}}" catchtap="close" data-index="{{index}}"><text wx:if="{{index == iIndex}}" class="tb icon icon-success"/></image>
+  </view>
+</view>

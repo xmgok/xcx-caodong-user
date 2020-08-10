@@ -1,0 +1,7 @@
+<view class="container">
+  <view class="icon-wrap"><text class="icon icon-share_weixin"></text></view>
+  <view class="tip">正在打开草动商城小程序</view>
+  <view class="btn-submit" bindtap="navigate">立即进入</view>
+</view>
+
+<component-copyright />

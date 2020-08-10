@@ -1,0 +1,8 @@
+<view class="page-message-detail8">
+  <view class="title">{{options.title}}</view>
+  <view class="title-detail">
+    <view class="txt">#公司通知#</view>
+    <view class="date">{{options.sendtime}}</view>
+  </view>
+  <view class="list">{{options.content}}</view>
+</view>

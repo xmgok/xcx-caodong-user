@@ -1,0 +1,100 @@
+//@import "../../../sass/group-buying/config";
+/*@import "/sass/group-buying/common";*/
+@import "../../styles/variables";
+
+.header {
+  font-size: 14px;
+  font-weight: 400;
+  color: $text-primary;
+  background-color: #fbfbfb;
+  padding: 19px 30px;
+  margin: 24px 10px 0;
+  border-radius:2px 2px 0 0;
+}
+
+.content {
+  background: #ffffff;
+  padding: 24px 30px;
+  margin: 0 10px 20px 10px;
+  .title {
+    font-size: 14px;
+    color: $text-primary;
+  }
+  .withdraw-tip {
+    font-size: 13px;
+    line-height: 18px;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 10px;
+    margin-bottom: 24px;
+  }
+  .money {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    ._symbol {
+      width: 22px;
+      height: 67px;
+      font-size: 36px;
+      font-weight: 600;
+      color: $text-primary;
+      line-height: 67px;
+      margin-right: 16px;
+    }
+    ._big {
+      flex: 1;
+      width: 100px;
+      height: 67px;
+      font-size: 48px;
+      font-weight: 600;
+      color: $text-primary;
+      line-height: 67px;
+    }
+  }
+  .btn-submit {
+    width: 295px;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 17px;
+    color: #ffffff;
+    background-color: #0bc062;
+    &.disabled {
+      color: #daf6e6;
+      background-color: #b6edce;
+    }
+  }
+}
+
+.balance-detail,
+.withdraw-explain {
+  font-size: 14px;
+  color: #4c62a2;
+  text-align: center;
+}
+
+.withdraw-explain {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  .icon {
+    font-size: 15px;
+  }
+}
+
+.text-gray {
+  color: $text-secondary;
+}
+
+.text-light-blue {
+  color: #4c62a2;
+}
+
+.valid-msg {
+  color: $text-secondary;
+  font-size: 12px;
+  margin-bottom: 5px;
+  &.error {
+    color: $red;
+  }
+}

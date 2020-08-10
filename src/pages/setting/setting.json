@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "设置",
+  "usingComponents": {
+    "upload": "/components/upload/index",
+    "jz-popup": "/components/popup/popup"
+  }
+}

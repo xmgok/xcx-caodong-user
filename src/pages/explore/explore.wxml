@@ -1,0 +1,55 @@
+<view class="ui-navigation-bar">
+  <view class="ui-navigation-bar__status" style="height:{{ statusBarHeight }}px"></view>
+  <view class="ui-navigation-bar__title" style="height:{{titleBarHeight}}px">
+    <view class="customer-wrap">
+      <search-with-service
+        custom-class="custom-class"
+        value="{{ keyword }}"
+        placeholder="搜索关键字"
+        bindconfirm="handleSearchConfirm" />
+    </view>
+  </view>
+  <view class="wrap-height">
+    <view wx:if="{{showTab}}" class="hd-func">
+      <view class="tab-wrap" wx:if="{{showTab}}">
+        <view
+          class="tab {{ typeIndex === index ? 'active': '' }}"
+          bindtap="tabChanged"
+          data-index="{{ index }}"
+          wx:for="{{ typeList }}"
+          wx:key="index">{{ typeList[index] }}
+        </view>
+      </view>
+    </view>
+    <view class="filter">
+      <block wx:for="{{sortList[typeIndex]}}" wx:key="index">
+        <block wx:if="{{item.hasIcon === false}}">
+          <view
+            class="item {{sortIndex==index?'active':''}}" data-item="{{item}}" data-index="{{index}}"
+            bindtap="sortChange">
+            <view class="item-text">{{item.label}}</view>
+          </view>
+        </block>
+        <block wx:else>
+          <picker
+            bindchange="sortChange2"
+            range="{{item.values}}"
+            range-key="label"
+            class="item {{sortIndex==index?'active':''}}" data-item="{{item}}" data-index="{{index}}"
+            bindtap="sortChange">
+            <view class="item-text">{{item.label}}</view>
+            <view class="item-icon icon icon-arrow-down"></view>
+          </picker>
+        </block>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="h-fill" style="height:{{statusBarHeight+titleBarHeight+wrapHeight}}px;"></view>
+<view class="page-explore">
+  <component-material-list wx:if="{{ typeIndex === 0 }}" listData="{{listData}}" getEnd="{{getEnd}}"
+                           pageNum="{{pageNum}}" />
+  <component-video-list wx:else listData="{{listData}}" getEnd="{{getEnd}}" pageNum="{{pageNum}}" />
+</view>
+
+<component-copyright />

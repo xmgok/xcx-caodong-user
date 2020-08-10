@@ -1,0 +1,176 @@
+<view class="page-setting">
+
+  <view class="hd-block">
+    <components-custom-qr bindcanvas2img="staffGetHomeCustomQr"></components-custom-qr>
+    <view class="hd-item" bindtap="editUserImg">
+      <view class="title">我的头像</view>
+      <view class="con">
+        <image lazy-load class="user-img" wx:if="{{headUrl}}" mode="aspectFill" src="{{headUrl}}"></image>
+        <view class="user-img" wx:else>
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+      </view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+    <navigator class="hd-item" url="/pages/setting-edit/setting-edit?type=nickName&value={{nickName}}"
+               hover-class="none">
+      <view class="title">昵称</view>
+      <view class="con">
+        <block wx:if="{{nickName}}">{{nickName}}</block>
+        <open-data type="userNickName" wx:else></open-data>
+      </view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <!--
+        <picker mode="date" value="{{birthday}}" bindchange="bindBirthdayChange">
+          <view class="hd-item">
+            <view class="title">生日</view>
+            <view class="con">{{birthday ? birthday : '未设置'}}</view>
+            <view class="tb icon icon-angle-right"></view>
+          </view>
+        </picker>
+    -->
+    <navigator class="hd-item" url="/pages/setting-edit/setting-edit?type=mobile&value={{mobile}}" hover-class="none">
+      <view class="title">已绑手机</view>
+      <view class="con">{{mobile ? mobile : '未设置'}}</view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <!--
+        <navigator class="hd-item" url="/pages/address-list/address-list" hover-class="none">
+          <view class="title">地址管理</view>
+          <view class="con"></view>
+          <view class="tb icon icon-angle-right"></view>
+        </navigator>
+    -->
+  </view>
+
+  <!--
+  <view class="hd-block" wx:if="{{userType == 'staff'}}">
+    <navigator class="hd-item" url="/pages/withdraw-settlement-account/index" hover-class="none">
+      <view class="title">结算账户设置</view>
+      <view class="con">未设置/建设银行(0432)</view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+  </view>
+  -->
+
+  <view class="hd-block">
+    <view wx:if="{{userType == 'staff'}}" class="hd-item" bindtap="showQrM">
+      <view class="title">二维码管理</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+    <navigator wx:if="{{userType == 'staff'}}" class="hd-item" url="/pages-subpackages/cus/pages/cus-m-label/index" hover-class="none">
+      <view class="title">标签管理</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>
+    <!--<navigator wx:if="{{userType == 'staff'}}" class="hd-item" url="/pages/staff-login/login" hover-class="none">
+      <view class="title">员工账号切换</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </navigator>-->
+    <view wx:if="{{userType == 'staff'}}" class="hd-item" bindtap="toCustomer">
+      <view class="title">切换到消费者端</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+  </view>
+
+  <view class="hd-block">
+    <button class="hd-item" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+      <view class="title">重新授权个人信息</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </button>
+  </view>
+  <view style="margin-top: 10px;"></view>
+
+  <view class="hd-block">
+    <view class="hd-item" bindtap="clearStorage">
+      <view class="title">清理缓存</view>
+      <view class="con"></view>
+      <view class="tb icon icon-angle-right"></view>
+    </view>
+  </view>
+  <view style="margin-top: 10px;"></view>
+
+  <jz-popup
+    bindclose="hideUpload"
+    show="{{ isShowUpload }}"
+    position="bottom"
+    custom-class="reset-popup"
+    z-index="101">
+    <view class="staff-qr">
+      <view class="close icon icon-times" bindtap="hideUpload"></view>
+      <view class="h2">
+        <view>员工二维码</view>
+        <view class="small">(尺寸:300*300,大小不超过3M)</view>
+      </view>
+      <view class="h3">上传后转发的文章底部会有您的个人二维码,方便消费者添加关注</view>
+      <upload result="{{upload}}" bindchange="change"></upload>
+      <view class="g-btn" bindtap="setStaffQr">确定</view>
+    </view>
+  </jz-popup>
+
+  <jz-popup
+    bindclose="hideHomeQr"
+    show="{{ isShowHomeQr }}"
+    position="bottom"
+    custom-class="reset-popup"
+    z-index="101">
+    <view class="staff-qr home-qr">
+      <view class="close icon icon-times" bindtap="hideHomeQr"></view>
+      <image
+        style="width: {{staffHomeCustomQrWidth*2}}rpx; height: {{staffHomeCustomQrHeight*2}}rpx;"
+        class="home-qr-img" mode="aspectFill" src="{{staffHomeCustomQr}}"
+      ></image>
+      <view class="g-btn" bindtap="downLoadHomeQr">下载店铺首页二维码</view>
+    </view>
+  </jz-popup>
+
+  <jz-popup
+    bindclose="hideInviteEmployeeQr"
+    show="{{ isShowInviteEmployeeQr }}"
+    position="bottom"
+    custom-class="reset-popup"
+    z-index="101">
+    <view class="staff-qr home-qr">
+      <view class="close icon icon-times" bindtap="hideInviteEmployeeQr"></view>
+      <image class="home-qr-img" mode="aspectFill" src="{{inviteEmployeeQr}}"></image>
+      <view class="g-btn" bindtap="downLoadInviteEmployeeQr">下载邀请导购二维码</view>
+    </view>
+  </jz-popup>
+
+  <jz-popup
+    bindclose="hideQrM"
+    show="{{ isShowQrM }}"
+    position="bottom"
+    custom-class="reset-popup"
+    z-index="101">
+    <view class="staff-qr qr-m">
+      <view class="close icon icon-times" bindtap="hideQrM"></view>
+      <view class="hd-block">
+        <view wx:if="{{userType == 'staff'}}" class="hd-item" bindtap="showUpload">
+          <view class="title">上传个人微信二维码</view>
+          <view class="con"></view>
+          <view class="tb icon icon-angle-right"></view>
+        </view>
+
+        <view wx:if="{{userType == 'staff'}}" class="hd-item" bindtap="showHomeQr">
+          <view class="title">下载店铺首页二维码</view>
+          <view class="con"></view>
+          <view class="tb icon icon-angle-right"></view>
+        </view>
+
+        <!--开启了虚拟导购才有下载邀请导购二维码-->
+        <view wx:if="{{userType == 'staff'&&sellerData.visible&&sellerData.dtype==2}}" class="hd-item" bindtap="showInviteEmployeeQr">
+          <view class="title">下载邀请导购二维码</view>
+          <view class="con"></view>
+          <view class="tb icon icon-angle-right"></view>
+        </view>
+      </view>
+    </view>
+  </jz-popup>
+
+</view>

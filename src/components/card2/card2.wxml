@@ -1,0 +1,34 @@
+<!--消费者端好物拼购列表-->
+<navigator url="/pages/product/product?id={{item.productId}}&activeId={{item.id}}&activeType=group" hover-class="none" class="card2">
+  <view class="img-wrap">
+    <image class="product-img" src="{{item.productImg}}" mode="aspectFill"/>
+    <view class="tip">
+      <view class="content">已拼{{item.finishNum}}件</view>
+    </view>
+  </view>
+  <view class="right">
+    <view class="title">{{item.productName}}</view>
+    <view class="bottom">
+      <view>
+        <view class="line1">
+          <view><component-mark isVip="{{item.isVip}}"/>￥{{item.activePrice}}</view>
+          <view class="tag">{{item.groupNumber}}人拼团价</view>
+        </view>
+        <text class="price2">单买价 ￥{{item.productPrice}}</text>
+      </view>
+      <view class="btn" wx:if="{{userType=='customer'}}">立即参与</view>
+      <!--<button class="btn" wx:if="{{userType=='staff'}}" open-type="share" data-active-type="group" data-item="{{item}}" catchtap>去分享</button>-->
+      <view wx:if="{{userType=='staff'}}" class="btn" data-item="{{item}}" catchtap="showShare">去分享</view>
+    </view>
+  </view>
+</navigator>
+
+<component-share
+  productId="{{item.productId}}"
+  activeId="{{item.id}}"
+  activeType="group"
+  activePrice="{{item.activePrice}}"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}"/>

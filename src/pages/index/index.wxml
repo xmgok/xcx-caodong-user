@@ -1,0 +1,112 @@
+<view class="ui-navigation-bar" wx:if="{{userType == 'customer'}}">
+  <view class="ui-navigation-bar__status" style="height:{{ statusBarHeight }}px"></view>
+  <view class="ui-navigation-bar__title" style="height:{{titleBarHeight}}px">
+    <!-- 门店 -->
+    <w-store />
+    <!-- 搜索 -->
+    <navigator class="search-wrap" url="/pages/search-panel/search-panel" hover-class="none">
+      <view class="icon icon-search btn-search"></view>
+    </navigator>
+    <!-- 客服 -->
+    <view class="btn-service ui-contact-wrap">
+      <text class="icon icon-service"></text>
+      <!-- <text class="dot"></text> -->
+      <button class="button" open-type="contact">进入客服会话</button>
+    </view>
+  </view>
+</view>
+<block wx:else>
+  <view class="ui-navigation-bar">
+    <view class="ui-navigation-bar__status" style="height:{{ statusBarHeight }}px"></view>
+    <view class="ui-navigation-bar__title" style="height:{{titleBarHeight}}px">
+      <view class="title">{{ brandBrief.name }}</view>
+    </view>
+  </view>
+  <view style="margin-bottom:{{ statusBarHeight + titleBarHeight }}px"></view>
+</block>
+<!-- 分销商首页 -->
+<view wx:if="{{parentIsSeller}}" style="padding-top:{{ statusBarHeight + titleBarHeight }}px">
+  <seller-home reachBottomNum="{{reachBottomNum}}" refreshNum="{{refreshNum}}"></seller-home>
+</view>
+<!-- 消费者首页 -->
+<view class="page-customer-home" wx:elif="{{userType == 'customer'}}" style="padding-top:{{ statusBarHeight + titleBarHeight }}px">
+  <!--开启了门店切换-才有这个弹窗-->
+  <block wx:if="{{changeStore}}">
+    <!--切换门店提示-->
+    <view wx:if="{{showSwitchStoreTooltip}}" class="switch-store" style="top: {{ statusBarHeight + titleBarHeight }}px">
+      <view class="content">
+        <text>{{switchStoreTooltipText}}</text>
+        <text>，点击可</text>
+        <text class="highlight" bindtap="switchStore">更换门店</text>
+        <text bindtap="closeSwitchStoreTooltip" class="close icon icon-failure"></text>
+      </view>
+      <image class="bg" src="https://qiniu.icaodong.com/xcx/common/tooltip-switch-store.png?v=1.0.0" mode="aspectFill" />
+    </view>
+  </block>
+  <!-- 收藏提示 -->
+  <view wx:if="{{ showTooltip }}" class="guide-tooltip" style="top: {{ statusBarHeight + titleBarHeight }}px" catchtap="closeTooltip">
+    <view class="content">
+      <view class="row">
+        点击“
+        <image class="dot" src="https://qiniu.icaodong.com/xcx/index/dot-more.png?v=1.0.0" mode="widthFix" />
+        ”添加至
+        <view class="bold">“我的小程序”</view>
+      </view>
+      <view class="row">微信首页下拉，便捷找回</view>
+    </view>
+    <image class="bg" src="https://qiniu.icaodong.com/xcx/index/tooltip.png?v=1.0.0" mode="aspectFill" />
+  </view>
+  <official-account bindload="officialLoad"></official-account>
+  <!-- 搜索 -->
+  <!-- <w-search></w-search> -->
+  <!-- 其他自定义组件 -->
+  <block wx:for="{{customData}}" wx:key="index">
+    <w-goods wx:if="{{item.type==1}}" result="{{item.data}}"></w-goods>
+    <w-poster wx:if="{{item.type==2}}" result="{{item.data}}"></w-poster>
+    <w-slide wx:if="{{item.type==3}}" result="{{item.data}}"></w-slide>
+    <w-nav wx:if="{{item.type==4}}" result="{{item.data}}"></w-nav>
+    <w-coupon wx:if="{{item.type==5}}" result="{{item.data}}"></w-coupon>
+    <block wx:if="{{item.type==6}}">
+      <w-active-recommend wx:if="{{item.data.type==1}}"></w-active-recommend>
+      <w-active-group wx:if="{{item.data.type==2}}"></w-active-group>
+      <w-active-bargain wx:if="{{item.data.type==3}}"></w-active-bargain>
+      <w-active-seckill wx:if="{{item.data.type==4}}"></w-active-seckill>
+    </block>
+    <w-banner wx:if="{{item.type==7}}" result="{{item.data}}"></w-banner>
+    <!-- item.type == 8 占用，用于保存分享标题及图片 -->
+    <w-left-right-scroll wx:if="{{item.type==9}}" result="{{item.data}}"></w-left-right-scroll>
+  </block>
+  <!-- 返回顶部 -->
+  <return-top show="{{showReturnTop}}" bottom="{{60}}" />
+  <!-- 版权 -->
+  <component-copyright />
+  <!-- 获取手机号 -->
+  <component-phone-auth2 isPlaceholder="{{true}}" location="bottom"></component-phone-auth2>
+  <!-- 注册草动商城 -->
+  <view class="register-notice-wrap" wx:if="{{showRegisterNotice}}">
+    <view class="register-notice">
+      <view class="tb" catchtap="closeRegisterNotice">
+        <text class="icon icon-times-circle" catchtap="closeRegisterNotice"></text>
+      </view>
+      <view class="message">现在注册，即可拥有专属草动小程序</view>
+      <navigator url="/pages/register/register" hover-class="none">
+        <view class="btn-register">立即申请</view>
+      </navigator>
+    </view>
+  </view>
+  <!-- 吸粉活动弹窗 -->
+  <view class="activity-wrap" wx:if="{{activityList.length > 0}}">
+    <view>
+      <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" class="image-wrap {{iPad?'iPad':''}}">
+        <swiper-item wx:for="{{activityList}}" wx:key="index">
+          <image lazy-load bindtap="goActivityConfirm" data-type="{{item.type}}" data-item="{{item}}" data-id="{{item.id}}" class="image" src="{{item.topImg}}" mode="aspectFill" />
+        </swiper-item>
+      </swiper>
+      <text class="tb icon icon-times" bindtap="closeActivity"></text>
+    </view>
+  </view>
+</view>
+<!-- 员工首页 -->
+<view wx:elif="{{userType == 'staff'}}">
+  <staff-home refreshNum="{{refreshNum}}"></staff-home>
+</view>

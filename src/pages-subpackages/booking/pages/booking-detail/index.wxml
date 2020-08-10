@@ -1,0 +1,138 @@
+<view class="page-booking-detail">
+  <view class="tit-warp">
+    <view class="top">
+      <view class="wait-warp">
+        <view class="icon {{iconOBJ[dataInfo.status]}}"></view>
+        <view class="txt">{{txtOBJ[dataInfo.status]}}</view>
+      </view>
+      <view class="close-desc" wx:if="{{dataInfo.status == 4 ||dataInfo.status == 5 }}">
+        <view class="txt">
+          <view class="point"></view>
+          <block wx:if="{{dataInfo.status == 5}}">关闭原因：{{dataInfo.closeReason || '无'}}</block>
+          <block wx:if="{{dataInfo.status == 4 }}">取消原因：{{dataInfo.cancelReason || '无'}}</block>
+        </view>
+      </view>
+    </view>
+    <view class="center">
+      <view class="store-warp">
+        <view class="flex store">
+          <view style="font-weight: bold;" class="f14 store-t">预约门店</view>
+          <view class="f14">{{dataInfo.storeName || ''}}{{datainfo.storeMobile || ''}}</view>
+        </view>
+        <view>
+          <view class="f13  address-text">{{dataInfo.storeAddress}}</view>
+        </view>
+        <view class="line"></view>
+      </view>
+      <view class="navgtor" catchtap="openLocation" data-item="{{dataInfo}}">
+        <view class="icon icon-daohang"></view>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="store-warp">
+        <view class="flex store">
+          <view style="font-weight: bold;" class="f14 store-t">到店时间</view>
+          <view class="f14">{{dataInfo.arrivalTime }}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="list-warp">
+    <view class="list-title">预约项目</view>
+    <view class="list" wx:for="{{serviceList}}" wx:key="index">
+      <view class="imgs">
+        <image class="image" src="{{item.serviceImg}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
+      </view>
+      <view class="content">
+        <view class="tit">{{item.serviceName}}</view>
+        <view class="price">￥{{item.servicePrice}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="shops" wx:if="{{dataInfo.empName}}">
+    <view class="flex-left">
+      <view class="staff">接待导购</view>
+      <view class="imgs">
+        <image class="image" src="{{dataInfo.empHeadImg || ''}}" mode="widthFix" />
+      </view>
+      <view style="font-size:28rpx">{{dataInfo.empName}}（{{dataInfo.empMobile}}）</view>
+    </view>
+    <view class="flex-right" catchtap='freeTell'>
+      <view class="icon icon-lianxishangjia"></view>
+    </view>
+  </view>
+  <view class="desc-warp">
+    <view class="row">
+      <view class="tit">备注说明:</view>
+      <view class="info">{{dataInfo.remarks || '无'}}</view>
+    </view>
+    <view class="row" wx:if="{{dataInfo.status == 4}}">
+      <view class="tit">取消原因:</view>
+      <view class="info">{{dataInfo.cancelReason || ''}}</view>
+    </view>
+    <view class="row">
+      <view class="tit">预约订单:</view>
+      <view class="info">{{dataInfo.bookingCode || ''}}</view>
+    </view>
+    <view class="row">
+      <view class="tit">下单时间:</view>
+      <view class="info">{{dataInfo.createTime || ''}}</view>
+    </view>
+    <view class="row" wx:if="{{dataInfo.status == 3}}">
+      <view class="tit">核销时间:</view>
+      <view class="info">{{dataInfo.completeTime}}</view>
+    </view>
+    <view class="row" wx:if="{{dataInfo.status == 5}}">
+      <view class="tit">关闭时间</view>
+      <view class="info">{{dataInfo.closeTime }}</view>
+    </view>
+    <view class="row" wx:if="{{dataInfo.status == 4}}">
+      <view class="tit">取消时间</view>
+      <view class="info">{{dataInfo.cancelTime}}</view>
+    </view>
+  </view>
+  <!-- 预约码 -->
+  <view class="take-code {{dataInfo.status == 3?'inactive':''}}" wx:if="{{showTakeCode}}">
+    <view>
+      <view class="body">
+        <view class="code">
+          <text wx:if="{{dataInfo.status == 3}}">预约码已使用</text>
+          <text wx:else >预约码</text>
+          <text class="code-text">: {{ dataInfo.bookingCode }}</text>
+        </view>
+        <image class="qr" lazy-load mode="aspectFill" src="{{takeCodeQr}}"></image>
+      </view>
+      <image class="coupon-bg" lazy-load mode="aspectFill" src="https://qiniu.icaodong.com/xcx/common/write-off-coupon-bg.png?v=1.0.0"></image>
+      <view class="footer">
+        <view class="item">
+          <view class="label">预约门店：</view>
+          <view class="content">{{ dataInfo.storeName}}</view>
+        </view>
+        <view class="item">
+          <view class="label">门店地址：</view>
+          <view class="content">{{ dataInfo.storeAddress }}</view>
+        </view>
+      </view>
+      <view class="close-wrap" bindtap="hideTake">
+        <text class="icon icon-times"></text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="footers {{iPhoneX?'iPhoneXpb':''}}" wx:if="{{dataInfo.status == 1|| dataInfo.status == 2 || dataInfo.status == 3}}">
+  <view class="footer-l"></view>
+  <view class="footer-r">
+    <block wx:if="{{dataInfo.status == 1|| dataInfo.status == 2}}">
+      <view class="cancelBk" bindtap="cancelBk">取消预约</view>
+    </block>
+    <block wx:if="{{dataInfo.status == 1|| dataInfo.status == 2 || dataInfo.status == 3}}">
+      <view class="bkCode  {{dataInfo.status == 1 || dataInfo.status == 2?'bkCode-active':'bkCode'}}" bindtap="showTake">
+        预约码
+      </view>
+    </block>
+  </view>
+</view>
+<jz-popup-radio-picker title="取消预约原因" show="{{ showReasonPicker }}" list="{{ bokkingList }}" bind:submit="onReasonSubmit" />
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

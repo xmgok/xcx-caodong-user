@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "吸粉",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

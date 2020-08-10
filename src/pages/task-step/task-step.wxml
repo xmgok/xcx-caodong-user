@@ -1,0 +1,352 @@
+<view class="page">
+  <view class="task3-common-wrap">
+    <view class="my-title">{{resData.name}}</view>
+    <view class="time">活动时间：{{resData.beginTime}} 至 {{resData.endTime}}</view>
+    <view class="left-right">
+      <view class="left">
+        <view class="poa1">已完成分享(步)</view>
+        <view class="poa2">{{resData.step}}</view>
+        <view class="poa3">共计 {{resData.stepNumber}}步</view>
+      </view>
+      <view class="right">
+        <view class="poa1">已得金币</view>
+        <view class="poa2">{{resData.gold}}</view>
+        <view class="poa3">总金币 {{resData.totalGold}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="list-wrap_new" wx:if="{{resData.listBffRecord.length}}">
+    <!--
+    item.timeStatus==1 未开始
+    item.timeStatus==2 进行中
+    item.timeStatus==3 已结束
+    item.status==0 未完成
+    item.status==1 已完成
+    inactive
+    -->
+    <view class="list {{item.timeStatus!=2?'inactive':''}}" wx:for="{{resData.listBffRecord}}" wx:key="index">
+      <view class="my-title">
+        <view class="line"></view>
+        <view class="text">步骤 {{index+1}}/{{resData.listBffRecord.length}}</view>
+      </view>
+      <view class="my-main">
+        <view class="main-title">{{item._title}}</view>
+        <!--任务未开始-->
+        <view class="time-wrap" wx:if="{{item.timeStatus==1}}">
+          <view class="icon icon-time"></view>
+          <view class="my-time-last">{{item.beginTimeStr}}</view>
+          <view class="my-time-end">开始</view>
+          <view class="my-time-line">|</view>
+          <image class="my-time-money" lazy-load mode="aspectFill"
+                 src="https://qiniu.icaodong.com/xcx/common/money.png?v=1.0.0"></image>
+          <view class="my-time-reward">{{item.reward}}金币</view>
+        </view>
+        <!--任务进行中-->
+        <view class="time-wrap" wx:if="{{item.timeStatus==2}}">
+          <view class="icon icon-time"></view>
+          <view class="my-time-last">剩余</view>
+          <view class="my-time-num">
+            <view wx:if="{{item.remainingSecondsFormat.day>0}}">{{item.remainingSecondsFormat.day}}天</view>
+            <view>
+              {{item.remainingSecondsFormat.hours}}:{{item.remainingSecondsFormat.minutes}}:{{item.remainingSecondsFormat.seconds}}
+            </view>
+          </view>
+          <view class="my-time-end">结束</view>
+          <view class="my-time-line">|</view>
+          <!--任务未完成-->
+          <block wx:if="{{item.status==0}}">
+            <image class="my-time-money" lazy-load mode="aspectFill"
+                   src="https://qiniu.icaodong.com/xcx/common/money.png?v=1.0.0"></image>
+            <view class="my-time-reward">{{item.reward}}金币</view>
+          </block>
+          <!--任务已完成-->
+          <block wx:if="{{item.status==1}}">
+            <view class="my-time-reward">已获得{{item.reward}}金币</view>
+          </block>
+        </view>
+        <!--任务已结束-->
+        <view class="time-wrap" wx:if="{{item.timeStatus==3}}">
+          <view class="icon icon-time"></view>
+          <view class="my-time-last">已结束</view>
+        </view>
+        <view class="sub-main">
+          <view class="sub-title-wrap">
+            <view class="sub-title">{{item.shareDesc}}</view>
+            <view class="copy-btn" data-text="{{item.shareDesc}}" bindtap="copy">复制</view>
+          </view>
+          <!--软文-转发-->
+          <block wx:if="{{item.type==1}}">
+            <view class="main-article">
+              <image lazy-load class="img" mode="aspectFill"
+                     src="{{item.shareImg}}"></image>
+              <view class="text">{{item.shareDesc}}</view>
+            </view>
+          </block>
+          <!--图片-下载-->
+          <block wx:if="{{item.type==2}}">
+            <view class="main-img">
+              <image
+                wx:for="{{item.imgsUrl}}" wx:for-item="item2" wx:key="index" lazy-load class="img" mode="aspectFill"
+                data-img-urls="{{item.imgsUrl}}" data-index="{{index}}" bindtap="previewImage"
+                src="{{item2}}"></image>
+            </view>
+          </block>
+          <!--视频-下载-->
+          <block wx:if="{{item.type==3}}">
+            <view class="main-video">
+              <video wx:for="{{item.imgsUrl}}" wx:key="index" class="video" src="{{item}}"></video>
+            </view>
+          </block>
+          <!--商品-转发-->
+          <block wx:if="{{item.type==4}}">
+            <view class="main-goods">
+              <navigator url="/pages/product/product?id={{item2.id}}" hover-class="none" class="item"
+                         wx:for="{{item.productList}}" wx:for-item="item2" wx:for-index="index2"
+                         wx:key="index2">
+                <image lazy-load class="img" mode="aspectFill"
+                       src="{{item2.imgUrl}}"></image>
+                <view class="content">
+                  <view class="content-title">{{item2.name}}</view>
+                  <view class="content-price">¥ {{item2.price}}</view>
+                </view>
+                <view wx:if="{{item.timeStatus==2}}" class="g-btn" data-item="{{item2}}" data-rule-id="{{item.id}}"
+                      catchtap="onShareGoods">转发
+                </view>
+                <view wx:elif="{{item.timeStatus==3}}" class="g-btn">已结束</view>
+              </navigator>
+            </view>
+          </block>
+          <!--优惠券-转发-->
+          <block wx:if="{{item.type==5}}">
+            <view class="main-coupon">
+              <navigator url="/pages/coupon-detail/coupon-detail?id={{item2.id}}" hover-class="none" class="item"
+                         wx:for="{{item.couponList}}" wx:for-item="item2" wx:for-index="index2"
+                         wx:key="index2">
+                <view class="img-wrap">
+                  <image lazy-load class="img" mode="aspectFill"
+                         src="https://qiniu.icaodong.com/xcx/common/task-coupon-bg.png?v=1.0.0"></image>
+                  <view class="img-text">¥{{item2._price_big}}</view>
+                </view>
+                <view class="content">
+                  <view class="content-title">{{item2.name}}</view>
+                  <view class="content-price" wx:if="{{item2.usePrice && item2.usePrice!== '0.00'}}">
+                    满{{item2.usePrice}}可用
+                  </view>
+                  <view class="content-price" wx:else>无门槛</view>
+                </view>
+                <view wx:if="{{item.timeStatus==2}}" class="g-btn" data-item="{{item2}}" data-rule-id="{{item.id}}"
+                      catchtap="onShareCoupons">转发
+                </view>
+                <view wx:elif="{{item.timeStatus==3}}" class="g-btn">已结束</view>
+              </navigator>
+            </view>
+          </block>
+          <!--视频购物-转发-->
+          <!--暂时不做-->
+          <!--<block wx:if="{{item.type==6}}">
+            <view class="main-video-buy">
+              <view class="item" wx:for="{{item.taskRangeList}}" wx:for-item="item2" wx:for-index="index2"
+                    wx:key="index2">
+                <video class="video" src="http://cdqn.zhimeiplus.com/video/100_1563524162414_76219024.mp4"></video>
+                <view wx:if="{{item.timeStatus==2}}" class="g-btn" data-item="{{item2}}" bindtap="onShareCoupons">转发</view>
+                <view wx:elif="{{item.timeStatus==3}}" class="g-btn">已结束</view>
+              </view>
+            </view>
+          </block>-->
+          <!--砍价-转发-->
+          <block wx:if="{{item.type==7}}">
+            <view class="main-goods main-bargain">
+              <navigator url="/pages/product/product?id={{item2.id}}" hover-class="none" class="item"
+                         wx:for="{{item.reduceList}}" wx:for-item="item2" wx:for-index="index2"
+                         wx:key="index2">
+                <image lazy-load class="img" mode="aspectFill"
+                       src="{{item2.productImg}}"></image>
+                <view class="content">
+                  <view class="content-title">{{item2.productName}}</view>
+                  <view class="content-price">
+                    <text>¥ {{item2.minPrice}}</text>
+                    <text class="ml5" style="text-decoration:line-through;color:#96989c;">¥ {{item2.productPrice}}</text>
+                  </view>
+                </view>
+                <view wx:if="{{item.timeStatus==2}}" class="g-btn" data-item="{{item2}}" data-rule-id="{{item.id}}"
+                      catchtap="onShareBargain">转发
+                </view>
+                <view wx:elif="{{item.timeStatus==3}}" class="g-btn">已结束</view>
+              </navigator>
+            </view>
+          </block>
+          <!--瓜分券-转发-->
+          <block wx:if="{{item.type==8}}">
+            <view class="main-coupon main-coupon-split">
+              <navigator url="/pages/coupon-detail/coupon-detail?id={{item2.id}}" hover-class="none" class="item"
+                         wx:for="{{item.distCouponList}}" wx:for-item="item2" wx:for-index="index2"
+                         wx:key="index2">
+                <view class="img-wrap">
+                  <image lazy-load class="img" mode="aspectFill"
+                         src="https://qiniu.icaodong.com/xcx/common/task-coupon-split-bg.png?v=1.0.0"></image>
+                  <view class="img-text">¥{{item2._price_big}}</view>
+                </view>
+                <view class="content">
+                  <view class="content-title">{{item2.name}}</view>
+                  <view class="content-price" wx:if="{{item2.distType==1}}">
+                    {{item2.distNum}}人每人{{item2.price}}元
+                  </view>
+                  <view class="content-price" wx:if="{{item2.distType==2}}">
+                    {{item2.distNum}}人瓜分{{item2.price}}元
+                  </view>
+                </view>
+                <view wx:if="{{item.timeStatus==2}}" class="g-btn" data-item="{{item2}}" data-rule-id="{{item.id}}"
+                      catchtap="onShareCouponsSplit">转发
+                </view>
+                <view wx:elif="{{item.timeStatus==3}}" class="g-btn">已结束</view>
+              </navigator>
+            </view>
+          </block>
+        </view>
+        <view wx:if="{{item.timeStatus!=1}}" class="my-footer-wrap">
+          <view class="my-footer">
+            <view class="footer-head-wrap" wx:if="{{item.headImgs.length}}">
+              <image wx:for="{{item.headImgs}}" wx:key="index" lazy-load class="img" mode="aspectFill"
+                     src="{{item}}"></image>
+            </view>
+            <view class="footer-text" wx:if="{{item.forwardNumber}}">
+              <text>{{item.forwardNumber}}人转发</text>
+              <text wx:if="{{item.type==2||item.type==3}}"> {{item.isForward?'您已保存':'您尚未保存'}}</text>
+              <text wx:if="{{item.type!=2&&item.type!=3}}"> {{item.isForward?'您已转发':'您尚未转发'}}</text>
+            </view>
+            <view wx:else class="footer-text">
+              <text>暂时还没人</text>
+              <text>{{(item.type==2||item.type==3)?'保存':''}}</text>
+              <text>{{(item.type!=2&&item.type!=3)?'转发':''}}</text>
+              <text>，快</text>
+              <text>{{(item.type==2||item.type==3)?'保存':''}}</text>
+              <text>{{(item.type!=2&&item.type!=3)?'转发':''}}</text>
+              <text>起来～</text>
+            </view>
+          </view>
+          <!--进行中-->
+          <block wx:if="{{item.timeStatus==2}}">
+            <!--软文-转发-->
+            <block wx:if="{{item.type==1}}">
+              <view
+                class="g-btn"
+                data-task-id="{{resData.id}}" data-rule-id="{{item.id}}" data-step="{{index+1}}"
+                bindtap="forward">
+                转发
+              </view>
+            </block>
+            <!--图片-下载-->
+            <block wx:if="{{item.type==2}}">
+              <view class="g-btn" data-item="{{item}}" bindtap="onShareImages">保存海报</view>
+            </block>
+            <!--视频-下载-->
+            <block wx:if="{{item.type==3}}">
+              <view class="g-btn" data-item="{{item}}" bindtap="onSaveVideo">保存视频</view>
+            </block>
+          </block>
+          <!--已结束-->
+          <block wx:if="{{item.timeStatus==3}}">
+            <!--软文-转发-->
+            <block wx:if="{{item.type==1}}">
+              <view class="g-btn">已结束</view>
+            </block>
+            <!--图片-下载-->
+            <block wx:if="{{item.type==2}}">
+              <view class="g-btn">已结束</view>
+            </block>
+            <!--视频-下载-->
+            <block wx:if="{{item.type==3}}">
+              <view class="g-btn">已结束</view>
+            </block>
+            <!--商品-转发-->
+            <block wx:if="{{item.type==4}}">
+            </block>
+            <!--优惠券-转发-->
+            <block wx:if="{{item.type==5}}">
+            </block>
+            <!--视频购物-转发-->
+            <block wx:if="{{item.type==6}}">
+            </block>
+            <!--砍价-转发-->
+            <block wx:if="{{item.type==7}}">
+            </block>
+            <!--瓜分券-转发-->
+            <block wx:if="{{item.type==8}}">
+            </block>
+          </block>
+        </view>
+        <view wx:if="{{item.timeStatus==1}}" class="g-btn no-start">未开始</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--图片海报-->
+<component-share
+  bindclose="closeShareImages"
+  wx:if="{{showShareImages}}"
+  show="{{showShareImages}}"
+  isShowShareButton="{{false}}"
+  activeType="other"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  checkIdList="{{[]}}"
+  bindsaved="savedImg" />
+
+<!--商品海报-->
+<component-share
+  bindclose="closeShareGoods"
+  wx:if="{{showShareGoods}}"
+  show="{{showShareGoods}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  productId="{{productId}}"
+  shareUrll="{{shareUrl}}"
+  bindsaved="saved" />
+
+<!--优惠券海报-->
+<component-share
+  bindclose="closeShareCoupons"
+  wx:if="{{showShareCoupons}}"
+  show="{{showShareCoupons}}"
+  activeType="other"
+  activePrice="{{activePrice}}"
+  otherText="优惠"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved" />
+
+<!--砍价海报-->
+<component-share
+  bindclose="closeShareBargain"
+  wx:if="{{showShareBargain}}"
+  show="{{showShareBargain}}"
+  activeType="other"
+  activePrice="{{activePrice}}"
+  otherText="砍价"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved" />
+
+<!--瓜分券海报-->
+<component-share
+  bindclose="closeShareCouponsSplit"
+  wx:if="{{showShareCouponsSplit}}"
+  show="{{showShareCouponsSplit}}"
+  activeType="other"
+  activePrice="{{activePrice}}"
+  otherText="瓜分"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved" />

@@ -1,0 +1,25 @@
+<template name="item">
+  <navigator
+    class="img-item"
+    wx:for="{{listData2}}"
+    wx:key="index"
+    wx:if="{{ index % 2 === (isEven ? 0 : 1) }}"
+    url="{{item._navigatorUrl}}"
+    hover-class="none">
+    <view class="multi-tag" wx:if="{{item.imgUrl.length > 1}}"><text class="icon icon-picture-multi"></text>{{item.imgUrl.length}}</view>
+    <view style="position: relative">
+      <image lazy-load wx:if="{{item.type > 1}}" class="video-bg" mode="aspectFill" src="https://qiniu.icaodong.com/xcx/common/video-bg.png?v=1.0.0"></image>
+      <image lazy-load class="img" mode="aspectFill" src="{{item.imgUrl[0]}}" bindload="bindLoadImg" data-id="{{item.id}}" style="width: {{item._width}}rpx; height: {{item._height}}rpx;"></image>
+    </view>
+    <view class="info">
+      <div class="info-item">
+        <image lazy-load class="portrait" mode="aspectFill" src="{{item.headUrl ? item.headUrl : 'https://qiniu.icaodong.com/xcx/common/default-header.png?v=1.0.0'}}"></image>
+        <view class="name">{{item.userName}}</view>
+      </div>
+      <div class="info-item">
+        <view class="name">{{item._createTime}}</view>
+        <view class="down-num"><text class="icon icon-fire"></text>{{item.useTotal}}</view>
+      </div>
+    </view>
+  </navigator>
+</template>

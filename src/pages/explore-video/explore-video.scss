@@ -1,0 +1,633 @@
+@import "../../styles/mixin";
+
+page,
+.container,
+.video-wrap,
+.video {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  background-color: #ffffff;
+  &.only-img {
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-wrap {
+  flex: 1;
+}
+
+.hide {
+  display: none;
+}
+
+.navigate-back {
+  position: absolute;
+  left: 8px;
+  top: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  bottom: 120px;
+  width: 36px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-items: flex-end;
+  .btn-item {
+    position: relative;
+    width: 50px;
+    color: #ffffff;
+    padding-top: 20px;
+    /* cover-view 无法使用icon-font  */
+    .icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 5px;
+      color: #ffffff;
+    }
+    .btn-share-wrap {
+      width: 36px;
+      height: 36px;
+      position: relative;
+      .btn-share {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0);
+        &:after {
+          border: none;
+        }
+      }
+    }
+    .title {
+      font-size: 10px;
+      color: #fafafa;
+      margin-left: 5px;
+    }
+    .dot {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      border-radius: 50%;
+      background-color: $primary;
+      border: 1px solid #ffffff;
+      font-size: 12px;
+      font-family: PingFangSC-Semibold;
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+}
+
+.user-desc {
+  width: 100%;
+  color: #ffffff;
+  .name {
+    padding: 0 10px;
+    font-size: 16px;
+    height: 22px;
+    line-height: 22px;
+  }
+  .title {
+    padding: 4px 10px 10px;
+    font-size: 14px;
+    height: 40px;
+    @include ellipsis2(2, 20)
+  }
+}
+
+.footer {
+  background-color: #000000;
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    width: 100%;
+    height: 56px;
+  }
+  .input-wrap {
+    width: 152px;
+    height: 32px;
+    color: #ffffff;
+    background: rgba(#ffffff, 0.3);
+    font-size: 13px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    .icon {
+      font-size: 12px;
+      color: #ffffff;
+      margin-right: 8px;
+    }
+  }
+
+  .action-wrap {
+    display: flex;
+    margin-left: 27px;
+    height: 32px;
+    .action-item {
+      position: relative;
+      font-size: 16px;
+      margin-right: 28px;
+      color: #ffffff;
+      .icon {
+        font-size: 16px;
+        &.active {
+          color: $red;
+        }
+      }
+      .num {
+        position: absolute;
+        bottom: -10px;
+        right: -12px;
+        font-size: 11px;
+      }
+    }
+    .btn-share-wrap {
+      position: relative;
+      margin-right: 36px;
+      .share {
+        width: 30px;
+        height: 30px;
+      }
+      .btn-share {
+        padding: 0;
+        position: absolute;
+        top: -4px;
+        right: auto;
+        bottom: 0;
+        left: -9px;
+        background: transparent;
+        &:after {
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+.placeholder {
+  color: #ffffff;
+}
+
+.pop-selector {
+  max-height: 520px !important;
+  background-color: $white-smoke !important;
+  .popup-header {
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #ffffff;
+    font-family: PingFangSC-Medium;
+    .btn-close {
+      &-wrap {
+        position: absolute;
+        right: 0;
+        display: inline-block;
+        width: 44px;
+        height: 44px;
+      }
+      display: inline-block;
+      position: absolute;
+      right: 15px;
+      font-size: 12px;
+      color: $text-secondary;
+    }
+  }
+  .popup-content {
+    position: relative;
+    max-height: 400px;
+    overflow-y: scroll;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background-color: $white-smoke;
+  }
+}
+
+// 商品选择列表
+.goods-selector {
+  max-height: 520px !important;
+  min-height: 300px !important;
+  .popup-footer {
+    box-sizing: border-box;
+    padding: 7px;
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9;
+    .btn-submit {
+      margin: 0 auto;
+      width: 345px;
+      height: 42px;
+      line-height: 42px;
+      text-align: center;
+      font-size: 16px;
+      font-family: PingFangSC-Medium;
+      font-weight: 500;
+      color: $btn-primary-color;
+      background-color: $btn-primary-bg;
+      border-radius: $btn-border-radius;
+    }
+  }
+  .popup-content {
+    padding-bottom: 56px;
+  }
+}
+
+.goods-detail-selector {
+  min-height: 300px !important;
+  .popup-header {
+    .title {
+      color: $text-secondary;
+      font-size: 12px;
+      font-weight: normal;
+      font-family: PingFangSC-Regular;
+      position: relative;
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background-color: $gray-lighter;
+      }
+      &::before {
+        left: -50px;
+      }
+      &::after {
+        right: -50px;
+      }
+    }
+  }
+  .popup-content {
+    max-height: 475px;
+    overflow-y: scroll;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background-color: #ffffff;
+  }
+}
+
+.comment-selector {
+  min-height: 300px !important;
+  .popup-header {
+    .title {
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+  .popup-content {
+    max-height: 475px;
+    background-color: #ffffff;
+  }
+  .comment-list {
+    overflow-y: scroll;
+    max-height: 420px;
+    padding: 0 15px 54px;
+    box-sizing: border-box;
+  }
+  .inner-comment-list {
+    position: relative;
+    margin-top: 15px;
+    .comment-item {
+      display: flex;
+      .avatar {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+      }
+    }
+    .right-action {
+      position: absolute;
+      right: -48px;
+    }
+  }
+  .comment-item {
+    display: flex;
+    margin-bottom: 20px;
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+    }
+    .center-content {
+      flex: 1;
+      margin-left: 15px;
+      padding-right: 30px;
+      .title {
+        font-size: 13px;
+        color: $text-secondary;
+        font-family: PingFangSC-Medium;
+        font-weight: 500;
+        line-height: 18px;
+        margin-bottom: 6px;
+      }
+      .comment-text {
+        font-size: 14px;
+        line-height: 20px;
+        word-break: break-all;
+        .text-muted {
+          color: $text-secondary;
+        }
+        .date {
+          font-size: 12px;
+          color: $text-secondary;
+          margin-left: 5px;
+        }
+      }
+    }
+    .comment-expand {
+      margin-top: 10px;
+      margin-left: 35px;
+      font-size: 12px;
+      color: $text-secondary;
+      line-height: 17px;
+      .icon {
+        margin-left: 6px;
+        font-size: 10px;
+        color: $text-secondary;
+      }
+      &.expand .icon {
+        transform: rotate(180deg);
+      }
+    }
+    .right-action {
+      margin-top: 10px;
+      width: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: $text-secondary;
+      font-size: 12px;
+      .icon {
+        font-size: 18px;
+        &.active {
+          color: $red;
+        }
+      }
+      .num {
+        text-align: center;
+      }
+    }
+  }
+  .enter-comment {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    height: 52px;
+    border-top: 1px solid $gray-lighter;
+    font-size: 14px;
+    background-color: #ffffff;
+    .icon {
+      font-size: 14px;
+      margin-right: 8px;
+      color: $text-secondary;
+    }
+    .input {
+      flex: 1;
+    }
+  }
+  .no-data {
+    text-align: center;
+    color: $text-secondary;
+    font-size: 12px;
+  }
+}
+
+.more-action-selector {
+  .popup-content {
+    height: 157px;
+    background-color: #ffffff;
+  }
+  .action-list {
+    padding: 15px 20px;
+    display: flex;
+  }
+  .action-item {
+    width: 48px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #666666;
+    text-align: center;
+  }
+  .icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    .icon {
+      font-size: 20px;
+      color: #4a4a4a;
+    }
+  }
+  .btn-cancel {
+    height: 52px;
+    font-size: 15px;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.coupon-selector {
+  min-height: 300px !important;
+  .popup-content {
+    max-height: 405px;
+    //padding: 10px 15px;
+    background-color: $white-smoke;
+    .gap-bottom-fix {
+      background-color: $white-smoke;
+      &::before {
+        background-color: $white-smoke;
+      }
+    }
+    .btn-draw {
+      position: absolute;
+      bottom: 18px;
+      right: 15px;
+      background-color: $btn-primary-bg;
+      border-radius: 14px;
+      height: 25px;
+      line-height: 25px;
+      padding: 0 12px;
+      font-size: 12px;
+      color: $btn-primary-color;
+      &.disabled {
+        background-color: $btn-disabled-bg;
+      }
+    }
+  }
+}
+
+// 商品列表项
+.goods-item {
+  box-sizing: border-box;
+  padding: 15px;
+  margin: 10px;
+  width: 355px;
+  min-height: 100px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  .radio-wrap {
+    width: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .goods-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+  }
+  .content {
+    flex: 1;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .title {
+      font-size: 14px;
+      color: $text-primary;
+      height: 20px;
+      line-height: 20px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      @include ellipsis(1, 20px, 205px)
+    }
+    .sub-title {
+      color: $text-secondary;
+      font-size: 12px;
+    }
+    .price-wrap {
+      line-height: 1;
+      color: $text-price;
+      font-weight: bold;
+      .sm {
+        display: inline-block;
+        font-size: 12px;
+      }
+      .lg {
+        display: inline-block;
+        font-size: 18px;
+      }
+      .del {
+        display: inline-block;
+        margin-left: 4px;
+        font-size: 12px;
+        color: $text-secondary;
+        text-decoration: line-through;
+      }
+    }
+    .input-number-wrap {
+      margin-top: 5px;
+      height: 30px;
+      line-height: 30px;
+    }
+    .input-number-plus,
+    .input-number-minus {
+      width: 24px;
+      height: 24px;
+    }
+    .input-number-input {
+      width: 36px;
+      height: 24px;
+      line-height: 24px;
+      vertical-align: middle;
+    }
+    .flex-row {
+      display: flex;
+      align-items: center;
+      .input-number-wrap {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.hover-input {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 9;
+  &.hide {
+    display: none;
+  }
+  .comment-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 14px;
+  }
+}
+
+.no-data {
+  font-size: 16px;
+  color: #666666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .icon-wrap {
+    width: 152px;
+    height: 152px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    background-color: #e6e6e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .icon {
+      font-size: 72px;
+      color: #ffffff;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<!--获取手机号-->
+<view>
+  <view class="g-phone-auth-wrap" wx:if="{{isShow&&isPlaceholder}}"></view>
+  <view class="get-mobile {{location}}" wx:if="{{isShow}}">
+    <view class="con" bindtap="cancel">
+      <view class="my-icon icon icon-times"></view>
+      <view class="title">授权手机号码，获取会员权益</view>
+    </view>
+    <view wx:if="{{isBindGetPhoneNumber}}" class="btn">立即授权</view>
+    <button wx:else class="btn" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">立即授权</button>
+  </view>
+</view>

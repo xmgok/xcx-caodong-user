@@ -1,0 +1,174 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+/*@import "/styles/common.scss";*/
+/*@import "/styles/utils.scss";*/
+@import "../../styles/variables";
+@import "./goods-list-user";
+
+.container {
+  overflow-x: hidden;
+}
+
+.line-height-placeholder {
+  line-height: rpx2(18);
+  position: absolute;
+  left: -999999px;
+  top: -999999px;
+}
+
+.goods-list {
+  padding-left: rpx2(15);
+
+  .goods-image {
+    border-radius: rpx2(3);
+    box-shadow: 0 rpx2(2) rpx2(4) 0 rgba(0, 0, 0, .1);
+  }
+
+  .goods-item {
+    display: flex;
+    margin-top: rpx2(14);
+    background-color: #ffffff;
+
+    &:first-child {
+      margin-top: 0;
+    }
+    &:not(:last-child) .right-content {
+      border-bottom: rpx(1) solid $white-smoke;
+    }
+    &:last-child {
+      border-bottom: rpx(1) solid $white-smoke;
+    }
+    &:only-child {
+      border-bottom: none !important;
+    }
+
+    .goods-image {
+      margin-right: rpx2(10);
+      width: rpx2(50);
+      height: rpx2(50);
+    }
+
+    .right-content {
+      flex: 1;
+      padding-bottom: rpx2(20);
+      padding-right: rpx2(10);
+      .title {
+        margin: rpx2(5) 0;
+        color: $text-primary;
+        font-size: rpx2(14);
+        font-weight: bold;
+        @include ellipsis2(2, 20);
+      }
+      .goods-detail {
+        line-height: rpx2(18);
+        margin-top: rpx2(10);
+        color: $text-secondary;
+        font-size: rpx2(13);
+        word-break: break-all;
+      }
+      .fold-toggle {
+        margin: rpx2(6) rpx2(6) rpx2(14) 0;
+        display: inline-block;
+        color: $text-primary;
+        font-size: rpx2(13);
+        .icon {
+          margin-left: rpx2(5);
+          transition: all 1s;
+        }
+      }
+
+      .img-gallery {
+        width: rpx2(293);
+        position: relative;
+        // margin-left: rpx2(-3);
+        display: flex;
+        flex-wrap:wrap;
+        .img-item {
+          align-items:center;
+          margin-bottom: rpx2(4);
+          //margin-right: rpx2(4);
+          width: rpx2(95);
+          height: rpx2(95);
+          border-radius: rpx2(3);
+          margin-right: 4px;
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+        }
+        .all-material {
+          position: absolute;
+          bottom: rpx2(4);
+          right: 0;
+          padding: rpx2(2) rpx2(7);
+          border-top-left-radius: rpx2(3);
+          border-bottom-right-radius: rpx2(3);
+          color: white;
+          background-color: rgba($black-light, 0.5);
+          font-size: rpx2(10);
+          &--active {
+            bottom: rpx2(34);
+          }
+        }
+      }
+
+      .tag-list {
+        .tag {
+          padding: 0 rpx2(4);
+          margin-right: rpx2(4);
+          display: inline-block;
+          vertical-align: middle;
+          color: #ffffff;
+          font-size: rpx2(11);
+          background: linear-gradient(180deg, #e2ae70 0%, #c2763d 100%);
+          border-radius: rpx2(8) rpx2(3) rpx2(8) rpx2(3);
+          &.recommend {
+            background: linear-gradient(180deg, #d097ff 0%, #a35eff 100%);
+          }
+          .icon {
+            margin-right: rpx2(4);
+            font-size: rpx2(15);
+            vertical-align: rpx2(-1);
+          }
+        }
+      }
+
+      .price-container {
+        display: flex;
+      }
+      .commission-wrap {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 15px;
+      }
+      .commission-text {
+        font-size: 12px;
+        margin-left: 10px;
+        margin-right: 3px;
+      }
+      .commission-price {
+        font-size: 14px;
+        color: $text-price;
+      }
+
+      .footer {
+        margin-top: rpx2(16);
+        color: $text-primary;
+        font-size: rpx2(12);
+        .icon {
+          font-size: rpx2(14);
+          margin-right: rpx2(6);
+        }
+        .right-link {
+          float: right;
+          font-weight: bold;
+          .icon {
+            margin-left: rpx2(24);
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,131 @@
+@import "../../../../styles/config";
+
+page {
+  background: #ffffff;
+  color: $text-primary;
+}
+
+.banner {
+  width: 375px;
+  height: 210px;
+}
+
+.invite-wrap {
+  padding-bottom: 25px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $border-color;
+
+  .invite {
+    background: #fff2e3;
+    display: flex;
+    align-items: center;
+    border-radius: 500px;
+    font-size: 14px;
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .nickname {
+      margin-left: 10px;
+      margin-right: 5px;
+      color: #ff8000;
+    }
+  }
+}
+
+.title {
+  margin-left: -15px;
+  padding-left: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: $text-primary;
+  line-height: 25px;
+  border-left: 5px solid $red;
+  margin-bottom: 15px;
+}
+
+.request-result {
+  width: 355px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px 0 rgba(#e83100, 0.1);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  margin: -20px auto 0;
+
+  .icon-item {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background: $btn-warning-gradient-bg;
+    font-size: 26px;
+    color: #ffffff;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+
+  .icon-fail {
+    font-weight: bold;
+  }
+
+  .result {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: $text-primary;
+    line-height: 25px;
+    text-align: center;
+  }
+
+  .reason {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid $border-color;
+    font-size: 14px;
+    color: $text-secondary;
+    line-height: 20px;
+    text-align: center;
+  }
+}
+
+.new-wrap {
+  width: 355px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px 0 rgba(#e83100, 0.1);
+  border-radius: 8px;
+  margin: -20px auto 0;
+  padding: 20px 15px;
+  box-sizing: border-box;
+}
+
+.new-desc {
+  font-size: 14px;
+  color: $text-primary;
+  line-height: 24px;
+}
+
+.text-danger {
+  font-weight: bold;
+}
+
+.page-btn {
+  width: 295px;
+  height: 45px;
+  background: $btn-warning-gradient-bg;
+  box-shadow: $btn-warning-box-shadow;
+  border-radius: 23px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 60px auto;
+}

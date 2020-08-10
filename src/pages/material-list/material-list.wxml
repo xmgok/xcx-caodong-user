@@ -1,0 +1,100 @@
+<view class="container">
+  <view class="page-material-list">
+
+    <view class="hd-func">
+      <view class="goods-info">
+        <image class="image" lazy-load mode="aspectFill" src="{{productInfo.imgUrl}}"></image>
+        <navigator class="info" url="/pages/product/product?id={{productId}}" hover-class="none">
+          <view class="title">{{productInfo.name}}</view>
+          <view class="price"><component-mark isVip="{{productInfo.isVip}}"/>¥{{productInfo.price}}</view>
+        </navigator>
+      </view>
+
+      <view class="sort-wrap">
+        <picker class="tab" bindchange="bindTypeIndexChange" value="{{typeIndex}}" range="{{typeList}}">
+          <view class="picker">{{typeList[typeIndex]}}<text class="icon icon-angle-down"></text></view>
+        </picker>
+        <view class="zw"></view>
+        <view class="sort-item {{index == sortIndex ? '' : 'active'}}" wx:for="{{sortList}}" wx:key="index" data-index="{{index}}" bindtap="changeSort"><text class="icon icon-sort-{{item.sort ? 'down' : 'up'}}"></text>{{item.name}}</view>
+      </view>
+    </view>
+
+    <view class="fixed-bottom {{iPhoneX?'iPhoneXpb':''}}" wx:if="{{userType == 'staff'}}">
+      <navigator wx:if="{{userType == 'staff'}}" class="item-btn" url="/pages/upload-img/upload-img?productId={{productId}}" hover-class="none">上传图片</navigator>
+      <view class="item-btn {{userType=='staff' ? '' : 'onebtn'}} {{checkList.length > 0 ? 'active' : 'dis'}}" bindtap="goChooseImg">分享种草</view>
+    </view>
+
+    <view class="main">
+      <view class="item-main">
+        <view class="img-item" wx:for="{{listData}}" wx:key="index" wx:if="{{index%2==0}}" bindtap="checkChange" data-type="{{item.type}}" data-id="{{item.id}}" data-imgLen="{{item.imgUrl.length}}">
+          <view class="multi-tag" wx:if="{{item.imgUrl.length > 1}}"><text class="icon icon-picture-multi"></text>{{item.imgUrl.length}}</view>
+          <block wx:if="{{userType == 'staff'}}">
+            <view class="checkbox" wx:if="{{!item.checked}}"></view>
+            <view class="checkbox active" wx:if="{{item.checked}}"><icon type="success_no_circle" size="9" color="white"/></view>
+          </block>
+          <view style="position: relative">
+            <image lazy-load wx:if="{{item.type > 1}}" class="video-bg" mode="aspectFill" src="https://qiniu.icaodong.com/xcx/common/video-bg.png?v=1.0.0"></image>
+            <image lazy-load class="img" mode="aspectFill" src="{{item.imgUrl[0].url}}" bindload="bindLoadImg" data-id="{{item.id}}" style="width: {{item.imgUrl[0]._width}}rpx; height: {{item.imgUrl[0]._height}}rpx;"></image>
+          </view>
+
+          <view class="info">
+            <div class="info-item">
+              <image lazy-load class="portrait" mode="aspectFill" src="{{item.headUrl ? item.headUrl : 'https://qiniu.icaodong.com/xcx/common/default-header.png?v=1.0.0'}}"></image>
+              <view class="name">{{item.userName}}</view>
+            </div>
+            <div class="info-item">
+              <view class="name">{{item._createTime}}</view>
+              <view class="down-num"><text class="icon icon-fire"></text>{{item.useTotal}}</view>
+            </div>
+          </view>
+        </view>
+      </view>
+      <view class="item-main">
+        <view class="img-item" wx:for="{{listData}}" wx:key="index" wx:if="{{index%2==1}}" bindtap="checkChange" data-type="{{item.type}}" data-id="{{item.id}}" data-imgLen="{{item.imgUrl.length}}">
+          <view class="multi-tag" wx:if="{{item.imgUrl.length > 1}}"><text class="icon icon-picture-multi"></text>{{item.imgUrl.length}}</view>
+          <block wx:if="{{userType == 'staff'}}">
+            <view class="checkbox" wx:if="{{!item.checked}}"></view>
+            <view class="checkbox active" wx:if="{{item.checked}}"><icon type="success_no_circle" size="9" color="white"/></view>
+          </block>
+          <view style="position: relative">
+            <image lazy-load wx:if="{{item.type > 1}}" class="video-bg" mode="aspectFill" src="https://qiniu.icaodong.com/xcx/common/video-bg.png?v=1.0.0"></image>
+            <image lazy-load class="img" mode="aspectFill" src="{{item.imgUrl[0].url}}" bindload="bindLoadImg" data-id="{{item.id}}" style="width: {{item.imgUrl[0]._width}}rpx; height: {{item.imgUrl[0]._height}}rpx;"></image>
+          </view>
+          <view class="info">
+            <div class="info-item">
+              <image lazy-load class="portrait" mode="aspectFill" src="{{item.headUrl ? item.headUrl : 'https://qiniu.icaodong.com/xcx/common/default-header.png?v=1.0.0'}}"></image>
+              <view class="name">{{item.userName}}</view>
+            </div>
+            <div class="info-item">
+              <view class="name">{{item._createTime}}</view>
+              <view class="down-num"><text class="icon icon-fire"></text>{{item.useTotal}}</view>
+            </div>
+          </view>
+        </view>
+      </view>
+    </view>
+    <component-loading text="{{listData.length>0 ? '已经到底啦' : '暂无数据'}}" wx:if="{{getEnd}}"></component-loading>
+    <component-loading wx:else></component-loading>
+
+  </view>
+  <component-share
+    wx:if="{{showShare}}"
+    bindclose="close"
+    show="{{showShare}}"
+    imgList="{{checkList}}"
+    checkIdList="{{checkIdList}}"
+    productId="{{productId}}" />
+</view>
+
+<component-copyright custom-class="copyright" />
+
+
+
+
+
+
+
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

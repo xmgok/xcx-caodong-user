@@ -1,0 +1,24 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+/*@import "/styles/icons.scss";*/
+
+.copyright-container {
+  height: $copyright-height *1px;
+
+  .support-tip {
+    font-size: rpx2(16);
+    color: $gray;
+    width: 100%;
+    line-height: rpx2(80);
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+
+    .icon {
+      display: block;
+      padding-right: rpx2(5);
+      font-size: rpx2(20);
+      font-weight: normal;
+    }
+  }
+}

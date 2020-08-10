@@ -1,0 +1,68 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+@import "../../styles/variables";
+/*@import "/styles/common.scss";*/
+
+.coupon-popup-order {
+  .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: rpx2(13);
+    font-size: rpx2(14);
+    color: $text-secondary;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: right;
+  }
+}
+
+.coupon-container2 {
+  background: $white-smoke;
+
+  .header {
+    height: rpx2(42);
+    line-height: rpx2(42);
+    text-align: center;
+    background: white;
+    font-size: rpx2(16);
+  }
+
+  .not-use {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: rpx2(38);
+    background: white;
+    padding: 0 rpx2(15);
+    font-size: rpx2(14);
+    border-top: 0.5px solid $white-smoke;
+    .not-btns {
+      margin: 0 rpx2(5);
+      color: $gray-light;
+      font-size: rpx2(18);
+      .icon-checkbox-checked {
+        color: $primary;
+      }
+    }
+  }
+
+  .list-wrap {
+    max-height: rpx2(400);
+    overflow: auto;
+  }
+
+  .empty {
+    min-height: rpx2(300);
+    padding-top: rpx2(40);
+    text-align: center;
+    font-size: rpx2(14);
+    color: $text-secondary;
+    .img {
+      display: inline-block;
+      width: rpx2(120);
+      height: rpx2(120);
+      margin-bottom: rpx2(30);
+    }
+  }
+}

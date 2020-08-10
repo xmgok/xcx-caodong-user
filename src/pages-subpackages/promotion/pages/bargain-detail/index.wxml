@@ -1,0 +1,162 @@
+<view class="page" wx:if="{{!is500}}">
+  <view class="header" data-item="{{resData}}" bindtap="goGoodsDetail">
+    <image lazy-load class="img" mode="aspectFill"
+           src="{{resData.productImg}}"></image>
+    <view class="section">
+      <view class="title">{{resData.productName}}</view>
+      <view class="price-wrap">
+        <view class="price-symbol">底价</view>
+        <view class="price-big">￥{{resData.minPrice}}</view>
+        <view class="price-del">原价￥{{resData.productPrice}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="body">
+    <!--活动未结束-->
+    <block wx:if="{{!resData.isEnd}}">
+      <view class="desc">
+        已砍
+        <view class="highlight">{{resData.reduceAmount}}</view>
+        元，还能砍
+        <view class="highlight">{{resData.diffAmount}}</view>
+        元
+      </view>
+      <!--砍价已结束 inactive-->
+      <view class="progress {{resData.isExpire?'inactive':''}}">
+        <view class="progress-bar" style="width:{{resData.reduceRatio}}%;"></view>
+      </view>
+    </block>
+    <!--活动已结束-->
+    <block wx:else>
+      <view class="over">该砍价活动已结束～</view>
+    </block>
+    <view class="btn-wrap">
+      <!--活动未结束-->
+      <block wx:if="{{!resData.isEnd}}">
+        <!--自己点进来-->
+        <block wx:if="{{resData.isSelf}}">
+          <!--活动进行中-没砍到百分百-->
+          <block wx:if="{{resData._isRuningno100}}">
+            <view class="btn-left {{resData.isPay?'inactive':''}}" data-active-type="bargain" data-item="{{resData}}" catchtap="submit">立即购买</view>
+            <view class="btn-right {{resData.isPay?'inactive':''}}" data-item="{{resData}}" bindtap="onShareCoupons">邀好友帮砍</view>
+          </block>
+          <!--活动进行中-砍到了百分百-->
+          <block wx:if="{{resData._isRuningyes100}}">
+            <view class="btn-right w-reset {{resData.isPay?'inactive':''}}" data-active-type="bargain" data-item="{{resData}}" catchtap="submit">立即购买
+            </view>
+          </block>
+          <!--砍价已结束-砍价期限已过-->
+          <block wx:if="{{resData.isExpire}}">
+            <view style="width: 100%;" class="btn-right w-reset {{resData.isPay?'inactive':''}}" data-active-type="bargain" data-item="{{resData}}"
+                  catchtap="submit">立即购买
+            </view>
+          </block>
+        </block>
+        <!--被邀请者点进来-->
+        <block wx:else>
+          <view class="btn-left active" data-item="{{resData}}" bindtap="wantToJoin">我也要参加</view>
+          <view class="btn-right" bindtap="onBargain">帮好友砍一刀</view>
+        </block>
+      </block>
+      <!--活动已结束-->
+      <block wx:else>
+        <view style="background:rgba(204,204,204,1);" class="btn-right w-reset">活动已结束</view>
+      </block>
+    </view>
+    <!--活动进行中-没砍到百分百-->
+    <view class="time" wx:if="{{resData._isRuningno100}}">
+      还剩
+      <view class="highlight">
+        {{resData.remainingSecondsFormat.dayMergeToHours}}:{{resData.remainingSecondsFormat.minutes}}:{{resData.remainingSecondsFormat.seconds}}
+      </view>
+      结束，考验你友情的时候到了～
+    </view>
+    <!--活动进行中-砍到了百分百-->
+    <view class="time" wx:if="{{resData._isRuningyes100}}">
+      还剩
+      <view class="highlight">
+        {{resData.remainingSecondsFormat.dayMergeToHours}}:{{resData.remainingSecondsFormat.minutes}}:{{resData.remainingSecondsFormat.seconds}}
+      </view>
+      结束，已砍到底价～
+    </view>
+    <!--砍价已结束-砍价期限已过-->
+    <view class="time" wx:if="{{resData.isExpire}}">
+      本次砍价活动已结束，快去购买吧～
+    </view>
+    <!--活动已结束-->
+    <!--无-->
+  </view>
+  <view class="footer">
+    <view class="title">
+      <image lazy-load class="title-img" mode="aspectFill"
+             src="https://qiniu.icaodong.com/xcx/common/bargain-left.png?v=1.0.0"></image>
+      <view class="title-text">砍价记录</view>
+      <image lazy-load class="title-img" mode="aspectFill"
+             src="https://qiniu.icaodong.com/xcx/common/bargain-right.png?v=1.0.0"></image>
+    </view>
+    <view class="list">
+      <view class="item" wx:for="{{dataList}}" wx:key="index">
+        <image lazy-load class="img" mode="aspectFill"
+               src="{{item.headImg}}"></image>
+        <view class="content">
+          <view class="section">
+            <view class="section-title">{{item.nickname}}</view>
+            <view class="time">{{item.createTime}}</view>
+          </view>
+          <view class="aside">砍{{item.reduceAmount}}元</view>
+        </view>
+      </view>
+    </view>
+    <list-loading-more result="{{result}}" noMoreDataDesc="" icon="icon-order"
+                       iconStyle="margin-top: 20rpx;"
+                       noDataDesc="暂时没有相关记录哦~"></list-loading-more>
+  </view>
+</view>
+
+<view class="dialog-wrap" wx:if="{{showDialog}}">
+  <view class="mask"></view>
+  <view class="dialog">
+    <image lazy-load class="success1" mode="aspectFill"
+           src="https://qiniu.icaodong.com/xcx/common/bargain-success1.png?v=1.0.0"></image>
+    <image lazy-load class="success2" mode="aspectFill"
+           src="https://qiniu.icaodong.com/xcx/common/bargain-success2.png?v=1.0.0"></image>
+    <view class="content">
+      <view class="title">
+        成功帮好友砍掉
+        <view class="highlight">{{bargained}}</view>
+        元
+      </view>
+      <view class="btn" data-item="{{resData}}" bindtap="wantToJoin">我也要参加砍价</view>
+    </view>
+    <view class="close-wrap" bindtap="hideDialog">
+      <text class="icon icon-times"></text>
+    </view>
+  </view>
+</view>
+
+<!--优惠券海报-->
+<component-share
+  bindclose="closeShareCoupons"
+  wx:if="{{showShareCoupons}}"
+  show="{{showShareCoupons}}"
+  activeType="other"
+  activePrice="{{activePrice}}"
+  otherText="砍价"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  imgList="{{imgList}}"
+  price-switch="{{true}}"
+  checkIdList="{{[]}}"
+  bindsaved="saved" />
+
+<goods-purchase
+  wx:if="{{showPurchase}}"
+  show="{{showPurchase}}"
+  id="{{buyData.productId}}"
+  goodsType="1"
+  buyType="buy"
+  activeId="{{buyData.reduceId}}"
+  activeType="bargain"
+  recordId="{{buyData.recordId}}"
+  bind:selected="goodsPurchaseSelected"
+  bind:close="goodsPurchaseClose" />

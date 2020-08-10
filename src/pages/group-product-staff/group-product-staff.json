@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "活动详情",
+  "usingComponents": {
+    "component-share": "/components/share/share"
+  }
+}

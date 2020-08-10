@@ -1,0 +1,16 @@
+<view class="jz-radio custom-class">
+  <view class="jz-radio__input">
+    <radio-group bindchange="onChange">
+      <radio
+        value="{{ name }}"
+        checked="{{ value === name }}"
+        disabled="{{ disabled }}"
+        class="jz-radio__control"
+      />
+    </radio-group>
+    <text class="{{ iconClass }} icon {{ value === name ? 'icon-check-circle' : 'icon-circle' }}" custom-class="icon-class" />
+  </view>
+  <view class="jz-radio__label jz-radio__label--{{ labelPosition }} label-class" bindtap="onClickLabel">
+    <slot />
+  </view>
+</view>

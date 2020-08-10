@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "素材详情",
+  "usingComponents": {
+    "component-material-list": "/components/material-list/material-list",
+    "goods-purchase": "/components/goods-purchase/goods-purchase",
+    "component-share": "/components/share/share"
+  }
+}

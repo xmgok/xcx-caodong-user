@@ -1,0 +1,61 @@
+<view class='page'>
+  <view class="main">
+    <view class="column-wrap">
+      <view
+        class="live-item"
+        wx:for="{{listData}}"
+        wx:key="index"
+        bindtap="onShare"
+        data-index="{{index}}"
+        data-room-id="{{item.id}}"
+        wx:if="{{index % 2 === 0}}">
+        <!--<view class="badge">直播中</view>-->
+        <image class="poster" mode="widthFix" src="{{item.imgUrl}}" bindload="imgLoad" style="width: {{item._width}}rpx; height: {{item._height}}rpx;"></image>
+        <div class="info-wrap">
+          <view class="info-inner">
+            <image class="avatar" src="{{item.headImg}}"></image>
+            <view class="nickname">{{item.empName}}</view>
+            <view class="btn-share">
+              <text class="icon icon-share"></text>
+            </view>
+          </view>
+        </div>
+      </view>
+    </view>
+
+    <view class="column-wrap">
+      <view
+        class="live-item"
+        wx:for="{{listData}}"
+        wx:key="index"
+        bindtap="onShare"
+        data-index="{{index}}"
+        data-room-id="{{item.id}}"
+        wx:if="{{index % 2 === 1}}">
+        <!--<view class="badge">直播中</view>-->
+        <image class="poster" mode="widthFix" src="{{item.imgUrl}}" bindload="imgLoad" style="width: {{item._width}}rpx; height: {{item._height}}rpx;"></image>
+        <div class="info-wrap">
+          <view class="info-inner">
+            <image class="avatar" src="{{item.headImg}}"></image>
+            <view class="nickname">{{item.empName}}</view>
+            <view class="btn-share">
+              <text class="icon icon-yaoqinghaoyou"></text>
+            </view>
+          </view>
+        </div>
+      </view>
+    </view>
+  </view>
+
+  <view class="no-data" wx:if="{{!listData.length}}">暂无数据</view>
+</view>
+
+<component-share
+  wx:if="{{showShare}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}"
+  shareText="{{shareText}}"
+  shareUrll="{{shareUrl}}"
+  activeData="{{userInfo}}"
+  activeType="live"
+  saved="posterSaved" />

@@ -1,0 +1,257 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+@import "../../styles/variables";
+/*@import "/styles/common.scss";*/
+
+$type1: #ff5638;
+$type2: $type1;
+$type3: #d4a71e;
+$type4: #65c4aa;
+$type5: #7b8cb7;
+
+.g-coupon-item {
+  background: white;
+  display: flex;
+  height: rpx2(100);
+  padding: rpx2(20) 0 rpx2(18);
+  box-sizing: border-box;
+  box-shadow: 0 rpx2(2) rpx2(4) 0 rgba(0, 0, 0, 0.1);
+  border-radius: rpx2(5);
+  margin: 15px 10px;
+
+  /* 代金券 */
+  &.type1 {
+    .mark {
+      color: $type1;
+      background: rgba($type1, 0.1);
+    }
+
+    .btn {
+      background: $type1;
+    }
+
+    .price {
+      color: $type1;
+    }
+  }
+
+  /* 瓜分券 */
+  &.type2 {
+    .mark {
+      color: $type2;
+      background: rgba($type2, 0.1);
+    }
+
+    .btn {
+      background: $type2;
+    }
+
+    .price {
+      color: $type2;
+    }
+  }
+
+  /* 折扣券 */
+  &.type3 {
+    .mark {
+      color: $type3;
+      background: rgba($type3, 0.1);
+    }
+
+    .btn {
+      background: $type3;
+    }
+
+    .price {
+      color: $type3;
+    }
+  }
+
+  /* 包邮券 */
+  &.type4 {
+    .mark {
+      color: $type4;
+      background: rgba($type4, 0.1);
+    }
+
+    .btn {
+      background: $type4;
+    }
+
+    .price {
+      color: $type4;
+    }
+  }
+
+  /* 兑换券 */
+  &.type5 {
+    .mark {
+      color: $type5;
+      background: rgba($type5, 0.1);
+    }
+
+    .btn {
+      background: $type5;
+    }
+
+    .price {
+      color: $type5;
+    }
+  }
+
+  .mark {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 8px;
+    margin-right: 5px;
+    font-size: 10px;
+  }
+
+  .left {
+    position: relative;
+    width: rpx2(112);
+    text-align: center;
+    border-right: 1px dashed $border-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &:after, &:before {
+      content: '';
+      width: rpx2(10);
+      height: rpx2(10);
+      border-radius: 100%;
+      background: $white-smoke;
+      position: absolute;
+      right: rpx2(-5.5);
+    }
+
+    &:after {
+      top: rpx2(-24);
+    }
+
+    &:before {
+      bottom: rpx2(-23);
+    }
+
+    .price {
+      font-size: rpx2(16);
+      font-weight: bold;
+      line-height: 1;
+
+      .big {
+        font-size: rpx2(36);
+      }
+    }
+
+    .mt {
+      margin-top: 5px;
+    }
+  }
+
+  .right {
+    flex: 1;
+    padding: 2px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+      font-size: rpx2(14);
+      word-break: break-word;
+      @include ellipsis2(2);
+    }
+
+    .bottom {
+      display: flex;
+
+      .times {
+        flex: 1;
+        font-size: rpx2(10);
+        display: flex;
+        align-items: center;
+        color: $text-secondary;
+
+        .tip {
+          color: $red;
+          padding-left: rpx2(4);
+        }
+      }
+    }
+  }
+
+  .btn-wrap {
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .btn {
+      width: rpx2(48);
+      height: rpx2(25);
+      text-align: center;
+      line-height: rpx2(25);
+      border-radius: rpx2(14);
+      color: white;
+
+      &.inactive {
+        background: #ccc;
+      }
+    }
+  }
+
+  .btn-select {
+    margin: 0 rpx2(5);
+    color: $gray-light;
+    font-size: rpx2(18);
+
+    .icon-checkbox-checked {
+      color: $primary;
+    }
+  }
+}
+
+.explain {
+  border-radius: rpx2(5);
+  height: rpx2(30);
+  margin: -15px 10px 15px;
+  padding: rpx2(5) 0 0 rpx2(20);
+  line-height: rpx2(30);
+  background: white;
+  color: $text-primary;
+  font-size: rpx2(12);
+  box-shadow: 0 rpx2(2) rpx2(4) 0 rgba(0, 0, 0, 0.1);
+  border-top: 1px dashed #ddd;
+}
+
+.g-coupon-can-not-use {
+  $c: #bfbfbf;
+  color: $c;
+
+  .g-coupon-item .price {
+    color: $c;
+  }
+
+  .g-coupon-item .right .bottom .times {
+    color: $c;
+  }
+
+  .explain {
+    color: $c;
+  }
+
+  .g-coupon-item .mark {
+    background: rgba($c, 0.1);
+    color: $c;
+  }
+
+  // select选择券，不可用时，无按钮。
+  .g-coupon-item .btn-wrap.btn-wrap_select {
+    display: none;
+  }
+}

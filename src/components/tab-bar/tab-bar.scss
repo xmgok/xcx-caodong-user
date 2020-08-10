@@ -1,0 +1,44 @@
+@import "../../styles/mixin";
+/*@import "/styles/icons.scss";*/
+@import "../../styles/variables";
+
+.tab-bar {
+  height: 52px;
+  z-index: 995;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+  &.iPhoneXpb {
+    padding-bottom: $iPhoneX-height * 1px; // iPhone X 距底差值是68rpx
+  }
+
+  .item {
+    -webkit-box-flex: 1;
+    width: 1%;
+    text-align: center;
+    padding-top: rpx2(6);
+    color: $text-secondary;
+
+    .image {
+      display: block;
+      width: rpx2(25);
+      height: rpx2(25);
+      margin: 0 auto;
+    }
+
+    .text {
+      padding-top: rpx2(4);
+      font-size: rpx2(9);
+    }
+
+    &.active {
+      color: $text-price;
+    }
+  }
+}

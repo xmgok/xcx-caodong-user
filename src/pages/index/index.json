@@ -1,0 +1,30 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "seller-home": "/pages/index/components/seller-home/index",
+    "staff-home": "/pages/index/components/staff-home/index",
+    "jz-popup": "/components/popup/popup",
+    "w-active-group": "/components-widgets/active/group/index",
+    "w-active-recommend": "/components-widgets/active/recommend/index",
+    "w-active-bargain": "/components-widgets/active/bargain/index",
+    "w-active-seckill": "/components-widgets/active/seckill/index",
+    "w-store": "/components-widgets/store/index",
+    "w-search": "/components-widgets/search/index",
+    "w-coupon": "/components-widgets/coupon/index",
+    "w-goods": "/components-widgets/goods/index",
+    "w-poster": "/components-widgets/poster/index",
+    "w-nav": "/components-widgets/nav/index",
+    "w-slide": "/components-widgets/slide/index",
+    "w-banner": "/components-widgets/banner/index",
+    "w-left-right-scroll": "/components-widgets/left-right-scroll/index",
+    "card2": "/components/card2/card2",
+    "loading": "/components/loading/loading",
+    "return-top": "/components/return-top/return-top",
+    "look-more": "/components/look-more/look-more",
+    "list-loading-more": "/components/list-loading-more/index",
+    "love-list": "/components/love-list/love-list",
+    "iconfont": "/components/iconfont/iconfont"
+  }
+}

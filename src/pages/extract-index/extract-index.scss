@@ -1,0 +1,42 @@
+@import "../../styles/mixin";
+
+page {
+  background: white;
+  height: 100%;
+}
+
+.awesome-bottom {
+  min-height: 100%;
+  box-sizing: border-box;
+  padding-bottom: $copyright-height*1px;
+  margin-bottom: -$copyright-height*1px;
+}
+
+.page-extract-index {
+  .hd-item {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    border-bottom: rpx(1) solid $white-smoke;
+    margin-left: rpx2(15);
+    line-height: rpx2(50);
+    padding-right: rpx2(15);
+
+    .title {
+      font-weight: bold;
+      font-size: rpx2(16);
+      padding-left: rpx2(5);
+    }
+
+    .con {
+      -webkit-box-flex: 1;
+      text-align: right;
+      color: $text-secondary;
+      padding-right: rpx2(6);
+    }
+
+    .tb {
+      color: $text-secondary;
+    }
+  }
+}
+

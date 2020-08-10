@@ -1,0 +1,96 @@
+@import "../../../../styles/config";
+
+.page-message-detail3{
+  .item {
+    background-color: #fff;
+    padding: 15px;
+    margin: 15px 10px;
+    border-radius: 12px;
+
+    .item-t {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+       .title{
+         color: $black-light;
+         font-weight: bold;
+         font-size: 16px;
+       }
+      .item-t-r {
+        display: flex;
+        align-items: center;
+
+        .time {
+          color: $gray-dark;
+          font-weight: bold;
+        }
+
+        .point {
+          margin-left: 5px;
+          width: 8px;
+          height: 8px;
+          background: rgba(255, 86, 56, 1);
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .item-b {
+      display: flex;
+      align-items: center;
+
+      .imgs {
+        width: 80px;
+        height: 80px;
+        margin-right: 15px;
+        border-radius:4px;
+        .image {
+          width: 80px;
+          height: 80px;
+        border-radius:4px;
+        }
+      }
+
+      .item-b-r {
+
+        .code,
+        .monery {
+          width: 230px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          word-wrap: break-word;
+        }
+
+        .code{
+          font-size: 14px;
+          color: $black-light;
+        }
+
+        .monery,.out-monery,.err,.monery-warp {
+          color: $gray-dark;
+          font-size: 12px;
+        }
+        .monery{
+          margin-top: 33px;
+        }
+        .out-monery{
+          margin-top: 13px;
+        }.err{
+          margin-top: 6px;
+        }
+        .monery-warp {
+          display: flex;
+          align-items: center;
+          margin-top: 13px;
+          flex-wrap: wrap;
+          width: 214px;
+          .txt{
+          }
+
+        }
+      }
+    }
+  }
+}

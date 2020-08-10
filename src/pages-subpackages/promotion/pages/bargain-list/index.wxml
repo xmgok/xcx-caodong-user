@@ -1,0 +1,95 @@
+<view class="bargain">
+  <block wx:if="{{dataList.length}}">
+    <view class="h2">
+      <view class="h2-text">我参与的砍价</view>
+      <navigator url="/pages-subpackages/promotion/pages/bargain-list-my/index" hover-class="none" class="h2-more">
+        <view>查看全部</view>
+        <view class="more icon icon-angle-right"></view>
+      </navigator>
+    </view>
+    <scroll-view scroll-x bindscrolltolower="bindscrolltolower">
+      <view class="list {{dataList.length==1?'one':''}}">
+        <view bindtap="goDetail" data-record-id="{{item.recordId}}"
+              data-url="/pages-subpackages/promotion/pages/bargain-detail/index?id={{item.recordId}}"
+              class="item" wx:for="{{dataList}}" wx:key="index">
+          <view class="header">
+            <view class="left">
+              <view>距结束</view>
+              <view class="time-wrap">
+                <view class="time">{{item.remainingSecondsFormat.dayMergeToHours}}</view>
+                <view class="time-mark">:</view>
+                <view class="time">{{item.remainingSecondsFormat.minutes}}</view>
+                <view class="time-mark">:</view>
+                <view class="time">{{item.remainingSecondsFormat.seconds}}</view>
+              </view>
+            </view>
+            <view class="right">商品原价 {{item.productPrice}} 元</view>
+          </view>
+          <view class="body">
+            <image lazy-load class="img" mode="aspectFill"
+                   src="{{item.productImg}}"></image>
+            <view class="content">
+              <view class="title">
+                现价
+                <text class="red">{{item.currentAmount}}</text>
+                元，还能砍
+                <text class="red">{{item.diffAmount}}</text>
+                元
+              </view>
+              <view class="scroll-wrap">
+                <view class="scroll-progress">
+                  <view class="scroll-bar" style="width:{{item.reduceRatio}}%;"></view>
+                </view>
+                <view class="scroll-text">已砍{{item.reduceRatio}}%</view>
+              </view>
+              <view class="btn-wrap">
+                <view class="btn-left {{item.isPay?'inactive':''}}" data-active-type="bargain" data-item="{{item}}" catchtap="submit">立即购买</view>
+                <view class="btn-right {{item.isPay?'inactive':''}}">继续砍价</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </block>
+  <view class="h2">
+    <view class="h2-text">砍价商品</view>
+  </view>
+  <view class="goods">
+    <view class="item" wx:for="{{dataList2}}" wx:key="index">
+      <image lazy-load class="img" mode="aspectFill"
+             src="{{item.productImg}}"></image>
+      <view class="content">
+        <view class="title">{{item.productName}}</view>
+        <view class="join">
+          <view class="join-icon"></view>
+          <view class="join-text">{{item.joinNum}}人已参与</view>
+        </view>
+        <view class="price-wrap">
+          <view class="g-price">
+            <view class="_small g-mlr2">¥</view>
+            <view class="_big">{{item.priceInteger}}</view>
+            <view class="_small">{{item.priceDecimal}}</view>
+            <view class="_del">¥{{item.productPrice}}</view>
+          </view>
+          <view class="my-btn" data-item="{{item}}" catchtap="goJoin">立即参与</view>
+          <!--砍价列表中不存在已参与的砍价-->
+          <!--<view class="my-btn inactive">已参与</view>-->
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result2}}"></list-loading-more>
+
+<goods-purchase
+  wx:if="{{showPurchase}}"
+  show="{{showPurchase}}"
+  id="{{buyData.productId}}"
+  goodsType="1"
+  buyType="buy"
+  activeId="{{buyData.reduceId}}"
+  activeType="bargain"
+  recordId="{{buyData.recordId}}"
+  bind:selected="goodsPurchaseSelected"
+  bind:close="goodsPurchaseClose" />

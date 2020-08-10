@@ -1,0 +1,227 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.page-aftersales-detail {
+  padding-bottom: rpx2(55);
+
+  > .header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: rpx2(12) rpx2(15);
+    width: 100%;
+    height: rpx2(58);
+    background-color: white;
+
+    .status {
+      font-size: rpx2(20);
+      color: $red;
+    }
+
+    .content {
+      flex: 1;
+      padding-left: rpx2(15);
+    }
+
+    .title {
+      margin-bottom: rpx2(6);
+      color: $text-primary;
+      font-size: rpx2(15);
+      line-height: rpx2(15);
+      font-weight: bold;
+    }
+
+    .sub-title {
+      color: $text-secondary;
+      font-size: rpx2(13);
+      line-height: rpx2(13);
+    }
+
+    .link {
+      width: rpx2(67);
+      color: $text-secondary;
+      font-size: rpx2(13);
+    }
+  }
+
+  .sub-header {
+    padding-top: rpx2(5);
+    padding-bottom: rpx2(2);
+    background-color: white;
+
+    .reject-reason {
+      position: relative;
+      box-sizing: border-box;
+      margin: rpx2(5) 0 rpx2(5) rpx2(10);
+      width: rpx2(355);
+      min-height: rpx2(48);
+      background-color: #fff8f2;
+      padding: rpx2(8) rpx2(35);
+      font-size: rpx2(13);
+      font-weight: 400;
+      border-radius: rpx2(8);
+
+      &--reset {
+        min-height: auto;
+      }
+
+      .dot {
+        position: absolute;
+        top: rpx2(15);
+        left: rpx2(15);
+        width: rpx2(5);
+        height: rpx2(5);
+        border-radius: 50%;
+        background-color: $danger;
+      }
+
+      .sub-title {
+        margin-top: rpx2(5);
+        color: $text-secondary
+      }
+
+      &.disabled {
+        color: $text-secondary;
+
+        .dot {
+          background-color: $text-secondary;
+        }
+      }
+    }
+
+    .btn-container {
+      padding: 0 rpx2(10);
+      margin-top: rpx2(15);
+      margin-bottom: rpx2(10);
+      @include clearfix();
+
+      .ui-btn-plain {
+        float: right;
+      }
+    }
+  }
+
+  .return-address {
+    margin-top: rpx2(10);
+    margin-bottom: rpx2(10);
+
+    .contact-info,
+    .label {
+      font-weight: 600;
+      color: $text-primary;
+    }
+
+    .address {
+      margin-top: rpx2(6);
+      font-size: rpx2(13);
+      color: $text-secondary;
+    }
+  }
+
+  .product-card {
+    margin-top: rpx2(10);
+    margin-bottom: rpx2(10);
+    background-color: white;
+
+    .header {
+      display: flex;
+      align-items: center;
+      height: rpx2(44);
+      font-size: rpx2(13);
+      padding: 0 rpx2(10);
+
+      .order-no {
+        flex: 1;
+      }
+
+      .date {
+        font-size: rpx2(12);
+        color: $text-secondary;
+      }
+    }
+
+    .content {
+      padding: rpx2(15) 0 rpx2(15) 0;
+      margin-left: rpx2(10);
+      margin-right: 10px;
+      display: flex;
+      border-top: rpx(1) solid rgba($border-color, 0.8);
+
+      .avatar {
+        width: rpx2(70);
+        height: rpx2(70);
+        border-radius: 8px;
+      }
+
+      .product-info {
+        padding-left: 10px;
+        flex: 1;
+        font-size: 0;
+
+        .title {
+          @include ellipsis2(1, 15);
+          font-size: rpx2(15);
+          line-height: rpx2(15);
+          font-weight: 500;
+          margin-top: rpx2(4);
+          margin-bottom: rpx2(8);
+        }
+
+        .spec {
+          font-size: rpx2(12);
+          line-height: rpx2(12);
+          font-weight: 400;
+          color: $text-secondary;
+          margin-bottom: rpx2(13);
+        }
+
+        .price-wrap {
+          font-size: rpx2(14);
+          line-height: rpx2(14);
+          font-weight: 500;
+          color: $text-primary;
+          @include clearfix();
+
+          .quantity {
+            float: right;
+            font-size: rpx2(12);
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+
+  .aftersales-detail {
+    background-color: white;
+    padding: rpx2(15) rpx2(10);
+    font-size: rpx2(14);
+    line-height: rpx2(14);
+
+    .item:not(:last-child) {
+      margin-bottom: rpx2(12);
+    }
+
+    .grey {
+      color: $text-secondary;
+    }
+
+    .item-right {
+      flex: 1;
+
+      .img {
+        display: inline-block;
+        margin-right: rpx2(15);
+        width: rpx2(80);
+        height: rpx2(80);
+      }
+    }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: rpx2(-8);
+    background-color: white;
+    padding: rpx2(15);
+  }
+}

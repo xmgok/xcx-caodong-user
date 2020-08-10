@@ -1,0 +1,118 @@
+/**
+ 本文件用于定义通用默认样式变量，自定义主题请在 _theme.scss 中覆盖
+
+【禁止】使用在业务样式代码中使用原生 RGB 格式颜色（包括 RGBA 中透明度为1的），请用十六进制格式。
+ 若在半透明色中存在语义化颜色，请用sass函数 [rgba] 取对应透明度的值，
+ 如：rgba(#e62b00, 0.3)，编译后为color: rgba(230, 43, 0, 0.3);
+ */
+
+// 定制主题，覆盖默认变量
+@import "theme";
+
+
+// 基础色（系统级色彩体系）
+//
+//【建议】此模块变量仅作配色列表，原则上不可修改，用于其它语义化变量引用
+
+$black:        #000000 !default;
+$black-light:  #272636 !default;
+$white:        #ffffff !default;
+// e62b00不用了
+$red:          #ff5638 !default;
+$yellow:       #f5a623 !default;
+$orange:       #ff9619 !default;
+$orange-dark:  #ed6a0c !default;
+$blue:         #1989fa !default;
+$green:        #1aad19 !default;
+$white-smoke:  #f2f2f2 !default;
+$gray-lighter: #e5e5e5 !default;
+$gray-light :  #dcdcdc !default;
+$gray:         #cccccc !default;
+$gray-dark:    #96989c !default;
+$gray-darker:  #7d7e80 !default;
+
+
+// 语义化（产品级色彩体系）
+//
+// 语义化模块包含品牌色、功能色、中性色，一般用于主题定制
+//【建议】在特定语义场景下使用特定语义化颜色，以便在主题定制时平滑过渡
+//【禁止】把特定语义变量用于其它非相应场景（如：$btn-bg 只能用在按钮的背景色，不可用于border、color等）
+
+// 品牌色
+// 即主色调。应用场景包括：关键行动点、操作状态、重要信息高亮、图形化等场景
+$primary:        $red !default;
+
+// 功能色
+// 代表了明确的信息以及状态，比如成功、出错、失败、提醒、链接等。功能色的选取需要遵守用户对色彩的基本认知
+$success:        $green !default;
+$warning:        $orange !default;
+$danger:         $red !default;
+$info:           $gray !default;
+
+// 中性色
+// 主要被大量的应用在界面的文字部分，此外背景、边框、分割线、等场景中也非常常见
+$text-primary:   $black-light !default;
+$text-secondary: $gray-dark !default;
+$text-info:      $gray !default;
+$text-price:     $red !default;
+
+$border-color:   $gray-light !default;
+$img-default-bg: $gray-lighter !default;
+$box-shadow:     0 2px 6px 0 rgba(0, 0, 0, 0.1) !default;
+
+$bg: #f4f4f4 !default;
+
+// 组件相关
+//
+// 各类公用组件复用，如按钮、标签栏、开关等
+
+// 按钮
+$btn-default-color:       $text-primary !default;
+$btn-default-bg:          $white !default;
+$btn-default-border:      $border-color !default;
+
+$btn-primary-bg:          $primary !default;
+$btn-primary-border:      $primary !default;
+$btn-primary-color:       $white !default;
+$btn-primary-box-shadow:  0 2px 6px 0 rgba($primary, 0.3) !default;
+
+$btn-warning-gradient-bg: linear-gradient(270deg, $orange 0%, #ff3d12 100%) !default;
+$btn-warning-box-shadow:  0 2px 6px 0 rgba($red, 0.3);
+
+$btn-disabled-border:     $gray !default;
+$btn-disabled-bg:         $gray !default;
+
+$btn-border-radius:       100px !default;
+$btn-round-border-radius: 50% !default;
+
+// 单选/复选框
+$checkbox-primary-color:  $primary !default;
+
+// 标签栏
+$tab-border-color:        $primary !default;
+
+// 进度条
+$progress-bg:             linear-gradient(90deg, #f45600 0%, $red 100%) !default;
+
+// 标签
+$tag-bg:                  rgba($primary, 0.1) !default;
+$tag-border-color:        $primary !default;
+
+
+// 业务相关
+//
+// 非组件的可公用样式，多用于页面布局尺寸、定制样式
+
+// 员工端主色调
+$primary-staff:          #ff5638 !default;
+// 砍价主色调
+$primary-bargain:        #FF5638 !default;
+
+// 版权高度
+$copyright-height:       80 !default;
+// iPhoneX 距底差值是68rpx
+$iPhoneX-height:         34 !default;
+
+// 是否定制主题（用于做逻辑判断）
+//【重要】在 theme 中此值必须设置为true
+$is-theme-custom:        false !default;

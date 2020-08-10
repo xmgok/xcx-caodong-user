@@ -1,0 +1,70 @@
+<view class="page">
+  <view class="task3-common-wrap">
+    <view class="my-title">{{resData2.name}}</view>
+    <view class="time">活动时间：{{resData2.beginTime}} 至 {{resData2.endTime}}</view>
+    <view class="left-right">
+      <view class="left">
+        <view class="poa1">已完成拉新(人)</view>
+        <view class="poa2">{{resData2.step}}</view>
+        <view class="poa3">目标拉新 {{resData2.stepNumber}}人</view>
+      </view>
+      <view class="right">
+        <view class="poa1">已得金币</view>
+        <view class="poa2">{{resData2.gold}}</view>
+        <view class="poa3">总金币 {{resData2.totalGold}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!--<view class="task-step">
+    <view class="name">{{resData2.name}}</view>
+    <view class="desc">{{resData2.taskDesc}}</view>
+    <view class="time">
+      活动时间：
+      {{resData2._beginTimeFormat.month}}.{{resData2._beginTimeFormat.date}}
+      {{resData2._beginTimeFormat.hours}}:{{resData2._beginTimeFormat.minutes}}
+      至
+      {{resData2._endTimeFormat.month}}.{{resData2._endTimeFormat.date}}
+      {{resData2._endTimeFormat.hours}}:{{resData2._endTimeFormat.minutes}}
+    </view>
+    <view class="step-wrap">
+      <view class="progress">
+        <view style="width:{{resData2._scale}}%;" class="progress-chunk"></view>
+      </view>
+      <view class="step-text">
+        <text>{{resData2.step}}</text>
+        <text class="step-text-grey">/{{resData2.stepNumber}}</text>
+      </view>
+    </view>
+    <view class="reward">
+      <view>任务奖励：</view>
+      <view>
+        <view class="reward-item" wx:for="{{resData2.taskReward}}" wx:key="index">
+          <text>留资达到{{item.stepNumber}}人，可获得</text>
+          <text class="text-danger">{{item.reward}}</text>
+          <text>金币</text>
+        </view>
+      </view>
+    </view>
+  </view>-->
+
+  <view class="wrap">
+    <view class="h2">活动详情</view>
+  </view>
+  <view class="activity-img-wrap" wx:for="{{resData2.taskActivity}}" wx:key="index">
+    <image lazy-load class="activity-img" mode="aspectFill"
+           src="{{item.shareImg}}"></image>
+  </view>
+
+  <view wx:if="{{resData2.status==1}}" class="g-btn inactive fixed">未开始</view>
+  <view wx:elif="{{resData2.status==3}}" class="g-btn inactive fixed">已结束</view>
+  <view wx:else class="g-btn fixed" bindtap="onShare">立即分享</view>
+</view>
+
+<component-share
+  activeId="{{resData2.taskActivity[0].activityId}}"
+  activeType="activity"
+  shareUrll="{{shareUrl}}"
+  shareText="{{shareText}}"
+  show="{{showShare}}"
+  imgList="{{imgList}}" />

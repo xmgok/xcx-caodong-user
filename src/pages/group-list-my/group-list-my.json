@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "我的拼团列表",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

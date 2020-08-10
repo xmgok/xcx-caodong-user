@@ -1,0 +1,75 @@
+<view class="page">
+  <view class="search-wrap">
+    <jz-search
+      clearable
+      show-action="{{showHistory}}"
+      value="{{ keyword }}"
+      placeholder-style="color:#96989c"
+      placeholder="搜索商品编号或关键字"
+      bindconfirm="handleSearchConfirm"
+      style="width: 100%">
+    </jz-search>
+  </view>
+  <!--<view class="g-tab g-tab_style2">
+    <view
+      class="g-tab-item {{index == categoryIndex ? 'g-tab-item_active' : ''}}"
+      wx:for="{{categoryList}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="switchTab2">
+      <view class="g-tab-item-text">{{item.name}}</view>
+    </view>
+  </view>-->
+  <view class="list-wrap">
+    <navigator
+      wx:for="{{dataList}}"
+      wx:key="index"
+      open-type="navigate"
+      hover-class="none"
+      url="{{item._detailUrl}}"
+      class="list">
+      <view class="goods-info-wrap">
+        <image lazy-load class="img" mode="aspectFill"
+               src="{{item.productImg}}"></image>
+        <view class="`text-wrap`">
+          <view class="hairline"></view>
+          <view class="title">{{item.productName}}</view>
+          <view class="desc">{{item.details}}</view>
+          <view class="desc mt">
+            <view><!--人已转发--></view>
+            <view>
+              <text>最高佣金</text>
+              <text class="highlight">¥{{item.commissionAmount}}</text>
+            </view>
+          </view>
+          <view class="info">
+            <view class="g-price">
+              <view class="_small">￥</view>
+              <view class="_big">{{item.priceInteger}}</view>
+              <view class="_small">{{item.priceDecimal}}</view>
+            </view>
+            <view
+              class="g-btn"
+              catchtap="showShare"
+              data-active-type="normal"
+              data-item="{{item}}">
+              去分享
+            </view>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<list-loading-more
+  result="{{result}}"
+  icon="icon-order-yuan"
+  noDataDesc="暂时没有相关商品哦~"></list-loading-more>
+
+<component-share
+  bindclose="close"
+  wx:if="{{showShare}}"
+  productId="{{shareData.id}}"
+  show="{{showShare}}"
+  checkIdList="{{checkIdList}}"
+  imgList="{{imgList}}"/>

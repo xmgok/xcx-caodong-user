@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "预约门店",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

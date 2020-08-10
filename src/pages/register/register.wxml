@@ -1,0 +1,33 @@
+<view class="container page-register">
+  <view class="tip">点注册按钮，默认您已接受<text>《草动商城用户协议》</text></view>
+  <view class="form">
+    <view class="hd-item">
+      <input placeholder-style="color:#96989C" placeholder="手机号码" maxlength="11" type="number" value="{{form.mobile}}" data-type="mobile" bindinput="bindInput" bindblur="bindblur" />
+      <view class="get-msg-code {{timer >= 60 ? 'active' : ''}}" bindtap="getMsgCode">{{timeText}}</view>
+    </view>
+
+    <view class="hd-item">
+      <input placeholder-style="color:#96989C" placeholder="验证码" value="{{form.imageCode}}" data-type="imageCode" bindinput="bindInput" />
+      <image lazy-load class="code" bindtap="changeCodeImg" mode="aspectFill" src="{{codeImg}}"></image>
+    </view>
+
+    <view class="hd-item">
+      <input placeholder-style="color:#96989C" placeholder="短信验证码" value="{{form.code}}" data-type="code" bindinput="bindInput" bindblur="bindblur" />
+    </view>
+
+    <view class="hd-item">
+      <block wx:if="{{!eye}}">
+        <input placeholder-style="color:#96989C" placeholder="密码(至少6位)" value="{{form.password}}" type="password" data-type="password" bindinput="bindInput" bindblur="bindblur" />
+        <view class="icon icon-eye-slash eye1" bindtap="changeEye"></view>
+      </block>
+      <block wx:else>
+        <input placeholder-style="color:#96989C" placeholder="密码(至少6位)" value="{{form.password}}" data-type="password" bindinput="bindInput" bindblur="bindblur" />
+        <view class="icon icon-eye" bindtap="changeEye"></view>
+      </block>
+    </view>
+
+    <view class="save {{canSave ? 'active' : ''}}" bindtap="onSave">注册</view>
+  </view>
+</view>
+
+<component-copyright />

@@ -1,0 +1,50 @@
+@import "../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+// 初次应用在发布接龙页面
+.g-upload-wrap {
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 19px;
+  .g-upload {
+    margin: 0 9px 19px;
+    width: 100px;
+    height: 100px;
+    background: $white-smoke;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &:nth-of-type(4n) {
+      margin-right: 0;
+    }
+    .g-upload-icon {
+      font-size: 30px;
+      color: $gray;
+    }
+    .g-upload-text {
+      height: 17px;
+      font-size: 12px;
+      font-weight: 400;
+      color: $gray;
+      line-height: 17px;
+    }
+    .g-upload-del {
+      position: absolute;
+      color: $red;
+      right: 4px;
+      top: 4px;
+      font-size: 16px;
+    }
+    .g-upload-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

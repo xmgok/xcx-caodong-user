@@ -1,0 +1,122 @@
+@import "../../styles/config";
+
+.page-customer-detail {
+
+  .hd-block {
+    background: white;
+    //box-shadow:0 rpx2(2) rpx2(5) 0 rgba(37,38,94,0.1);
+    margin-bottom: rpx2(10);
+
+    .hd-title {
+      padding: 0 rpx2(15);
+      line-height: rpx2(50);
+      border-bottom: rpx(1) solid $white-smoke;
+      font-size: rpx2(16);
+      font-weight: bold;
+    }
+  }
+
+  .user-wrap {
+    padding: rpx2(20) 0;
+
+    .user-info {
+      padding: 0 rpx2(20);
+      display: -webkit-box;
+      -webkit-box-align: center;
+      position: relative;
+      .setting {
+        position: absolute;
+        right: rpx2(20);
+        top: rpx2(8);
+        font-size: rpx2(20);
+      }
+      .img {
+        width: rpx2(60);
+        height: rpx2(60);
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: rpx2(20);
+      }
+      .info {
+        line-height: rpx2(17);
+        .name-wrap {
+          display: -webkit-box;
+          -webkit-box-align: center;
+          .name {
+            font-size: rpx2(16);
+            font-weight: bold;
+          }
+          .xingzuo {
+            color: $text-secondary;
+            padding-left: rpx2(10);
+          }
+        }
+        .address {
+          padding-top: rpx2(7);
+          color: $text-secondary;
+        }
+      }
+    }
+
+  }
+
+  .achievement-wrap {
+    .num-wrap {
+      padding: rpx2(20) rpx2(15);
+      display: -webkit-box;
+      -webkit-box-pack: center;
+      text-align: center;
+      .item {
+        margin-right: rpx2(10);
+        -webkit-box-flex: 1;
+        background: #FBFCFC;
+        border-radius:rpx2(3);
+        padding: rpx2(12) 0;
+        .text1 {
+          color: $text-secondary;
+          line-height: rpx2(17);
+          padding-bottom: rpx2(3);
+        }
+        .text2 {
+          line-height: rpx2(20);
+        }
+        &.active {
+          background: $btn-primary-bg;
+          box-shadow:0 rpx2(5) rpx2(10) 0 rgba($primary,0.2);
+          color: white;
+          .text1 {
+            color: white;
+          }
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .hd-item {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    border-bottom: rpx(1) solid #F2F2F2;
+    margin-left: rpx2(15);
+    line-height: rpx2(50);
+    padding-right: rpx2(15);
+    .title {
+      font-weight: bold;
+      font-size: rpx2(16);
+      padding-left: rpx2(5);
+    }
+    .con {
+      -webkit-box-flex: 1;
+      text-align: right;
+      color: #878787;
+      padding-right: rpx2(6);
+    }
+    .tb {
+      color: $text-secondary;
+    }
+  }
+
+}
+

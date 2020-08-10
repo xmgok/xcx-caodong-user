@@ -1,0 +1,31 @@
+<view class="container">
+  <image
+    class="cover-img"
+    mode="aspectFill"
+    wx:if="{{info.coverImg}}"
+    src="{{info.coverImg}}"></image>
+
+  <view class="header">
+    <view class="title">{{info.name}}</view>
+    <view class="time-wrap">
+      <text class="icon icon-shijian"></text>
+      <text class="time">{{info._startTime}}</text>
+    </view>
+  </view>
+
+  <view class="btn-wrap">
+    <navigator
+      class="btn btn-home"
+      hover-class="none"
+      url="/pages/index/index"
+      open-type="switchTab">
+      回首页
+    </navigator>
+    <navigator
+      class="btn btn-room {{info.isView === 1 ? '' : 'disabled'}}"
+      hover-class="none"
+      url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId}}">
+      到直播室
+    </navigator>
+  </view>
+</view>

@@ -1,0 +1,35 @@
+@import "../../styles/mixin";
+
+.container {
+  box-sizing: border-box;
+  padding-top: rpx2(130);
+  background-color: white;
+  .icon-wrap {
+    margin-bottom: rpx2(25);
+    text-align: center;
+    .icon {
+      font-size: rpx2(45);
+      color: #4cc065;
+    }
+  }
+
+  .tip {
+    font-size: rpx2(16);
+    line-height: rpx2(24);
+    color: $text-primary;
+    margin-bottom: rpx2(96);
+    text-align: center;
+  }
+
+  .btn-submit {
+    width: rpx2(305);
+    height: rpx2(42);
+    line-height: rpx2(42);
+    color: white;
+    font-size: rpx2(17);
+    text-align: center;
+    background-color: #4cc065;
+    border-radius: rpx2(4);
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/tb-active-detail/index",
+    "pages/tb-active-coupon/index",
+    "pages/gift/index",
+    "pages/gift-goods/gift-goods",
+    "pages/share-poster/share-poster",
+    "pages/staff-login/login",
+    "pages/more-entry/index",
+    "pages/article-list/index",
+    "pages/article-detail/index",
+    "pages/coupon-send/index",
+    "pages/write-off/index",
+    "pages/goods-center/index",
+    "pages/valet-order/index",
+    "pages/explore/explore",
+    "pages/cart/cart",
+    "pages/cart-video/cart-video",
+    "pages/my/my",
+    "pages/category/category",
+    "pages/explore-detail/explore-detail",
+    "pages/material-list/material-list",
+    "pages/upload-img/upload-img",
+    "pages/choose-img/choose-img",
+    "pages/setting/setting",
+    "pages/setting-edit/setting-edit",
+    "pages/order-list/order-list",
+    "pages/coupon-list/coupon-list",
+    "pages/coupon-detail/coupon-detail",
+    "pages/coupon-goods/coupon-goods",
+    "pages/order-detail/order-detail",
+    "pages/extract-index/extract-index",
+    "pages/extract-detail/extract-detail",
+    "pages/customer-list/customer-list",
+    "pages/customer-add/customer-add",
+    "pages/customer-detail/customer-detail",
+    "pages/address-list/address-list",
+    "pages/address-add/address-add",
+    "pages/search-panel/search-panel",
+    "pages/search/search",
+    "pages/gallery/gallery",
+    "pages/fans/fans",
+    "pages/task-my/task-my",
+    "pages/task-step/task-step",
+    "pages/task-step-fans/task-step-fans",
+    "pages/task-step-kpi/task-step-kpi",
+    "pages/group-list/group-list",
+    "pages/group-rules/group-rules",
+    "pages/group-detail/group-detail",
+    "pages/group-invite/group-invite",
+    "pages/group-list-my/group-list-my",
+    "pages/group-product-staff/group-product-staff",
+    "pages/order-confirm/order-confirm",
+    "pages/product/product",
+    "pages/logistics-detail/logistics-detail",
+    "pages/register/register",
+    "pages/enterprise-status/enterprise-status",
+    "pages/aftersales-apply/aftersales-apply",
+    "pages/aftersales-detail/aftersales-detail",
+    "pages/aftersales-record/aftersales-record",
+    "pages/authorization/authorization",
+    "pages/mini-navigate/mini-navigate",
+    "pages/yeepay/yeepay",
+    "pages/activity-confirm/activity-confirm",
+    "pages/activity-form/activity-form",
+    "pages/explore-video/explore-video",
+    "pages/withdraw-request/index",
+    "pages/withdraw-settlement-account/index",
+    "pages/withdraw-bank-bind/index",
+    "pages/withdraw-success/index",
+    "pages/withdraw-record/index",
+    "pages/balance-withdraw/balance-withdraw",
+    "pages/balance-withdraw-record/balance-withdraw-record",
+    "pages/scene/index",
+    "pages/camera-photo/camera-photo",
+    "pages/camera-photo-detail/camera-photo-detail"
+  ],
+  "subpackages": [{
+      "root": "pages-subpackages/cus/",
+      "pages": [
+        "pages/cus-m/index",
+        "pages/cus-m-detail/index",
+        "pages/cus-m-c/index",
+        "pages/cus-m-c-edit/index",
+        "pages/cus-m-c-label/index",
+        "pages/cus-m-label/index",
+        "pages/cus-m-label-search/index",
+        "pages/cus-m-label-detail/index"
+      ]
+    },
+    {
+      "root": "pages-subpackages/seller/",
+      "pages": [
+        "pages/seller-request/index",
+        "pages/seller-my/index",
+        "pages/seller-money/index",
+        "pages/seller-store-setting/index",
+        "pages/seller-team/index",
+        "pages/seller-customer-staff/index",
+        "pages/seller-goods-list/index"
+      ]
+    },
+    {
+      "root": "pages-subpackages/comment/",
+      "pages": [
+        "pages/comment/comment",
+        "pages/comment-detail-goods/comment-detail-goods",
+        "pages/comment-detail-my/comment-detail-my",
+        "pages/comment-my/comment-my",
+        "pages/comment-order-goods/comment-order-goods"
+      ]
+    },
+    {
+      "root": "pages-subpackages/promotion/",
+      "pages": [
+        "pages/bargain-detail/index",
+        "pages/bargain-list/index",
+        "pages/bargain-list-my/index",
+        "pages/center/index",
+        "pages/coupon-bag-detail/index",
+        "pages/coupon-detail-my/index",
+        "pages/coupon-exchange-goods/index",
+        "pages/coupon-split/index",
+        "pages/seckill-list/index"
+      ]
+    },
+    {
+      "root": "pages-subpackages/common/",
+      "pages": [
+        "pages/send-goods/index",
+        "pages/store-detail/index"
+      ]
+    },
+    {
+      "root": "pages-subpackages/live/",
+      "pages": [
+        "pages/live-list/index",
+        "pages/live-list2/index",
+        "pages/live-room/index",
+        "pages/live-board/index"
+      ]
+    },
+    {
+      "root": "pages-subpackages/message/",
+      "pages": [
+        "pages/list/index",
+        "pages/detail1/index",
+        "pages/detail2/index",
+        "pages/detail3/index",
+        "pages/detail4/index",
+        "pages/detail5/index",
+        "pages/detail6/index",
+        "pages/detail7/index",
+        "pages/detail8/index"
+      ]
+    },
+    {
+      "root": "pages-subpackages/booking/",
+      "pages": [
+        "pages/booking-write-off/index",
+        "pages/booking/index",
+        "pages/booking-time/index",
+        "pages/booking-store/index",
+        "pages/booking-project/index",
+        "pages/booking-city/index",
+        "pages/booking-list/index",
+        "pages/booking-detail/index",
+        "pages/booking-success/index",
+        "pages/booking-list-staff/index",
+        "pages/booking-detail-staff/index",
+        "pages/booking-staff-split/index"
+      ]
+    }
+  ],
+  "usingComponents": {
+    "components-custom-qr": "/components/custom-qr/index",
+    "component-coupon-item": "/components/coupon-item/index",
+    "component-phone-auth": "/components/phone-auth/index",
+    "component-phone-auth2": "/components/phone-auth2/index",
+    "component-mark": "/components/mark/mark",
+    "component-mark2": "/components/mark2/mark",
+    "component-custom-nav": "/components/custom-nav/index",
+    "component-loading": "/components/loading/loading",
+    "component-tab-bar": "/components/tab-bar/tab-bar",
+    "component-copyright": "/components/copyright/copyright"
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "white",
+    "selectedColor": "blue",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/icon/home.png",
+        "selectedIconPath": "/images/icon/home-selected.png",
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "/images/icon/category.png",
+        "selectedIconPath": "/images/icon/category-selected.png"
+      },
+      {
+        "pagePath": "pages/explore/explore",
+        "text": "发现",
+        "iconPath": "/images/icon/explore.png",
+        "selectedIconPath": "/images/icon/explore-selected.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/images/icon/cart.png",
+        "selectedIconPath": "/images/icon/cart-selected.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/images/icon/profile.png",
+        "selectedIconPath": "/images/icon/profile-selected.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "为您提供优质服务"
+    }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxc0546077129ffb2e",
+    "wx493e495ca5b90968"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

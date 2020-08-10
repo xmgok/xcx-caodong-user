@@ -1,0 +1,57 @@
+@import "../../../../styles/config";
+
+page {
+  background: #ffffff;
+}
+
+.page {
+  .no-data-now {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #ccc;
+  }
+
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 rpx2(10) rpx2(10);
+  }
+
+  .list-wrap {
+    padding: 0 20px;
+
+    .title {
+      margin-top: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      color: $text-primary;
+      line-height: 22px;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .item {
+        width: 102px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        background: $white-smoke;
+        border-radius: 12px;
+        font-size: 14px;
+        color: $text-primary;
+        margin-right: 15px;
+        margin-top: 15px;
+
+        &:nth-of-type(3n) {
+          margin-right: 0;
+        }
+
+        @include ellipsis1();
+      }
+    }
+  }
+}

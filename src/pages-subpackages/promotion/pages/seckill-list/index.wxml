@@ -1,0 +1,45 @@
+<view class="seckill-list">
+  <view class="header">
+    <image lazy-load class="bg" mode="aspectFill" src="../../images/su-home-bg.png"></image>
+    <view class="tab-wrap">
+      <view bindtap="switchTab" class="tab-item {{tabIndex==index?'active':''}}" wx:for="{{tabList}}" data-code="{{item.code}}" data-index="{{index}}" wx:key="index">
+        {{item}}
+      </view>
+    </view>
+  </view>
+  <view class="list-warp" wx:for="{{dataList}}" wx:key="index">
+    <view class="list" bind:tap="goProductDetail" data-id="{{item.id}}" data-product-id="{{item.productId}}">
+      <view class="l-l">
+        <image class="image" src="{{item.productImg}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
+        <view class="img-center" wx:if="{{item.sellStatus == 1 && tabIndex == 0}}">已抢光</view>
+      </view>
+      <view class="l-r">
+        <view class="tit">{{item.productName }}</view>
+        <view class="time" wx:if="{{options.type == 1}}">{{item.startTime }}开抢</view>
+        <view class="time" wx:if="{{options.type == 2 || tabIndex == 0 }}">
+          已抢{{item.virtualNumber}}件
+        </view>
+        <view class="price-warp">
+          <view class="price-l">
+            <view class="new-price">
+              <text style="sign">¥</text>
+              <text class="big">{{item.bigPrice}}</text>
+              <text class="samll">{{item.samllPrice}}</text>
+              <text class="old-price">¥{{item.productPrice}}</text>
+            </view>
+          </view>
+          <view class="price-r">
+            <view class="tag {{options.type == 2 ||  tabIndex == 0 ?'active':'tag'}}" wx:if="{{item.sellStatus == 0 && tabIndex == 0 || tabIndex ==1}}"  bind:tap="goProductDetail" data-id="{{item.id}}" data-product-id="{{item.productId}}">
+              {{ tagOBJ[options.type ||  tabIndex ]}}
+            </view>
+            <view class="tag" wx:if="{{item.sellStatus ==1 && tabIndex == 0}}">已抢光</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--  -->
+<list-loading-more result="{{result}}" icon="icon-xiaofeizhewode-yuyue" noDataDesc="暂时还没有内容哦~"></list-loading-more>
+<!-- 此行务必放在最底部，是用来兼容iphoneX的 -->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

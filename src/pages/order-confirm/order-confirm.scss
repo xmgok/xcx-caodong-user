@@ -1,0 +1,309 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+@import "../../styles/address";
+@import "../cart/gifts-popup";
+
+page {
+  background: white;
+  padding-bottom: 61px;
+}
+
+.container {
+  padding: rpx2(10);
+}
+
+.shipping-address {
+  padding: rpx2(15) rpx2(10);
+  margin: 0 auto rpx2(10);
+  font-size: rpx2(14);
+
+  .card-body {
+    color: $text-primary;
+    @include clearfix();
+
+    .tabs {
+      display: flex;
+      border-bottom: 0.5px solid $white-smoke;
+      font-size: rpx2(14);
+      margin-bottom: rpx2(15);
+
+      .item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 rpx2(45);
+        border-bottom: rpx2(2) solid white;
+        padding-bottom: rpx2(15);
+
+        &.active {
+          border-color: $primary;
+          font-size: rpx2(16);
+          font-weight: bold;
+        }
+      }
+    }
+
+    padding: 0;
+
+    .cont {
+      display: flex;
+    }
+  }
+
+  .icon-plus {
+    margin-right: rpx2(10);
+    font-size: rpx2(14);
+    color: $danger;
+  }
+
+  .icon-angle-right {
+    font-size: rpx2(16);
+    color: $text-secondary;
+  }
+
+  .icon-map-marker-fill, .icon-store2 {
+    color: $danger;
+  }
+
+  .icon-wrap {
+    width: rpx2(24);
+  }
+}
+
+.order-detail {
+  .goods-info {
+    display: flex;
+    margin-bottom: rpx2(10);
+
+    .goods-image {
+      margin-right: rpx2(10);
+      width: rpx2(70);
+      height: rpx2(70);
+      border-radius: rpx2(3);
+    }
+
+    .right-content {
+      flex: 1;
+
+      .title {
+        margin-bottom: rpx2(5);
+        font-size: rpx2(15);
+        font-weight: bold;
+        @include ellipsis2(1)
+      }
+
+      .spec {
+        box-sizing: border-box;
+        height: rpx2(18);
+        padding: 0 rpx2(5);
+        color: $text-secondary;
+        background-color: $white-smoke;
+        border-radius: rpx2(3);
+      }
+
+      .gift {
+        display: inline-block;
+        width: rpx2(30);
+        height: rpx2(14);
+        background: #b1cb6d;
+        border-radius: rpx2(4);
+        color: white;
+        font-size: rpx2(10);
+        text-align: center;
+        line-height: rpx2(14);
+
+        &.coupon5 {
+          background: #7b8cb7;
+        }
+      }
+
+      .ui-price-wrap {
+        margin-top: rpx2(5);
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .input-number-wrap {
+        margin-top: rpx2(5);
+        height: rpx2(30);
+        line-height: rpx2(30);
+      }
+
+      .input-number-plus,
+      .input-number-minus {
+        width: rpx2(18);
+        height: rpx2(18);
+      }
+
+      .input-number-input {
+        width: rpx2(36);
+        height: rpx2(18);
+        line-height: rpx2(18);
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .shipping-way {
+    margin-top: rpx2(15);
+    padding-top: rpx2(15);
+    font-size: rpx2(14);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.5px solid $white-smoke;
+
+    //&:nth-child(1) {
+    //  border: none;
+    //}
+
+    .label {
+      color: #3a3a3a;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+
+      .selected {
+        display: inline-block;
+        font-size: rpx2(10);
+        color: $primary;
+        border: 1px solid $primary;
+        border-radius: 100px;
+        margin-left: rpx2(8);
+        padding: 0 rpx2(5);
+      }
+    }
+
+    .icon-angle-right {
+      font-size: rpx2(12);
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+
+    .title {
+      margin-right: rpx2(5);
+      display: inline-block;
+      vertical-align: rpx2(3);
+      color: #3a3a3a;
+      font-size: rpx2(13);
+    }
+
+    .price {
+      font-size: rpx2(16);
+      color: $text-price;
+    }
+  }
+}
+
+.remark-warp {
+  display: flex;
+  margin: rpx2(10) rpx2(10) 0;
+  padding-bottom: rpx2(10);
+  font-size: rpx2(14);
+  border-bottom: rpx(1) solid $white-smoke;
+
+  .label {
+    display: flex;
+    align-items: center;
+    width: rpx2(42);
+    color: #3a3a3a;
+    font-weight: bold;
+  }
+
+  input {
+    flex: 1;
+  }
+}
+
+.bar-class {
+  border-top: rpx2(1) solid $white-smoke;
+}
+
+.score-wrap {
+  flex: 1;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .score-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .score-label-small {
+    color: $text-secondary;
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  .score-switch {
+  }
+}
+
+.score2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  color: $text-secondary;
+  font-size: 12px;
+
+  input {
+    color: $text-primary;
+    border-bottom: 1px solid $black-light;
+    width: 70px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .b {
+    color: $text-primary;
+  }
+}
+
+.score-hint {
+  color: $text-secondary;
+  margin-left: 5px;
+  line-height: 1;
+}
+
+.switch-red {
+  .wx-switch-input {
+    zoom: 0.8;
+  }
+
+  /* swtich整体大小及背景色 */
+  //.wx-switch-input {
+  //  width: 39px !important;
+  //  height: 22px !important;
+  //}
+
+  /* 白色样式（false的样式） */
+  //.wx-switch-input::before {
+  //  width: 38px !important;
+  //  height: 20px !important;
+  //}
+
+  /* 绿色样式（true的样式） */
+  //.wx-switch-input::after {
+  //  width: 20px !important;
+  //  height: 20px !important;
+  //}
+}
+
+.bar-active {
+  padding-bottom: $iPhoneX-height * 1px;
+  background: #ffffff;
+}

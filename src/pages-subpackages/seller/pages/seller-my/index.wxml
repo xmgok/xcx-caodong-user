@@ -1,0 +1,82 @@
+<view class="page g-page-seller-my">
+  <view class="header">
+    <view class="avatar">
+      <image class="head"
+             lazy-load mode="aspectFill"
+             src="{{headUrl}}"></image>
+      <view>
+        <view class="nickname">{{nickName}}</view>
+        <view class="time">加入时间：{{resData.creatTime}}</view>
+      </view>
+    </view>
+    <view class="money">
+      <navigator class="money-go" url="/pages-subpackages/seller/pages/seller-money/index" hover-class="none">
+        <view class="money-desc">可提现佣金(元)</view>
+        <view class="icon icon-angle-right"></view>
+      </navigator>
+      <view class="withdraw">
+        <view class="number">{{resData.avcAmount}}</view>
+        <navigator hover-class="none" url="/pages/withdraw-request/index" class="btn">申请提现</navigator>
+      </view>
+      <view class="desc">
+        <view>累计佣金 +{{resData.amount}}</view>
+        <view class="ml">今日收入 +{{resData.income}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="body">
+    <view class="title">分销业绩</view>
+    <navigator class="item" hover-class="none" url="/pages-subpackages/seller/pages/seller-money/index">
+      <view class="item-icon c1 icon icon-fenxiaoyongjin"></view>
+      <view class="item-content">
+        <view class="name">分销佣金</view>
+        <view class="more">
+          <view class="desc">{{resData.count}}笔</view>
+          <view class="icon icon-angle-right"></view>
+        </view>
+      </view>
+    </navigator>
+    <navigator class="item" hover-class="none" url="/pages-subpackages/seller/pages/seller-team/index">
+      <view class="item-icon c2 icon icon-wodetuandui"></view>
+      <view class="item-content">
+        <view class="name">我的团队</view>
+        <view class="more">
+          <view class="desc">{{resData.cpcount}}人</view>
+          <view class="icon icon-angle-right"></view>
+        </view>
+      </view>
+    </navigator>
+    <view class="title">推广工具</view>
+    <navigator class="item" hover-class="none" url="/pages-subpackages/seller/pages/seller-goods-list/index">
+      <view class="item-icon c3 icon icon-tuiguangfanyong"></view>
+      <view class="item-content">
+        <view class="name">分享商品</view>
+        <view class="more">
+          <view class="desc"></view>
+          <view class="icon icon-angle-right"></view>
+        </view>
+      </view>
+    </navigator>
+    <button open-type="share" class="item">
+      <view class="item-icon c4 icon icon-yaoqingfenxiao"></view>
+      <view class="item-content">
+        <view class="name">扩展团队</view>
+        <view class="more">
+          <view class="desc"></view>
+          <view class="icon icon-angle-right"></view>
+        </view>
+      </view>
+    </button>
+    <navigator class="item" hover-class="none" url="/pages-subpackages/seller/pages/seller-store-setting/index">
+      <view class="item-icon c5 icon icon-dianpushezhi"></view>
+      <view class="item-content">
+        <view class="name">店铺设置</view>
+        <view class="more">
+          <view class="desc">基本设置</view>
+          <view class="icon icon-angle-right"></view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<component-copyright/>

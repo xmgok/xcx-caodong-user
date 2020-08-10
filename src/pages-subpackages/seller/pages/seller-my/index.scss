@@ -1,0 +1,81 @@
+@import "../../../../styles/config";
+
+page {
+  background: #ffffff;
+}
+
+.page {
+  .body {
+    color: $text-primary;
+
+    .title {
+      height: 53px;
+      line-height: 53px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-left: 20px;
+      margin-top: 10px;
+      border-bottom: 1px solid $border-color;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      margin: 0 0 0 25px;
+      padding: 0;
+      background: none;
+
+      .item-icon {
+        font-size: 20px;
+        margin-right: 20px;
+
+        &.c1 {
+          color: #ffb336
+        }
+
+        &.c2 {
+          color: #4189fc
+        }
+
+        &.c3 {
+          color: #f05f88
+        }
+
+        &.c4 {
+          color: #ff6555
+        }
+
+        &.c5 {
+          color: #3cb371
+        }
+      }
+
+      .item-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $border-color;
+        height: 53px;
+        flex: 1;
+        padding-right: 15px;
+      }
+
+      .name {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .more {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #878787;
+      }
+
+      .desc {
+        margin-right: 6px;
+      }
+    }
+  }
+}

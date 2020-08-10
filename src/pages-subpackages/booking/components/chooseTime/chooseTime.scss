@@ -1,0 +1,114 @@
+@import "../../../../styles/config";
+/*@import "/styles/icons.scss";*/
+/*@import "/styles/utils.scss";*/
+.choose-wrap {
+    background: $white;
+    box-shadow: $box-shadow;
+    border-radius: rpx2(6);
+    margin-bottom: rpx2(20);
+}
+
+.choose-customer {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: rpx2(15);
+  //display: flex;
+  //align-items: center;
+  padding: rpx2(7) rpx2(22);
+  height: rpx2(50);
+  background-color: #f6f8fa;
+  border: rpx(1) solid #f6f8fa;
+  border-radius: rpx2(6);
+  .avatar {
+    display: inline-block;
+    margin-right: rpx2(8);
+    width: rpx2(36);
+    height: rpx2(36);
+    border-radius: 50%;
+    background-color: $white;
+  }
+  .name {
+    //flex: 1;
+    margin-right: rpx2(10);
+    font-size: rpx2(14);
+  }
+  .icon {
+    color: $text-secondary;
+    font-size: rpx2(16);
+  }
+  .name,
+  .icon {
+    display: inline-block;
+    height: rpx2(36);
+    line-height: rpx2(36);
+  }
+}
+.choose-time-select{
+    @extend %flex-bt-vc;
+    .choose-t-select{
+        margin: rpx2(15);
+    }
+}
+.choose-day {
+    @extend %flex-vc;
+    padding-bottom: rpx2(15);
+    padding-top: rpx2(15);
+    color: #272636;
+    font-size: rpx2(14);
+    .item {
+        width:rpx2(28);
+        height:rpx2(56);
+        border-radius:rpx2(14);
+        text-align: center;
+        margin-right: rpx2(20);
+        text {
+            @extend %dly-block;
+            line-height: rpx2(20);
+            &:first-child {
+                font-size: rpx2(12);
+                padding-bottom: rpx2(6);
+                padding-top: rpx2(5);
+            }
+        }
+        &.active {
+            color: white;
+            background:$primary;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.choose-time {
+    font-size: 0;
+    padding-left: rpx2(22);
+    padding-bottom: rpx2(10);
+    border-top: rpx(1) solid $gray-lighter;
+    padding-top: rpx2(30);
+    .item {
+        @extend %dly-linebk;
+        width: rpx2(53);
+        height: rpx2(27);
+        line-height: rpx2(27);
+        text-align: center;
+        font-size: rpx2(12);
+        background: $white;
+        border-radius: rpx2(3);
+        border: rpx(1) solid $border-color;
+        margin-right: rpx2(17);
+        margin-bottom: rpx2(20);
+        box-sizing: border-box;
+        &.item1 {
+            background: $white-smoke;
+            border-color: $white-smoke;
+            color: $gray-dark;
+        }
+        &.item2 {
+            background:rgba($primary, 0.1);
+            border-color: $primary;
+            color: $primary;
+        }
+    }
+}
+

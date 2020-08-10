@@ -1,0 +1,149 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+/* Button */
+$button-default-color: $text-primary;
+$button-default-background-color: #ffffff;
+$button-default-border-color: $border-color;
+$button-primary-color: #ffffff;
+$button-primary-background-color: $primary;
+$button-primary-border-color: $primary;
+$button-danger-color: #ffffff;
+$button-danger-background-color: $danger;
+$button-danger-border-color: $danger;
+$button-warning-color: #ffffff;
+$button-warning-background-color: $warning;
+$button-warning-border-color: $warning;
+$button-bottom-action-default-color: #ffffff;
+$button-bottom-action-default-background-color: $warning;
+$button-bottom-action-primary-color: #ffffff;
+$button-bottom-action-primary-background-color: $danger;
+
+.jz-button {
+  position: relative;
+  padding: 0;
+  display: inline-block;
+  height: rpx2(44);
+  line-height: rpx2(42);
+  border-radius: rpx2(2);
+  box-sizing: border-box;
+  font-size: rpx2(16);
+  text-align: center;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-text-size-adjust: 100%;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    border: inherit;
+    border-color: $black-light;
+    background-color: $black-light;
+    border-radius: inherit; /* inherit parent's border radius */
+    transform: translate(-50%, -50%);
+  }
+
+  &:active::after {
+    opacity: .15;
+  }
+
+  &--unclickable::after {
+    display: none;
+  }
+
+  &--default {
+    color: $button-default-color;
+    background-color: $button-default-background-color;
+    border: rpx(1) solid $button-default-border-color;
+  }
+
+  &--primary {
+    color: $button-primary-color;
+    background-color: $button-primary-background-color;
+    border: rpx(1) solid $button-primary-border-color;
+  }
+
+  &--danger {
+    color: $button-danger-color;
+    background-color: $button-danger-background-color;
+    border: rpx(1) solid $button-danger-border-color;
+  }
+
+  &--warning {
+    color: $button-warning-color;
+    background-color: $button-warning-background-color;
+    border: rpx(1) solid $button-warning-border-color;
+  }
+
+  &--plain {
+    background-color: $white;
+
+    &.jz-button--primary {
+      color: $button-primary-background-color;
+    }
+
+    &.jz-button--danger {
+      color: $button-danger-background-color;
+    }
+
+    &.jz-button--warning {
+      color: $button-warning-background-color;
+    }
+  }
+
+  &--large {
+    width: 100%;
+    height: rpx2(50);
+    line-height: rpx2(48);
+  }
+
+  &--normal {
+    padding: 0 rpx2(15);
+    font-size: rpx2(14);
+  }
+
+  &--small {
+    height: rpx2(30);
+    padding: 0 rpx2(8);
+    min-width: rpx2(60);
+    font-size: rpx2(12);
+    line-height: rpx2(28);
+  }
+
+  /* mini图标默认宽度50px，文字不能超过4个 */
+  &--mini {
+    display: inline-block;
+    width: rpx2(50);
+    height: rpx2(22);
+    line-height: rpx2(20);
+    font-size: rpx2(10);
+
+    & + .jz-button--mini {
+      margin-left: rpx2(5);
+    }
+  }
+
+  &--block {
+    width: 100%;
+    display: block;
+  }
+
+  &--round {
+    border-radius: rpx2(100);
+  }
+
+  &--square {
+    border-radius: 0;
+  }
+
+  &--disabled {
+    color: $white;
+    background-color: $btn-disabled-bg;
+    border: none;
+  }
+}

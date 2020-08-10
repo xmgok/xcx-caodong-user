@@ -1,0 +1,86 @@
+<view class="booking-list-staff">
+  <scroll-view scroll-x class="g-tab g-tab_style2" wx:if="{{showTab}}">
+    <view class="g-tab-item {{tabIndex == index ? 'g-tab-item_active' : ''}}" wx:for="{{tabList}}" wx:key="index" data-index="{{index}}" bindtap="switchTab">
+      <view class="g-tab-item-text">{{item}}</view>
+    </view>
+  </scroll-view>
+  <view class="list-wrap">
+    <view class="list" wx:for="{{dataList}}" wx:key="index">
+      <navigator url="../booking-detail-staff/index?code={{item.code}}&userId={{item.userId}}" hover-class="none">
+        <view class="item-top flex flex-bt">
+          <view class="title-l">
+            <view class="icon icon-time"></view>
+            <view class="f16 time">{{item.arrivalTime}}</view>
+          </view>
+          <view class="title-r active f13" wx:if="{{item.status == 1 &&  jobType == 1 }}">待分配</view>
+          <view class="title-r active f13" wx:if="{{item.status == 2}}">待服务</view>
+          <view class="title-r active f13" wx:if="{{item.status == 3}}">已完成</view>
+          <view class="title-r active f13" wx:if="{{item.status == 4}}">已取消</view>
+          <view class="title-r active f13" wx:if="{{item.status == 5}}">已关闭</view>
+        </view>
+        <view class="item-bottom">
+          <view class="row">
+            <view class="tit">预约项目</view>
+            <view class="info ">{{item.serviceName}}</view>
+          </view>
+          <view class="row">
+            <view class="tit">预约客户</view>
+            <view class="info">{{item.userName}}({{item.userMobile}})</view>
+          </view>
+          <view class="row">
+            <view class="tit">所属导购</view>
+            <view class="info">{{item.curEmpName}}</view>
+          </view>
+          <view class="row">
+            <view class="tit">备注说明</view>
+            <view class="info">{{item.remarks}}</view>
+          </view>
+        </view>
+        <view class="btns">
+          <view class="hand-warp">
+            <view class="hand-l">
+              <block wx:if="{{item.empName}}">
+                <view class="imgs">
+                  <image class="image" src="{{item.empHeadImg}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
+                </view>
+                <view style="color:#96989C">{{item.empName}}接待</view>
+              </block>
+            </view>
+            <view class="hand-r">
+              <block wx:if="{{item.status == 1 && jobType == 1 || item.status == 2}}">
+                <view class="close" catchtap="close" data-code="{{item.code}}">关闭</view>
+              </block>
+              <block wx:if="{{item.status ==1 || item.status == 2}}">
+                <view data-code="{{item.code}}" class="jobs {{ item.status == 2  ?'jobs-active':'jobs'}}" catchtap="touch">
+                  核销
+                </view>
+              </block>
+              <block wx:if="{{item.isAllot == 1 }}">
+                <view data-item="{{item}}" class="sataff {{item.status ==1 ?'jobs-active':'sataff'}}" catchtap="taskStaff" data-code ="{{item.code}}">
+                  分配导购
+                </view>
+              </block>
+            </view>
+          </view>
+          <view class="result" wx:if="{{item.status == 4 ||item.status == 5  }}">
+            {{item.status == 4?'取消原因：': '关闭原因：'}}{{item.cancelReason}}
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+<!-- 关闭原因弹框 -->
+<popup show="{{ closeShow }}" position="bottom" bindclose="onPurchaseClose" custom-class="coupon-popup-order">
+  <view class="header-popup">
+    <view class="title">是否确认关闭预约单？</view>
+    <text class="icon icon-times btn-close" bindtap="onPurchaseClose"></text>
+  </view>
+  <view class="content">
+    <textarea value="{{memo}}" bindinput="onInput" placeholder="" maxlength="{{-1}}" placeholder-style="color: rgba(247, 248, 250, 1);"></textarea>
+  </view>
+  <view class="footer-popup">
+    <view class="submit {{ memo?'active':'submit' }}" bindtap="closeSubmit">确定</view>
+  </view>
+</popup>
+<list-loading-more result="{{result}}" icon="icon-xiaofeizhewode-yuyue" noDataDesc="暂时还没有相关预约单哦~"></list-loading-more>

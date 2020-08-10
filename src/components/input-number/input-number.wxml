@@ -1,0 +1,18 @@
+<view class="jz-stepper custom-class">
+  <view
+    class="minus-class jz-stepper__minus {{ minusDisabled ? 'jz-stepper__minus--disabled' : '' }}"
+    catch:tap="onMinus"
+  />
+  <input
+    type="{{ integer ? 'number' : 'digit' }}"
+    class="input-class jz-stepper__input {{ disabled || disableInput ? 'jz-stepper__input--disabled' : '' }}"
+    value="{{ value }}"
+    disabled="{{ disabled || disableInput }}"
+    bindinput="onInput"
+    catch:blur="onBlur"
+  />
+  <view
+    class="plus-class jz-stepper__plus {{ plusDisabled ? 'jz-stepper__plus--disabled' : '' }}"
+    catch:tap="onPlus"
+  />
+</view>

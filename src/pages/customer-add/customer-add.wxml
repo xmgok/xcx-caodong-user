@@ -1,0 +1,11 @@
+<view class="page-customer-add">
+
+  <view class="form">
+    <block wx:for="{{requireList}}" wx:key="index">
+      <view class="text" wx:if="{{form.id}}">{{item.text}}</view>
+      <input placeholder-style="color:#96989C" placeholder="{{item.text}}" type="{{item.type == 'mobile' ? 'number' : 'text'}}" value="{{form[item.type]}}" data-type="{{item.type}}" bindinput="bindInput" />
+    </block>
+    <view class="save {{canSave ? 'active' : ''}}" bindtap="onSave">保存</view>
+  </view>
+
+</view>

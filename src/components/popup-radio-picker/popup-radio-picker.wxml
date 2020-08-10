@@ -1,0 +1,31 @@
+<jz-popup
+  bindclose="closePicker"
+  show="{{ show }}"
+  position="bottom"
+  z-index="101"
+  custom-class="popup-radio-picker">
+  <view class="header" bindtap="closePicker">
+    <view class="title">{{ title }}</view>
+    <text class="icon icon-times btn-close"></text>
+  </view>
+  <view class="content">
+    <jz-radio-group
+      wx:if="{{ newList.length }}"
+      value="{{ current }}"
+      bind:change="onChange">
+      <view class="list-item" wx:for="{{ newList }}" wx:key="value">
+        <jz-radio
+          custom-class="radio"
+          label-class="radio-label"
+          name="{{ item.value }}"
+          label-position="left">{{ item.label }}</jz-radio>
+      </view>
+    </jz-radio-group>
+    <view class="tc" wx:else>
+      <view class="empty-msg">暂无数据~</view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="ui-btn-submit {{ isDisabled ? 'disabled' : '' }}" bindtap="submit">确定</view>
+  </view>
+</jz-popup>

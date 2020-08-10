@@ -1,0 +1,116 @@
+@import "../../../../styles/config";
+
+page {
+  height: 100%;
+}
+
+.awesome-bottom {
+  min-height: 100%;
+  box-sizing: border-box;
+  padding-bottom: $copyright-height*1px;
+  margin-bottom: -$copyright-height*1px;
+}
+
+.page {
+  overflow: hidden;
+  .goods-card {
+    margin: 15px 10px 0;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+
+    &.ok {
+      .star-icon {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+        margin-bottom: 10px;
+      }
+
+      .item {
+        font-size: 14px;
+        margin-right: 10px;
+        color: $gray-light;
+
+        &.active {
+          color: #f49017;
+        }
+      }
+    }
+
+    .card-body {
+      display: flex;
+      padding: 15px 10px;
+
+      .title {
+        color: $text-primary;
+        font-size: 15px;
+        font-weight: bold;
+        @include ellipsis2(1, 15);
+        margin-top: 6px;
+        margin-bottom: 8px;
+      }
+    }
+
+    .avatar {
+      height: 70px;
+      width: 70px;
+      border-radius: 3px;
+      background-color: #f4f4f4;
+    }
+
+    .right-content {
+      flex: 1;
+      padding-left: 10px;
+    }
+
+    .small {
+      height: 12px;
+      line-height: 12px;
+      font-size: 12px;
+      color: $text-secondary;
+      @include ellipsis2(1, 12);
+    }
+
+    .price {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .card-footer {
+      margin: 0 10px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        right: -50%;
+        bottom: -50%;
+        transform: scale(0.5);
+        border-top: 1px solid $white-smoke;
+      }
+    }
+  }
+}
+
+.g-tab {
+  -webkit-box-pack: center;
+
+  .g-tab-item {
+    -webkit-box-flex: 0;
+    width: 60px;
+    margin: 0 50px;
+  }
+}
+
+.ui-btn-plain {
+  position: relative;
+  z-index: 1;
+}

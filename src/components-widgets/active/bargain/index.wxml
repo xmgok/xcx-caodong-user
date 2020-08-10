@@ -1,0 +1,33 @@
+<view class="bargain" wx:if="{{dataList.length}}">
+  <view class="head">- 好友砍价 -</view>
+  <scroll-view scroll-x bindscrolltolower="bindscrolltolower">
+    <view class="list {{dataList.length==1?'one':''}}">
+      <view bindtap="goDetail" data-record-id="{{item.recordId}}"
+            data-url="/pages-subpackages/promotion/pages/bargain-detail/index?id={{item.recordId}}"
+            class="item" wx:for="{{dataList}}" wx:key="index">
+        <image lazy-load class="img" mode="aspectFill"
+               src="{{item.productImg}}"></image>
+        <view class="content">
+          <view class="title">{{item.productName}}</view>
+          <view class="join">{{item.joinNum}}人已参与</view>
+          <view class="price-old">原价¥{{item.productPrice}}</view>
+          <view class="price">
+            <view class="g-price">
+              <view class="_small g-mlr2">¥</view>
+              <view class="_big">{{item.priceInteger}}</view>
+              <view class="_small">{{item.priceDecimal}}</view>
+            </view>
+            <view class="my-btn" data-item="{{item}}" catchtap="goJoin">立即参与</view>
+          </view>
+        </view>
+      </view>
+      <navigator url="/pages-subpackages/promotion/pages/bargain-list/index" hover-class="none"
+                 class="look-more">
+        <view>查</view>
+        <view>看</view>
+        <view>全</view>
+        <view>部</view>
+      </navigator>
+    </view>
+  </scroll-view>
+</view>

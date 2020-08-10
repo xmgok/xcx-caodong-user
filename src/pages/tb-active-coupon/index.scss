@@ -1,0 +1,141 @@
+@import "../../styles/config";
+
+@font-face {
+  font-family: 'tb-font';
+  src: url('https://qiniu.icaodong.com/tebu/font.ttf');
+}
+
+@keyframes scaleDraw {
+  0% {
+    transform: scale(1) translateX(-50%);
+  }
+  100% {
+    transform: scale(0.95) translateX(-50%);
+  }
+}
+
+@keyframes scaleDraw2 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes scaleDraw3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+.css-animation {
+  animation: scaleDraw 2s ease-in-out infinite alternate;
+}
+
+.css-animation2 {
+  animation: scaleDraw2 2s ease-in-out infinite alternate;
+}
+
+.css-animation3 {
+  animation: scaleDraw3 2s ease-in-out infinite alternate;
+}
+
+page {
+  width: 100%;
+  height: 100%;
+  font-family: "思源黑体";
+}
+
+.page {
+  color: #ffffff;
+  width: 100%;
+  height: 100%;
+
+  .bg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .poa {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    .coupon-bg-wrap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: px945(963);
+
+      .coupon-bg {
+        width: px945(615);
+        height: px945(275);
+      }
+
+      .money {
+        font-size: px945(137);
+        position: absolute;
+        left: px945(210);
+        top: px945(4);
+      }
+
+      .desc {
+        line-height: 1.4;
+        font-size: px945(34);
+        position: absolute;
+        top: px945(50);
+        right: -50px;
+      }
+    }
+
+    .share-bg-wrap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: px945(1257);
+
+      .share-bg {
+        width: px945(525);
+        height: px945(245);
+      }
+
+      .share-btn {
+        width: px945(250);
+        height: px945(70);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      .share-arrow {
+        width: px945(96);
+        height: px945(87);
+        position: absolute;
+        right: px945(250+18);
+        bottom: 0;
+      }
+
+      .text {
+        padding-top: 4px;
+        line-height: 1.4;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        font-size: px945(31);
+      }
+
+      .text3 {
+        font-size: px945(21);
+      }
+    }
+  }
+}

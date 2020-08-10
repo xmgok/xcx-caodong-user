@@ -1,0 +1,46 @@
+<view class="page-booking-project">
+  <view class="list-warp">
+    <view
+      class="list"
+      wx:for="{{dataList}}"
+      wx:key="index"
+      data-id="{{item.id}}"
+      data-index="{{index}}"
+      bindtap="doCheck"
+    >
+      <view class="checkboxs">
+        <text
+          class="checkbox-icon icon {{item.checked?'icon-checkbox-checked':'icon-checkbox'}}"
+        ></text>
+      </view>
+      <view class="imgs">
+        <image
+          class="image"
+          src="{{item.imgUrl}}"
+          mode="aspectFill"
+          lazy-load
+        />
+      </view>
+      <view class="content">
+        <view class="cont-b">
+          <view class="tit">{{item.name}}</view>
+          <view class="desc">{{item.details}}</view>
+        </view>
+        <view class="price">
+          <text class="">￥</text>
+          <text class="number">{{item.priceInteger}}</text>
+          <text class="">{{item.priceDecimal}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<list-loading-more result="{{result}}" noMoreDataDesc=""></list-loading-more>
+<view class="footer {{iPhoneX?'iPhoneXb':''}}">
+  <view class="submit active" bindtap="confirm">确定</view>
+</view>
+
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

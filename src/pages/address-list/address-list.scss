@@ -1,0 +1,90 @@
+@import "../../styles/mixin";
+.page-address-list {
+
+  padding-bottom: rpx2(75);
+
+  .no-data {
+    .icon-wrap {
+      width: rpx2(155);
+      height: rpx2(155);
+      margin: rpx2(150) auto 0;
+      line-height: rpx2(155);
+      text-align: center;
+      background: #E6E6E6;
+      border-radius: 50%;
+      font-size: rpx2(80);
+      color: white;
+    }
+  }
+
+  .fixed-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
+    padding: rpx2(5) rpx2(15);
+    box-sizing: border-box;
+    .add-customer {
+      background: $btn-primary-bg;
+      color: $btn-primary-color;
+      line-height: rpx2(40);
+      height: rpx2(40);
+      text-align: center;
+      border-radius: $btn-border-radius;
+      font-size: rpx2(16);
+      font-weight: bold;
+    }
+  }
+
+  .list-wrap {
+    padding: rpx2(10);
+    .item {
+      box-shadow: 0 rpx2(2) rpx2(5) rgba(0, 0, 0, 0.1);
+      margin-bottom: rpx2(10);
+      border-radius: rpx2(8);
+      background: white;
+      padding: rpx2(15) rpx2(15) 0;
+      line-height: rpx2(16);
+      .name {
+        padding-bottom: rpx2(8);
+        font-size: rpx2(15);
+        font-weight: bold;
+      }
+      .mobile {
+        font-size: rpx2(16);
+      }
+      .addr {
+        color: $text-secondary;
+        padding-bottom: rpx2(8);
+      }
+      .func {
+        border-top: rpx(1) solid $border-color;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        color: $text-secondary;
+        .zw {
+          -webkit-box-flex: 1;
+        }
+        .set-default {
+          text {
+            padding-right: rpx2(5);
+            font-size: rpx2(15);
+            vertical-align: rpx2(-1);
+            &.active {
+              color: $red;
+            }
+          }
+        }
+        .tb {
+          font-size: rpx2(16);
+          padding: rpx2(15) rpx2(10);
+          &:last-child {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+}
+

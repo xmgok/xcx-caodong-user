@@ -1,0 +1,52 @@
+<view class="page-booking-success">
+  <view class="content-warp">
+    <view class="sucess-info">
+      <view class="icon icon-success"></view>
+      <view class="take">预约成功</view>
+      <view class="txt">请您到店后，出示预约码即可享受服务</view>
+    </view>
+    <view class="point-warp">
+      <view class="point-l"></view>
+      <view class="line"></view>
+      <view class="point-r"></view>
+    </view>
+    <view class="content-item">
+      <view class="row">
+        <view class="tit">预约项目</view>
+        <view class="info ">{{resData._serviceName}}</view>
+      </view>
+      <view class="row">
+        <view class="tit">到店时间</view>
+        <view class="info ">{{resData.arrivalTime}}</view>
+      </view>
+      <view class="row">
+        <view class="tit">备注说明</view>
+        <view class="info ">{{resData.remarks || '无'}}</view>
+      </view>
+      <view class="row">
+        <view class="tit">门店电话</view>
+        <view class="info ">{{resData.storeMobile}}</view>
+      </view>
+      <view class="row">
+        <view class="tit">门店地址</view>
+        <view class="info ">{{resData.storeAddress}}</view>
+      </view>
+    </view>
+    <view class="code-warp">
+      <image class="code" lazy-load mode="aspectFill" src="{{takeCodeQr}}" bindtap="previewImage"></image>
+      <view class="code-txt">预约码：{{resData.bookingCode}}</view>
+    </view>
+  </view>
+</view>
+<view class="footer {{iPhoneX?'iPhoneXb':''}}">
+  <navigator open-type="switchTab" hover-class="none" url="/pages/index/index" class="return-submit">
+    返回首页
+  </navigator>
+  <navigator hover-class="none" url="/pages-subpackages/booking/pages/booking-list/index" class="see-submit">
+    查看我的预约
+  </navigator>
+</view>
+
+
+<!--此行务必放在最底部，是用来兼容iphoneX的-->
+<view wx:if="{{iPhoneX}}" class="iPhoneXh"></view>

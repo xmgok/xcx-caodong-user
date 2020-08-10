@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "导购分配",
+  "navigationBarBackgroundColor": "#F2F2F2",
+  "usingComponents": {
+    "list-loading-more": "/components/list-loading-more/index"
+  }
+}

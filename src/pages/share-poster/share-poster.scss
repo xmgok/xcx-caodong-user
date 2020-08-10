@@ -1,0 +1,151 @@
+@import "../../styles/mixin";
+
+page {
+  background: white;
+}
+
+.poster-canvas {
+  position: absolute;
+  top: -9000px;
+  left: -9000px;
+  z-index: -1;
+  //z-index: 555;
+  width: 345px;
+  height: 417px;
+
+}
+
+.page-share-poster {
+  .tab {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 55;
+    padding: 0 rpx2(15);
+    font-weight: bold;
+    font-size: rpx2(16);
+    text {
+      font-size: rpx2(12);
+      font-weight: normal;
+      padding-left: rpx2(5);
+      color: $text-secondary;
+    }
+  }
+  .fixed-bottom {
+    background: white;
+    z-index: 55;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: rpx2(6) rpx2(15);
+    box-sizing: border-box;
+    .item-btn {
+      background: $btn-primary-bg;
+      font-size: rpx2(16);
+      font-weight: bold;
+      text-align: center;
+      line-height: rpx2(38);
+      color: $btn-primary-color;
+      border-radius: $btn-border-radius;
+    }
+    .swiper-dots {
+      display: -webkit-box;
+      -webkit-box-align: center;
+      -webkit-box-pack: center;
+      margin-bottom: rpx2(21);
+      .dots-item {
+        background: $white-smoke;
+        width: rpx2(6);
+        height: rpx2(6);
+        border-radius: 50%;
+        margin-right: rpx2(4);
+        &.active {
+          background: $primary;
+        }
+      }
+    }
+  }
+  .swiper-wrap2 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: rpx2(40) rpx2(15) rpx2(80);
+    .swiper {
+      height: 100%;
+      box-sizing: border-box;
+      box-shadow:0 rpx2(2) rpx2(8) 0 rgba(0,0,0,0.1);
+      border-radius: rpx2(3);
+      overflow: hidden;
+    }
+  }
+
+  .img-item {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-wrap {
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    padding-bottom: rpx2(145);
+    .img-item2 {
+      width: 100%;
+      height: 100%;
+    }
+    .info {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      box-sizing: border-box;
+      display: -webkit-box;
+      -webkit-box-align: start;
+      padding: rpx2(20);
+      .text-wrap {
+        -webkit-box-flex: 1;
+        .title {
+          font-size:rpx2(16);
+          font-weight: bold;
+          color: $text-primary;
+          line-height: rpx2(22);
+          height: rpx2(66);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display:-webkit-box;
+          -webkit-box-orient:vertical;
+          -webkit-line-clamp:3;
+
+        }
+        .price {
+          padding-top: rpx2(3);
+          font-size: rpx2(22);
+          font-weight: bold;
+          color: $text-price;
+          line-height: rpx2(24);
+          text {
+            font-size: rpx2(16);
+          }
+        }
+      }
+      .img-wrap {
+        margin-left: rpx2(20);
+        text-align: center;
+        color: $gray-dark;
+        font-size:rpx2(11);
+        line-height:rpx2(14);
+        .img {
+          width: rpx2(92);
+          height: rpx2(92);
+          margin-bottom: rpx2(3);
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,11 @@
+<view class="poster">
+  <block wx:for="{{result.link}}" wx:key="index">
+    <view
+      style="width:{{item.width*2}}rpx;height:{{item.height*2}}rpx;left:{{item.position[0]*2}}rpx;top:{{item.position[1]*2}}rpx;"
+      data-url="{{item.linkUrl}}"
+      bindtap="goLink"
+      hover-class="none"
+      class="item"></view>
+  </block>
+  <image lazy-load src="{{result.imgUrl}}" mode="widthFix" class="img" bindtap="bindTap" />
+</view>

@@ -1,0 +1,11 @@
+<form bindsubmit="tapSubmit" report-submit wx:if="{{ page }}">
+  <button
+    class="g-my-form-btn {{ shown ? '' : 'btn-hidden'}} btn-class {{ disabled ? 'disabled': '' }}"
+    type="{{ type }}"
+    form-type="submit"
+    disabled="{{ disabled }}"
+    hover-class="none">
+    <block wx:if="{{ text }}">{{ text }}</block>
+    <slot wx:else></slot>
+  </button>
+</form>

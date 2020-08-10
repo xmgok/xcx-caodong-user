@@ -1,0 +1,21 @@
+@import "../../../styles/config";
+/*@import "/styles/icons.scss";*/
+
+.wrap1 {
+  //background: white;
+  overflow: hidden;
+
+  .head {
+    width: 100%;
+    background: white;
+    font-size: rpx2(18);
+    height: rpx2(60);
+    line-height: rpx2(60);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .h10 {
+    height: 10px;
+  }
+}

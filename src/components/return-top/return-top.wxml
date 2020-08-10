@@ -1,0 +1,5 @@
+<view class="return-top" style="bottom: {{bottom*2}}rpx" bindtap="returnTop" wx:if="{{show}}">
+  <text class="icon icon-to-top"></text>
+</view>
+
+

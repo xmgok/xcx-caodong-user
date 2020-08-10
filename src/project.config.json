@@ -1,0 +1,14 @@
+{
+	"appid": "wxfa0d734f7133e5b2",
+	"setting": {
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"urlCheck": false,
+		"checkSiteMap": false
+	},
+	"projectname": "cao",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {}
+}

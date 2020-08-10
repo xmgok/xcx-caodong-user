@@ -1,0 +1,28 @@
+<view class='v-main-video'>
+    <live-pusher
+      wx:if="{{isCaster}}"
+      id="pusher"
+      mode="HD"
+      url="{{mainPusherInfoUrl}}"
+      aspect="9:16"
+      min-bitrate="600"
+      max-bitrate="1200"
+      waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg"
+      bindstatechange="onMainPush"
+      binderror="onMainError">
+        <slot name="casterBackButton"></slot>
+    </live-pusher>
+
+    <live-player
+      wx:else
+      autoplay
+      id="player"
+      min-cache="1"
+      max-cache="3"
+      src="{{visualPlayersUrl}}"
+      object-fit="fillCrop"
+      bindstatechange="onMainPlayState"
+      binderror="onMainPlayError">
+        <slot name="audienceBackButton"></slot>
+    </live-player>
+</view>
